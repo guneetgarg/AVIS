@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/avis-web-tests/pom.xml" />
         <option value="$PROJECT_DIR$/avis-web-framework/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>

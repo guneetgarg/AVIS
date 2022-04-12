@@ -131,7 +131,7 @@ public class Confirmation extends AbstractBasePage {
         if (helper.isElementDisplayed(roktPlacementFrame)) {
             driver.switchTo().frame(roktPlacementFrame);
             driver.switchTo().frame(roktOfferFrame);
-            getFreeCouponPopup.click();
+            helper.clickIfElementIsDisplayed(getFreeCouponPopup);
             driver.switchTo().defaultContent();
         }
         return this;

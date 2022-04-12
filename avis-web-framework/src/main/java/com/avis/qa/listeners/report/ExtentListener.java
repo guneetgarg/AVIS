@@ -16,11 +16,8 @@ import java.util.Arrays;
 
 public class ExtentListener extends TestBase implements ITestListener {
 
-
 	public static ExtentReports extent;
-
 	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<ExtentTest>();
-
 
 	public void onTestStart(ITestResult result) {
 		ExtentTest test = extent.createTest(result.getTestClass().getName() + "     @TestCase : " + result.getMethod().getMethodName());
@@ -55,7 +52,8 @@ public class ExtentListener extends TestBase implements ITestListener {
 		String methodName = result.getMethod().getMethodName();
 		String logText = "<b>" + "Test Case:- " + methodName + " Skipped" + "</b>";
 		Markup m = MarkupHelper.createLabel(logText, ExtentColor.YELLOW);
-		testReport.get().skip(m);
+		//testReport.get().skip(m);
+		testReport.get().log(Status.SKIP, m);
 
 	}
 
@@ -66,16 +64,12 @@ public class ExtentListener extends TestBase implements ITestListener {
 
 	public void onStart(ITestContext context) {
 
-
 	}
 
 	public void onFinish(ITestContext context) {
-
 		if (extent != null) {
-
 			extent.flush();
 		}
-
 	}
 
 }

@@ -45,7 +45,6 @@ public class TestBase {
     @AfterMethod(alwaysRun = true)
     public void afterMethodTestBase(ITestResult result) throws IOException {
         log.info("afterMethodTestBase() called");
-        //else
         getDriver().quit();
     }
 

@@ -279,7 +279,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_FTPPayLater_Authenticated(String wizardNo, String password, String pickUpLocation,
                                                       String partnerName, String membershipNo) {
         launchUrl();
@@ -289,7 +289,7 @@ public class ReservationTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_AuthenticatedAndDomestic_Paylater(String pickUpLocation, String wizardNo, String password,
                                                               String pickUpLocation1) {
         launchUrl();
@@ -300,7 +300,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_SMSOptInProfile_Verification(String wizardNo, String password, String pickUpLocation,
                                                          String phoneNo) {
         launchUrl();
@@ -326,7 +326,7 @@ public class ReservationTests extends TestBase {
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater(pickUpLocation,
                 dropOffTime, awd, firstName, lastName, email, phoneNo, iataNo, pickUpLocation_new);
-        confirmation.closeGetFreeCouponPopup().cancelReservation();
+        confirmation.cancelReservation();
     }
 
     @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)

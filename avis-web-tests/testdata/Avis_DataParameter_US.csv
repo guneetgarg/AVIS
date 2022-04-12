@@ -2,7 +2,7 @@
 Reservation_OutboundAndMultiCurrency_Paylater,AKL,Hrishi,K,AbgEcom,8980765645,AA1234
 Reservation_AuthenticatedAndDomestic_Paylater,EWR,B0506T,Testing100@,LAS
 
-Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://qa.avis.com/en/home
+Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ
 #Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://www.avis.com/en/home
 
 Reservation_Recognised_Paylater,LAS,8TL47W,G,LAS

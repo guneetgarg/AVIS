@@ -42,7 +42,7 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//div[contains(@class,'info-error-msg-text')]/span")
     private WebElement underAgeMsg_Step2;
 
-    @FindBy(xpath = "(//del[@ng-if=\"car.displayRate.displayStkPayLater\"])[1]")
+    @FindBy(xpath = "(//del[@ng-if='car.displayRate.displayStkPayLater'])[1]|(//p[@ng-if='car.displayRate.displayStkSelect'])[1]")
     private WebElement StrikreThroughPriceIndicator;
 
 
