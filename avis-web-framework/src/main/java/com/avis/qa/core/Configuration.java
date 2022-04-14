@@ -3,8 +3,6 @@ package com.avis.qa.core;
 import lombok.extern.log4j.Log4j2;
 import org.testng.xml.XmlTest;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
@@ -24,6 +22,7 @@ public class Configuration {
     public static String BRAND;
     public static String DOMAIN;
     public static String URL;
+    public static String DOCKER;
     private static Properties prop;
     /* Driver Configuration */
     public static final long DEFAULT_IMPLICIT_TIMEOUT = Long.parseLong(getValue("timeout.implicit"));
@@ -34,7 +33,9 @@ public class Configuration {
             prop = new Properties();
             InputStream input;
             try {
-                input = new FileInputStream(new File("config.properties"));
+                ClassLoader loader = Thread.currentThread().getContextClassLoader();
+                input = loader.getResourceAsStream("config.properties");
+                //input = new FileInputStream(new File("config.properties"));
                 prop.load(input);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -69,6 +70,8 @@ public class Configuration {
         ENVIRONMENT = XML_PARAMS_MAP.get("environment") != null ? XML_PARAMS_MAP.get("environment") : getValue("environment");
         DOMAIN = XML_PARAMS_MAP.get("domain") != null ? XML_PARAMS_MAP.get("domain") : getValue("domain");
         BROWSER = XML_PARAMS_MAP.get("browser") != null ? XML_PARAMS_MAP.get("browser") : getValue("browser");
+        DOCKER = XML_PARAMS_MAP.get("docker") != null ? XML_PARAMS_MAP.get("docker") : getValue("docker");
+
     }
 
     public static void setURL() {
