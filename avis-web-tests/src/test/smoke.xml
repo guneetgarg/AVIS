@@ -18,13 +18,13 @@
             </run>
         </groups>
 
-        <packages>
-            <package name="com.avis.qa"/>
-        </packages>
+        <!--        <packages>-->
+        <!--            <package name="com.avis.qa"/>-->
+        <!--        </packages>-->
 
-        <!--        <classes>-->
-        <!--            <class name="com.avis.qa.FrameworkTests"/>-->
-        <!--        </classes>-->
+        <classes>
+            <class name="com.avis.qa.FrameworkTests"/>
+        </classes>
     </test>
 
 </suite>

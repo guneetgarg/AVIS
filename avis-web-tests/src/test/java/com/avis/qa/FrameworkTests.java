@@ -6,7 +6,7 @@ import com.avis.qa.pages.Homepage;
 import org.testng.annotations.Test;
 
 import static com.avis.qa.constants.AvisConstants.*;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
 
 /**
  * Class to test the framework
@@ -22,7 +22,7 @@ public class FrameworkTests extends TestBase {
     public void verifyHomepageLogo() {
         launchUrl();
         Homepage homePage = new Homepage(getDriver());
-        assertTrue(homePage.isAvisLogoDisplayed(), "Avis logo is not displayed");
+        assertFalse(homePage.isAvisLogoDisplayed(), "Avis logo is not displayed");
     }
 
 }

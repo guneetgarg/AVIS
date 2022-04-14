@@ -18,9 +18,10 @@ public class ExtentListener extends TestBase implements ITestListener {
 
 	public static ExtentReports extent;
 	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<ExtentTest>();
+	public static ExtentTest test;
 
 	public void onTestStart(ITestResult result) {
-		ExtentTest test = extent.createTest(result.getTestClass().getName() + "     @TestCase : " + result.getMethod().getMethodName());
+		test = extent.createTest(result.getTestClass().getName() + "     @TestCase : " + result.getMethod().getMethodName());
 		testReport.set(test);
 	}
 
@@ -53,7 +54,8 @@ public class ExtentListener extends TestBase implements ITestListener {
 		String logText = "<b>" + "Test Case:- " + methodName + " Skipped" + "</b>";
 		Markup m = MarkupHelper.createLabel(logText, ExtentColor.YELLOW);
 		//testReport.get().skip(m);
-		testReport.get().log(Status.SKIP, m);
+		//testReport.get().log(Status.SKIP, m);
+		extent.removeTest(test);
 
 	}
 
