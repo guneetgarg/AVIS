@@ -96,6 +96,9 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@for,'profile-msg')]")
     private WebElement phoneCheckbox;
 
+    @FindBy(id = "iatanumber")
+    private WebElement IataTextFiled;
+
 
     public ReviewAndBook(WebDriver driver) {
         super(driver);
@@ -169,6 +172,12 @@ public class ReviewAndBook extends AbstractBasePage {
         if (!phoneCheckbox.isSelected())
             clickUsingJS(phoneCheckbox);
         return this;
+    }
+
+    public ReviewAndBook iataNumber(String iataNo) {
+        IataTextFiled.sendKeys(iataNo);
+        return this;
+
     }
 
     /**

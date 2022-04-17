@@ -6,8 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.avis.qa.constants.TextComparison.KEY_DROP_LOCATION_MESSAGE;
 import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static org.testng.Assert.assertEquals;
 
 
 /**
@@ -45,6 +47,8 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "(//del[@ng-if='car.displayRate.displayStkPayLater'])[1]|(//p[@ng-if='car.displayRate.displayStkSelect'])[1]")
     private WebElement StrikreThroughPriceIndicator;
 
+    @FindBy(xpath = "//div[contains(@class,'info-key-drop-text')]/p")
+    private WebElement keyDropInfo;
 
     public Vehicles(WebDriver driver) {
         super(driver);
@@ -90,6 +94,12 @@ public class Vehicles extends AbstractBasePage {
 
     public Vehicles verifyUnderAgeMsg() {
         underAgeMsg_Step2.getText().contains("An underage surcharge is applicable except at participating locations.");
+        return this;
+    }
+
+    public Vehicles keyDropMessageValidation() {
+        String actualMessage = keyDropInfo.getText();
+        assertEquals(actualMessage, KEY_DROP_LOCATION_MESSAGE);
         return this;
     }
 

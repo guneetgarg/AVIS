@@ -100,7 +100,7 @@ public class ElementHelper {
     /*
      * This method is used to wait implicitly
      */
-    public void implicitWait(int time) {
+    public void implicitWait() {
         driver.manage().timeouts().implicitlyWait(DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
     }
 

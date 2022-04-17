@@ -526,9 +526,9 @@ public class ReservationHelper {
         return new Confirmation(driver);
     }
 
-    public Confirmation Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater(String pickUpLocation,
-                                                                                                    String dropOffTime, String awd, String firstName, String lastName, String email, String phoneNo,
-                                                                                                    String iataNo, String pickUpLocation1) {
+    public Confirmation Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater(String pickUpLocation,
+                                                                                             String dropOffTime, String awd, String firstName, String lastName, String email, String phoneNo,
+                                                                                             String iataNo, String pickUpLocation1) {
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)
@@ -539,7 +539,6 @@ public class ReservationHelper {
 
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles
-                //.verifyFilteredSort()
                 .step2Submit();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
@@ -550,7 +549,7 @@ public class ReservationHelper {
                 .email(email)
                 .phone(phoneNo)
                 .smsOptInCheckbox()
-                //     .iataNumber(iataNo)
+                .iataNumber(iataNo)
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -566,11 +565,11 @@ public class ReservationHelper {
 
         reservationWidget
                 .pickUpLocation(pickUpLocation1)
-                //   .dropOffTime(dropOffTime)
+                .dropOffTime(dropOffTime)
                 .selectMyCar();
 
         vehicles
-                //     .keyDropMessageValidation()
+                .keyDropMessageValidation()
                 .payLater();
 
         extras.Step3Submit();

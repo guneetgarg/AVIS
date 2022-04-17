@@ -1,5 +1,6 @@
 package com.avis.qa.helpers;
 
+import com.avis.qa.components.AvisFlyout;
 import com.avis.qa.components.Footer;
 import com.avis.qa.components.Header;
 import com.avis.qa.components.ReservationWidget;
@@ -114,8 +115,9 @@ public class MiscHelper {
                                                            String zipcode, String country) {
 
         getConfirmation(pickUpLoc, firstName, lastName, email, phoneNo);
-        //flyout.clickOnNextButton();
-        // flyout.enterCompanyInformation(companyName, address1, city, province, zipcode, country);
+        AvisFlyout avisFlyout = new AvisFlyout(driver);
+        avisFlyout.clickOnNextButton();
+        assertTrue(avisFlyout.enterCompanyInformationAndVerifyAWDLength(companyName, address1, city, province, zipcode, country));
     }
 
 

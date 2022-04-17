@@ -39,7 +39,7 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//div[@class='col-lg-12 message-success']")
     private WebElement OneClickGPSAdded;
 
-    @FindBy(xpath = "(//p[contains(text(),'Coupon savings applied')])[2]")
+    @FindBy(xpath = "(//p[contains(text(),'Coupon savings applied')])[2]|//span[contains(@class,'coupon-value')]")
     private WebElement ConfirmationCouponValidation;
 
     @FindBy(xpath = "//button[@aria-label='Close']")
@@ -110,8 +110,9 @@ public class Confirmation extends AbstractBasePage {
         return AWDConfirmationPage.getText().contains("AWD");
     }
 
-    public boolean isCouponAppliedMessageDisplayed() {
-        return ConfirmationCouponValidation.getText().contains("Coupon savings applied");
+    public boolean isCouponAppliedMessageDisplayed(String couponApplied) {
+        String actualText = ConfirmationCouponValidation.getText();
+        return actualText.contains("Coupon savings applied") || actualText.contains(couponApplied);
     }
 
     public boolean isSnowChainProductPresent() {
