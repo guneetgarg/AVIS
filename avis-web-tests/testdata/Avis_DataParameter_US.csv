@@ -1,15 +1,16 @@
 ####################################_RESERVATION_##################################
 Reservation_OutboundAndMultiCurrency_Paylater,AKL,Hrishi,K,AbgEcom,8980765645,AA1234
-Reservation_AuthenticatedAndDomestic_Paylater,EWR,B0506T,Testing100@,LAS
+#Reservation_AuthenticatedAndDomestic_Paylater,EWR,B0506T,Testing100@,LAS
+Reservation_AuthenticatedAndDomestic_Paylater,EWR,B0153Z,Password@2021,LAS
 
-Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ
-#Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://www.avis.com/en/home
+Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ
+#Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://www.avis.com/en/home
 
 Reservation_Recognised_Paylater,LAS,8TL47W,G,LAS
 Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater,LAS,Tester,M,test,9838234567,123,YGK,TUZZ004
 Reservation_FleetVerification_Price,EWR,Tester,M,test,9838234567,345836415546724,123
 Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater,EWR,21,Tester,M,test,9838234567
-Reservation_OneClick_GPSSelection,/en/reservation#/oneclick?resForm.confirmationNumber=14027809US5&resForm.lastName.value=G&accept_GPS=true
+Reservation_OneClick_GPSSelection,/en/reservation#/oneclick?resForm.confirmationNumber=15680825US6&resForm.lastName.value=G&accept_GPS=true
 Reservation_ErrorMessage_PayNow,EWR,Tester,M,test,9838234567,345836415546724,123
 Reservation_TierBundle_PayLater,EWR,Tester,M,test,9838234567,345836415546724,123
 Reservation_Inbound_PayLater,EWR,Canada,Hrishi,K,AbgEcom,8980765645

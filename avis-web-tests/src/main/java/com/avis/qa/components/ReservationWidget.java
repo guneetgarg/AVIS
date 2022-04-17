@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.avis.qa.constants.AvisConstants.ABOVE_NINETY_ERROR_MESSAGE;
-import static com.avis.qa.constants.AvisConstants.ABOVE_THREE_THIRTY_ERROR_MESSAGE;
+import static com.avis.qa.constants.TextComparison.ABOVE_NINETY_ERROR_MESSAGE;
+import static com.avis.qa.constants.TextComparison.ABOVE_THREE_THIRTY_ERROR_MESSAGE;
 import static com.avis.qa.utilities.CommonUtils.*;
 
 
@@ -100,6 +100,8 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@name,'reservationModel.personalInfoRQ.age')]")
     private WebElement selectAge;
 
+    @FindBy(xpath = "//*[contains(@name,'reservationModel.dropTime')]")
+    private WebElement dropOffTime;
 
     public ReservationWidget(WebDriver driver) {
         super(driver);
@@ -202,6 +204,11 @@ public class ReservationWidget extends AbstractBasePage {
 
     public ReservationWidget selectCountry(String country) {
         helper.selectValueFromDropDown(selectCountry, country);
+        return this;
+    }
+
+    public ReservationWidget dropOffTime(String dot) {
+        helper.selectValueFromDropDown(dropOffTime, dot);
         return this;
     }
 

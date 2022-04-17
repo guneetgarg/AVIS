@@ -12,6 +12,7 @@ import com.avis.qa.utilities.CSVUtils;
 import org.testng.annotations.Test;
 
 import static com.avis.qa.constants.AvisConstants.*;
+import static com.avis.qa.constants.TextComparison.DUMMY_CC_ERROR_MESSAGE;
 import static org.testng.Assert.*;
 
 /**
@@ -119,7 +120,7 @@ public class ReservationTests extends TestBase {
         assertTrue(extras.isSubmitStepThreeDisplayed(), "Submit step three button is not displayed");
     }
 
-    //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class, enabled = false)
+    //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_OneClick_GPSSelection(String url) {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -140,7 +141,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class, enabled = false)
+    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_GtypeCouponProcessing_PayLater(String pickUpLocation, String couponNo, String fname,
                                                            String lname, String email, String phoneNo) {
 
@@ -149,7 +150,7 @@ public class ReservationTests extends TestBase {
         Confirmation confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
                 phoneNo);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.isCouponAppliedMessageDisplayed(), "Coupon Applied Message is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
@@ -162,6 +163,7 @@ public class ReservationTests extends TestBase {
         Confirmation confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
                 phoneNo);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
@@ -174,7 +176,7 @@ public class ReservationTests extends TestBase {
         Confirmation confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
                 phoneNo);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.isCouponAppliedMessageDisplayed(), "Coupon Applied Message is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
@@ -319,12 +321,12 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater(String pickUpLocation,
-                                                                                            String dropOffTime, String awd, String firstName, String lastName, String email, String phoneNo,
-                                                                                            String iataNo, String pickUpLocation_new) {
+    public void Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater(String pickUpLocation,
+                                                                                     String dropOffTime, String awd, String firstName, String lastName, String email, String phoneNo,
+                                                                                     String iataNo, String pickUpLocation_new) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDropAndSort_Paylater(pickUpLocation,
+        Confirmation confirmation = reservationHelper.Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater(pickUpLocation,
                 dropOffTime, awd, firstName, lastName, email, phoneNo, iataNo, pickUpLocation_new);
         confirmation.cancelReservation();
     }

@@ -49,6 +49,7 @@ public class LoginWidget extends AbstractBasePage {
         waitForVisibilityOfElement(Password);
         Password.sendKeys(passwordNew);
         LoginButton.click();
+        threadSleep(TWO_SECONDS);
         return this;
     }
 
