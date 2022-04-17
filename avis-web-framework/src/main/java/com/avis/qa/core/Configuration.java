@@ -71,7 +71,6 @@ public class Configuration {
         DOMAIN = XML_PARAMS_MAP.get("domain") != null ? XML_PARAMS_MAP.get("domain") : getValue("domain");
         BROWSER = XML_PARAMS_MAP.get("browser") != null ? XML_PARAMS_MAP.get("browser") : getValue("browser");
         DOCKER = XML_PARAMS_MAP.get("docker") != null ? XML_PARAMS_MAP.get("docker") : getValue("docker");
-
     }
 
     public static void setURL() {

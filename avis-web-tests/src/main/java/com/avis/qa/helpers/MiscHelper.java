@@ -100,7 +100,7 @@ public class MiscHelper {
                                                         String lName, String email, String phone, String bestRateQuote, String lowerRateCar_bestRateQuote,
                                                         String pickupLocation, String dropOffLocation, String vehicle_Type, String webSite, String comments) {
 
-        Confirmation confirmation = getConfirmation(fName, lName, email, phone, pickupLocation);
+        Confirmation confirmation = getConfirmation(pickupLocation, fName, lName, email, phone);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
 
