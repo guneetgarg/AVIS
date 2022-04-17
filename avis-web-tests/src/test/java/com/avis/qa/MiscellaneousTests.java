@@ -63,5 +63,16 @@ public class MiscellaneousTests extends TestBase {
 
     }
 
+    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Misc_SmallAndMidSizedBusiness_FlyOutSignUp(String pickUpLoc, String firstName, String lastName,
+                                                           String email, String phoneNo, String companyName, String address1, String city, String province,
+                                                           String zipcode, String country) {
+        launchUrl();
+        MiscHelper miscHelper = new MiscHelper(getDriver());
+        miscHelper.Misc_SmallAndMidSizedBusiness_FlyOutSignUp(pickUpLoc, firstName, lastName, email, phoneNo,
+                companyName, address1, city, province, zipcode, country);
+
+    }
+
 
 }
