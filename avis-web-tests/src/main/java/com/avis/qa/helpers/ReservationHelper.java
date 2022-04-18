@@ -44,7 +44,10 @@ public class ReservationHelper {
                 .enterSecurityCode(cvv)
                 .enterAddress()
                 .checkTermsAndConditions()
+                .setSelectedCountryText()
                 .step4Submit();
+
+        Assert.assertTrue(reviewAndBook.verifySelectedCountryText("U S A"), "Country Text is incorrect");
     }
 
     public ReviewAndBook Reservation_CCOLocation_PayLater(String pickUpLocation, String firstName, String lastName, String email,

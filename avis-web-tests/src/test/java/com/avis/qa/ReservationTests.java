@@ -339,6 +339,8 @@ public class ReservationTests extends TestBase {
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater(pickUpLocation,
                 firstName, lastName, emailId, phoneNo, flightNumber, pickUpLocation1, couponNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
