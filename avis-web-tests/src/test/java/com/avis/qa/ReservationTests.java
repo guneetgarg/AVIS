@@ -214,7 +214,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_SnowChain_PayLater(String pickUpLocation, String firstName, String lastName, String email,
                                                String phoneNo) {
         launchUrl();
