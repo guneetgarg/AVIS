@@ -47,24 +47,6 @@ public class MiscHelper {
         Header header = new Header(driver);
         header.offersHeader().clickOnOffersCTA();
 
-//        reservationWidget
-//                .pickUpLocation(pickUpLocation)
-//                .calendarSelection()
-//                .selectMyCar();
-//
-//        Vehicles vehicles = new Vehicles(driver);
-//        Extras extras = vehicles.step2Submit();
-//        ReviewAndBook reviewAndBook = extras.Step3Submit();
-//
-//        reviewAndBook
-//                .clickContinueReservationButton()
-//                .firstname(firstName)
-//                .lastname(lastName)
-//                .email(email)
-//                .phone(phoneNo)
-//                .checkTermsAndConditions()
-//                .step4Submit();
-
         return getConfirmation(pickUpLocation, firstName, lastName, email, phoneNo);
     }
 
