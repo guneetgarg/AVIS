@@ -53,28 +53,8 @@ public class MiscHelper {
 
     public Confirmation Misc_CarGuide_Res(String pickUpLocation, String firstName, String lastName, String email,
                                           String phoneNo) {
-
         Header header = new Header(driver);
         header.carAndservicesHeader();
-
-//        reservationWidget
-//                .pickUpLocation(pickUpLocation)
-//                .calendarSelection()
-//                .selectMyCar();
-//
-//        Vehicles vehicles = new Vehicles(driver);
-//        Extras extras = vehicles.step2Submit();
-//        ReviewAndBook reviewAndBook = extras.Step3Submit();
-//
-//        reviewAndBook
-//                .clickContinueReservationButton()
-//                .firstname(firstName)
-//                .lastname(lastName)
-//                .email(email)
-//                .phone(phoneNo)
-//                .checkTermsAndConditions()
-//                .step4Submit();
-
         return getConfirmation(pickUpLocation, firstName, lastName, email, phoneNo);
     }
 
