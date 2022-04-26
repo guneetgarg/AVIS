@@ -225,7 +225,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_Recognised_Paylater(String pickUpLocation, String wizardNo, String lastName,
                                                 String pickUpLocation1) {
         launchUrl();
