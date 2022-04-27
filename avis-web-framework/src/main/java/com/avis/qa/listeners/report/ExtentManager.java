@@ -4,7 +4,13 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import com.avis.qa.core.Configuration;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 
@@ -13,6 +19,7 @@ public class ExtentManager {
     public static String screenshotPath;
     public static String screenshotName;
     private static ExtentReports extent;
+    public static WebDriver driver;
 
     public static ExtentReports createInstance() {
 
@@ -37,19 +44,20 @@ public class ExtentManager {
         return extent;
     }
 
-//		public static void captureScreenshot() {
-//			File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
-//
-//			Date d = new Date();
-//			screenshotName = d.toString().replace(":", "_").replace(" ", "_") + ".jpg";
-//
-//			try {
-//				FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir") + "\\reports\\" + screenshotName));
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+    public static void captureScreenshot() {
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        Date d = new Date();
+        screenshotName = d.toString().replace(":", "_").replace(" ", "_") + ".jpg";
+        screenshotPath = "./screenshots/" + screenshotName;
 
 
+        try {
+            FileUtils.copyFile(scrFile, new File("./extent-reports/screenshots/" + screenshotName));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 }
 

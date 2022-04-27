@@ -1,5 +1,6 @@
 package com.avis.qa.core;
 
+import com.avis.qa.listeners.report.ExtentManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -121,6 +122,7 @@ public class BrowserInstance {
     public void start(String url) {
         initializeDriver();
         configureDriver();
+        ExtentManager.driver = webDriver;
         webDriver.get(url);
     }
 }

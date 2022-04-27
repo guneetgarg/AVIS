@@ -156,7 +156,6 @@ public class Confirmation extends AbstractBasePage {
         return verifyEmail && verifyFirstName;
     }
 
-
     @Override
     public void isOnPage() {
         log.info("Verify Confirmation Page");
