@@ -88,7 +88,9 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public Confirmation cancelReservationWithConfirmationBox() {
-        clickUsingJS(cancelResCTA);
+        threadSleep(TWO_SECONDS);
+        clickUsingJS(waitForVisibilityOfElement(cancelResCTA));
+        threadSleep(TWO_SECONDS);
         clickUsingJS(waitForVisibilityOfElement(CancelConfirmationCheckBox));
         clickUsingJS(waitForVisibilityOfElement(confirmCancelResCTA));
         return this;
