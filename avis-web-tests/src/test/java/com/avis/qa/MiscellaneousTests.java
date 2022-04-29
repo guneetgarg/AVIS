@@ -17,7 +17,7 @@ import static org.testng.Assert.assertTrue;
  */
 public class MiscellaneousTests extends TestBase {
 
-    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Misc_OneClick_VanityURL(String url, String title) {
         launchUrl(getAvisUrl(url));
         assertTrue(getDriver().getTitle().contains(title), "Page title is incorrect");
@@ -63,7 +63,7 @@ public class MiscellaneousTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Misc_SmallAndMidSizedBusiness_FlyOutSignUp(String pickUpLoc, String firstName, String lastName,
                                                            String email, String phoneNo, String companyName, String address1, String city, String province,
                                                            String zipcode, String country) {

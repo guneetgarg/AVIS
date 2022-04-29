@@ -88,10 +88,11 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public Confirmation cancelReservationWithConfirmationBox() {
-        helper.scrollToElement(cancelResCTA);
-        clickUsingJS(cancelResCTA);
-        CancelConfirmationCheckBox.click();
-        confirmCancelResCTA.click();
+        threadSleep(TWO_SECONDS);
+        clickUsingJS(waitForVisibilityOfElement(cancelResCTA));
+        threadSleep(TWO_SECONDS);
+        clickUsingJS(waitForVisibilityOfElement(CancelConfirmationCheckBox));
+        clickUsingJS(waitForVisibilityOfElement(confirmCancelResCTA));
         return this;
     }
 
@@ -156,7 +157,6 @@ public class Confirmation extends AbstractBasePage {
         boolean verifyEmail = EmailConfirmationPage.getText().contains(email);
         return verifyEmail && verifyFirstName;
     }
-
 
     @Override
     public void isOnPage() {

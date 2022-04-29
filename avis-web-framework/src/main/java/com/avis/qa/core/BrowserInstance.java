@@ -1,5 +1,6 @@
 package com.avis.qa.core;
 
+import com.avis.qa.listeners.report.ExtentManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -30,8 +31,7 @@ public class BrowserInstance {
         this.browser = browser;
     }
 
-    private void initializeDriver() {
-
+    protected void initializeDriver() {
 
         log.info("Initializing browser: " + browser);
         switch (browser.toLowerCase()) {
@@ -61,7 +61,7 @@ public class BrowserInstance {
         }
     }
 
-    private void initializeChrome() {
+    protected void initializeChrome() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setAcceptInsecureCerts(true);
@@ -69,7 +69,7 @@ public class BrowserInstance {
         webDriver = new ChromeDriver(chromeOptions);
     }
 
-    private void initializeFirefox() {
+    protected void initializeFirefox() {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setAcceptInsecureCerts(true);
@@ -77,12 +77,12 @@ public class BrowserInstance {
         webDriver = new FirefoxDriver(firefoxOptions);
     }
 
-    private void initializeEdge() {
+    protected void initializeEdge() {
         WebDriverManager.edgedriver().setup();
         webDriver = new EdgeDriver();
     }
 
-    private void initializeMobileEmulation(String deviceName) {
+    protected void initializeMobileEmulation(String deviceName) {
         Map<String, String> mobileEmulation = new HashMap<>();
         mobileEmulation.put("deviceName", deviceName);
 
@@ -97,7 +97,7 @@ public class BrowserInstance {
      * INFO: Parallel tests is not possible locally on Safari due to restriction
      * https://developer.apple.com/documentation/webkit/about_webdriver_for_safari
      */
-    private void initializeSafari() {
+    protected void initializeSafari() {
         if (Configuration.getValue("os.name").toLowerCase().contains("mac")) {
             webDriver = new SafariDriver();
         } else {
@@ -115,19 +115,14 @@ public class BrowserInstance {
         webDriver.manage().timeouts().implicitlyWait(Configuration.DEFAULT_IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
     }
 
-    public void load(String url) {
-        log.info("Launching URL: " + url);
-        webDriver.get(url);
-    }
-
     protected WebDriver getDriver() {
         return webDriver;
     }
 
-
     public void start(String url) {
         initializeDriver();
         configureDriver();
-        load(url);
+        ExtentManager.driver = webDriver;
+        webDriver.get(url);
     }
 }

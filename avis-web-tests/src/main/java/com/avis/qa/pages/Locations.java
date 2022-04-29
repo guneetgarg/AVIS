@@ -76,9 +76,13 @@ public class Locations extends AbstractBasePage {
 
         threadSleep(CommonUtils.TWO_SECONDS);
         waitForVisibilityOfElement(BrowseByCountry).click();
+        threadSleep(CommonUtils.TWO_SECONDS);
         waitForVisibilityOfElement(CanadaUsaCategory).click();
+        threadSleep(CommonUtils.TWO_SECONDS);
         waitForVisibilityOfElement(USACategory).click();
+        threadSleep(CommonUtils.TWO_SECONDS);
         waitForVisibilityOfElement(NewJersyCategory).click();
+        threadSleep(CommonUtils.TWO_SECONDS);
         waitForVisibilityOfElement(ABGparsiPpanyCategory).click();
         threadSleep(CommonUtils.TWO_SECONDS);
 

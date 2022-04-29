@@ -47,52 +47,14 @@ public class MiscHelper {
         Header header = new Header(driver);
         header.offersHeader().clickOnOffersCTA();
 
-//        reservationWidget
-//                .pickUpLocation(pickUpLocation)
-//                .calendarSelection()
-//                .selectMyCar();
-//
-//        Vehicles vehicles = new Vehicles(driver);
-//        Extras extras = vehicles.step2Submit();
-//        ReviewAndBook reviewAndBook = extras.Step3Submit();
-//
-//        reviewAndBook
-//                .clickContinueReservationButton()
-//                .firstname(firstName)
-//                .lastname(lastName)
-//                .email(email)
-//                .phone(phoneNo)
-//                .checkTermsAndConditions()
-//                .step4Submit();
-
         return getConfirmation(pickUpLocation, firstName, lastName, email, phoneNo);
     }
 
 
     public Confirmation Misc_CarGuide_Res(String pickUpLocation, String firstName, String lastName, String email,
                                           String phoneNo) {
-
         Header header = new Header(driver);
         header.carAndservicesHeader();
-
-//        reservationWidget
-//                .pickUpLocation(pickUpLocation)
-//                .calendarSelection()
-//                .selectMyCar();
-//
-//        Vehicles vehicles = new Vehicles(driver);
-//        Extras extras = vehicles.step2Submit();
-//        ReviewAndBook reviewAndBook = extras.Step3Submit();
-//
-//        reviewAndBook
-//                .clickContinueReservationButton()
-//                .firstname(firstName)
-//                .lastname(lastName)
-//                .email(email)
-//                .phone(phoneNo)
-//                .checkTermsAndConditions()
-//                .step4Submit();
-
         return getConfirmation(pickUpLocation, firstName, lastName, email, phoneNo);
     }
 
@@ -100,7 +62,7 @@ public class MiscHelper {
                                                         String lName, String email, String phone, String bestRateQuote, String lowerRateCar_bestRateQuote,
                                                         String pickupLocation, String dropOffLocation, String vehicle_Type, String webSite, String comments) {
 
-        Confirmation confirmation = getConfirmation(fName, lName, email, phone, pickupLocation);
+        Confirmation confirmation = getConfirmation(pickupLocation, fName, lName, email, phone);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
 

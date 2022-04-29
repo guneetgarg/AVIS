@@ -14,8 +14,7 @@ import org.testng.xml.XmlTest;
 
 import java.io.IOException;
 
-import static com.avis.qa.core.Configuration.BROWSER;
-import static com.avis.qa.core.Configuration.URL;
+import static com.avis.qa.core.Configuration.*;
 
 
 /**
@@ -39,7 +38,10 @@ public class TestBase {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodTestBase() {
         log.info("beforeMethodTestBase() called");
-        appInstance.set(new BrowserInstance(BROWSER));
+        if (DOCKER.equalsIgnoreCase("true"))
+            appInstance.set(new DockerInstance(BROWSER));
+        else
+            appInstance.set(new BrowserInstance(BROWSER));
     }
 
     @AfterMethod(alwaysRun = true)
