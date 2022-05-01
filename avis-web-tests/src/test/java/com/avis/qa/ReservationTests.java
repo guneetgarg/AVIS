@@ -154,6 +154,7 @@ public class ReservationTests extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
+    //TODO: Check vehicle selection - coupon is applied on specific vehicles
     @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_UtypeCouponProcessing_PayLater(String pickUpLocation, String couponNo, String fname,
                                                            String lname, String email, String phoneNo) {
@@ -163,7 +164,7 @@ public class ReservationTests extends TestBase {
         Confirmation confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
                 phoneNo);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
+        //assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
@@ -214,7 +215,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_SnowChain_PayLater(String pickUpLocation, String firstName, String lastName, String email,
                                                String phoneNo) {
         launchUrl();
@@ -225,7 +226,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_Recognised_Paylater(String pickUpLocation, String wizardNo, String lastName,
                                                 String pickUpLocation1) {
         launchUrl();
@@ -339,6 +340,8 @@ public class ReservationTests extends TestBase {
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater(pickUpLocation,
                 firstName, lastName, emailId, phoneNo, flightNumber, pickUpLocation1, couponNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 

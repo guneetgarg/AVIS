@@ -99,6 +99,11 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(id = "iatanumber")
     private WebElement IataTextFiled;
 
+    @FindBy(id = "selectedCountry")
+    private WebElement selectedCountry;
+
+    private String selectedCountryText;
+
 
     public ReviewAndBook(WebDriver driver) {
         super(driver);
@@ -285,6 +290,15 @@ public class ReviewAndBook extends AbstractBasePage {
         threadSleep(TWO_SECONDS);
         clickUsingJS(reviewModification);
         return this;
+    }
+
+    public ReviewAndBook setSelectedCountryText() {
+        selectedCountryText = selectedCountry.getText();
+        return this;
+    }
+
+    public Boolean verifySelectedCountryText(String country) {
+        return selectedCountryText.contains(country);
     }
 
     public boolean cvvCCOValidation() {

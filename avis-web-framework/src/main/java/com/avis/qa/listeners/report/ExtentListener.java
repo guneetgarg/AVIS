@@ -2,6 +2,7 @@ package com.avis.qa.listeners.report;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
@@ -18,11 +19,18 @@ public class ExtentListener extends TestBase implements ITestListener {
 
 	public static ExtentReports extent;
 	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<ExtentTest>();
-	public static ExtentTest test;
+	public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
 	public void onTestStart(ITestResult result) {
-		test = extent.createTest(result.getTestClass().getName() + "     @TestCase : " + result.getMethod().getMethodName());
-		testReport.set(test);
+		test.set(extent.createTest(result.getTestClass().getName() + ": " + result.getMethod().getMethodName() + " " + getTestMethodParameters(result)));
+		testReport.set(test.get());
+	}
+
+	private String getTestMethodParameters(ITestResult result) {
+		if (result.getParameters().length > 0) {
+			return Arrays.toString(result.getParameters());
+		} else
+			return "";
 	}
 
 	public void onTestSuccess(ITestResult result) {
@@ -33,15 +41,14 @@ public class ExtentListener extends TestBase implements ITestListener {
 	}
 
 	public void onTestFailure(ITestResult result) {
-
 		String excepionMessage = Arrays.toString(result.getThrowable().getStackTrace());
 		testReport.get().fail("<details>" + "<summary>" + "<b>" + "<font color=" + "red>" + "Exception Occured:Click to see"
 				+ "</font>" + "</b >" + "</summary>" + excepionMessage.replaceAll(",", "<br>") + "</details>" + " \n");
 
-//		ExtentManager.captureScreenshot();
-//		testReport.get().fail("<b>" + "<font color=" + "red>" + "Screenshot of failure" + "</font>" + "</b>",
-//				MediaEntityBuilder.createScreenCaptureFromPath(ExtentManager.screenshotName)
-//						.build());
+		ExtentManager.captureScreenshot();
+		testReport.get().fail("<b>" + "<font color=" + "red>" + "Screenshot of failure" + "</font>" + "</b>",
+				MediaEntityBuilder.createScreenCaptureFromPath(ExtentManager.screenshotPath)
+						.build());
 
 		String failureLogg = "TEST CASE FAILED";
 		Markup m = MarkupHelper.createLabel(failureLogg, ExtentColor.RED);
@@ -53,9 +60,7 @@ public class ExtentListener extends TestBase implements ITestListener {
 		String methodName = result.getMethod().getMethodName();
 		String logText = "<b>" + "Test Case:- " + methodName + " Skipped" + "</b>";
 		Markup m = MarkupHelper.createLabel(logText, ExtentColor.YELLOW);
-		//testReport.get().skip(m);
-		//testReport.get().log(Status.SKIP, m);
-		extent.removeTest(test);
+		extent.removeTest(test.get());
 
 	}
 

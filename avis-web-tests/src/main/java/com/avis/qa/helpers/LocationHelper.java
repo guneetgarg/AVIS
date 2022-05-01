@@ -27,7 +27,6 @@ public class LocationHelper {
                 .calendarSelection()
                 .selectMyCar();
 
-
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
