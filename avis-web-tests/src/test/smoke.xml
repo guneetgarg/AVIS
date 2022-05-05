@@ -10,7 +10,7 @@
     <parameter name="environment" value="qa"/>    <!-- < Possible values : qa/uat1/qa2/www/load balancer ip> -->
     <parameter name="browser" value="chrome"/>
     <!-- <Possible values: chrome/firefox/safari/edge/pixel/iphone/ipad> -->
-    <parameter name="docker" value="false"/>
+    <parameter name="docker" value="true"/>
 
     <test name="AVIS US Smoke Tests on Chrome">
         <groups>
