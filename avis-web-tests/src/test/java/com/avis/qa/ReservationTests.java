@@ -41,7 +41,7 @@ public class ReservationTests extends TestBase {
     /**
      * ALM Testcase: Res_Avis_US_005_Reservation_Domestic_PayNow
      */
-    @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_Domestic_PayNow(String pickUpLocation, String firstName, String lastName, String email,
                                             String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
@@ -99,7 +99,7 @@ public class ReservationTests extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
                                                 String phoneNo, String ccNo, String cvv) {
         launchUrl();
