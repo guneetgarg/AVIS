@@ -27,7 +27,7 @@ public class ReservationTests extends TestBase {
      * ALM Testcase: Res_Avis_US_007_Reservation_Outbound_PayNowAnonymous
      * ALM Testcase: Res_Avis_US_007_Reservation_Outbound_PayNow
      */
-    @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_Outbound_PayNow(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
