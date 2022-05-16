@@ -42,7 +42,7 @@ public class ReservationTests extends TestBase {
      * ALM Testcase: Res_Avis_US_005_Reservation_Domestic_PayNow
      */
     @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void AVIS_Reservation_AuthenticatedAndDomestic_Paylater_US(String pickUpLocation, String firstName, String lastName, String email,
+    public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
                                             String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
