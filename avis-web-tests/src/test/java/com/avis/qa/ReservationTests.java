@@ -100,15 +100,15 @@ public class ReservationTests extends TestBase {
     }
 
    // @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
-                                                String phoneNo, String ccNo, String cvv) {
-        launchUrl();
-        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNo,
-                ccNo, cvv);
-        ReviewAndBook reviewAndBook = new ReviewAndBook(getDriver());
-        assertEquals(reviewAndBook.getDummyCreditCardErrorMessage(), DUMMY_CC_ERROR_MESSAGE, "Credit card error message is incorrect");
-    }
+   // public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
+     //                                           String phoneNo, String ccNo, String cvv) {
+      //  launchUrl();
+     //   ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+     //   reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNo,
+       //         ccNo, cvv);
+       // ReviewAndBook reviewAndBook = new ReviewAndBook(getDriver());
+       // assertEquals(reviewAndBook.getDummyCreditCardErrorMessage(), DUMMY_CC_ERROR_MESSAGE, "Credit card error message is incorrect");
+    //}
 
     @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_OneClick_Step3(String url) {
