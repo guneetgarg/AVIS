@@ -121,15 +121,15 @@ public class ReservationTests extends TestBase {
     }
 
     //@Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_OneClick_GPSSelection(String url) {
-        launchUrl();
-        Homepage homepage = new Homepage(getDriver());
-        homepage.oneClickLandingPage(url);
+   // public void Reservation_OneClick_GPSSelection(String url) {
+    //    launchUrl();
+     //   Homepage homepage = new Homepage(getDriver());
+       // homepage.oneClickLandingPage(url);
 
-        ReviewAndBook reviewAndBook = new ReviewAndBook(getDriver());
-        Confirmation confirmation = reviewAndBook.keepModification();
-        assertTrue(confirmation.isExtrasAddedMessageDisplayed(), "Extra Added Message is not displayed");
-    }
+      //  ReviewAndBook reviewAndBook = new ReviewAndBook(getDriver());
+      //  Confirmation confirmation = reviewAndBook.keepModification();
+      //  assertTrue(confirmation.isExtrasAddedMessageDisplayed(), "Extra Added Message is not displayed");
+   // }
 
     @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_GEBUser_PayLater(String pickUpLocation, String wizardNo, String lastName, String firstName,
