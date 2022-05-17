@@ -45,12 +45,12 @@ public class ReservationTests extends TestBase {
     public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
                                             String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
-//        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-//        reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNumber,
-//                ccNumber, cvv);
-//        Confirmation confirmation = new Confirmation(getDriver());
-//        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-//        confirmation.cancelReservationWithConfirmationBox();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNumber,
+                ccNumber, cvv);
+        Confirmation confirmation = new Confirmation(getDriver());
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        confirmation.cancelReservationWithConfirmationBox();
     }
 
   //  @Test(groups = {REGRESSION}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
