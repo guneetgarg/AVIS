@@ -2,6 +2,9 @@
 
 <suite name="smoke" parallel="methods" verbose="1" thread-count="1">
 
+    <listeners>
+        <listener class-name="com.avis.qa.listeners.retry.AnnotationTransformer"></listener>
+    </listeners>
 
     <parameter name="brand" value="Avis"/> <!-- <Possible values: Avis/Budget/Paylesscar -->
     <parameter name="domain" value="US"/>    <!-- <Possible values: US/CA/AU/NZ> -->
