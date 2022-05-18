@@ -20,9 +20,12 @@
             </run>
         </groups>
 
-        <packages>
-            <package name="com.avis.qa"/>
-        </packages>
+        <classes>
+            <class name="com.avis.qa.ReservationTests" />
+            <class name="com.avis.qa.LocationTests" />
+            <class name="com.avis.qa.FrameworkTests" />
+            <class name="com.avis.qa.MiscellaneousTests" />
+        </classes>
     </test>
 
 
