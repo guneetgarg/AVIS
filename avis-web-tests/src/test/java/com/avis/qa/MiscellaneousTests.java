@@ -56,7 +56,7 @@ public class MiscellaneousTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+  //  @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Misc_OffersPage_SignUp(String email, String firstName, String lastName, String country) {
         launchUrl();
         Header header = new Header(getDriver());
