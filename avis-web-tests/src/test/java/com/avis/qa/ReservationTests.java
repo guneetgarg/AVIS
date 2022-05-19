@@ -22,7 +22,6 @@ import static org.testng.Assert.*;
  */
 public class ReservationTests extends TestBase {
 
-
     /**
      * ALM Testcase: Res_Avis_US_007_Reservation_Outbound_PayNowAnonymous
      * ALM Testcase: Res_Avis_US_007_Reservation_Outbound_PayNow
@@ -64,7 +63,7 @@ public class ReservationTests extends TestBase {
     }
 
 
-//    @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_Costco_PayLater(String pickUpLocation, String awd, String membershipNo, String fname,
                                             String lname, String email, String phoneNo) {
         launchUrl();
@@ -75,7 +74,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-//    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_EMEA90Days_ErrorMessage(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -87,7 +86,7 @@ public class ReservationTests extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-//    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_EMEA330Days_ErrorMessage(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
