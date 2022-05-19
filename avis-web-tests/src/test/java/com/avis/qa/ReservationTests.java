@@ -64,7 +64,7 @@ public class ReservationTests extends TestBase {
 
 
     @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_Costco_PayLater(String pickUpLocation, String awd, String membershipNo, String fname,
+    public void Avis_Reservation_Costco_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname,
                                             String lname, String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -75,7 +75,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_EMEA90Days_ErrorMessage(String pickUpLocation, String months) {
+    public void Avis_Reservation_EMEA90Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
 
@@ -87,7 +87,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_EMEA330Days_ErrorMessage(String pickUpLocation, String months) {
+    public void Avis_Reservation_EMEA330Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
 
