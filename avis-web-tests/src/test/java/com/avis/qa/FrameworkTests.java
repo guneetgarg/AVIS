@@ -18,7 +18,7 @@ public class FrameworkTests extends TestBase {
     /**
      * ALM Testcase: NA
      */
-    @Test(groups = {SANITY, REGRESSION, SMOKE})
+//    @Test(groups = {SANITY, REGRESSION, SMOKE})
     public void verifyHomepageLogo() {
         launchUrl();
         Homepage homePage = new Homepage(getDriver());
