@@ -74,7 +74,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+//    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_EMEA90Days_ErrorMessage(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -86,7 +86,7 @@ public class ReservationTests extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+//    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_EMEA330Days_ErrorMessage(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
