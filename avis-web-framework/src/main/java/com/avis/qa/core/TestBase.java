@@ -59,7 +59,7 @@ public class TestBase {
     }
 
     public void launchUrl() {
-//        getBrowserInstance().start(URL);
+        getBrowserInstance().start(URL);
     }
 
     public WebDriver getDriver() {

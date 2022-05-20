@@ -121,8 +121,8 @@ public class BrowserInstance {
 
     public void start(String url) {
         initializeDriver();
-        configureDriver();
-        ExtentManager.driver = webDriver;
-        webDriver.get(url);
+//        configureDriver();
+//        ExtentManager.driver = webDriver;
+//        webDriver.get(url);
     }
 }
