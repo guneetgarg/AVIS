@@ -63,18 +63,13 @@ public class BrowserInstance {
 
     protected void initializeChrome() {
         System.out.println("CHROME IS STARTED1");
-//        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().setup();
         System.out.println("CHROME IS STARTE2");
-        System.out.println(System.getProperty("user.dir")+"/driver/chromedriver");
         ChromeOptions chromeOptions = new ChromeOptions();
-//        System.out.println("CHROME IS STARTED3");
-//        chromeOptions.setBinary(System.getProperty("user.dir")+"/driver/chromedriver");
+        System.out.println("CHROME IS STARTED3");
         chromeOptions.setAcceptInsecureCerts(true);
-//        System.out.println("CHROME IS STARTED4");
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/driver/chromedriver");
-
+        System.out.println("CHROME IS STARTED4");
         webDriver = new ChromeDriver(chromeOptions);
-
         System.out.println("CHROME IS STARTED5");
     }
 
