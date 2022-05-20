@@ -65,11 +65,11 @@ public class BrowserInstance {
         System.out.println("CHROME IS STARTED1");
         WebDriverManager.chromedriver().setup();
         System.out.println("CHROME IS STARTE2");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        System.out.println("CHROME IS STARTED3");
-        chromeOptions.setAcceptInsecureCerts(true);
-        System.out.println("CHROME IS STARTED4");
-        webDriver = new ChromeDriver(chromeOptions);
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        System.out.println("CHROME IS STARTED3");
+//        chromeOptions.setAcceptInsecureCerts(true);
+//        System.out.println("CHROME IS STARTED4");
+        webDriver = new ChromeDriver();
         System.out.println("CHROME IS STARTED5");
     }
 
