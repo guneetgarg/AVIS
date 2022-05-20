@@ -22,7 +22,7 @@ import static com.avis.qa.core.Configuration.*;
  *
  * @author ikumar
  */
-@Listeners({ExtentListener.class})
+//@Listeners({ExtentListener.class})
 @Log4j2
 public class TestBase {
 
@@ -32,7 +32,7 @@ public class TestBase {
     public void startTest(XmlTest xmlTest) {
         Configuration.setTestNGParameters(xmlTest);
         Configuration.setURL();
-        ExtentListener.extent = ExtentManager.createInstance();
+//        ExtentListener.extent = ExtentManager.createInstance();
     }
 
     @BeforeMethod(alwaysRun = true)
