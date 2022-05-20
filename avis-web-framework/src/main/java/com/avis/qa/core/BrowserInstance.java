@@ -67,6 +67,7 @@ public class BrowserInstance {
         System.out.println("CHROME IS STARTE2");
         ChromeOptions chromeOptions = new ChromeOptions();
         System.out.println("CHROME IS STARTED3");
+        chromeOptions.setHeadless(true);
         chromeOptions.setAcceptInsecureCerts(true);
         System.out.println("CHROME IS STARTED4");
         webDriver = new ChromeDriver(chromeOptions);
@@ -77,7 +78,7 @@ public class BrowserInstance {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setAcceptInsecureCerts(true);
-        firefoxOptions.setBinary("/usr/bin/firefox/firefox-bin");
+
         webDriver = new FirefoxDriver(firefoxOptions);
     }
 
