@@ -77,7 +77,7 @@ public class BrowserInstance {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setAcceptInsecureCerts(true);
-
+        firefoxOptions.setBinary("/usr/bin/firefox/firefox-bin");
         webDriver = new FirefoxDriver(firefoxOptions);
     }
 
