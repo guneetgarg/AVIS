@@ -63,7 +63,7 @@ public class BrowserInstance {
 
     protected void initializeChrome() {
         System.out.println("CHROME IS STARTED1");
-        WebDriverManager.chromedriver().setup();
+//        WebDriverManager.chromedriver().setup();
         System.out.println("CHROME IS STARTE2");
         System.out.println(System.getProperty("user.dir")+"/driver/chromedriver");
         ChromeOptions chromeOptions = new ChromeOptions();
