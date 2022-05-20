@@ -43,7 +43,8 @@ public class ReservationTests extends TestBase {
     @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
                                             String phoneNumber, String ccNumber, String cvv) {
-        launchUrl();
+        System.out.println("THis TEST is RUNNING.....");
+//        launchUrl();
 //        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
 //        reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNumber,
 //                ccNumber, cvv);
