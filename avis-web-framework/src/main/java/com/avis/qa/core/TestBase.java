@@ -44,7 +44,7 @@ public class TestBase {
             appInstance.set(new BrowserInstance(BROWSER));
     }
 
-//    @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void afterMethodTestBase(ITestResult result) throws IOException {
         log.info("afterMethodTestBase() called");
         getDriver().quit();

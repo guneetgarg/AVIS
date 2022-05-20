@@ -67,7 +67,6 @@ public class BrowserInstance {
         System.out.println("CHROME IS STARTE2");
         ChromeOptions chromeOptions = new ChromeOptions();
         System.out.println("CHROME IS STARTED3");
-        chromeOptions.setHeadless(true);
         chromeOptions.setAcceptInsecureCerts(true);
         System.out.println("CHROME IS STARTED4");
         webDriver = new ChromeDriver(chromeOptions);
@@ -126,8 +125,8 @@ public class BrowserInstance {
 
     public void start(String url) {
         initializeDriver();
-//        configureDriver();
-//        ExtentManager.driver = webDriver;
-//        webDriver.get(url);
+        configureDriver();
+        ExtentManager.driver = webDriver;
+        webDriver.get(url);
     }
 }
