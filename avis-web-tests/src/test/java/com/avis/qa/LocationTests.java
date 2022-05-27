@@ -25,7 +25,7 @@ public class LocationTests extends TestBase {
      * To verify the Browse functionality on the Location Page
      */
     @Test(groups = {REGRESSION, SANITY, SMOKE})
-    public void Location_Browse_Category() {
+    public void Avis_Location_Browse_Category_US() {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
         Locations locations = homepage.goToFindALocationPage();
@@ -37,7 +37,7 @@ public class LocationTests extends TestBase {
      * To search for the location from location field.
      **/
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Location_Search_MnemonicCodeRes(String pickUpLocation, String firstName, String lastName, String email,
+    public void Avis_Location_Search_MnemonicCodeRes_US(String pickUpLocation, String firstName, String lastName, String email,
                                                 String phoneNo) {
         launchUrl();
         LocationHelper locationHelper = new LocationHelper(getDriver());

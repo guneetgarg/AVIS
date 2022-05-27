@@ -27,7 +27,7 @@ public class ReservationTests extends TestBase {
      * ALM Testcase: Res_Avis_US_007_Reservation_Outbound_PayNow
      */
 //    @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_Outbound_PayNow(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
+    public void Avis_Reservation_Outbound_PayNow_US(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNumber,
@@ -41,7 +41,7 @@ public class ReservationTests extends TestBase {
      * ALM Testcase: Res_Avis_US_005_Reservation_Domestic_PayNow
      */
 //    @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
+    public void Avis_Reservation_ErrorMessage_PayNow_US(String pickUpLocation, String firstName, String lastName, String email,
                                             String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -53,7 +53,7 @@ public class ReservationTests extends TestBase {
     }
 
 //    @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_CCOLocation_PayLater(String pickUpLocation, String firstName, String lastName, String email,
+    public void Avis_Reservation_CCOLocation_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
                                                  String phoneNo, String cCNumber) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -64,7 +64,7 @@ public class ReservationTests extends TestBase {
 
 
     @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_Costco_PayLater(String pickUpLocation, String awd, String membershipNo, String fname,
+    public void Avis_Reservation_Costco_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname,
                                             String lname, String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -75,7 +75,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_EMEA90Days_ErrorMessage(String pickUpLocation, String months) {
+    public void Avis_Reservation_EMEA90Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
 
@@ -87,7 +87,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_EMEA330Days_ErrorMessage(String pickUpLocation, String months) {
+    public void Avis_Reservation_EMEA330Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
 
@@ -99,7 +99,7 @@ public class ReservationTests extends TestBase {
     }
 
 //    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-//    public void Reservation_ErrorMessage_PayNow(String pickUpLocation, String firstName, String lastName, String email,
+//    public void Avis_Reservation_ErrorMessage_PayNow_US(String pickUpLocation, String firstName, String lastName, String email,
 //                                                String phoneNo, String ccNo, String cvv) {
 //        launchUrl();
 //        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -110,7 +110,7 @@ public class ReservationTests extends TestBase {
 //    }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_OneClick_Step3(String url) {
+    public void Avis_Reservation_OneClick_Step3_US(String url) {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
         homepage.oneClickLandingPage(url);
@@ -120,7 +120,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_OneClick_GPSSelection(String url) {
+    public void Avis_Reservation_OneClick_GPSSelection_US(String url) {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
         homepage.oneClickLandingPage(url);
@@ -131,7 +131,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_GEBUser_PayLater(String pickUpLocation, String wizardNo, String lastName, String firstName,
+    public void Avis_Reservation_GEBUser_PayLater_US(String pickUpLocation, String wizardNo, String lastName, String firstName,
                                              String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -141,7 +141,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_GtypeCouponProcessing_PayLater(String pickUpLocation, String couponNo, String fname,
+    public void Avis_Reservation_GtypeCouponProcessing_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                            String lname, String email, String phoneNo) {
 
         launchUrl();
@@ -155,7 +155,7 @@ public class ReservationTests extends TestBase {
 
     //TODO: Check vehicle selection - coupon is applied on specific vehicles
   //  @Test(groups = {REGRESSION, SANITY}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_UtypeCouponProcessing_PayLater(String pickUpLocation, String couponNo, String fname,
+    public void Avis_Reservation_UtypeCouponProcessing_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                            String lname, String email, String phoneNo) {
 
         launchUrl();
@@ -168,7 +168,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_MtypeCouponProcessing_PayLater(String pickUpLocation, String couponNo, String fname,
+    public void Avis_Reservation_MtypeCouponProcessing_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                            String lname, String email, String phoneNo) {
 
         launchUrl();
@@ -182,7 +182,7 @@ public class ReservationTests extends TestBase {
 
 
     @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_Inbound_PayLater(String pickUpLocation, String Country, String firstName, String lastName,
+    public void Avis_Reservation_Inbound_PayLater_US(String pickUpLocation, String Country, String firstName, String lastName,
                                              String email, String phoneNumber) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -193,7 +193,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_Inbound_PayNow(String pickUpLocation, String Country, String firstName, String lastName,
+    public void Avis_Reservation_Inbound_PayNow_US(String pickUpLocation, String Country, String firstName, String lastName,
                                            String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -204,7 +204,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_USAA_PayLater(String pickUpLocation, String awd, String membershipNo, String fname,
+    public void Avis_Reservation_USAA_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname,
                                           String lname, String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -215,7 +215,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_SnowChain_PayLater(String pickUpLocation, String firstName, String lastName, String email,
+    public void Avis_Reservation_SnowChain_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
                                                String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -226,7 +226,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_Recognised_Paylater(String pickUpLocation, String wizardNo, String lastName,
+    public void Avis_Reservation_Recognised_Paylater_US(String pickUpLocation, String wizardNo, String lastName,
                                                 String pickUpLocation1) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -236,7 +236,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_OutboundAndMultiCurrency_Paylater(String pickUpLocation, String firstName, String lastName,
+    public void Avis_Reservation_OutboundAndMultiCurrency_Paylater_US(String pickUpLocation, String firstName, String lastName,
                                                               String email, String phoneNumber, String flightNumber) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -249,7 +249,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_OneWay_PayLater(String pickUpLoction, String dropOffLocation, String fname, String lname,
+    public void Avis_Reservation_OneWay_PayLater_US(String pickUpLoction, String dropOffLocation, String fname, String lname,
                                             String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -259,7 +259,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_TierBundle_PayLater(String pickUpLocation, String firstName, String lastName, String email,
+    public void Avis_Reservation_TierBundle_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
                                                 String phoneNo, String ccNo, String cvv) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -272,7 +272,7 @@ public class ReservationTests extends TestBase {
 
 
    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater(String pickUpLocation,
+    public void Avis_Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater_US(String pickUpLocation,
                                                                                               String age, String firstName, String lastName, String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -282,7 +282,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_FTPPayLater_Authenticated(String wizardNo, String password, String pickUpLocation,
+    public void Avis_Reservation_FTPPayLater_Authenticated_US(String wizardNo, String password, String pickUpLocation,
                                                       String partnerName, String membershipNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -292,7 +292,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_AuthenticatedAndDomestic_Paylater(String pickUpLocation, String wizardNo, String password,
+    public void Avis_Reservation_AuthenticatedAndDomestic_Paylater_US(String pickUpLocation, String wizardNo, String password,
                                                               String pickUpLocation1) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -303,7 +303,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_SMSOptInProfile_Verification(String wizardNo, String password, String pickUpLocation,
+    public void Avis_Reservation_SMSOptInProfile_Verification_US(String wizardNo, String password, String pickUpLocation,
                                                          String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -312,7 +312,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_LastMinuteBundle_PayLater(String pickUpLocation, String firstName, String LastName,
+    public void Avis_Reservation_LastMinuteBundle_PayLater_US(String pickUpLocation, String firstName, String LastName,
                                                       String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -321,7 +321,7 @@ public class ReservationTests extends TestBase {
     }
 
    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater(String pickUpLocation,
+    public void Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US(String pickUpLocation,
                                                                                      String dropOffTime, String awd, String firstName, String lastName, String email, String phoneNo,
                                                                                      String iataNo, String pickUpLocation_new) {
         launchUrl();
@@ -332,7 +332,7 @@ public class ReservationTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater(String pickUpLocation,
+    public void Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_US(String pickUpLocation,
                                                                                             String firstName, String lastName, String emailId, String phoneNo, String flightNumber,
                                                                                             String pickUpLocation1, String couponNo) {
         launchUrl();

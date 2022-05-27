@@ -19,7 +19,7 @@ public class FrameworkTests extends TestBase {
      * ALM Testcase: NA
      */
     @Test(groups = {SANITY, REGRESSION, SMOKE})
-    public void verifyHomepageLogo() {
+    public void AVIS_verifyHomepageLogo_US() {
         launchUrl();
         Homepage homePage = new Homepage(getDriver());
         assertTrue(homePage.isAvisLogoDisplayed(), "Avis logo is not displayed");

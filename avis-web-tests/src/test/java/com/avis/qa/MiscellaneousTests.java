@@ -18,14 +18,14 @@ import static org.testng.Assert.assertTrue;
 public class MiscellaneousTests extends TestBase {
 
 //    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Misc_OneClick_VanityURL(String url, String title) {
+    public void Avis_Misc_OneClick_VanityURL_US(String url, String title) {
         System.out.println(getAvisUrl(url));
         launchUrl(getAvisUrl(url));
         assertTrue(getDriver().getTitle().contains(title), "Page title is incorrect");
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Misc_OffersPage_Reservation(String pickUplocation, String firstName, String lastName, String email,
+    public void Avis_Misc_OffersPage_Reservation_US(String pickUplocation, String firstName, String lastName, String email,
                                             String phoneNo) {
         launchUrl();
         MiscHelper miscHelper = new MiscHelper(getDriver());
@@ -36,7 +36,7 @@ public class MiscellaneousTests extends TestBase {
 
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Misc_BusinessPrograms_BaseRateGuranatee(String wizardNo, String password, String pickup, String fName,
+    public void Avis_Misc_BusinessPrograms_BaseRateGuranatee_US(String wizardNo, String password, String pickup, String fName,
                                                         String lName, String email, String phone, String bestRateQuote, String LowerRateCar_bestRateQuote,
                                                         String pickupLocation, String DropOffLocation, String vehicle_Type, String webSite, String comments) {
         launchUrl();
@@ -47,7 +47,7 @@ public class MiscellaneousTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Misc_CarGuide_Res(String pickUpLoc, String firstName, String lastName, String email, String phoneNo) {
+    public void Avis_Misc_CarGuide_Res_US(String pickUpLoc, String firstName, String lastName, String email, String phoneNo) {
         launchUrl();
         MiscHelper miscHelper = new MiscHelper(getDriver());
         Confirmation confirmation = miscHelper.Misc_CarGuide_Res(pickUpLoc, firstName, lastName, email, phoneNo);
@@ -56,7 +56,7 @@ public class MiscellaneousTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Misc_OffersPage_SignUp(String email, String firstName, String lastName, String country) {
+    public void Avis_Misc_OffersPage_SignUp_US(String email, String firstName, String lastName, String country) {
         launchUrl();
         Header header = new Header(getDriver());
         header.offersHeader().enterEmailForSigup(email, firstName, lastName, country);
@@ -65,7 +65,7 @@ public class MiscellaneousTests extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Misc_SmallAndMidSizedBusiness_FlyOutSignUp(String pickUpLoc, String firstName, String lastName,
+    public void Avis_Misc_SmallAndMidSizedBusiness_FlyOutSignUp_US(String pickUpLoc, String firstName, String lastName,
                                                            String email, String phoneNo, String companyName, String address1, String city, String province,
                                                            String zipcode, String country) {
         launchUrl();
