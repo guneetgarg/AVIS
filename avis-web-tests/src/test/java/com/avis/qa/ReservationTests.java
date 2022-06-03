@@ -26,7 +26,7 @@ public class ReservationTests extends TestBase {
      * ALM Testcase: Res_Avis_US_007_Reservation_Outbound_PayNowAnonymous
      * ALM Testcase: Res_Avis_US_007_Reservation_Outbound_PayNow
      */
-//    @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_Outbound_PayNow_US(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
@@ -74,7 +74,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-   // @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_EMEA90Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -86,7 +86,7 @@ public class ReservationTests extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_EMEA330Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -235,7 +235,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_OutboundAndMultiCurrency_Paylater_US(String pickUpLocation, String firstName, String lastName,
                                                               String email, String phoneNumber, String flightNumber) {
         launchUrl();
@@ -291,7 +291,7 @@ public class ReservationTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_AuthenticatedAndDomestic_Paylater_US(String pickUpLocation, String wizardNo, String password,
                                                               String pickUpLocation1) {
         launchUrl();
