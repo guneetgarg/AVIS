@@ -27,7 +27,7 @@ public class LoginWidget extends AbstractBasePage {
     @FindBy(id = "password")
     private WebElement Password;
 
-    @FindBy(xpath = "//button[@id='res-login-profile']")
+    @FindBy(id = "res-login-profile")
     private WebElement LoginButton;
 
     @FindBy(id = "PicLoc_value")
@@ -48,7 +48,9 @@ public class LoginWidget extends AbstractBasePage {
         UserName.sendKeys(emailNew);
         waitForVisibilityOfElement(Password);
         Password.sendKeys(passwordNew);
+        waitForVisibilityOfElement(LoginButton);
         LoginButton.click();
+        threadSleep(TWO_SECONDS);
         threadSleep(TWO_SECONDS);
         return this;
     }
