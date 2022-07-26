@@ -31,6 +31,8 @@ public class LocationTests extends TestBase {
         Locations locations = homepage.goToFindALocationPage();
         locations.browserLocation();
         Assert.assertTrue(locations.isMakeAReservationButtonDisplayed(), "Make a Reservation button is not displayed");
+        locations.clickOnMakeAReservation();
+        
     }
 
     /**

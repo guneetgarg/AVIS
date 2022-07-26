@@ -29,7 +29,7 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(css = "li[title='Select a Car']")
     private WebElement selectACarText;
 
-    @FindBy(xpath = "(//a[contains(text(),'Pay Later')])[4]|(//a[contains(text(),'Pay at Counter')])[4]|(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]|((//p[contains(@class,'totalPay')]/../a)[4]|(//a[contains(text(),'Select')])[4])")
+    @FindBy(xpath = "(//a[contains(text(),'Pay Later')])[1]|(//a[contains(text(),'Pay at Counter')])[4]|(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]|((//p[contains(@class,'totalPay')]/../a)[4]|(//a[contains(text(),'Select')])[4])")
     private WebElement payAtCounter2;
 
     @FindBy(xpath = "(//li[@ng-click='vm.selectCurrency(option)']/a)[1]")
