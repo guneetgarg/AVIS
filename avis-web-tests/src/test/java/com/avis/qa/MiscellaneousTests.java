@@ -17,7 +17,7 @@ import static org.testng.Assert.assertTrue;
  */
 public class MiscellaneousTests extends TestBase {
 
-//    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_OneClick_VanityURL_US(String url, String title) {
         System.out.println(getAvisUrl(url));
         launchUrl(getAvisUrl(url));
@@ -35,7 +35,7 @@ public class MiscellaneousTests extends TestBase {
     }
 
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+//    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_BusinessPrograms_BaseRateGuranatee_US(String wizardNo, String password, String pickup, String fName,
                                                         String lName, String email, String phone, String bestRateQuote, String LowerRateCar_bestRateQuote,
                                                         String pickupLocation, String DropOffLocation, String vehicle_Type, String webSite, String comments) {
@@ -64,7 +64,7 @@ public class MiscellaneousTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+//    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_SmallAndMidSizedBusiness_FlyOutSignUp_US(String pickUpLoc, String firstName, String lastName,
                                                            String email, String phoneNo, String companyName, String address1, String city, String province,
                                                            String zipcode, String country) {
