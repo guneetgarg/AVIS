@@ -266,12 +266,13 @@ public class ReservationHelper {
     }
 
 
-    public Confirmation Reservation_OutboundAndMultiCurrency_Paylater(String pickUpLocation, String firstName, String lastName,
+    public Confirmation Reservation_OutboundAndMultiCurrency_Paylater(String pickUpLocation,String residencyLocation, String firstName, String lastName,
                                                                       String email, String phoneNumber, String flightNumber) {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
-                .selectMyCar();
+        		.selectCountry(residencyLocation)
+        		.selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
         assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");

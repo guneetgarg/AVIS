@@ -145,7 +145,7 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean verifyCurrencyOnConfirmationPage() {
-        return CurrencyConfirmationPage.getText().contains("NZD");
+        return CurrencyConfirmationPage.getText().contains("USD");
     }
 
     public boolean verifyRentalOptionsText() {
