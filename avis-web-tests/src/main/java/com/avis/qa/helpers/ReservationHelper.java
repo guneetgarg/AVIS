@@ -47,7 +47,7 @@ public class ReservationHelper {
                 .setSelectedCountryText()
                 .step4Submit();
 
-        Assert.assertTrue(reviewAndBook.verifySelectedCountryText("U S A"), "Country Text is incorrect");
+        Assert.assertTrue(reviewAndBook.verifySelectedCountryText("U S A") || reviewAndBook.verifySelectedCountryText("U.S.A."), "Country Text is incorrect");
     }
 
     public ReviewAndBook Reservation_CCOLocation_PayLater(String pickUpLocation, String firstName, String lastName, String email,
@@ -341,7 +341,8 @@ public class ReservationHelper {
                 .checkTermsAndConditions()
                 .step4Submit();
 
-        return new Confirmation(driver);
+        Confirmation confirmation = new Confirmation(driver);
+        return confirmation.closeGetFreeCouponPopup();
     }
 
     public Confirmation Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater(String pickUpLocation,
@@ -611,6 +612,10 @@ public class ReservationHelper {
                 .step4Submit();
 
         return new Confirmation(driver);
+    }
+
+    public ReservationWidget getReservationWidget(){
+        return this.reservationWidget;
     }
 
 }

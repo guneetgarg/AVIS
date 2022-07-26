@@ -149,7 +149,7 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean verifyRentalOptionsText() {
-        return rentalOptionsRSN.getText().contains("Cover Roadside Issues (RSN)");
+        return rentalOptionsRSN.getText().contains("Extended Roadside Assistance (RSN)");
     }
 
     public boolean verifypersonalInfo(String firstName, String email) {

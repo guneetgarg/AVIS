@@ -2,6 +2,7 @@ package com.avis.qa.pages;
 
 import com.avis.qa.core.AbstractBasePage;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +20,14 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
 @Log4j2
 public class Homepage extends AbstractBasePage {
 
-    @FindBy(id = "avis-logo")
+    @FindBy(xpath = "//a[@class='navbar-brand']")
     private WebElement avisLogo;
+
+    @FindBy(xpath = "//div[@class='bx-wrap']")
+    private WebElement AdOverLayDiv;
+
+    @FindBy(xpath = "//div[@class='bx-wrap']//button[@data-click='close']")
+    private WebElement AdOverLayCloseButton;
 
     @FindBy(xpath = "(//a[contains(text(),'Locations')])[1]")
     private WebElement LocationsMenu;
@@ -45,6 +52,16 @@ public class Homepage extends AbstractBasePage {
     public boolean isAvisLogoDisplayed() {
         log.info("Verify Avis Logo displayed on page header");
         return avisLogo.isDisplayed();
+    }
+
+    public void findAndCloseAdOverLay() {
+        log.info("Close the offer overlay div if displayed");
+        try{
+            AdOverLayDiv = waitForVisibilityOfElement(AdOverLayDiv, 10);
+        }catch (TimeoutException e){
+            return;
+        }
+        AdOverLayCloseButton.click();
     }
 
     public Locations goToFindALocationPage() {

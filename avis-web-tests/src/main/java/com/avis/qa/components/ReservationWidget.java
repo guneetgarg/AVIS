@@ -2,15 +2,19 @@ package com.avis.qa.components;
 
 import com.avis.qa.core.AbstractBasePage;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.avis.qa.constants.TextComparison.ABOVE_NINETY_ERROR_MESSAGE;
 import static com.avis.qa.constants.TextComparison.ABOVE_THREE_THIRTY_ERROR_MESSAGE;
@@ -43,11 +47,20 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//div[contains(@class,'ui-datepicker-group ui-datepicker-group-last')]/div/a")
     private WebElement nextMonthSelection;
 
+    @FindBy(xpath = "//select[@data-handler='jumpMonth']")
+    private WebElement jumpMonthDropdown;
+
     @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[contains(text(),16)]")
     private WebElement pickupDateSelection;
 
     @FindBy(xpath = "//table[contains(@class,'datepicker-calendar')]//a[contains(text(),10)]")
     private WebElement returnDateSelection;
+
+    @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[text()='24']")
+    private WebElement snowChainPickupDate;
+
+    @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-last ')]//a[text()='4']")
+    private WebElement snowChainReturnDate;
 
     @FindBy(xpath = "(//*[contains(@ng-click,'getVehicles.submit')])[1]")
     private WebElement selectMyCarButton;
@@ -58,7 +71,7 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//span[@class='mainErrorText info-error-msg-text' and @ng-bind-html='error.message | htmlFilter']")
     private WebElement ErrorMessagePath;
 
-    @FindBy(xpath = "//*[contains(@id,'to')]")
+    @FindBy(xpath = "//input[@id ='to']")
     private WebElement returnDate;
 
     @FindBy(xpath = "(//table[contains(@class,'datepicker-calendar')]//a[contains(text(),25)])")
@@ -66,6 +79,9 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "//div[@class='res-discFld form-controlD']")
     private WebElement Discount_Codes;
+
+    @FindBy(xpath = "(//input[@id='coupon'])[1]/following-sibling::span[@class='error']")
+    private WebElement CouponErrorText;
 
     @FindBy(id = "awd")
     private WebElement AWDOrBCDOrPDN_TextField;
@@ -91,7 +107,7 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//*[contains(@id,'from')])[1]")
     private WebElement pickupDateField;
 
-    @FindBy(xpath = "(//*[contains(@id,'from')])[1]")
+    @FindBy(xpath = "//input[@id='to']")
     private WebElement returnDateField;
 
     @FindBy(xpath = "//span[@class='mainErrorText info-error-msg-text']")
@@ -176,29 +192,11 @@ public class ReservationWidget extends AbstractBasePage {
         pickupDate.click();
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        String Date1 = "";
-        String Date2 = "";
 
-        try {
-
-            Date1 = "12/24/" + year;
-            SimpleDateFormat formatter1 = new SimpleDateFormat("MM/dd/yyyy");
-            Date pdate = formatter1.parse(Date1);
-            Date1 = formatter1.format(pdate); // pick-up date
-
-            Date2 = "01/04/" + (year + 1);
-            Date rdate = formatter1.parse(Date2);
-            Date2 = formatter1.format(rdate);// return date
-
-        } catch (ParseException e) {
-            log.info("Error occured : In snow chain calendar Selection.");
-        }
-
-        threadSleep(ONE_SECOND);
-        pickupDateField.sendKeys(Date1);
-        threadSleep(ONE_SECOND);
-        returnDateField.sendKeys(Date2);
-
+        Select select = new Select(jumpMonthDropdown);
+        select.selectByVisibleText("December " + year);
+        snowChainPickupDate.click();
+        snowChainReturnDate.click();
         return this;
     }
 
@@ -289,6 +287,15 @@ public class ReservationWidget extends AbstractBasePage {
     public ReservationWidget selectAge(String age) {
         helper.selectValueFromDropDown(selectAge, age);
         return this;
+    }
+
+    public Map<String, String> getCouponErrorMessageAttributes(){
+        String errorText = CouponErrorText.getText();
+        String errorColor = CouponErrorText.getCssValue("color");
+        return new HashMap<String, String>() {{
+            put("errorText", errorText);
+            put("errorColor", errorColor);
+        }};
     }
 
 

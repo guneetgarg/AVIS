@@ -19,7 +19,7 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
 @Log4j2
 public class Extras extends AbstractBasePage {
 
-    @FindBy(xpath = "//button[@class='btn btn-primary-avis pull-right'] | //button[contains(@id,'res-extras-continue-bottom')] | (//button[contains(text(),'Continue')])[2] | (//button[contains(text(),'Continue')])[1]")
+    @FindBy(xpath = "//button[contains(@ng-click,'vm.review()')]")
     private WebElement submitStep3;
 
     @FindBy(xpath = "(//label[@for='RSNchk'])[1]")

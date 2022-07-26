@@ -20,7 +20,7 @@ import static org.testng.Assert.assertEquals;
 @Log4j2
 public class Vehicles extends AbstractBasePage {
 
-    @FindBy(xpath = "(//a[contains(text(),'Pay Now')])[4]|(//a[contains(text(),'Payer maintenant')])[1]|(//a[contains(text(),'Pagar ahora')])[1]|(//a[contains(text(),'Select')])[1]")
+    @FindBy(xpath = "(//a[@id='res-vehicles-pay-now'])[1]")
     private WebElement step2PayNowSubmitButton;
 
     @FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[1] | (//a[contains(text(),'Pay Later')])[2]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]|((//p[contains(@class,'totalPay')]/../a)[1])")
