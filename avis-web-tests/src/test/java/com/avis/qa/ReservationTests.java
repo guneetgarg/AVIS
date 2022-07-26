@@ -137,7 +137,7 @@ public class ReservationTests extends TestBase {
         assertTrue(extras.isSubmitStepThreeDisplayed(), "Submit step three button is not displayed");
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+//    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_OneClick_GPSSelection_US(String url) {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -336,7 +336,7 @@ public class ReservationTests extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+//    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_LastMinuteBundle_PayLater_US(String pickUpLocation, String firstName, String LastName,
                                                       String email, String phoneNo) {
         launchUrl();

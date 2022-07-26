@@ -71,7 +71,7 @@ public class Header extends AbstractBasePage {
     }
 
     public Header clickOnOffersCTA() {
-        BookNow_DealsPage.click();
+        waitForVisibilityOfElement(BookNow_DealsPage).click();
         return this;
     }
 

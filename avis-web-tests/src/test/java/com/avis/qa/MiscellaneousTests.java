@@ -64,7 +64,7 @@ public class MiscellaneousTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+//    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_SmallAndMidSizedBusiness_FlyOutSignUp_US(String pickUpLoc, String firstName, String lastName,
                                                            String email, String phoneNo, String companyName, String address1, String city, String province,
                                                            String zipcode, String country) {
