@@ -179,7 +179,7 @@ public class ReservationTests extends TestBase {
     }
 
     //TODO: Check vehicle selection - coupon is applied on specific vehicles
-   @Test(groups = {REGRESSION, SANITY},priority=11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   @Test(groups = {REGRESSION, SANITY, SMOKE},priority=11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_UtypeCouponProcessing_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                            String lname, String email, String phoneNo) {
 
