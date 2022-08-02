@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.avis.qa.core.Configuration.URL;
+import static com.avis.qa.core.Configuration.*;
 import static com.avis.qa.utilities.CommonUtils.ONE_SECOND;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 
@@ -56,12 +56,14 @@ public class Homepage extends AbstractBasePage {
 
     public void findAndCloseAdOverLay() {
         log.info("Close the offer overlay div if displayed");
-        try{
-            AdOverLayDiv = waitForVisibilityOfElement(AdOverLayDiv, 10);
-        }catch (TimeoutException e){
-            return;
-        }
-        AdOverLayCloseButton.click();
+//        try{
+//            AdOverLayDiv = waitForVisibilityOfElement(AdOverLayDiv, 10);
+//        }catch (TimeoutException e){
+//            return;
+//        }
+//        AdOverLayCloseButton.click();
+        if(BRAND.equals("Budget"))
+            waitForVisibilityOfElement(AdOverLayCloseButton, 20).click();
     }
 
     public Locations goToFindALocationPage() {

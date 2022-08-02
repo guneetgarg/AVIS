@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\avis-web-tests\testdata\Budget_DataParameter_US_EN.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

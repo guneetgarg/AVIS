@@ -22,7 +22,7 @@ Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,86
 Avis_Reservation_OneWay_PayLater_US,LAS,JFK,Ishita,Garg,test,8658066321
 Avis_Reservation_MtypeCouponProcessing_PayLater_US,LAS,MUZZ012,Ishita,Garg,test,8658066321
 Avis_Reservation_UtypeCouponProcessing_PayLater_US,LAS,UUZZ003,Ishita,Garg,test,8658066321
-Avis_Reservation_GtypeCouponProcessing_PayLater_US,YYZ,GUZZ001,Ishita,Garg,test,8658066321
+Avis_Reservation_GtypeCouponProcessing_PayLater_US,LAS,GUZZ001,Ishita,Garg,test,8658066321
 Avis_Reservation_SplitBillItemized_PayLater_US,SAN,A0097099,Hrishi,K,ABGsplitbill098,8087444804,4916012228357695,370170242163692
 Avis_Reservation_OnAirport_PayLater_US,A4E966,Password123,BRL,Ishita,Garg,test,8658066321
 Avis_Reservation_GEBUser_PayLater_US,YYZ,EV300W,GEB,Corpo,test,8658066321
