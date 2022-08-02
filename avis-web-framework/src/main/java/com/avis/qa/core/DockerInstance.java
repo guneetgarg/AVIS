@@ -19,7 +19,7 @@ import java.util.Map;
 @Log4j2
 public class DockerInstance extends BrowserInstance {
 
-    private static final String REMOTE_URL = "http://localhost:4444";
+    private static final String REMOTE_URL = "http://0.0.0.0:4444";
 
     public DockerInstance(String browser) {
         super(browser);
