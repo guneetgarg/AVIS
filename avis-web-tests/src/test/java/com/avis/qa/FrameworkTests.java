@@ -28,7 +28,7 @@ public class FrameworkTests extends TestBase {
 //        assertTrue(homePage.isAvisLogoDisplayed(), "Avis logo is not displayed");
 //    }
 
-    @Test(groups = {REGRESSION, SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Reservation_Outbound_PayNow(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         Homepage homePage = new Homepage(getDriver());

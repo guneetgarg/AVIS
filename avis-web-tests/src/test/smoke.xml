@@ -13,12 +13,12 @@
     <!-- <Possible values: chrome/firefox/safari/edge/pixel/iphone/ipad> -->
     <parameter name="docker" value="true"/>
 
-    <test name="AVIS US Smoke Tests on Chrome">
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
+    <test name="avis-smoke-result">
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="smoke"/>-->
+<!--            </run>-->
+<!--        </groups>-->
 
         <classes>
             <class name="com.avis.qa.FrameworkTests" />
