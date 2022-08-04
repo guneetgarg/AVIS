@@ -21,24 +21,10 @@ public class FrameworkTests extends TestBase {
     /**
      * ALM Testcase: NA
      */
-//    @Test(groups = {SANITY, REGRESSION, SMOKE})
-//    public void AVIS_verifyHomepageLogo_US() {
-//        launchUrl();
-//        Homepage homePage = new Homepage(getDriver());
-//        assertTrue(homePage.isAvisLogoDisplayed(), "Avis logo is not displayed");
-//    }
-
-    @Test(groups = {SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Avis_Reservation_Outbound_PayNow_US(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
+    @Test(groups = {SANITY, REGRESSION, SMOKE})
+    public void AVIS_verifyHomepageLogo_US() {
         launchUrl();
         Homepage homePage = new Homepage(getDriver());
-        homePage.findAndCloseAdOverLay();
-        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNumber,
-                ccNumber, cvv);
-        Confirmation confirmation = new Confirmation(getDriver());
-        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        confirmation.cancelReservationWithConfirmationBox();
+        assertTrue(homePage.isAvisLogoDisplayed(), "Avis logo is not displayed");
     }
-
 }
