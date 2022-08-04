@@ -29,7 +29,7 @@ public class FrameworkTests extends TestBase {
 //    }
 
     @Test(groups = {SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Reservation_Outbound_PayNow(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
+    public void Avis_Reservation_Outbound_PayNow_US(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         Homepage homePage = new Homepage(getDriver());
         homePage.findAndCloseAdOverLay();
