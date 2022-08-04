@@ -21,9 +21,10 @@
 <!--        </groups>-->
 
         <classes>
-            <class name="com.avis.qa.ReservationTests" />
-            <class name="com.avis.qa.LocationTests"/>
-            <class name="com.avis.qa.MiscellaneousTests"/>
+<!--            <class name="com.avis.qa.ReservationTests" />-->
+<!--            <class name="com.avis.qa.LocationTests"/>-->
+<!--            <class name="com.avis.qa.MiscellaneousTests"/>-->
+            <class name="com.avis.qa.FrameworkTests"/>
         </classes>
 
 
