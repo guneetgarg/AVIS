@@ -2,10 +2,7 @@ package com.avis.qa.components;
 
 import com.avis.qa.core.AbstractBasePage;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
@@ -28,6 +25,9 @@ import static com.avis.qa.utilities.CommonUtils.*;
  */
 @Log4j2
 public class ReservationWidget extends AbstractBasePage {
+
+    @FindBy(xpath = "//div[@class='bx-wrap']//button[@data-click='close']")
+    private WebElement AdOverLayCloseButton;
 
     @FindBy(xpath = "//*[contains(@id,'DropLoc_value')]")
     private WebElement dropOffLocation;
@@ -127,14 +127,22 @@ public class ReservationWidget extends AbstractBasePage {
      * Method to verify pickup location
      **/
     public ReservationWidget pickUpLocation(String pickUpLocationValue) {
-        enterLocation(pickUpLocationValue, pickUpLocation);
-        if (helper.isElementDisplayed(suggestionLocation))
-            clickUsingJS(suggestionLocation);
-        else {
-            clearTextUsingJS(pickUpLocation);
+        try{
             enterLocation(pickUpLocationValue, pickUpLocation);
             if (helper.isElementDisplayed(suggestionLocation))
                 clickUsingJS(suggestionLocation);
+            else {
+                clearTextUsingJS(pickUpLocation);
+                enterLocation(pickUpLocationValue, pickUpLocation);
+                if (helper.isElementDisplayed(suggestionLocation))
+                    clickUsingJS(suggestionLocation);
+            }
+
+        }catch (ElementClickInterceptedException ex){
+            log.info("Detected Ad Banner");
+            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
+            pickUpLocation(pickUpLocationValue);
+            log.info("Closed Ad Banner");
         }
         return this;
     }
@@ -158,28 +166,43 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     private void enterLocation(String location, WebElement element) {
-        element.click();
-        element.clear();
-        element.sendKeys(location);
-        threadSleep(TWO_SECONDS);
+        try {
+            element.click();
+            element.clear();
+            element.sendKeys(location);
+            threadSleep(TWO_SECONDS);
+        } catch (ElementClickInterceptedException ex){
+            log.info("Detected Ad Banner");
+            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
+            enterLocation(location, element);
+            log.info("Closed Ad Banner");
+        }
     }
 
     /**
      * Method to select calendar
      **/
     public ReservationWidget calendarSelection() {
-        helper.scrollBy("-600");
-        threadSleep(TWO_SECONDS);
-        pickupDate.click();
+        try {
+            helper.scrollBy("-600");
+            threadSleep(TWO_SECONDS);
+            pickupDate.click();
 
-        for (int i = 0; i < 5; i++) {
-            threadSleep(ONE_SECOND);
-            nextMonthSelection.click();
+            for (int i = 0; i < 5; i++) {
+                threadSleep(ONE_SECOND);
+                nextMonthSelection.click();
+            }
+
+            pickupDateSelection.click();
+            threadSleep(THREE_SECONDS);
+            returnDateSelection.click();
+        } catch (ElementClickInterceptedException ex){
+            log.info("Detected Ad Banner");
+            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
+            log.info("Closed Ad Banner");
+
+            calendarSelection();
         }
-
-        pickupDateSelection.click();
-        threadSleep(THREE_SECONDS);
-        returnDateSelection.click();
         return this;
     }
 
@@ -187,16 +210,23 @@ public class ReservationWidget extends AbstractBasePage {
      * Method to select calendar
      **/
     public ReservationWidget calendarSelectionSnowChain() {
-        helper.scrollBy("-600");
-        threadSleep(TWO_SECONDS);
-        pickupDate.click();
+        try {
+            helper.scrollBy("-600");
+            threadSleep(TWO_SECONDS);
+            pickupDate.click();
 
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+            int year = Calendar.getInstance().get(Calendar.YEAR);
 
-        Select select = new Select(jumpMonthDropdown);
-        select.selectByVisibleText("December " + year);
-        snowChainPickupDate.click();
-        snowChainReturnDate.click();
+            Select select = new Select(jumpMonthDropdown);
+            select.selectByVisibleText("December " + year);
+            snowChainPickupDate.click();
+            snowChainReturnDate.click();
+        } catch (ElementClickInterceptedException ex){
+            log.info("Detected Ad Banner");
+            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
+            log.info("Closed Ad Banner");
+            calendarSelectionSnowChain();
+        }
         return this;
     }
 
