@@ -11,20 +11,20 @@
     <parameter name="environment" value="qa"/>    <!-- < Possible values : qa/uat1/qa2/www/load balancer ip> -->
     <parameter name="browser" value="chrome"/>
     <!-- <Possible values: chrome/firefox/safari/edge/pixel/iphone/ipad> -->
-    <parameter name="docker" value="false"/>
+    <parameter name="docker" value="true"/>
 
-    <test name="AVIS US Smoke Tests on Chrome">
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
+    <test name="avis-smoke-result">
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="smoke"/>-->
+<!--            </run>-->
+<!--        </groups>-->
 
         <classes>
-            <class name="com.avis.qa.FrameworkTests" />
-            <class name="com.avis.qa.LocationTests" />
-            <class name="com.avis.qa.MiscellaneousTests" />
             <class name="com.avis.qa.ReservationTests" />
+            <class name="com.avis.qa.LocationTests"/>
+            <class name="com.avis.qa.MiscellaneousTests"/>
+            <class name="com.avis.qa.FrameworkTests"/>
         </classes>
 
 

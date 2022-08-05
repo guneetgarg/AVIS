@@ -24,7 +24,8 @@ public class ExtentManager {
     public static ExtentReports createInstance() {
 
         Date d = new Date();
-        String fileName = "./extent-reports/" + "Extent_" + d.toString().replace(":", "_").replace(" ", "_") + ".html";
+//        String fileName = "./extent-reports/" + "Extent_" + d.toString().replace(":", "_").replace(" ", "_") + ".html";
+        String fileName = "./extent-reports/" + "extent-report.html";
 
         ExtentSparkReporter htmlReporter = new ExtentSparkReporter(fileName);
 

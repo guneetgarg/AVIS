@@ -16,6 +16,7 @@ Avis_Reservation_TierBundle_PayLater_US,LAS,Dhanapriya,K,test,9600685486,4263982
 Avis_Reservation_Inbound_PayLater_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645
 Avis_Reservation_Domestic_PayNow_US,EWR,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
+Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Inbound_PayNow_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_USAA_PayLater_US,XB4,A177201,14518727,Tester,M,test,8980765645
 Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
