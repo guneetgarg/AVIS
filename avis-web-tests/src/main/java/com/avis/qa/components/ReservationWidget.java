@@ -11,10 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.avis.qa.constants.TextComparison.ABOVE_NINETY_ERROR_MESSAGE;
 import static com.avis.qa.constants.TextComparison.ABOVE_THREE_THIRTY_ERROR_MESSAGE;
@@ -244,23 +241,8 @@ public class ReservationWidget extends AbstractBasePage {
         selectMyCarButton.click();
         return this;
     }
-
-    public ReservationWidget selectMyCar() {
-        waitForVisibilityOfElement(selectMyCarButton);
-        try {
-            selectMyCarButton.click();
-            waitForVisibilityOfElement(LocationSoldOutErrorText);
-            calendarSelection(3);
-            selectMyCarButton.click();
-            return this;
-        }
-        catch(Exception e)
-        {
-            return this;
-        }
-
-    }
 */
+
     public ReservationWidget selectMyCar() {
         waitForVisibilityOfElement(selectMyCarButton);
         try {
