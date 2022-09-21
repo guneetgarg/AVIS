@@ -1,5 +1,6 @@
 ####################################_RESERVATION_##################################
-Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,AKL,Hrishi,K,AbgEcom,8980765645,AA1234
+#Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,AKL,U S A,Hrishi,K,AbgEcom,8980765645,AA1234
+Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,LAS,Canada,Hrishi,K,AbgEcom,8980765645,AA1234
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
 

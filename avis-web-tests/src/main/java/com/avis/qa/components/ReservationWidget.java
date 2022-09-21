@@ -119,6 +119,9 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@name,'reservationModel.dropTime')]")
     private WebElement dropOffTime;
 
+    @FindBy(xpath = "(//span[contains(text(),'The location you have selected is Sold Out during the dates requested.')])")
+    private WebElement LocationSoldOutErrorText;
+
     public ReservationWidget(WebDriver driver) {
         super(driver);
     }
@@ -183,6 +186,26 @@ public class ReservationWidget extends AbstractBasePage {
         return this;
     }
 
+    public ReservationWidget calendarSelection(int num) {
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
+        pickupDate.clear();
+        dropOffLocation.click();
+        returnDate.click();
+        returnDate.clear();
+        dropOffLocation.click();
+        pickupDate.click();
+
+        for (int i = 0; i < num; i++) {
+            threadSleep(ONE_SECOND);
+            nextMonthSelection.click();
+        }
+        pickupDateSelection.click();
+        threadSleep(THREE_SECONDS);
+        returnDateSelection.click();
+        return this;
+    }
     /**
      * Method to select calendar
      **/
@@ -215,13 +238,59 @@ public class ReservationWidget extends AbstractBasePage {
      *
      * @return
      **/
-    public ReservationWidget selectMyCar() {
+/*
+    public ReservationWidget selectMyCar()
         waitForVisibilityOfElement(selectMyCarButton);
         selectMyCarButton.click();
         return this;
     }
 
+    public ReservationWidget selectMyCar() {
+        waitForVisibilityOfElement(selectMyCarButton);
+        try {
+            selectMyCarButton.click();
+            waitForVisibilityOfElement(LocationSoldOutErrorText);
+            calendarSelection(3);
+            selectMyCarButton.click();
+            return this;
+        }
+        catch(Exception e)
+        {
+            return this;
+        }
+
+    }
+*/
+    public ReservationWidget selectMyCar() {
+        waitForVisibilityOfElement(selectMyCarButton);
+        try {
+            selectMyCarButton.click();
+            waitForVisibilityOfElement(LocationSoldOutErrorText);
+            for(int i=2;i<=4;i++)
+            {
+                if(LocationSoldOutErrorText.isDisplayed())
+                {
+                    calendarSelection(i);
+                    selectMyCarButton.click();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return this;
+        }
+        catch(Exception e)
+        {
+            return this;
+        }
+
+    }
+
     public ReservationWidget aboveThirtyDaysCalendarSelection(String months) {
+        threadSleep(ONE_SECOND);
+        dropOffLocation.click(); /*To resolve returnDate click issue first clicked some other locator to make it interactable.*/
+        threadSleep(ONE_SECOND);
         returnDate.click();
         threadSleep(TWO_SECONDS);
 
