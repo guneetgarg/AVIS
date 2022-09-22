@@ -242,7 +242,7 @@ public class ReservationWidget extends AbstractBasePage {
         return this;
     }
 */
-
+/*
     public ReservationWidget selectMyCar() {
         waitForVisibilityOfElement(selectMyCarButton);
         try {
@@ -264,6 +264,34 @@ public class ReservationWidget extends AbstractBasePage {
         }
         catch(Exception e)
         {
+            return this;
+        }
+
+    }
+*/
+    public ReservationWidget selectMyCar() {
+        waitForVisibilityOfElement(selectMyCarButton);
+        try {
+            selectMyCarButton.click();
+            LocationSoldOutErrorText.isDisplayed();
+            for(int i=2;i<=4;i++)
+            {
+                if(LocationSoldOutErrorText.isDisplayed())
+                {
+                    calendarSelection(i);
+                    selectMyCarButton.click();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return this;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            log.info("No cabs available for selected date error handled");
             return this;
         }
 
