@@ -1,11 +1,12 @@
 ####################################_RESERVATION_##################################
-Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,AKL,Hrishi,K,AbgEcom,8980765645,AA1234
+#Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,AKL,U S A,Hrishi,K,AbgEcom,8980765645,AA1234
+Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,LAS,Canada,Hrishi,K,AbgEcom,8980765645,AA1234
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
 
-Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,YYZ,3:00 AM,A5461000,Dhanapriya,K,test,9600685486,0123141G,YYZ
+#Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,YYZ,3:00 AM,A5461000,Dhanapriya,K,test,9600685486,0123141G,YYZ
 #Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://www.avis.com/en/home
-
+Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,LAS,3:00 AM,A363800,Tester,M,test,8622443583,0123141G,YYZ
 Avis_Reservation_Recognised_Paylater_US,LAS,8TL47W,G,LAS
 Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_US,LAS,Dhanapriya,K,test,9600685486,123,YGK,TUZZ004
 Avis_Reservation_FleetVerification_Price_US,EWR,Tester,M,test,9838234567,345836415546724,123
@@ -24,13 +25,14 @@ Avis_Reservation_OneWay_PayLater_US,LAS,JFK,Ishita,Garg,test,8658066321
 Avis_Reservation_MtypeCouponProcessing_PayLater_US,LAS,MUZZ012,Ishita,Garg,test,8658066321
 Avis_Reservation_UtypeCouponProcessing_PayLater_US,LAS,UUZZ003,Ishita,Garg,test,8658066321
 Avis_Reservation_GtypeCouponProcessing_PayLater_US,YYZ,GUZZ001,Ishita,Garg,test,8658066321
+Avis_Reservation_TtypeCouponProcessing_PayLater_US,LAS,TUZZ003,Abhishek,J,test,8658066321
 Avis_Reservation_SplitBillItemized_PayLater_US,SAN,A0097099,Hrishi,K,ABGsplitbill098,8087444804,4916012228357695,370170242163692
 Avis_Reservation_OnAirport_PayLater_US,A4E966,Password123,BRL,Ishita,Garg,test,8658066321
 Avis_Reservation_GEBUser_PayLater_US,YYZ,EV300W,GEB,Corpo,test,8658066321
 Avis_Reservation_SnowChain_PayLater_US,MXP,Hrishi,K,ABGSnowChain,8622443583
 Avis_Reservation_LastMinuteBundle_PayLater_US,LAS,Dhanapriya,K,roytesting,9600685486
 Avis_Reservation_OneClick_Step3_US,/en/reservation#/oneclick?PICKUP_YEAR=2019&PICKUP_MONTH=7&PICKUP_DAY=23&PICKUP_HOUR=9&PICKUP_MINUTE=0&PICKUP_AM_PM=AM&RETURN_YEAR=2019&RETURN_MONTH=7&RETURN_DAY=30&RETURN_HOUR=9&RETURN_MINUTE=0&RETURN_AM_PM=AM&PICKUP_LOCATION_CODE=SFO&RETURN_LOCATION_CODE=SFO&RENTAL_ONEWAY=false&RATE_CODE=76&COUNTRY_OF_RESIDENCE_CODE=US&CAR_GROUP_CODE=W&STEP_CODE=4
-Avis_Reservation_FTPPayLater_Authenticated_US,B0738T,Testing100@,EWR,American Advantage,1K56E60
+Avis_Reservation_FTPPayLater_Authenticated_US,K0832G,Priyajeevi2!,EWR,American Advantage,1K56E60
 Avis_Reservation_EMEA90Days_ErrorMessage_US,LDY,5
 Avis_Reservation_EMEA330Days_ErrorMessage_US,CPT,14
 Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,8622196015

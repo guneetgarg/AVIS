@@ -306,7 +306,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-//    @Test(groups = {REGRESSION, SANITY,SMOKE},priority=22, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+ //   @Test(groups = {REGRESSION, SANITY,SMOKE},priority=22, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_FTPPayLater_Authenticated_US(String wizardNo, String password, String pickUpLocation,
                                                       String partnerName, String membershipNo) {
         launchUrl();
@@ -369,5 +369,16 @@ public class ReservationTests extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
+    @Test(groups = {REGRESSION, SANITY,SMOKE},priority=28, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Reservation_TtypeCouponProcessing_PayLater_US(String pickUpLocation, String couponNo, String fname,
+                                                                   String lname, String email, String phoneNo) {
 
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
+                phoneNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+    }
 }
