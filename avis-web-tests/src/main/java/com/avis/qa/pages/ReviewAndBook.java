@@ -102,6 +102,9 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(id = "selectedCountry")
     private WebElement selectedCountry;
 
+    @FindBy(xpath = "//span[text()='Discount Code Savings']")
+    private WebElement DiscountCodeSaving;
+
     private String selectedCountryText;
 
 
@@ -309,6 +312,9 @@ public class ReviewAndBook extends AbstractBasePage {
         return DummyCreditCardErrorMessage_Paylesscar.getText();
     }
 
+    public boolean isDiscountCodeSavingtextDisplayed() {
+        return DiscountCodeSaving.isDisplayed();
+    }
     @Override
     public void isOnPage() {
         log.info("Verify Review And Book Page");

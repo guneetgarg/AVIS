@@ -28,6 +28,11 @@ public class Extras extends AbstractBasePage {
     @FindBy(id = "Step3-Services")
     private WebElement Step3ServicesTab;
 
+    @FindBy(xpath = "//span[text()='Discount Code Savings']")
+    private WebElement DiscountCodeSaving;
+
+    @FindBy(xpath = "(//span[@class='pull-left'])[2]")
+    private WebElement currencySymbol;
 
     public Extras(WebDriver driver) {
         super(driver);
@@ -50,6 +55,14 @@ public class Extras extends AbstractBasePage {
             clickUsingJS(TieredBundle);
         CommonUtils.threadSleep(TWO_SECONDS);
         return this;
+    }
+
+    public boolean isDiscountCodeSavingtextDisplayed() {
+        return DiscountCodeSaving.isDisplayed();
+    }
+
+    public boolean verifyCurrencySymbolDisplayed() {
+        return currencySymbol.getText().contains("C$");
     }
 
     @Override

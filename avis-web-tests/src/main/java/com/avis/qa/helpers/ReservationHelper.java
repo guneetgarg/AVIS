@@ -276,8 +276,9 @@ public class ReservationHelper {
 
         Vehicles vehicles = new Vehicles(driver);
         assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
-
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
         Extras extras = vehicles.step2Submit();
+        assertTrue(extras.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
         reviewAndBook
@@ -614,6 +615,111 @@ public class ReservationHelper {
 
         return new Confirmation(driver);
     }
+
+    public Confirmation Reservation_MTypeKeyDropLocation_PayLater(String pickUpLocation, String dropOffTime, String couponNo, String fname, String lname, String email, String phoneNo){
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .dropOffTime(dropOffTime)
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                //.enterAwd(awd)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        vehicles.keyDropMessageValidation();
+        Extras extras = vehicles.Step2_DiscountAppliedSubmit();
+        assertTrue(extras.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .smsOptInCheckbox()
+                .checkTermsAndConditions()
+                .step4Submit();
+
+
+        Confirmation confirmation = new Confirmation(driver);
+      //  assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(), "AWD Confirmation text is not displayed");
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+
+
+        return confirmation;
+    }
+
+    public Confirmation Reservation_AnonymousDomesticAWD_Paylater(String pickUpLocation, String awd, String firstName, String lastName, String email, String phoneNo) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isDiscountDropdownDisplayed(), "coupon link text is not displayed");
+        Extras extras = vehicles
+                .Step2_DiscountAppliedSubmit();
+        assertTrue(extras.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(firstName)
+                .lastname(lastName)
+                .email(email)
+                .phone(phoneNo)
+                .smsOptInCheckbox()
+                .checkTermsAndConditions()
+                .step4Submit();
+
+
+        Confirmation confirmation = new Confirmation(driver);
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(), "AWD Confirmation text is not displayed");
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+
+        return confirmation;
+    }
+
+    public Confirmation Reservation_OneWay_USAA_PayLater(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
+                                                    String email, String phoneNo) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterMembershipNo(membershipNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isUSAACoupontextDisplayed(), "USAA coupon text is not displayed");
+        //Extras extras = vehicles.Step2_ClickDiscountAppliedSubmit();
+        Extras extras = vehicles.step2Submit();
+        //assertTrue(extras.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        //assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
 
     public ReservationWidget getReservationWidget(){
         return this.reservationWidget;

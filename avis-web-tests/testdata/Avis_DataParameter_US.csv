@@ -1,12 +1,15 @@
 ####################################_RESERVATION_##################################
-#Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,AKL,U S A,Hrishi,K,AbgEcom,8980765645,AA1234
-Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,LAS,Canada,Hrishi,K,AbgEcom,8980765645,AA1234
+Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,AKL,U S A,Hrishi,K,AbgEcom,8980765645,AA1234
+Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,AA1234
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
 
 #Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,YYZ,3:00 AM,A5461000,Dhanapriya,K,test,9600685486,0123141G,YYZ
 #Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://www.avis.com/en/home
 Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,LAS,3:00 AM,A363800,Tester,M,test,8622443583,0123141G,YYZ
+Avis_Reservation_UTypeKeyDropLocation_PayLater_US,LAS,YYZ,2:00 AM,UUZZ003,Abhishek,J,test,9600685486
+Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_US,MSO,3:00 AM,MUYY001,Abhishek,J,test,9600685486
+Avis_Reservation_AnonymousDomesticAWD_Paylater_US,EWR,A433301,Abhishek,J,test,9600685486
 Avis_Reservation_Recognised_Paylater_US,LAS,8TL47W,G,LAS
 Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_US,LAS,Dhanapriya,K,test,9600685486,123,YGK,TUZZ004
 Avis_Reservation_FleetVerification_Price_US,EWR,Tester,M,test,9838234567,345836415546724,123
@@ -20,6 +23,7 @@ Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,3437106841344
 Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Inbound_PayNow_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_USAA_PayLater_US,XB4,A177201,14518727,Tester,M,test,8980765645
+Avis_RES_OneWay_USAA_PayLater_US,EWR,JFK,A177201,38298026,Abhishek,J,test,9600685486
 Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
 Avis_Reservation_OneWay_PayLater_US,LAS,JFK,Ishita,Garg,test,8658066321
 Avis_Reservation_MtypeCouponProcessing_PayLater_US,LAS,MUZZ012,Ishita,Garg,test,8658066321
