@@ -65,6 +65,9 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//span[text()='Your USAA savings are reflected below.']")
     private WebElement USAASavingText;
 
+    @FindBy(xpath = "//span[text()='Your savings are reflected below.']")
+    private WebElement savingText;
+
     @FindBy(xpath = "(//p[@class='payamntp']/span)[1]")
     private WebElement currencySymbol;
 
@@ -93,9 +96,9 @@ public class Vehicles extends AbstractBasePage {
     {
         log.info("No discounted vehicle is available");
     }
-    else if(totalDiscountedvehicles > 1) {
+    else if(totalDiscountedvehicles >= 1) {
         threadSleep(TWO_SECONDS);
-        WebElement payLater = allDiscountedVehiclePaylaterButton.get(2);
+        WebElement payLater = allDiscountedVehiclePaylaterButton.get(1);
         helper.scrollToElement(payLater);
         clickUsingJS(payLater);
     }
@@ -128,7 +131,8 @@ public class Vehicles extends AbstractBasePage {
         return Currencyvalue2.isDisplayed() && Currencyvalue1.isDisplayed();
     }
 
-    public boolean verifyCurrencySymbolDisplayed() {
+    public boolean
+    verifyCurrencySymbolDisplayed() {
         return currencySymbol.getText().contains("C$");
     }
 
@@ -153,6 +157,10 @@ public class Vehicles extends AbstractBasePage {
 
     public boolean isUSAACoupontextDisplayed() {
         return USAASavingText.isDisplayed();
+    }
+
+    public boolean isSavingtextDisplayed() {
+        return savingText.isDisplayed();
     }
 
     @Override

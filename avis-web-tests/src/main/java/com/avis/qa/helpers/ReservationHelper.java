@@ -276,9 +276,7 @@ public class ReservationHelper {
 
         Vehicles vehicles = new Vehicles(driver);
         assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
-        assertTrue(vehicles.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
         Extras extras = vehicles.step2Submit();
-        assertTrue(extras.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
         reviewAndBook
@@ -684,6 +682,7 @@ public class ReservationHelper {
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(), "AWD Confirmation text is not displayed");
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
 
+
         return confirmation;
     }
 
@@ -703,10 +702,9 @@ public class ReservationHelper {
         assertTrue(vehicles.isUSAACoupontextDisplayed(), "USAA coupon text is not displayed");
         //Extras extras = vehicles.Step2_ClickDiscountAppliedSubmit();
         Extras extras = vehicles.step2Submit();
-        //assertTrue(extras.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+        extras.verifyCurbsideNotDisplayed();
 
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-        //assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
 
         reviewAndBook
                 .clickContinueReservationButton()
@@ -720,6 +718,66 @@ public class ReservationHelper {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_OutboundAndStrikeThroughCoupon_Paylater(String pickUpLocation,String residencyLocation, String awd, String fname, String lname,
+                                                                            String email, String phoneNo, String flightNumber) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .selectCountry(residencyLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Assert.assertTrue(vehicles.isStrikreThroughPriceIndicatorDisplayed(), "Strikre Through Price Indicator not Displayed");
+        Assert.assertTrue(vehicles.isSavingtextDisplayed(), "Extras and protection text not Displayed");
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.verifyLossDamageWaiverIsSelected(),"LDW is not selected");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .flightInfo()
+                .enterflightNumber(flightNumber)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_InboundAndMultiCurrency_Paylater(String pickUpLocation,String residencyLocation, String firstName, String lastName,
+                                                                      String email, String phoneNumber, String flightNumber) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .selectCountry(residencyLocation)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .firstname(firstName)
+                .lastname(lastName)
+                .email(email)
+                .phone(phoneNumber)
+                .flightInfo()
+                .enterflightNumber(flightNumber)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+
+    }
 
     public ReservationWidget getReservationWidget(){
         return this.reservationWidget;

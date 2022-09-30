@@ -306,7 +306,8 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
- //   @Test(groups = {REGRESSION, SANITY,SMOKE},priority=22, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //
+    // @Test(groups = {REGRESSION, SANITY,SMOKE},priority=22, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_FTPPayLater_Authenticated_US(String wizardNo, String password, String pickUpLocation,
                                                       String partnerName, String membershipNo) {
         launchUrl();
@@ -430,11 +431,25 @@ public class ReservationTests extends TestBase {
                                                                       String email, String phoneNumber, String flightNumber) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_OutboundAndMultiCurrency_Paylater(pickUpLocation,residencyLocation, firstName, lastName, email,
+        Confirmation confirmation = reservationHelper.Reservation_InboundAndMultiCurrency_Paylater(pickUpLocation,residencyLocation, firstName, lastName, email,
                 phoneNumber, flightNumber);
 
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.verifyCurrencyOnConfirmationPage(), "Currency value is incorrect");
+        confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE},priority=34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String pickUpLocation,String residencyLocation, String awd, String firstName, String lastName,
+                                                                    String email, String phoneNumber, String flightNumber) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_OutboundAndStrikeThroughCoupon_Paylater(pickUpLocation, residencyLocation, awd, firstName, lastName, email,
+                phoneNumber, flightNumber);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.verifyLWDOnConfirmationPage(), "LWD is not displayed");
+        assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD coupon msg is not displayed");
         confirmation.cancelReservation();
     }
 }

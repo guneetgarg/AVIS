@@ -44,7 +44,7 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "(//p[contains(text(),'Coupon savings applied')])[2]|//span[contains(@class,'coupon-value')]")
     private WebElement ConfirmationCouponValidation;
 
-    @FindBy(xpath = "(//p[contains(text(),'AWD savings applied')])[1]")
+    @FindBy(xpath = "(//p[contains(text(),'AWD savings applied')])[2]")
     private WebElement ConfirmationAWDCouponValidation;
 
     @FindBy(xpath = "//button[@aria-label='Close']")
@@ -86,6 +86,11 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//div[contains(@class,'info-key-drop-text')]/p")
     private WebElement keyDropInfo;
 
+    @FindBy(xpath = "//div[text()='Loss Damage Waiver (LDW)']/following-sibling::div/span[contains(text(),'Accepted')]")
+    private WebElement LDWAcceptedText;
+
+
+
     public Confirmation(WebDriver driver) {
         super(driver);
     }
@@ -95,6 +100,7 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean isAWDCouponMessageDisplayed() {
+        System.out.println("AWD coupon applied verification on Confirmation page");
         return ConfirmationAWDCouponValidation.isDisplayed();
     }
 
@@ -157,6 +163,11 @@ public class Confirmation extends AbstractBasePage {
 
     public boolean verifyCurrencyOnConfirmationPage() {
         return CurrencyConfirmationPage.getText().contains("USD");
+    }
+
+    public boolean verifyLWDOnConfirmationPage() {
+        System.out.println("LWD verification on Confirmation page");
+        return LDWAcceptedText.isDisplayed();
     }
 
     public boolean verifyRentalOptionsText() {

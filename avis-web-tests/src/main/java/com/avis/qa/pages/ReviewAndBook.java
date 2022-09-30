@@ -266,7 +266,7 @@ public class ReviewAndBook extends AbstractBasePage {
      */
     public ReviewAndBook flightInfo() {
         waitForVisibilityOfElement(step4_flightInfo);
-        helper.selectValueFromDropDown(step4_flightInfo, 2);
+        helper.selectValueFromDropDown(step4_flightInfo, 3);
         return this;
     }
 
