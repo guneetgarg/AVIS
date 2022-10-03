@@ -102,6 +102,13 @@ public class Extras extends AbstractBasePage {
         return LDWCheckbox.isSelected();
     }
 
+    public Extras ClickLDWCoverage() {
+        waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        LDWCheckbox.click();
+        CommonUtils.threadSleep(TWO_SECONDS);
+        return this;
+    }
+
     @Override
     public void isOnPage() {
         log.info("Verify Extras Page");

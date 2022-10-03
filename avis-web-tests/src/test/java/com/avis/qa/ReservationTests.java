@@ -439,17 +439,19 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE},priority=34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String pickUpLocation,String residencyLocation, String awd, String firstName, String lastName,
-                                                                    String email, String phoneNumber, String flightNumber) {
+
+    @Test(groups = {REGRESSION, SMOKE},priority=35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_US(String pickUpLoction, String AWD, String corporateEmailId, String fname, String lname,
+                                                                                                        String mail, String pNo, String primaryCardNo, String secCardNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_OutboundAndStrikeThroughCoupon_Paylater(pickUpLocation, residencyLocation, awd, firstName, lastName, email,
-                phoneNumber, flightNumber);
+        Confirmation confirmation = reservationHelper.Reservation_SplitBillItemized_CorpCust_PayLater(pickUpLoction, AWD, corporateEmailId, fname, lname,
+                mail, pNo, primaryCardNo, secCardNo);
 
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.verifyLWDOnConfirmationPage(), "LWD is not displayed");
-        assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD coupon msg is not displayed");
+        //assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD coupon msg is not displayed");
         confirmation.cancelReservation();
     }
+
+
 }

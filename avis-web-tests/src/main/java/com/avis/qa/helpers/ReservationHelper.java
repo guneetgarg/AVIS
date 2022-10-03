@@ -40,7 +40,7 @@ public class ReservationHelper {
                 .email(email)
                 .phone(phoneNumber)
                 .enterCardNumber(ccNumber)
-                .selectExpiryDate()
+                .selectExpiryDateAndYear()
                 .enterSecurityCode(cvv)
                 .enterAddress()
                 .checkTermsAndConditions()
@@ -194,7 +194,7 @@ public class ReservationHelper {
                 .email(email)
                 .phone(phoneNumber)
                 .enterCardNumber(ccNumber)
-                .selectExpiryDate()
+                .selectExpiryDateAndYear()
                 .enterSecurityCode(cvv)
                 .enterAddressInboundSpecific(country)
                 .checkTermsAndConditions()
@@ -777,6 +777,52 @@ public class ReservationHelper {
 
         return new Confirmation(driver);
 
+    }
+
+    public Confirmation Reservation_SplitBillItemized_CorpCust_PayLater(String pickUpLoction, String AWD, String corporateEmailId, String fname, String lname,
+                                                               String mail, String pNo, String primaryCardNo, String secCardNo) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLoction)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(AWD)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        //ReviewAndBook reviewAndBook = extras.selectTierBundle().Step3Submit();
+        extras.ClickLDWCoverage();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .firstname(fname)
+                .lastname(lname)
+                .email(mail)
+                .phone(pNo)
+                .ClickAddCreditCardLink()
+                .clickToggleSplitCreditCardButton()
+                .clickAddCreditCardButton1()
+                .enterCardNumber(primaryCardNo)
+                .selectExpiryDateAndYear()
+                .enterAddress()
+                .clickSaveButton()
+                .clickAddCreditCardButton1()
+                .enterCardNumber(secCardNo)
+                .selectExpiryDateAndYear()
+                .clickSameAsPrimaryCheckboxButton()
+                .clickSaveButton()
+                .enterPrimaryAndSecondaryAmount()
+                .clickSaveButton();
+
+        Assert.assertTrue(reviewAndBook.isPrimaryCardtextDisplayed(), "Primary card text not Displayed");
+        Assert.assertTrue(reviewAndBook.isSecondaryCardtextDisplayed(), "Secondary card text not Displayed");
+        reviewAndBook
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
     }
 
     public ReservationWidget getReservationWidget(){
