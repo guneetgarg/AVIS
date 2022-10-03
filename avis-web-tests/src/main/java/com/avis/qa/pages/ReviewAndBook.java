@@ -7,10 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
-import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
-import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static com.avis.qa.utilities.CommonUtils.*;
 
 
 /**
@@ -54,7 +54,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@name,'selectedExpYear')]")
     private WebElement year;
 
-    @FindBy(xpath = "//input[contains(@id,'cardnumber')]")
+    @FindBy(xpath = "(//input[@id='cardnumber'])[2]")
     private WebElement cardNumber;
 
     @FindBy(xpath = "//input[contains(@id,'securitycode')]")
@@ -101,6 +101,46 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(id = "selectedCountry")
     private WebElement selectedCountry;
+
+    @FindBy(xpath = "//span[text()='Discount Code Savings']")
+    private WebElement DiscountCodeSaving;
+
+    @FindBy(xpath = "//a[contains(text(),'Save time and add your card now.')]")
+    private WebElement SavetimeAddCreditCardLink;
+
+    @FindBy(xpath = "//h4[text()='Split Payment Information']")
+    private WebElement SplitPaymentInfoText;
+
+    @FindBy(xpath = "//input[@id='SBSplitAmount']")
+    private WebElement splitToggleButton;
+
+    @FindBy(xpath = "//span[contains(text(),'Add Credit Card')]")
+    private WebElement AddCreditcardButton1;
+
+    @FindBy(xpath = "(//span[contains(text(),'Add Credit Card')])[2]")
+    private WebElement AddCreditcardButton2;
+
+    @FindBy(xpath = "//span[contains(text(),'Use same address as primary payment')]")
+    private WebElement sameAddressAsPrimaryCheckbox;
+
+    @FindBy(xpath = "(//button[text()='Save'])[1]")
+    private WebElement SaveButton;
+
+    @FindBy(xpath = "//input[@id='primaryAmount']")
+    private WebElement primaryAmountField;
+
+    @FindBy(xpath = "//input[@id='secondaryAmount']")
+    private WebElement secondaryAmountField;
+
+    @FindBy(xpath = "//strong[text()='Primary']")
+    private WebElement PrimaryCardText;
+
+    @FindBy(xpath = "//strong[text()='Secondary']")
+    private WebElement SecondaryCardText;
+
+
+    @FindBy(xpath = "//span[text()='Estimated Total']/following-sibling::span/child::span/child::span[2]")
+    private WebElement EstimatedTotalText;
 
     private String selectedCountryText;
 
@@ -185,6 +225,52 @@ public class ReviewAndBook extends AbstractBasePage {
 
     }
 
+/* Spliting Estimated amount value*/
+    double  CreditCardAmount2 = 1;
+    double  CreditCardAmount1;
+
+    String EstimatedTotal = EstimatedTotalText.getText();
+    double EstimatedTotalAmount;
+
+    //Float EstimatedTotalAmountValue = Float.parseFloat(EstimatedTotalAmount.replaceAll(",", ""));
+    //double CreditCardAmount1 = (EstimatedTotalAmountValue - CreditCardAmount2);
+
+    public ReviewAndBook enterPrimaryAndSecondaryAmount() {
+
+        try{
+            EstimatedTotalAmount= Double.parseDouble(EstimatedTotal.replaceAll(",", ""));
+            BigDecimal b1 = new BigDecimal(Double.toString(EstimatedTotalAmount));
+            System.out.println("EstimatedTotalAmount2 :"+b1);
+            BigDecimal b2 = new BigDecimal(Double.toString(CreditCardAmount2));
+            System.out.println("EstimatedTotalAmount3 :"+b2);
+            CreditCardAmount1= b1.subtract(b2).doubleValue();
+            System.out.println("EstimatedTotalAmount4 :"+CreditCardAmount1);
+        }
+        catch(Exception e)
+        {
+            EstimatedTotalAmount = Double.parseDouble(EstimatedTotal);
+            e.printStackTrace();
+            BigDecimal b1 = new BigDecimal(Double.toString(EstimatedTotalAmount));
+            System.out.println("EstimatedTotalAmount catch block :"+b1);
+            BigDecimal b2 = new BigDecimal(Double.toString(CreditCardAmount2));
+            System.out.println("EstimatedTotalAmount B2 Catch block :"+b2);
+            CreditCardAmount1 = b1.subtract(b2).doubleValue();
+            System.out.println("CreditCardAmount1 catch block  :"+CreditCardAmount2);
+        }
+
+        waitForVisibilityOfElement(primaryAmountField);
+        primaryAmountField.click();
+        primaryAmountField.clear();
+        //primaryAmountField.sendKeys(String.valueOf(CreditCardAmount1));
+        primaryAmountField.sendKeys(Double.toString(CreditCardAmount1));
+        System.out.println("CreditCardAmount1 sendKeys  :"+CreditCardAmount1);
+        secondaryAmountField.click();
+        //secondaryAmountField.sendKeys(String.valueOf(CreditCardAmount2));
+        secondaryAmountField.sendKeys(Double.toString(CreditCardAmount2));
+        System.out.println("CreditCardAmount2 sendkeys  :"+CreditCardAmount2);
+        return this;
+    }
+
     /**
      * To check T&C check box
      */
@@ -194,12 +280,40 @@ public class ReviewAndBook extends AbstractBasePage {
         return this;
     }
 
-    /**
+    /*
      * @param cardNo To enter credit card no
      */
+
+    public ReviewAndBook ClickAddCreditCardLink() {
+        SavetimeAddCreditCardLink.click();
+        return this;
+    }
+
+    public ReviewAndBook clickToggleSplitCreditCardButton() {
+        waitForVisibilityOfElement(SplitPaymentInfoText);
+        splitToggleButton.click();
+        return this;
+    }
+
+    public ReviewAndBook clickAddCreditCardButton1() {
+        waitForVisibilityOfElement(AddCreditcardButton1);
+        threadSleep(TWO_SECONDS);
+        AddCreditcardButton1.click();
+        threadSleep(TWO_SECONDS);
+        return this;
+    }
+/*
+    public ReviewAndBook clickAddCreditCardButton2() {
+        waitForVisibilityOfElement(AddCreditcardButton2);
+        threadSleep(ONE_SECOND);
+        AddCreditcardButton2.click();
+        return this;
+    }*/
+
     public ReviewAndBook enterCardNumber(String cardNo) {
-        helper.scrollToElement(cardNumber);
-        cardNumber.sendKeys(cardNo, Keys.TAB);
+        waitForVisibilityOfElement(cardNumber);
+        cardNumber.click();
+        cardNumber.sendKeys(cardNo);
         return this;
         //CF.tabOut("cardNumber");
     }
@@ -207,8 +321,12 @@ public class ReviewAndBook extends AbstractBasePage {
     /**
      * To select expiry date
      */
-    public ReviewAndBook selectExpiryDate() {
-        creditCardExpiryDateField.sendKeys("1129");
+    public ReviewAndBook selectExpiryDateAndYear() {
+        month.click();
+        helper.selectValueFromDropDown(month,5);
+        year.click();
+        helper.selectValueFromDropDown(year,5);
+        //creditCardExpiryDateField.sendKeys("1129");
         //helper.selectValueFromDropDown(month,5);
         //helper.selectValueFromDropDown(year,5);
         return this;
@@ -252,6 +370,18 @@ public class ReviewAndBook extends AbstractBasePage {
         return this;
     }
 
+    public ReviewAndBook clickSaveButton() {
+        waitForVisibilityOfElement(SaveButton);
+        SaveButton.click();
+        return this;
+    }
+
+    public ReviewAndBook clickSameAsPrimaryCheckboxButton() {
+        waitForVisibilityOfElement(sameAddressAsPrimaryCheckbox);
+        sameAddressAsPrimaryCheckbox.click();
+        return this;
+    }
+
     public Confirmation keepModification() {
         waitForVisibilityOfElement(keepModifications);
         clickUsingJS(keepModifications);
@@ -263,7 +393,7 @@ public class ReviewAndBook extends AbstractBasePage {
      */
     public ReviewAndBook flightInfo() {
         waitForVisibilityOfElement(step4_flightInfo);
-        helper.selectValueFromDropDown(step4_flightInfo, 2);
+        helper.selectValueFromDropDown(step4_flightInfo, 3);
         return this;
     }
 
@@ -307,6 +437,16 @@ public class ReviewAndBook extends AbstractBasePage {
 
     public String getDummyCreditCardErrorMessage() {
         return DummyCreditCardErrorMessage_Paylesscar.getText();
+    }
+
+    public boolean isDiscountCodeSavingtextDisplayed() {
+        return DiscountCodeSaving.isDisplayed();
+    }
+
+    public boolean isPrimaryCardtextDisplayed() { return PrimaryCardText.isDisplayed(); }
+
+    public boolean isSecondaryCardtextDisplayed() {
+        return SecondaryCardText.isDisplayed();
     }
 
     @Override

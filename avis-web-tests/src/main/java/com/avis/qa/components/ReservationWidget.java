@@ -119,6 +119,10 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//span[contains(text(),'The location you have selected is Sold Out during the dates requested.')])")
     private WebElement LocationSoldOutErrorText;
 
+    @FindBy(xpath = "(//input[@name='email'])[1]")
+    private WebElement corporatEmailTextField;
+
+
     public ReservationWidget(WebDriver driver) {
         super(driver);
     }
@@ -342,6 +346,11 @@ public class ReservationWidget extends AbstractBasePage {
 
     public ReservationWidget enterMembershipNo(String membershipNo) {
         membershipTextField.sendKeys(membershipNo);
+        return this;
+    }
+
+    public ReservationWidget enterCorporateEmailId(String corporateEmail) {
+        corporatEmailTextField.sendKeys(corporateEmail);
         return this;
     }
 

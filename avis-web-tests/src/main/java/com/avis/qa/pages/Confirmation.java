@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.avis.qa.constants.TextComparison.KEY_DROP_LOCATION_MESSAGE;
 import static com.avis.qa.utilities.CommonUtils.*;
+import static org.testng.Assert.assertEquals;
 
 
 /**
@@ -41,6 +43,9 @@ public class Confirmation extends AbstractBasePage {
 
     @FindBy(xpath = "(//p[contains(text(),'Coupon savings applied')])[2]|//span[contains(@class,'coupon-value')]")
     private WebElement ConfirmationCouponValidation;
+
+    @FindBy(xpath = "(//p[contains(text(),'AWD savings applied')])[2]")
+    private WebElement ConfirmationAWDCouponValidation;
 
     @FindBy(xpath = "//button[@aria-label='Close']")
     private WebElement getFreeCouponPopup;
@@ -78,6 +83,13 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "((//div[@class='col-lg-4 col-sm-6 col-xs-12 pad-zero'])[1]//p)[1]")
     private WebElement EmailConfirmationPage;
 
+    @FindBy(xpath = "//div[contains(@class,'info-key-drop-text')]/p")
+    private WebElement keyDropInfo;
+
+    @FindBy(xpath = "//div[text()='Loss Damage Waiver (LDW)']/following-sibling::div/span[contains(text(),'Accepted')]")
+    private WebElement LDWAcceptedText;
+
+
 
     public Confirmation(WebDriver driver) {
         super(driver);
@@ -85,6 +97,11 @@ public class Confirmation extends AbstractBasePage {
 
     public boolean isConfirmationNumberDisplayed() {
         return confirmationNumber.isDisplayed();
+    }
+
+    public boolean isAWDCouponMessageDisplayed() {
+        System.out.println("AWD coupon applied verification on Confirmation page");
+        return ConfirmationAWDCouponValidation.isDisplayed();
     }
 
     public Confirmation cancelReservationWithConfirmationBox() {
@@ -148,6 +165,11 @@ public class Confirmation extends AbstractBasePage {
         return CurrencyConfirmationPage.getText().contains("USD");
     }
 
+    public boolean verifyLWDOnConfirmationPage() {
+        System.out.println("LWD verification on Confirmation page");
+        return LDWAcceptedText.isDisplayed();
+    }
+
     public boolean verifyRentalOptionsText() {
         return rentalOptionsRSN.getText().contains("Cover Roadside Issues (RSN)");
     }
@@ -158,6 +180,11 @@ public class Confirmation extends AbstractBasePage {
         return verifyEmail && verifyFirstName;
     }
 
+    public Confirmation keyDropMessageValidation() {
+        String actualMessage = keyDropInfo.getText();
+        assertEquals(actualMessage, KEY_DROP_LOCATION_MESSAGE);
+        return this;
+    }
     @Override
     public void isOnPage() {
         log.info("Verify Confirmation Page");

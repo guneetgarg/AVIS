@@ -70,6 +70,7 @@ public class BrowserInstance {
         chromeOptions.setAcceptInsecureCerts(true);
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--headless");
+        //chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         System.out.println("CHROME IS STARTED4");
         webDriver = new ChromeDriver(chromeOptions);
