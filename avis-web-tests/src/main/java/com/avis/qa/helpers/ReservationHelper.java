@@ -825,6 +825,61 @@ public class ReservationHelper {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(String pickUpLocation, String couponNo, String fname,
+                                                                                                 String lname, String email, String phoneNo, String IATANumber) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .smsOptInCheckbox()
+                .iataNumber(IATANumber)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_UTypeCouponProcessing_tierbundle_PayLater(String pickUpLocation, String couponNo, String fname,
+
+                                                              String lname, String email, String phoneNo) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
     public ReservationWidget getReservationWidget(){
         return this.reservationWidget;
     }

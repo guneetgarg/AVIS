@@ -453,5 +453,28 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
+ //   @Test(groups = {REGRESSION, SANITY,SMOKE},priority=36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US(String pickUpLocation, String couponNo, String fname,
+                                                                   String lname, String email, String phoneNo, String IATA) {
 
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(pickUpLocation, couponNo, fname, lname,
+                email, phoneNo, IATA);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SANITY, SMOKE},priority=37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_UtypeCoupon_Tierbundle_PayLater_US (String pickUpLocation, String couponNo, String fname,
+                                                                   String lname, String email, String phoneNo) {
+
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_UTypeCouponProcessing_tierbundle_PayLater(pickUpLocation, couponNo, fname, lname, email, phoneNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
+        confirmation.cancelReservation();
+    }
 }
