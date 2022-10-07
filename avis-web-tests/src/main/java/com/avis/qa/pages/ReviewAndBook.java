@@ -226,7 +226,7 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
 /* Spliting Estimated amount value*/
-    double  CreditCardAmount2 = 1;
+    double  CreditCardAmount2 = 5;
     double  CreditCardAmount1;
 
     String EstimatedTotal = EstimatedTotalText.getText();
@@ -264,10 +264,6 @@ public class ReviewAndBook extends AbstractBasePage {
         //primaryAmountField.sendKeys(String.valueOf(CreditCardAmount1));
         primaryAmountField.sendKeys(Double.toString(CreditCardAmount1));
         System.out.println("CreditCardAmount1 sendKeys  :"+CreditCardAmount1);
-        secondaryAmountField.click();
-        //secondaryAmountField.sendKeys(String.valueOf(CreditCardAmount2));
-        secondaryAmountField.sendKeys(Double.toString(CreditCardAmount2));
-        System.out.println("CreditCardAmount2 sendkeys  :"+CreditCardAmount2);
         return this;
     }
 

@@ -8,8 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
-import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static com.avis.qa.utilities.CommonUtils.*;
 import static org.testng.Assert.assertFalse;
 
 
@@ -104,6 +103,7 @@ public class Extras extends AbstractBasePage {
 
     public Extras ClickLDWCoverage() {
         waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        CommonUtils.threadSleep(ONE_SECOND);
         LDWCheckbox.click();
         CommonUtils.threadSleep(TWO_SECONDS);
         return this;

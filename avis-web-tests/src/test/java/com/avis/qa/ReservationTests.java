@@ -449,8 +449,10 @@ public class ReservationTests extends TestBase {
                 mail, pNo, primaryCardNo, secCardNo);
 
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        //assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD coupon msg is not displayed");
-        confirmation.cancelReservation();
+        assertTrue(confirmation.isPrimaryCardDetailsDisplayed(), "Primary card details is not displayed");
+        assertTrue(confirmation.isSecondaryCardDetailsDisplayed(), "Secondary card details is not displayed");
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+        //confirmation.cancelReservation();
     }
 
  //   @Test(groups = {REGRESSION, SANITY,SMOKE},priority=36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
@@ -463,6 +465,7 @@ public class ReservationTests extends TestBase {
                 email, phoneNo, IATA);
 
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponCodeMessageDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
     }
 

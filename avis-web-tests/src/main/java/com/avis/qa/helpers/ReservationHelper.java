@@ -846,6 +846,7 @@ public class ReservationHelper {
                 .email(email)
                 .phone(phoneNo)
                 .smsOptInCheckbox()
+                .flightInfo()
                 .iataNumber(IATANumber)
                 .checkTermsAndConditions()
                 .step4Submit();

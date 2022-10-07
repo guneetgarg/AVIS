@@ -90,6 +90,17 @@ public class Confirmation extends AbstractBasePage {
     private WebElement LDWAcceptedText;
 
 
+    @FindBy(xpath = "(//strong[contains(text(),'Card Number:')])[1] | span[contains(text(),'************')]")
+    private WebElement PrimaryCardDetails;
+
+    @FindBy(xpath = "(//strong[contains(text(),'Card Number:')])[2] | span[contains(text(),'************')]")
+    private WebElement SecondaryCardDetails;
+
+    @FindBy(xpath = "//span[@class='coupon-value']")
+    private WebElement CouponValue;
+
+
+
 
     public Confirmation(WebDriver driver) {
         super(driver);
@@ -102,6 +113,14 @@ public class Confirmation extends AbstractBasePage {
     public boolean isAWDCouponMessageDisplayed() {
         System.out.println("AWD coupon applied verification on Confirmation page");
         return ConfirmationAWDCouponValidation.isDisplayed();
+    }
+
+    public boolean isPrimaryCardDetailsDisplayed() {
+        return PrimaryCardDetails.isDisplayed();
+    }
+
+    public boolean isSecondaryCardDetailsDisplayed() {
+        return SecondaryCardDetails.isDisplayed();
     }
 
     public Confirmation cancelReservationWithConfirmationBox() {
@@ -124,6 +143,12 @@ public class Confirmation extends AbstractBasePage {
     public boolean isExtrasAddedMessageDisplayed() {
         return OneClickGPSAdded.getText().contains("Hands-Free Navigation (GPS) is successfully added to your reservation.");
     }
+
+    public boolean isCouponCodeMessageDisplayed() {
+        return CouponValue.getText().contains("GUZZ011 - Free Tank of Gas w/ Rental of WiFi/Paperless -  Coupons");
+    }
+
+
 
     public boolean isAwdConfirmationPageTextDisplayed() {
         return AWDConfirmationPage.getText().contains("AWD");
