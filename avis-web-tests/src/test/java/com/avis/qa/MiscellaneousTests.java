@@ -15,7 +15,8 @@ import static org.testng.Assert.assertTrue;
  *
  * @author ikumar
  */
-public class MiscellaneousTests extends TestBase {
+public class
+MiscellaneousTests extends TestBase {
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_OneClick_VanityURL_US(String url, String title) {

@@ -8,7 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 import static com.avis.qa.utilities.CommonUtils.*;
 
@@ -51,11 +53,18 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@name,'expmonthselectedItem')]")
     private WebElement month;
 
+    @FindBy(xpath = "//input[@name='expirydate']")
+    private WebElement expiryDate;
+
+
     @FindBy(xpath = "//*[contains(@name,'selectedExpYear')]")
     private WebElement year;
 
-    @FindBy(xpath = "(//input[@id='cardnumber'])[2]")
+    @FindBy(xpath = "//input[@id='cardnumber']")
     private WebElement cardNumber;
+
+    @FindBy(xpath = "(//input[@id='cardnumber'])[2]")
+    private WebElement splitPageCardNumber;
 
     @FindBy(xpath = "//input[contains(@id,'securitycode')]")
     private WebElement step4_CVV;
@@ -137,6 +146,21 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//strong[text()='Secondary']")
     private WebElement SecondaryCardText;
+
+    @FindBy(xpath = "//*[contains(@for,'creditcard')] ")
+    private WebElement AddCreditCardCheckbox;
+
+    @FindBy(xpath = "//div[@data-funding-source='paypal']")
+    private WebElement PaypalButton;
+
+    @FindBy(xpath = "//span[text()='Paying With ']")
+    private WebElement PayingWithText;
+
+    @FindBy(xpath = "//img[@title='Paypal']")
+    private WebElement PayPalImage;
+
+    @FindBy(xpath = "//iFrame[@title='PayPal']")
+    private WebElement iFramePayPal;
 
 
     @FindBy(xpath = "//span[text()='Estimated Total']/following-sibling::span/child::span/child::span[2]")
@@ -225,17 +249,19 @@ public class ReviewAndBook extends AbstractBasePage {
 
     }
 
-/* Spliting Estimated amount value*/
-    double  CreditCardAmount2 = 5;
-    double  CreditCardAmount1;
-
-    String EstimatedTotal = EstimatedTotalText.getText();
-    double EstimatedTotalAmount;
-
-    //Float EstimatedTotalAmountValue = Float.parseFloat(EstimatedTotalAmount.replaceAll(",", ""));
-    //double CreditCardAmount1 = (EstimatedTotalAmountValue - CreditCardAmount2);
+    /* Spliting Estimated amount value*/
+    String value;
+    public ReviewAndBook getEstimatedTotalvalue() {
+        value = EstimatedTotalText.getText();
+        return this;
+}
 
     public ReviewAndBook enterPrimaryAndSecondaryAmount() {
+        double  CreditCardAmount2 = 5.00;
+        double  CreditCardAmount1;
+        double  EstimatedTotalAmount;
+        String EstimatedTotal = String.valueOf(value);
+        //String EstimatedTotal =EstimatedTotalText.getText();
 
         try{
             EstimatedTotalAmount= Double.parseDouble(EstimatedTotal.replaceAll(",", ""));
@@ -249,13 +275,13 @@ public class ReviewAndBook extends AbstractBasePage {
         catch(Exception e)
         {
             EstimatedTotalAmount = Double.parseDouble(EstimatedTotal);
-            e.printStackTrace();
+            //e.printStackTrace();
             BigDecimal b1 = new BigDecimal(Double.toString(EstimatedTotalAmount));
             System.out.println("EstimatedTotalAmount catch block :"+b1);
             BigDecimal b2 = new BigDecimal(Double.toString(CreditCardAmount2));
             System.out.println("EstimatedTotalAmount B2 Catch block :"+b2);
             CreditCardAmount1 = b1.subtract(b2).doubleValue();
-            System.out.println("CreditCardAmount1 catch block  :"+CreditCardAmount2);
+            System.out.println("CreditCardAmount1 catch block  :"+CreditCardAmount1);
         }
 
         waitForVisibilityOfElement(primaryAmountField);
@@ -272,6 +298,7 @@ public class ReviewAndBook extends AbstractBasePage {
      */
     public ReviewAndBook checkTermsAndConditions() {
         //helper.scrollToElement(termsCheckInput);
+        waitForVisibilityOfElement(termsCheck);
         clickUsingJS(termsCheck);
         return this;
     }
@@ -314,6 +341,13 @@ public class ReviewAndBook extends AbstractBasePage {
         //CF.tabOut("cardNumber");
     }
 
+    public ReviewAndBook enterCardNumberSplitPage(String cardNo) {
+        waitForVisibilityOfElement(splitPageCardNumber);
+        splitPageCardNumber.click();
+        splitPageCardNumber.sendKeys(cardNo);
+        return this;
+    }
+
     /**
      * To select expiry date
      */
@@ -325,6 +359,12 @@ public class ReviewAndBook extends AbstractBasePage {
         //creditCardExpiryDateField.sendKeys("1129");
         //helper.selectValueFromDropDown(month,5);
         //helper.selectValueFromDropDown(year,5);
+        return this;
+    }
+
+    public ReviewAndBook EnterExpiryDateAndYear() {
+        expiryDate.click();
+        expiryDate.sendKeys("0627");
         return this;
     }
 
@@ -340,6 +380,15 @@ public class ReviewAndBook extends AbstractBasePage {
         if (helper.isElementDisplayed(creditCardCheckBox))
             creditCardCheckBox.click();
         return this;
+    }
+
+    public ReviewAndBook step4_AddCreditCardCheckBox() {
+         //   helper.scrollToElement(AddCreditCardCheckbox);
+        AddCreditCardCheckbox.click();
+        threadSleep(THREE_SECONDS);
+        threadSleep(THREE_SECONDS);
+        return this;
+
     }
 
     public ReviewAndBook enterAddress() {
@@ -393,6 +442,12 @@ public class ReviewAndBook extends AbstractBasePage {
         return this;
     }
 
+    public ReviewAndBook SelectflightInfo(int i) {
+        waitForVisibilityOfElement(step4_flightInfo);
+        helper.selectValueFromDropDown(step4_flightInfo, i);
+        return this;
+    }
+
     /**
      * To enter flight number
      */
@@ -411,6 +466,13 @@ public class ReviewAndBook extends AbstractBasePage {
         clickUsingJS(step4Submit);
         return this;
     }
+    public ReviewAndBook ReserveButton() {
+        waitForVisibilityOfElement(PayingWithText);
+        helper.scrollToElement(step4Submit);
+        clickUsingJS(step4Submit);
+        return this;
+    }
+
 
     public ReviewAndBook reviewModifications() {
         threadSleep(TWO_SECONDS);
@@ -421,6 +483,21 @@ public class ReviewAndBook extends AbstractBasePage {
     public ReviewAndBook setSelectedCountryText() {
         selectedCountryText = selectedCountry.getText();
         return this;
+    }
+
+    public PayPalPage clickPaypalButton() {
+        //threadSleep(TWO_SECONDS);
+       // driver.switchTo().frame(0);
+        waitForVisibilityOfElement(iFramePayPal);
+        driver.switchTo().frame(0);
+        System.out.println("IFramePaypal switched");
+        threadSleep(TWO_SECONDS);
+       // helper.scrollToElement(PaypalButton);
+       // threadSleep(ONE_SECOND);
+        clickUsingJS(PaypalButton);
+        //PaypalButton.click();
+        driver.switchTo().defaultContent();
+        return new PayPalPage(driver);
     }
 
     public Boolean verifySelectedCountryText(String country) {
@@ -443,6 +520,10 @@ public class ReviewAndBook extends AbstractBasePage {
 
     public boolean isSecondaryCardtextDisplayed() {
         return SecondaryCardText.isDisplayed();
+    }
+
+    public boolean isPaypalImageDisplayed() {
+        return PayPalImage.isDisplayed();
     }
 
     @Override

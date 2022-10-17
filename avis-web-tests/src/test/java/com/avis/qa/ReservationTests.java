@@ -87,7 +87,7 @@ public class ReservationTests extends TestBase {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Costco_USAA_PayLater(pickUpLocation, awd, membershipNo, fname, lname, email, phoneNo);
-        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(), "AWD Confirmation text is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
     }
@@ -234,7 +234,7 @@ public class ReservationTests extends TestBase {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Costco_USAA_PayLater(pickUpLocation, awd, membershipNo, fname, lname, email, phoneNo);
-        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(), "AWD Confirmation text is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
     }
@@ -292,7 +292,7 @@ public class ReservationTests extends TestBase {
                 cvv);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.verifyRentalOptionsText(), "Rental Options Text is incorrect");
-//        confirmation.closeGetFreeCouponPopup().cancelReservation();
+        confirmation.cancelReservation();
     }
 
 
@@ -410,8 +410,8 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.keyDropMessageValidation();
-        //confirmation.closeGetFreeCouponPopup().cancelReservation();
-        confirmation.cancelReservation();
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+       // confirmation.cancelReservation();
     }
 
     @Test(groups = {REGRESSION, SMOKE},priority=32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
@@ -421,7 +421,7 @@ public class ReservationTests extends TestBase {
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo);
         //assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD Coupon text is not displayed");
-        //assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(), "AWD Confirmation text is not displayed");
+        //assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
     }
@@ -440,7 +440,7 @@ public class ReservationTests extends TestBase {
     }
 
 
-    @Test(groups = {REGRESSION, SMOKE},priority=35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE},priority=34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_US(String pickUpLoction, String AWD, String corporateEmailId, String fname, String lname,
                                                                                                         String mail, String pNo, String primaryCardNo, String secCardNo) {
         launchUrl();
@@ -455,7 +455,7 @@ public class ReservationTests extends TestBase {
         //confirmation.cancelReservation();
     }
 
- //   @Test(groups = {REGRESSION, SANITY,SMOKE},priority=36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   @Test(groups = {REGRESSION, SANITY,SMOKE},priority=35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                                    String lname, String email, String phoneNo, String IATA) {
 
@@ -464,20 +464,54 @@ public class ReservationTests extends TestBase {
         Confirmation confirmation = reservationHelper.Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(pickUpLocation, couponNo, fname, lname,
                 email, phoneNo, IATA);
 
-        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.isCouponCodeMessageDisplayed(), "Confirmation Number is not displayed");
-        confirmation.cancelReservation();
+        assertTrue(confirmation.isConfirmationNumberDisplayed(),"Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponCodeMessageDisplayed("GUZZ007 - Free Tank of Gas w/ Rental of XMR/Paperless - Coupons"), "Coupon Code is not displayed");
+        assertTrue(confirmation.isIATAValueDisplayed(), "IATA value is not displayed");
+        assertTrue(confirmation.isFlightInfoDisplayed(), "Flight Info is not displayed");
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+       // confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE},priority=37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Avis_RES_UtypeCoupon_Tierbundle_PayLater_US (String pickUpLocation, String couponNo, String fname,
-                                                                   String lname, String email, String phoneNo) {
+    @Test(groups = {REGRESSION, SANITY, SMOKE},priority=36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_UtypeCoupon_Tierbundle_PayLater_US (String pickUpLocation, String pickupTime, String dropOffTime, String couponNo, String fname,
+                                                                   String lname, String email, String phoneNo, String couponText) {
 
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_UTypeCouponProcessing_tierbundle_PayLater(pickUpLocation, couponNo, fname, lname, email, phoneNo);
+        Confirmation confirmation = reservationHelper.Reservation_UTypeCouponProcessing_tierbundle_PayLater(pickUpLocation, pickupTime, dropOffTime, couponNo, fname, lname, email, phoneNo, couponText);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
+        confirmation.closeGetFreeCouponPopup();
+        confirmation.ClickRentalOption();
+        assertTrue(confirmation.verifyGPSCoverageOnConfirmationPage(), "GPS Coverage is not displayed");
+        //assertTrue(confirmation.verifyRSNCoverageOnConfirmationPage(), "RSN Coverage is not displayed");
+        assertTrue(confirmation.isCouponCodeMessageDisplayed(couponText), "Coupon Code is not displayed");
         confirmation.cancelReservation();
     }
+
+    @Test(groups = {REGRESSION , SMOKE},priority=37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Costco_DigitalWallet_PayPal_PayLater_US(String pickUpLocation,String awd, String membershipNo, String fname, String lname,
+                                                 String email, String phoneNo, String paypalEmail, String paypalPassword) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Costco_DigitalWallet_Paypal_PayLater(pickUpLocation, awd, membershipNo, fname, lname, email, phoneNo, paypalEmail, paypalPassword );
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+        assertTrue(confirmation.isCardTypePaypalDisplayed(), "Card Type Paypal is not displayed");
+        confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION , SMOKE},priority=38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String pickUpLocation,String residencyLocation, String awd, String fname, String lname,
+                                                                              String email, String phoneNo, String flightNumber) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_OutboundAndStrikeThroughCoupon_Paylater(pickUpLocation, residencyLocation, awd, fname, lname, email, phoneNo, flightNumber);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+        confirmation.cancelReservation();
+    }
+
 }

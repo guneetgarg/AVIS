@@ -50,6 +50,9 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[contains(text(),16)]")
     private WebElement pickupDateSelection;
 
+    @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[contains(text(),20)]")
+    private WebElement returnDateSelection5daysGap;
+
     @FindBy(xpath = "//table[contains(@class,'datepicker-calendar')]//a[contains(text(),10)]")
     private WebElement returnDateSelection;
 
@@ -115,6 +118,9 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "//*[contains(@name,'reservationModel.dropTime')]")
     private WebElement dropOffTime;
+
+    @FindBy(xpath = "//*[contains(@name,'reservationModel.pickUpTime')]")
+    private WebElement pickUpTime;
 
     @FindBy(xpath = "(//span[contains(text(),'The location you have selected is Sold Out during the dates requested.')])")
     private WebElement LocationSoldOutErrorText;
@@ -204,7 +210,7 @@ public class ReservationWidget extends AbstractBasePage {
         }
         pickupDateSelection.click();
         threadSleep(THREE_SECONDS);
-        returnDateSelection.click();
+        returnDateSelection5daysGap.click();
         return this;
     }
     /**
@@ -231,6 +237,11 @@ public class ReservationWidget extends AbstractBasePage {
 
     public ReservationWidget dropOffTime(String dot) {
         helper.selectValueFromDropDown(dropOffTime, dot);
+        return this;
+    }
+
+    public ReservationWidget pickUpTime(String dot) {
+        helper.selectValueFromDropDown(pickUpTime, dot);
         return this;
     }
 
@@ -294,7 +305,7 @@ public class ReservationWidget extends AbstractBasePage {
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
             log.info("No cabs available for selected date error handled");
             return this;
         }

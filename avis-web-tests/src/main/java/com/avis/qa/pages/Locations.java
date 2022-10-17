@@ -46,7 +46,7 @@ public class Locations extends AbstractBasePage {
     @FindBy(xpath = "//button[contains(text(),'Abg/parsippany')]")
     WebElement ABGparsiPpanyCategory;
 
-    @FindBy(xpath = "(//a[contains(text(), 'Make a Reservation')])[3]")
+    @FindBy(xpath = "(//a[contains(text(), 'Make a Reservation')])[2]")
     WebElement makeAReservationButton;
 
 
