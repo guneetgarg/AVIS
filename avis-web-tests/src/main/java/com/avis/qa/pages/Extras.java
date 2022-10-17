@@ -8,8 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
-import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static com.avis.qa.utilities.CommonUtils.*;
 import static org.testng.Assert.assertFalse;
 
 
@@ -27,8 +26,16 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "(//label[@for='RSNchk'])[1]")
     private WebElement TieredBundle;
 
+    @FindBy(xpath = "//input[@id='Protection & Safety PackagepaiChk']")
+    private WebElement ProtectionSafetyTireBundle;
+
+
     @FindBy(id = "Step3-Services")
     private WebElement Step3ServicesTab;
+
+    @FindBy(xpath = "//a[text()='Discount Packages']")
+    private WebElement Step3DiscountPackages;
+
 
     @FindBy(xpath = "//span[text()='Discount Code Savings']")
     private WebElement DiscountCodeSaving;
@@ -64,9 +71,9 @@ public class Extras extends AbstractBasePage {
     }
 
     public Extras selectTierBundle() {
-        waitForVisibilityOfElement(Step3ServicesTab).click();
-        if (helper.isElementDisplayed(TieredBundle))
-            clickUsingJS(TieredBundle);
+        waitForVisibilityOfElement(Step3DiscountPackages).click();
+        if (helper.isElementDisplayed(ProtectionSafetyTireBundle))
+            clickUsingJS(ProtectionSafetyTireBundle);
         CommonUtils.threadSleep(TWO_SECONDS);
         return this;
     }
@@ -104,6 +111,7 @@ public class Extras extends AbstractBasePage {
 
     public Extras ClickLDWCoverage() {
         waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        CommonUtils.threadSleep(ONE_SECOND);
         LDWCheckbox.click();
         CommonUtils.threadSleep(TWO_SECONDS);
         return this;

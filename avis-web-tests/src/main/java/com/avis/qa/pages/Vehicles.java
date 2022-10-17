@@ -56,7 +56,7 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//a[@class='discount-dropdown s-dropdown']")
     private WebElement discountDropdown;
 
-    @FindBy(xpath = "(//p[@class='striked-text'])[2]/following-sibling::a")
+    @FindBy(xpath = "(//a[@id='res-vehicles-pay-later'])[1]")
     private WebElement DiscountAppliedVehiclePaylaterButton;
 
     @FindAll(@FindBy(xpath = "//p[@class='striked-text']/following-sibling::a"))
@@ -65,12 +65,21 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//span[text()='Your USAA savings are reflected below.']")
     private WebElement USAASavingText;
 
+    @FindBy(xpath = "//span[@class='addinlinfo']")
+    private WebElement Step2SavingText;
+
+
     @FindBy(xpath = "//span[text()='Your savings are reflected below.']")
     private WebElement savingText;
 
     @FindBy(xpath = "(//p[@class='payamntp']/span)[1]")
     private WebElement currencySymbol;
 
+    @FindBy(xpath = "//input[@name='res.coupon.couponNumber']")
+    private WebElement CouponValue;
+
+    @FindBy(xpath = "//section[@class='infoText']")
+    private WebElement CouponSavingText;
 
     public Vehicles(WebDriver driver) {
         super(driver);
@@ -136,6 +145,12 @@ public class Vehicles extends AbstractBasePage {
         return currencySymbol.getText().contains("C$");
     }
 
+    public boolean verifyCouponSavingtextDisplayed(String CouponMsg)
+    {
+        System.out.println("Coupon text"+CouponSavingText.getText());
+        return CouponSavingText.getText().contains(CouponMsg);
+    }
+
     public boolean isStrikreThroughPriceIndicatorDisplayed() {
         return StrikreThroughPriceIndicator.isDisplayed();
     }
@@ -151,6 +166,18 @@ public class Vehicles extends AbstractBasePage {
         return this;
     }
 
+    public Vehicles DiscountDropDownClick() {
+        discountDropdown.click();
+        return this;
+    }
+
+    public Vehicles isCouponvalueDisplayed(String Couponcode) {
+        String actualCoupon = CouponValue.getText();
+        assertEquals(actualCoupon, Couponcode);
+        return this;
+    }
+
+
     public boolean isDiscountDropdownDisplayed() {
         return discountDropdown.getText().contains("Lower Rates/This AWD");
     }
@@ -158,6 +185,13 @@ public class Vehicles extends AbstractBasePage {
     public boolean isUSAACoupontextDisplayed() {
         return USAASavingText.isDisplayed();
     }
+
+    public Vehicles savingMessageValidation(String message) {
+        String actualMessage = Step2SavingText.getText();
+        assertEquals(actualMessage, message);
+        return this;
+    }
+
 
     public boolean isSavingtextDisplayed() {
         return savingText.isDisplayed();
