@@ -154,6 +154,36 @@ public class ReservationHelper {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_TtypeCouponProcessing_PayLater(String pickUpLocation, String couponNo, String fname,
+
+                                                              String lname, String email, String phoneNo, String couponMsg) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        vehicles.savingMessageValidation(couponNo);
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
     public Confirmation Reservation_Inbound_PayLater(String pickUpLocation, String Country, String firstName, String lastName,
                                                      String email, String phoneNumber) {
         reservationWidget
@@ -271,7 +301,7 @@ public class ReservationHelper {
 
 
     public Confirmation Reservation_OutboundAndMultiCurrency_Paylater(String pickUpLocation,String residencyLocation, String firstName, String lastName,
-                                                                      String email, String phoneNumber, String flightNumber) {
+                                                                      String email, String phoneNumber, String flightNumber, String currencyValue) {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
@@ -728,7 +758,7 @@ public class ReservationHelper {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .selectCountry(residencyLocation)
-                .calendarSelection()
+                .calendarSelection(2)
                 .expandDiscountCode()
                 .enterAwd(awd)
                 .selectMyCar();
@@ -737,7 +767,7 @@ public class ReservationHelper {
         Assert.assertTrue(vehicles.isStrikreThroughPriceIndicatorDisplayed(), "Strikre Through Price Indicator not Displayed");
         Assert.assertTrue(vehicles.isSavingtextDisplayed(), "Extras and protection text not Displayed");
         Extras extras = vehicles.step2Submit();
-        assertTrue(extras.verifyLossDamageWaiverIsSelected(),"LDW is not selected");
+      //  assertTrue(extras.verifyLossDamageWaiverIsSelected(),"LDW is not selected");
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
         reviewAndBook
@@ -755,7 +785,7 @@ public class ReservationHelper {
     }
 
     public Confirmation Reservation_InboundAndMultiCurrency_Paylater(String pickUpLocation,String residencyLocation, String firstName, String lastName,
-                                                                      String email, String phoneNumber, String flightNumber) {
+                                                                      String email, String phoneNumber, String flightNumber, String currencyValue) {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
@@ -831,7 +861,7 @@ public class ReservationHelper {
     }
 
     public Confirmation Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(String pickUpLocation, String couponNo, String fname,
-                                                                                                 String lname, String email, String phoneNo, String IATANumber) {
+                                                                                                 String lname, String email, String phoneNo, String IATANumber, String couponMsg) {
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)

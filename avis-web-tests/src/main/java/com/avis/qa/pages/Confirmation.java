@@ -138,11 +138,15 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean isAWDCouponMessageDisplayed() {
+        helper.scrollToElement(ConfirmationAWDCouponValidation);
+        threadSleep(TWO_SECONDS);
         System.out.println("AWD coupon applied verification on Confirmation page");
         return ConfirmationAWDCouponValidation.isDisplayed();
     }
 
     public boolean isPrimaryCardDetailsDisplayed() {
+        helper.scrollToElement(PrimaryCardDetails);
+        threadSleep(TWO_SECONDS);
         return PrimaryCardDetails.isDisplayed();
     }
 
@@ -168,16 +172,22 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean isExtrasAddedMessageDisplayed() {
+        helper.scrollToElement(OneClickGPSAdded);
+        threadSleep(TWO_SECONDS);
         return OneClickGPSAdded.getText().contains("Hands-Free Navigation (GPS) is successfully added to your reservation.");
     }
 
     public boolean isCouponCodeMessageDisplayed(String coupon) {
+        helper.scrollToElement(CouponValue);
+        threadSleep(TWO_SECONDS);
         System.out.println("Couponvalue :"+CouponValue.getText());
         return CouponValue.getText().contains(coupon);
 
     }
 
     public boolean isFlightInfoDisplayed() {
+        helper.scrollToElement(FlightInfo);
+        threadSleep(TWO_SECONDS);
         System.out.println("FlightInfo :"+FlightInfo.getText());
         return FlightInfo.getText().contains("Aerolineas Argentinas");
 
@@ -195,17 +205,23 @@ public class Confirmation extends AbstractBasePage {
 
     public boolean verifyAWDCouponValueConfirmationPage() {
         System.out.println("AWD Coupon : "+AWDCouponValue.getText());
+        helper.scrollToElement(AWDCouponValue);
+        threadSleep(TWO_SECONDS);
         return AWDCouponValue.isDisplayed();
     }
 
-    public boolean isIATAValueDisplayed() {
+    public boolean isIATAValueDisplayed(String IATA) {
+        helper.scrollToElement(IATAvalue);
+        threadSleep(TWO_SECONDS);
         System.out.println(IATAvalue.getText());
-        return IATAvalue.getText().contains("0123141G");
+        return IATAvalue.getText().contains(IATA);
     }
 
 
 
     public boolean isAwdConfirmationPageTextDisplayed(String coupon) {
+        helper.scrollToElement(AWDConfirmationPage);
+        threadSleep(TWO_SECONDS);
         return AWDConfirmationPage.getText().contains(coupon);
     }
 
@@ -241,11 +257,13 @@ public class Confirmation extends AbstractBasePage {
         return this;
     }
 
-    public boolean verifyCurrencyOnConfirmationPage() {
-        return CurrencyConfirmationPage.getText().contains("USD");
+    public boolean verifyCurrencyOnConfirmationPage(String currency) {
+        return CurrencyConfirmationPage.getText().contains(currency);
     }
 
     public boolean verifyLWDOnConfirmationPage() {
+        helper.scrollToElement(LDWAcceptedText);
+        threadSleep(TWO_SECONDS);
         System.out.println("LWD verification on Confirmation page");
         return LDWAcceptedText.isDisplayed();
     }
@@ -265,6 +283,8 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean verifypersonalInfo(String firstName, String email) {
+        helper.scrollToElement(NameDetails);
+        threadSleep(TWO_SECONDS);
         boolean verifyFirstName = NameDetails.getText().contains(firstName);
         boolean verifyEmail = EmailConfirmationPage.getText().contains(email);
         return verifyEmail && verifyFirstName;
@@ -277,6 +297,8 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean isCardTypePaypalDisplayed() {
+        helper.scrollToElement(CardTypePaypal);
+        threadSleep(TWO_SECONDS);
         return CardTypePaypal.isDisplayed();
     }
 

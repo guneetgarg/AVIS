@@ -1,10 +1,10 @@
 ####################################_RESERVATION_##################################
-Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,1234
-Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234
+Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,1234,USD
+Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,USD
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
 Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_US,SAN,A6666000,A6666000@ACCBUSINESS.COM,Abhishek,K,test,8980765645,4929723679720422,5447144508353949
-Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US,SFO,GUZZ007,Abhishek,J,test,8658066321,0123141G
+Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US,SFO,GUZZ007,Abhishek,J,test,8658066321,0123141G,GUZZ007 - Free Tank of Gas w/ Rental of XMR/Paperless
 Avis_RES_UtypeCoupon_Tierbundle_PayLater_US,SFO,11:00 AM,2:30 PM,UUZZ003,Abhishek,J,test,8658066321,UUZZ003 - Single Upgrade w/ Rental of GPS/Paperless Cpn
 #Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,YYZ,3:00 AM,A5461000,Dhanapriya,K,test,9600685486,0123141G,YYZ
 #Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://www.avis.com/en/home
@@ -33,7 +33,7 @@ Avis_Reservation_OneWay_PayLater_US,LAS,JFK,Ishita,Garg,test,8658066321
 Avis_Reservation_MtypeCouponProcessing_PayLater_US,LAS,MUZZ012,Ishita,Garg,test,8658066321
 Avis_Reservation_UtypeCouponProcessing_PayLater_US,LAS,UUZZ003,Ishita,Garg,test,8658066321
 Avis_Reservation_GtypeCouponProcessing_PayLater_US,YYZ,GUZZ001,Ishita,Garg,test,8658066321
-Avis_Reservation_TtypeCouponProcessing_PayLater_US,LAS,TUZZ003,Abhishek,J,test,8658066321
+Avis_Reservation_TtypeCoupon_PayLater_US,LAS,TUZZ003,Abhishek,J,test,8658066321,TUZZ003 - 3rd Rwd Wknd Day & 500 Bon Mls/Paperless Cpn
 Avis_Reservation_SplitBillItemized_PayLater_US,SAN,A0097099,Hrishi,K,ABGsplitbill098,8087444804,4916012228357695,370170242163692
 Avis_Reservation_OnAirport_PayLater_US,A4E966,Password123,BRL,Ishita,Garg,test,8658066321
 Avis_Reservation_GEBUser_PayLater_US,LAS,EV300W,GEB,Corpo,test,8658066321
@@ -45,6 +45,7 @@ Avis_Reservation_EMEA90Days_ErrorMessage_US,LDY,5
 Avis_Reservation_EMEA330Days_ErrorMessage_US,CPT,14
 Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,8622196015
 Avis_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
+Avis_Profile_Enrollment_Activation_US,Abhishek,Jain,abhi527@yopmail.com,919654354519,ajain527,Password@789,900 Oxford Exchange Blvd
 ##############################_LOCATION_#################################
 Avis_Location_Search_MnemonicCodeRes_US,EWR,Hrishi,K,ABG_Location,9897867898
 Avis_Location_Search_Suggestion_US,EWR
@@ -66,6 +67,7 @@ Avis_Location_Search_Suggestion_US,EWR
 #Avis_Profile_Management_AvisChargeCard_US,B0738T,Testing100@,Avis,625829600273
 #Avis_Profile_OneClick_OAUTHLogin_US,/api/oauth/authorize?response_type=token&client_id=QUJHQUJHR09PR0xFNzAwMA11&redirect_uri=https://oauth-redirect.googleusercontent.com/r/my-voice-carbook&scope=trip&state=QUJHU0FMVEdPT0dMRTcwMDA=RCA
 #Avis_Profile_OneClick_EmailLink_US,/en/loyalty-profile/avis-preferred/login?MID=expressconsent_02142018_av01expressconsentus_na_na&utm_source=newsletter&utm_medium=email&utm_content=email_476120&utm_campaign=expressconsent_02142018_av01expressconsentus_na_na&et_rid=73051010
+
 
 
 

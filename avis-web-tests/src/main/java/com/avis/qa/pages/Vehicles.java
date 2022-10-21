@@ -89,6 +89,7 @@ public class Vehicles extends AbstractBasePage {
     public Extras step2Submit() {
         threadSleep(TWO_SECONDS);
         helper.scrollToElement(step2SubmitButton);
+        threadSleep(TWO_SECONDS);
         clickUsingJS(step2SubmitButton);
         return new Extras(driver);
     }
@@ -186,10 +187,12 @@ public class Vehicles extends AbstractBasePage {
         return USAASavingText.isDisplayed();
     }
 
-    public Vehicles savingMessageValidation(String message) {
-        String actualMessage = Step2SavingText.getText();
-        assertEquals(actualMessage, message);
-        return this;
+    public boolean savingMessageValidation(String message) {
+      //  String actualMessage = Step2SavingText.getText();
+     //   assertEquals(actualMessage, message);
+        System.out.println("Coupon text"+Step2SavingText.getText());
+        return Step2SavingText.getText().contains(message);
+        //return this;
     }
 
 

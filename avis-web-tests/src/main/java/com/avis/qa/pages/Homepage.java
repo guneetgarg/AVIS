@@ -44,6 +44,9 @@ public class Homepage extends AbstractBasePage {
     @FindBy(xpath = "(//li[contains(@class,'welcome-menu')]//a[contains(text(),'Hi')])|(//li[contains(@class,'welcome-menu')]//a[contains(text(),'Welcome')])[1]")
     private WebElement WelcomeOverLay;
 
+    @FindBy(xpath = "(//a[text()='Sign Up'])[2]")
+    private WebElement signUpLink;
+
     public Homepage(WebDriver driver) {
         super(driver);
     }
@@ -68,6 +71,12 @@ public class Homepage extends AbstractBasePage {
         clickUsingJS(LocationsMenu);
         clickUsingJS(FindALocationSubMenu);
         return new Locations(driver);
+    }
+
+    public Enrollment clickSignupLink() {
+        waitForVisibilityOfElement(signUpLink);
+        clickUsingJS(signUpLink);
+        return new Enrollment(driver);
     }
 
     public void oneClickLandingPage(String url) {

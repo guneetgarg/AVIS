@@ -137,4 +137,5 @@ public class ElementHelper {
             log.info("Exception occurred while performing vertical scroll on the page by value \"" + value + "\" .");
         }
     }
+
 }

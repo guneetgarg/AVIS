@@ -494,6 +494,8 @@ public class ReviewAndBook extends AbstractBasePage {
         threadSleep(TWO_SECONDS);
        // helper.scrollToElement(PaypalButton);
        // threadSleep(ONE_SECOND);
+        //helper.scrollBy(100);
+        helper.waitUntilClickabilityOfElement(PaypalButton);
         clickUsingJS(PaypalButton);
         //PaypalButton.click();
         driver.switchTo().defaultContent();

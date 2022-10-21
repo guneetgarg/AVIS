@@ -27,7 +27,7 @@ public class PayPalPage extends AbstractBasePage {
     @FindBy(xpath = "//button[@id='btnLogin']")
     private WebElement LoginButton;
 
-    @FindBy(xpath = "//button[text()='Agree & Continue']")
+    @FindBy(xpath = "//button[@id='consentButton']")
     private WebElement AgreeAndContinueButton;
 
     public PayPalPage(WebDriver driver) {
