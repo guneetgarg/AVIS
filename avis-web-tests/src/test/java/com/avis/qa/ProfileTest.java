@@ -20,7 +20,7 @@ public class ProfileTest  extends TestBase {
     /**
      * ALM Testcase: NA
      */
-    @Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    //@Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Profile_Enrollment_Activation_US(String fname, String lname, String email, String phoneNo, String username, String pwd, String AddLine1) {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());

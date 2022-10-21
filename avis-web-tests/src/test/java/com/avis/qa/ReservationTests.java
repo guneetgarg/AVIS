@@ -7,8 +7,8 @@ import com.avis.qa.core.TestBase;
 import com.avis.qa.helpers.ReservationHelper;
 import com.avis.qa.pages.*;
 import com.avis.qa.utilities.CSVUtils;
+import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
-
 import java.util.Map;
 
 import static com.avis.qa.constants.AvisConstants.*;
@@ -20,6 +20,7 @@ import static org.testng.Assert.*;
  *
  * @author ikumar
  */
+@Log4j2
 public class ReservationTests extends TestBase {
 
     /**
@@ -69,28 +70,33 @@ public class ReservationTests extends TestBase {
     @Test(groups = {REGRESSION, SMOKE}, priority = 3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_CCOLocation_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
                                                          String phoneNo, String cCNumber) {
+        log.info("Test case execution started :Avis_Reservation_CCOLocation_PayLater_US");
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         ReviewAndBook reviewAndBook = reservationHelper.Reservation_CCOLocation_PayLater(pickUpLocation, firstName, lastName, email, phoneNo,
                 cCNumber);
         assertFalse(reviewAndBook.cvvCCOValidation(), "CVV is displayed");
+        log.info("Test case execution ended :Avis_Reservation_CCOLocation_PayLater_US");
     }
 
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_Costco_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname,
                                                     String lname, String email, String phoneNo) {
+        log.info("Test case execution started :Avis_Reservation_Costco_PayLater_US");
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Costco_USAA_PayLater(pickUpLocation, awd, membershipNo, fname, lname, email, phoneNo);
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
+        log.info("Test case execution ended :Avis_Reservation_Costco_PayLater_US");
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_EMEA90Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
+        log.info("Test case execution started :Avis_Reservation_EMEA90Days_ErrorMessage_US");
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
 
         reservationWidget
@@ -98,6 +104,7 @@ public class ReservationTests extends TestBase {
                 .aboveThirtyDaysCalendarSelection(months)
                 .selectMyCar();
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
+        log.info("Test case execution ended :Avis_Reservation_EMEA90Days_ErrorMessage_US");
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 6, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
@@ -503,6 +510,7 @@ public class ReservationTests extends TestBase {
     @Test(groups = {REGRESSION, SMOKE}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String pickUpLocation, String residencyLocation, String awd, String fname, String lname,
                                                                               String email, String phoneNo, String flightNumber) {
+        log.info("Test case execution started :Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US");
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_OutboundAndStrikeThroughCoupon_Paylater(pickUpLocation, residencyLocation, awd, fname, lname, email, phoneNo, flightNumber);
@@ -510,6 +518,7 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         confirmation.cancelReservation();
+        log.info("Test case execution ended :Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US");
     }
 
 

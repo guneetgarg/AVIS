@@ -5,7 +5,7 @@ import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
+import lombok.extern.log4j.Log4j2;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -13,6 +13,7 @@ import static com.avis.qa.utilities.CommonUtils.ONE_SECOND;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 import static org.testng.Assert.assertTrue;
 
+@Log4j2
 public class ReservationHelper {
 
     private final WebDriver driver;
