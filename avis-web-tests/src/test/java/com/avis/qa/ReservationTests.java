@@ -33,7 +33,7 @@ public class ReservationTests extends TestBase {
     public void Avis_Reservation_Outbound_PayNow_US(String pickUpLocation, String firstName, String lastName, String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
         Homepage homePage = new Homepage(getDriver());
-        homePage.findAndCloseAdOverLay();
+//        homePage.findAndCloseAdOverLay();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         reservationHelper.Reservation_DomesticOrOutbound_PayNow(pickUpLocation, firstName, lastName, email, phoneNumber,
                 ccNumber, cvv);

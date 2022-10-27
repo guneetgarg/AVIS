@@ -1,8 +1,7 @@
 package com.avis.qa.components;
 
-import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.AbstractBasePageProxy;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +23,7 @@ import static com.avis.qa.utilities.CommonUtils.*;
  * @author ikumar
  */
 @Log4j2
-public class ReservationWidget extends AbstractBasePage {
+public class ReservationWidget extends AbstractBasePageProxy {
 
     @FindBy(xpath = "//*[contains(@id,'DropLoc_value')]")
     private WebElement dropOffLocation;
@@ -127,8 +126,6 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "(//input[@name='email'])[1]")
     private WebElement corporatEmailTextField;
-
-
     public ReservationWidget(WebDriver driver) {
         super(driver);
     }
@@ -139,12 +136,16 @@ public class ReservationWidget extends AbstractBasePage {
     public ReservationWidget pickUpLocation(String pickUpLocationValue) {
         enterLocation(pickUpLocationValue, pickUpLocation);
         if (helper.isElementDisplayed(suggestionLocation))
-            clickUsingJS(suggestionLocation);
+//            actions.moveToElement(suggestionLocation).click().perform();
+//            clickUsingJS(suggestionLocation);
+            suggestionLocation.click();
         else {
             clearTextUsingJS(pickUpLocation);
             enterLocation(pickUpLocationValue, pickUpLocation);
             if (helper.isElementDisplayed(suggestionLocation))
-                clickUsingJS(suggestionLocation);
+//                actions.moveToElement(suggestionLocation).click().perform();
+//                clickUsingJS(suggestionLocation);
+                suggestionLocation.click();
         }
         return this;
     }
