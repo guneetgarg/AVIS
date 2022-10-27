@@ -23,10 +23,9 @@ public class ElementProxy implements InvocationHandler {
     }
 
     private void checkForPopupAndKill() {
-//        if (popUp.isDisplayed()) {
-//            System.out.println("Killing the popup");
-//            popUp.close();
-//        }
-        System.out.println("hello");
+        if (popUp.isDisplayed()) {
+            System.out.println("Killing the popup");
+            popUp.close();
+        }
     }
 }
