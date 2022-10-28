@@ -7,7 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.avis.qa.constants.TextComparison.KEY_DROP_LOCATION_MESSAGE;
 import static com.avis.qa.utilities.CommonUtils.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 
 /**
@@ -41,6 +44,9 @@ public class Confirmation extends AbstractBasePage {
 
     @FindBy(xpath = "(//p[contains(text(),'Coupon savings applied')])[2]|//span[contains(@class,'coupon-value')]")
     private WebElement ConfirmationCouponValidation;
+
+    @FindBy(xpath = "(//p[contains(text(),'AWD savings applied')])[2]")
+    private WebElement ConfirmationAWDCouponValidation;
 
     @FindBy(xpath = "//button[@aria-label='Close']")
     private WebElement getFreeCouponPopup;
@@ -78,13 +84,70 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "((//div[@class='col-lg-4 col-sm-6 col-xs-12 pad-zero'])[1]//p)[1]")
     private WebElement EmailConfirmationPage;
 
+    @FindBy(xpath = "//div[contains(@class,'info-key-drop-text')]/p")
+    private WebElement keyDropInfo;
+
+    @FindBy(xpath = "//div[text()='Loss Damage Waiver (LDW)']/following-sibling::div/span[contains(text(),'Accepted')]")
+    private WebElement LDWAcceptedText;
+
+    @FindBy(xpath = "//div[text()='Cover The Car (LDW)']/following-sibling::div/span[contains(text(),'Accepted')]")
+    private WebElement ProtectionAndCoverageLDWAcceptedText;
+
+
+    @FindBy(xpath = "(//strong[contains(text(),'Card Number:')])[1] | span[contains(text(),'************')]")
+    private WebElement PrimaryCardDetails;
+
+    @FindBy(xpath = "(//strong[contains(text(),'Card Number:')])[2] | span[contains(text(),'************')]")
+    private WebElement SecondaryCardDetails;
+
+    @FindBy(xpath = "//span[@class='coupon-value']")
+    private WebElement CouponValue;
+
+    @FindBy(xpath = "//p[@ng-if='vm.checkIATA()']")
+    private WebElement IATAvalue;
+
+    @FindBy(xpath = "//*[@id='vehicleTeaser']/div/div[1]/div/div[4]/div[3]/div[1]/div[4]/p")
+    private WebElement FlightInfo;
+
+    @FindBy(xpath = "(//div[@class='pull-left s-icon arrow-right'])[2]")
+    private WebElement RentalOption;
+
+    @FindBy(xpath = "(//div[@class='pull-left s-icon arrow-right'])[3]")
+    private WebElement DiscountCodesArrow;
+
+    @FindBy(xpath = "(//span[contains(text(),'Cover Roadside Issues (RSN)')])[1]")
+    private WebElement RSNCoverageText;
+
+    @FindBy(xpath = "(//span[contains(text(),'Hands-Free Navigation (GPS)')])[1]")
+    private WebElement GPSCoverageText;
+
+    @FindBy(xpath = "(//span[@class='additional-text discount-summary-section'])[2]")
+    private WebElement AWDCouponValue;
+
+    @FindBy(xpath = "(//img[@title='Paypal'])[2]")
+    private WebElement CardTypePaypal;
+
 
     public Confirmation(WebDriver driver) {
         super(driver);
     }
 
     public boolean isConfirmationNumberDisplayed() {
+        System.out.println("Confirmation num :"+confirmationNumber.getText());
         return confirmationNumber.isDisplayed();
+    }
+
+    public boolean isAWDCouponMessageDisplayed() {
+        System.out.println("AWD coupon applied verification on Confirmation page");
+        return ConfirmationAWDCouponValidation.isDisplayed();
+    }
+
+    public boolean isPrimaryCardDetailsDisplayed() {
+        return PrimaryCardDetails.isDisplayed();
+    }
+
+    public boolean isSecondaryCardDetailsDisplayed() {
+        return SecondaryCardDetails.isDisplayed();
     }
 
     public Confirmation cancelReservationWithConfirmationBox() {
@@ -108,8 +171,42 @@ public class Confirmation extends AbstractBasePage {
         return OneClickGPSAdded.getText().contains("Hands-Free Navigation (GPS) is successfully added to your reservation.");
     }
 
-    public boolean isAwdConfirmationPageTextDisplayed() {
-        return AWDConfirmationPage.getText().contains("AWD");
+    public boolean isCouponCodeMessageDisplayed(String coupon) {
+        System.out.println("Couponvalue :"+CouponValue.getText());
+        return CouponValue.getText().contains(coupon);
+
+    }
+
+    public boolean isFlightInfoDisplayed() {
+        System.out.println("FlightInfo :"+FlightInfo.getText());
+        return FlightInfo.getText().contains("Aerolineas Argentinas");
+
+    }
+
+    public Confirmation ClickRentalOption() {
+        RentalOption.click();
+        return this;
+    }
+
+    public Confirmation ClickDiscountCodesArrow() {
+        DiscountCodesArrow.click();
+        return this;
+    }
+
+    public boolean verifyAWDCouponValueConfirmationPage() {
+        System.out.println("AWD Coupon : "+AWDCouponValue.getText());
+        return AWDCouponValue.isDisplayed();
+    }
+
+    public boolean isIATAValueDisplayed() {
+        System.out.println(IATAvalue.getText());
+        return IATAvalue.getText().contains("0123141G");
+    }
+
+
+
+    public boolean isAwdConfirmationPageTextDisplayed(String coupon) {
+        return AWDConfirmationPage.getText().contains(coupon);
     }
 
     public boolean isCouponAppliedMessageDisplayed(String couponApplied) {
@@ -148,6 +245,21 @@ public class Confirmation extends AbstractBasePage {
         return CurrencyConfirmationPage.getText().contains("USD");
     }
 
+    public boolean verifyLWDOnConfirmationPage() {
+        System.out.println("LWD verification on Confirmation page");
+        return LDWAcceptedText.isDisplayed();
+    }
+
+    public boolean verifyRSNCoverageOnConfirmationPage() {
+        System.out.println("RSN : "+RSNCoverageText.getText());
+        return RSNCoverageText.isDisplayed();
+    }
+
+    public boolean verifyGPSCoverageOnConfirmationPage() {
+        System.out.println("GPS : "+GPSCoverageText.getText());
+        return GPSCoverageText.isDisplayed();
+    }
+
     public boolean verifyRentalOptionsText() {
         return rentalOptionsRSN.getText().contains("Cover Roadside Issues (RSN)");
     }
@@ -156,6 +268,16 @@ public class Confirmation extends AbstractBasePage {
         boolean verifyFirstName = NameDetails.getText().contains(firstName);
         boolean verifyEmail = EmailConfirmationPage.getText().contains(email);
         return verifyEmail && verifyFirstName;
+    }
+
+    public Confirmation keyDropMessageValidation() {
+        String actualMessage = keyDropInfo.getText();
+        assertEquals(actualMessage, KEY_DROP_LOCATION_MESSAGE);
+        return this;
+    }
+
+    public boolean isCardTypePaypalDisplayed() {
+        return CardTypePaypal.isDisplayed();
     }
 
     @Override

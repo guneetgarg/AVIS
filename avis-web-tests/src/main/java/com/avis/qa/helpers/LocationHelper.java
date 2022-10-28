@@ -24,7 +24,7 @@ public class LocationHelper {
                 .clickOnMakeAReservation();
 
         reservationWidget
-                .calendarSelection()
+                .calendarSelection(2)
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);

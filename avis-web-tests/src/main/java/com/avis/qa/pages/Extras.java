@@ -6,9 +6,10 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
-import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
-import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static com.avis.qa.utilities.CommonUtils.*;
+import static org.testng.Assert.assertFalse;
 
 
 /**
@@ -25,9 +26,34 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "(//label[@for='RSNchk'])[1]")
     private WebElement TieredBundle;
 
+    @FindBy(xpath = "//input[@id='Protection & Safety PackagepaiChk']")
+    private WebElement ProtectionSafetyTireBundle;
+
+
     @FindBy(id = "Step3-Services")
     private WebElement Step3ServicesTab;
 
+    @FindBy(xpath = "//a[text()='Discount Packages']")
+    private WebElement Step3DiscountPackages;
+
+
+    @FindBy(xpath = "//span[text()='Discount Code Savings']")
+    private WebElement DiscountCodeSaving;
+
+    @FindBy(xpath = "(//span[@class='pull-left'])[2]")
+    private WebElement currencySymbol;
+
+    @FindBy(xpath = "//p[contains(text(),'Curbside Drop Off')]")
+    private WebElement CurbsideDropoffText;
+
+    @FindBy(xpath = "//p[text()='Certain extras are included or discounted due to your provided AWD number.']")
+    private WebElement ExtrasIncludedText;
+
+    @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
+    private WebElement ProtectionAndCoveragesTab;
+
+    @FindBy(xpath = "//input[@id='CDWchk']")
+    private WebElement LDWCheckbox;
 
     public Extras(WebDriver driver) {
         super(driver);
@@ -45,9 +71,48 @@ public class Extras extends AbstractBasePage {
     }
 
     public Extras selectTierBundle() {
+        waitForVisibilityOfElement(Step3DiscountPackages).click();
+        if (helper.isElementDisplayed(ProtectionSafetyTireBundle))
+            clickUsingJS(ProtectionSafetyTireBundle);
+        CommonUtils.threadSleep(TWO_SECONDS);
+        return this;
+    }
+
+    public boolean isDiscountCodeSavingtextDisplayed() {
+        return DiscountCodeSaving.isDisplayed();
+    }
+
+    public boolean verifyCurrencySymbolDisplayed() {
+        return currencySymbol.getText().contains("C$");
+    }
+
+    public boolean isExtrasIncludedTextDisplayed() {
+        return ExtrasIncludedText.isDisplayed();
+    }
+
+    public void verifyCurbsideNotDisplayed(){
         waitForVisibilityOfElement(Step3ServicesTab).click();
-        if (helper.isElementDisplayed(TieredBundle))
-            clickUsingJS(TieredBundle);
+        //waitForVisibilityOfElement(CurbsideDropoffText);
+        //Assert.assertTrue(!CurbsideDropoffText.isDisplayed());
+        try {
+             CurbsideDropoffText.isDisplayed();
+             Assert.assertFalse(true,"Curbside Drop off text not present");
+        }
+        catch(Exception e) {
+            System.out.println("Curbside Drop off text not present");
+            Assert.assertFalse(false,"Curbside Drop off text present");
+        }
+    }
+
+    public boolean verifyLossDamageWaiverIsSelected() {
+        waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        return LDWCheckbox.isSelected();
+    }
+
+    public Extras ClickLDWCoverage() {
+        waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        CommonUtils.threadSleep(ONE_SECOND);
+        LDWCheckbox.click();
         CommonUtils.threadSleep(TWO_SECONDS);
         return this;
     }

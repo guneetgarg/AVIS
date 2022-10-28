@@ -1,17 +1,16 @@
 package com.avis.qa.components;
 
-import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.AbstractBasePageProxy;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.avis.qa.constants.TextComparison.ABOVE_NINETY_ERROR_MESSAGE;
 import static com.avis.qa.constants.TextComparison.ABOVE_THREE_THIRTY_ERROR_MESSAGE;
@@ -24,10 +23,7 @@ import static com.avis.qa.utilities.CommonUtils.*;
  * @author ikumar
  */
 @Log4j2
-public class ReservationWidget extends AbstractBasePage {
-
-    @FindBy(xpath = "//div[@class='bx-wrap']//button[@data-click='close']")
-    private WebElement AdOverLayCloseButton;
+public class ReservationWidget extends AbstractBasePageProxy {
 
     @FindBy(xpath = "//*[contains(@id,'DropLoc_value')]")
     private WebElement dropOffLocation;
@@ -52,6 +48,9 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[contains(text(),16)]")
     private WebElement pickupDateSelection;
+
+    @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[contains(text(),20)]")
+    private WebElement returnDateSelection5daysGap;
 
     @FindBy(xpath = "//table[contains(@class,'datepicker-calendar')]//a[contains(text(),10)]")
     private WebElement returnDateSelection;
@@ -119,6 +118,14 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@name,'reservationModel.dropTime')]")
     private WebElement dropOffTime;
 
+    @FindBy(xpath = "//*[contains(@name,'reservationModel.pickUpTime')]")
+    private WebElement pickUpTime;
+
+    @FindBy(xpath = "(//span[contains(text(),'The location you have selected is Sold Out during the dates requested.')])")
+    private WebElement LocationSoldOutErrorText;
+
+    @FindBy(xpath = "(//input[@name='email'])[1]")
+    private WebElement corporatEmailTextField;
     public ReservationWidget(WebDriver driver) {
         super(driver);
     }
@@ -127,22 +134,18 @@ public class ReservationWidget extends AbstractBasePage {
      * Method to verify pickup location
      **/
     public ReservationWidget pickUpLocation(String pickUpLocationValue) {
-        try{
+        enterLocation(pickUpLocationValue, pickUpLocation);
+        if (helper.isElementDisplayed(suggestionLocation))
+//            actions.moveToElement(suggestionLocation).click().perform();
+//            clickUsingJS(suggestionLocation);
+            suggestionLocation.click();
+        else {
+            clearTextUsingJS(pickUpLocation);
             enterLocation(pickUpLocationValue, pickUpLocation);
             if (helper.isElementDisplayed(suggestionLocation))
-                clickUsingJS(suggestionLocation);
-            else {
-                clearTextUsingJS(pickUpLocation);
-                enterLocation(pickUpLocationValue, pickUpLocation);
-                if (helper.isElementDisplayed(suggestionLocation))
-                    clickUsingJS(suggestionLocation);
-            }
-
-        }catch (ElementClickInterceptedException ex){
-            log.info("Detected Ad Banner");
-            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
-            pickUpLocation(pickUpLocationValue);
-            log.info("Closed Ad Banner");
+//                actions.moveToElement(suggestionLocation).click().perform();
+//                clickUsingJS(suggestionLocation);
+                suggestionLocation.click();
         }
         return this;
     }
@@ -166,67 +169,65 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     private void enterLocation(String location, WebElement element) {
-        try {
-            element.click();
-            element.clear();
-            element.sendKeys(location);
-            threadSleep(TWO_SECONDS);
-        } catch (ElementClickInterceptedException ex){
-            log.info("Detected Ad Banner");
-            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
-            enterLocation(location, element);
-            log.info("Closed Ad Banner");
-        }
+        element.click();
+        element.clear();
+        element.sendKeys(location);
+        threadSleep(TWO_SECONDS);
     }
 
     /**
      * Method to select calendar
      **/
     public ReservationWidget calendarSelection() {
-        try {
-            helper.scrollBy("-600");
-            threadSleep(TWO_SECONDS);
-            pickupDate.click();
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
 
-            for (int i = 0; i < 5; i++) {
-                threadSleep(ONE_SECOND);
-                nextMonthSelection.click();
-            }
-
-            pickupDateSelection.click();
-            threadSleep(THREE_SECONDS);
-            returnDateSelection.click();
-        } catch (ElementClickInterceptedException ex){
-            log.info("Detected Ad Banner");
-            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
-            log.info("Closed Ad Banner");
-
-            calendarSelection();
+        for (int i = 0; i < 5; i++) {
+            threadSleep(ONE_SECOND);
+            nextMonthSelection.click();
         }
+
+        pickupDateSelection.click();
+        threadSleep(THREE_SECONDS);
+        returnDateSelection.click();
         return this;
     }
 
+    public ReservationWidget calendarSelection(int num) {
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
+        pickupDate.clear();
+        dropOffLocation.click();
+        returnDate.click();
+        returnDate.clear();
+        dropOffLocation.click();
+        pickupDate.click();
+
+        for (int i = 0; i < num; i++) {
+            threadSleep(ONE_SECOND);
+            nextMonthSelection.click();
+        }
+        pickupDateSelection.click();
+        threadSleep(THREE_SECONDS);
+        returnDateSelection5daysGap.click();
+        return this;
+    }
     /**
      * Method to select calendar
      **/
     public ReservationWidget calendarSelectionSnowChain() {
-        try {
-            helper.scrollBy("-600");
-            threadSleep(TWO_SECONDS);
-            pickupDate.click();
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
 
-            int year = Calendar.getInstance().get(Calendar.YEAR);
+        int year = Calendar.getInstance().get(Calendar.YEAR);
 
-            Select select = new Select(jumpMonthDropdown);
-            select.selectByVisibleText("December " + year);
-            snowChainPickupDate.click();
-            snowChainReturnDate.click();
-        } catch (ElementClickInterceptedException ex){
-            log.info("Detected Ad Banner");
-            waitForVisibilityOfElement(AdOverLayCloseButton, 10).click();
-            log.info("Closed Ad Banner");
-            calendarSelectionSnowChain();
-        }
+        Select select = new Select(jumpMonthDropdown);
+        select.selectByVisibleText("December " + year);
+        snowChainPickupDate.click();
+        snowChainReturnDate.click();
         return this;
     }
 
@@ -240,18 +241,82 @@ public class ReservationWidget extends AbstractBasePage {
         return this;
     }
 
+    public ReservationWidget pickUpTime(String dot) {
+        helper.selectValueFromDropDown(pickUpTime, dot);
+        return this;
+    }
+
     /**
      * Method to click on Home page submit i.e Select my Car Button.
      *
      * @return
      **/
-    public ReservationWidget selectMyCar() {
+/*
+    public ReservationWidget selectMyCar()
         waitForVisibilityOfElement(selectMyCarButton);
         selectMyCarButton.click();
         return this;
     }
+*/
+/*
+    public ReservationWidget selectMyCar() {
+        waitForVisibilityOfElement(selectMyCarButton);
+        try {
+            selectMyCarButton.click();
+            waitForVisibilityOfElement(LocationSoldOutErrorText);
+            for(int i=2;i<=4;i++)
+            {
+                if(LocationSoldOutErrorText.isDisplayed())
+                {
+                    calendarSelection(i);
+                    selectMyCarButton.click();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return this;
+        }
+        catch(Exception e)
+        {
+            return this;
+        }
+
+    }
+*/
+    public ReservationWidget selectMyCar() {
+        waitForVisibilityOfElement(selectMyCarButton);
+        try {
+            selectMyCarButton.click();
+            LocationSoldOutErrorText.isDisplayed();
+            for(int i=2;i<=4;i++)
+            {
+                if(LocationSoldOutErrorText.isDisplayed())
+                {
+                    calendarSelection(i);
+                    selectMyCarButton.click();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return this;
+        }
+        catch(Exception e)
+        {
+            //e.printStackTrace();
+            log.info("No cabs available for selected date error handled");
+            return this;
+        }
+
+    }
 
     public ReservationWidget aboveThirtyDaysCalendarSelection(String months) {
+        threadSleep(ONE_SECOND);
+        dropOffLocation.click(); /*To resolve returnDate click issue first clicked some other locator to make it interactable.*/
+        threadSleep(ONE_SECOND);
         returnDate.click();
         threadSleep(TWO_SECONDS);
 
@@ -293,6 +358,11 @@ public class ReservationWidget extends AbstractBasePage {
 
     public ReservationWidget enterMembershipNo(String membershipNo) {
         membershipTextField.sendKeys(membershipNo);
+        return this;
+    }
+
+    public ReservationWidget enterCorporateEmailId(String corporateEmail) {
+        corporatEmailTextField.sendKeys(corporateEmail);
         return this;
     }
 

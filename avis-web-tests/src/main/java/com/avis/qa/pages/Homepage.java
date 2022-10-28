@@ -1,6 +1,7 @@
 package com.avis.qa.pages;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.AbstractBasePageProxy;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,7 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
  * @author ikumar
  */
 @Log4j2
-public class Homepage extends AbstractBasePage {
+public class Homepage extends AbstractBasePageProxy {
 
     @FindBy(xpath = "//a[@class='navbar-brand']")
     private WebElement avisLogo;
