@@ -4,17 +4,19 @@ import com.avis.qa.components.AvisFlyout;
 import com.avis.qa.components.Footer;
 import com.avis.qa.components.Header;
 import com.avis.qa.components.ReservationWidget;
+import com.avis.qa.core.PopUpHandler;
 import com.avis.qa.pages.*;
 import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.assertTrue;
 
-public class MiscHelper {
+public class MiscHelper extends PopUpHandler {
 
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
 
     public MiscHelper(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         this.reservationWidget = new ReservationWidget(driver);
     }

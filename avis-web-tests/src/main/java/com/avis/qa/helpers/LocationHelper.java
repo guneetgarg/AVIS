@@ -1,15 +1,18 @@
 package com.avis.qa.helpers;
 
 import com.avis.qa.components.ReservationWidget;
+import com.avis.qa.core.PopUpHandler;
 import com.avis.qa.pages.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
-public class LocationHelper {
+public class LocationHelper extends PopUpHandler {
 
     private final WebDriver driver;
     private final Homepage homepage;
 
     public LocationHelper(WebDriver webDriver) {
+        super(webDriver);
         this.driver = webDriver;
         this.homepage = new Homepage(webDriver);
     }
