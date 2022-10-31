@@ -27,9 +27,19 @@ public class DockerInstance extends BrowserInstance {
 
     protected void initializeChrome() {
         try {
-            ChromeOptions options = new ChromeOptions();
-            options.setAcceptInsecureCerts(true);
-            webDriver = new RemoteWebDriver(new URL(REMOTE_URL), options);
+//            ChromeOptions options = new ChromeOptions();
+//            options.setAcceptInsecureCerts(true);
+//            webDriver = new RemoteWebDriver(new URL(REMOTE_URL), options);
+            ChromeOptions browserOptions = new ChromeOptions();
+            browserOptions.setCapability("platformName", "Windows 10");
+            browserOptions.setCapability("browserVersion", "latest");
+            Map<String, Object> sauceOptions = new HashMap<>();
+            sauceOptions.put("build", "dev");
+            sauceOptions.put("name", "poc popup");
+            browserOptions.setCapability("sauce:options", sauceOptions);
+
+            URL url = new URL("https://oauth-devarshi.work-45e09:33b7782f-79c6-4896-ac4c-43359ce98a74@ondemand.us-west-1.saucelabs.com:443/wd/hub");
+            webDriver = new RemoteWebDriver(url, browserOptions);
         } catch (MalformedURLException malformedURLException) {
             throw new RuntimeException("MalformedURLException");
         }

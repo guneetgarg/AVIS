@@ -72,6 +72,8 @@ public class BrowserInstance {
         chromeOptions.addArguments("--headless");
         //chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-dev-shm-usage");
+        chromeOptions.addArguments("--proxy-server='direct://'");
+        chromeOptions.addArguments("--proxy-bypass-list=*");
         System.out.println("CHROME IS STARTED4");
         webDriver = new ChromeDriver(chromeOptions);
         System.out.println("CHROME IS STARTED5");
