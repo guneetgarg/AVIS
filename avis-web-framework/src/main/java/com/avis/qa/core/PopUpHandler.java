@@ -17,7 +17,7 @@ public abstract class PopUpHandler {
     }
 
     public boolean isDisplayed(){
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         try {
            return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='bx-wrap']"))).isDisplayed();
         }catch (Exception e){
