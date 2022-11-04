@@ -2,7 +2,6 @@ package com.avis.qa.helpers;
 
 import com.avis.qa.components.LoginWidget;
 import com.avis.qa.components.ReservationWidget;
-import com.avis.qa.core.PopUpHandler;
 import com.avis.qa.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -15,13 +14,12 @@ import static com.avis.qa.utilities.CommonUtils.ONE_SECOND;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 import static org.testng.Assert.assertTrue;
 
-public class ReservationHelper extends PopUpHandler {
+public class ReservationHelper{
 
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
 
     public ReservationHelper(WebDriver driver) {
-        super(driver);
         this.driver = driver;
         this.reservationWidget = new ReservationWidget(driver);
     }

@@ -20,14 +20,13 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
  * @author ikumar
  */
 @Log4j2
-public abstract class AbstractBasePage extends PopUpHandler{
+public abstract class AbstractBasePage{
 
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected ElementHelper helper;
 
     public AbstractBasePage(WebDriver driver) {
-        super(driver);
         this.driver = driver;
         wait = new WebDriverWait(driver, Configuration.DEFAULT_EXPLICIT_TIMEOUT);
         helper = new ElementHelper(driver);
