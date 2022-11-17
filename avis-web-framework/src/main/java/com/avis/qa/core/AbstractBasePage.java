@@ -32,6 +32,8 @@ public abstract class AbstractBasePage{
         helper = new ElementHelper(driver);
         PageFactory.initElements(driver, this);
         isOnPage();
+        PopUpHandler popUpHandler = new PopUpHandler(driver);
+        if(popUpHandler.isDisplayed()) popUpHandler.close();
     }
 
     /**

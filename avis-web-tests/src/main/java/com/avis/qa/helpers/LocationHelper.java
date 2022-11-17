@@ -1,18 +1,26 @@
 package com.avis.qa.helpers;
 
 import com.avis.qa.components.ReservationWidget;
+import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class LocationHelper{
+public class LocationHelper extends AbstractBasePage {
 
     private final WebDriver driver;
     private final Homepage homepage;
 
     public LocationHelper(WebDriver webDriver) {
+        super(webDriver);
         this.driver = webDriver;
         this.homepage = new Homepage(webDriver);
+
+    }
+
+    @Override
+    public void isOnPage() {
+        System.out.println("hello");
     }
 
     public Confirmation Location_Search_MnemonicCodeRes(String pickUpLocation, String firstName, String lastName, String email,

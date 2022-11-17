@@ -33,9 +33,9 @@ public class DockerInstance extends BrowserInstance {
             options.addArguments("disable-infobars"); // disabling infobars
             options.addArguments("--disable-extensions"); // disabling extensions
             options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-            options.addArguments("--no-sandbox"); // Bypass OS security model
-            options.addArguments("--proxy-server='direct://'");
-            options.addArguments("--proxy-bypass-list=*");
+//            options.addArguments("--no-sandbox"); // Bypass OS security model
+//            options.addArguments("--proxy-server='direct://'");
+//            options.addArguments("--proxy-bypass-list=*");
             webDriver = new RemoteWebDriver(new URL(REMOTE_URL), options);
         } catch (MalformedURLException malformedURLException) {
             throw new RuntimeException("MalformedURLException");
