@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d36c7c11-bbaf-4a04-a896-c48edeee3d7d" name="Changes" comment="resolved merge conflicts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/BrowserInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/BrowserInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/PopUpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/PopUpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/DockerInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/DockerInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/test/smoke.xml" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/test/smoke.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +64,7 @@
       <recent name="com.avis.qa.core" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.LocationTests">
+  <component name="RunManager" selected="TestNG.MiscellaneousTests.Avis_Misc_CarGuide_Res_US">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -166,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.MiscellaneousTests.Avis_Misc_CarGuide_Res_US" />
         <item itemvalue="TestNG.LocationTests" />
         <item itemvalue="TestNG.MiscellaneousTests.Avis_Misc_OffersPage_Reservation_US" />
         <item itemvalue="TestNG.ReservationTests.Avis_Reservation_TierBundle_PayLater_US" />
         <item itemvalue="TestNG.ReservationTests.Avis_Reservation_Outbound_PayNow_US" />
-        <item itemvalue="TestNG.MiscellaneousTests.Avis_Misc_CarGuide_Res_US" />
       </list>
     </recent_temporary>
   </component>

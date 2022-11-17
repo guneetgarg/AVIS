@@ -28,15 +28,22 @@ public class DockerInstance extends BrowserInstance {
     protected void initializeChrome() {
         try {
             ChromeOptions options = new ChromeOptions();
+            options.setCapability("platformName", "Windows 10");
+            options.setCapability("browserVersion", "latest");
+            Map<String, Object> sauceOptions = new HashMap<>();
+            sauceOptions.put("build", "dev");
+            sauceOptions.put("name", "poc");
+            options.setCapability("sauce:options", sauceOptions);
             options.setAcceptInsecureCerts(true);
-            options.addArguments("start-maximized"); // open Browser in maximized mode
-            options.addArguments("disable-infobars"); // disabling infobars
-            options.addArguments("--disable-extensions"); // disabling extensions
-            options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+            String url = "https://oauth-devarshi.new-0e886:10eda1ef-f017-439b-9080-6679a5921a55@ondemand.us-west-1.saucelabs.com:443/wd/hub";
+//            options.addArguments("start-maximized"); // open Browser in maximized mode
+//            options.addArguments("disable-infobars"); // disabling infobars
+//            options.addArguments("--disable-extensions"); // disabling extensions
+//            options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
 //            options.addArguments("--no-sandbox"); // Bypass OS security model
 //            options.addArguments("--proxy-server='direct://'");
 //            options.addArguments("--proxy-bypass-list=*");
-            webDriver = new RemoteWebDriver(new URL(REMOTE_URL), options);
+            webDriver = new RemoteWebDriver(new URL(url), options);
         } catch (MalformedURLException malformedURLException) {
             throw new RuntimeException("MalformedURLException");
         }
