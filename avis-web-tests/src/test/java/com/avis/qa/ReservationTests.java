@@ -432,11 +432,11 @@ public class ReservationTests extends TestBase {
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 33, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US(String pickUpLocation, String residencyLocation, String firstName, String lastName,
-                                                                    String email, String phoneNumber, String flightNumber, String currencyValue) {
+                                                                    String email, String phoneNumber, String flightNumber,String residentCurrencySymbol, String currencyValue) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_InboundAndMultiCurrency_Paylater(pickUpLocation, residencyLocation, firstName, lastName, email,
-                phoneNumber, flightNumber, currencyValue);
+                phoneNumber, flightNumber,residentCurrencySymbol, currencyValue);
 
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.verifyCurrencyOnConfirmationPage(currencyValue), "Currency value is incorrect");
@@ -461,17 +461,17 @@ public class ReservationTests extends TestBase {
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US(String pickUpLocation, String couponNo, String fname,
-                                                                                         String lname, String email, String phoneNo, String IATA, String couponMsg) {
+                                                                                         String lname, String email, String phoneNo,String flightName, String flightNumber, String IATA, String couponMsg) {
 
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(pickUpLocation, couponNo, fname, lname,
-                email, phoneNo, IATA, couponMsg);
+                email, phoneNo,flightName, flightNumber, IATA, couponMsg);
 
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.isCouponCodeMessageDisplayed(couponMsg), "Coupon Code is not displayed");
         assertTrue(confirmation.isIATAValueDisplayed(IATA), "IATA value is not displayed");
-        assertTrue(confirmation.isFlightInfoDisplayed(), "Flight Info is not displayed");
+        assertTrue(confirmation.isFlightInfoDisplayed(flightName), "Flight Info is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
         // confirmation.cancelReservation();
     }
@@ -519,6 +519,85 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         confirmation.cancelReservation();
         log.info("Test case execution ended :Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US");
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US(String pickUpLocation, String fname, String lname,
+                                                                 String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_FlightInfo_DigitalWallet_Paypal_PayNow(pickUpLocation, fname, lname, email, phoneNo, paypalEmail, paypalPassword, flightName, flightNumber);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.isCardTypePaypalDisplayed(), "Card Type Paypal is not displayed");
+        //confirmation.cancelReservation();
+        assertTrue(confirmation.isFlightInfoDisplayed(flightName), "Flight Info is not displayed");
+        confirmation.cancelReservationWithConfirmationBox();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US(String pickUpLocation, String residencyLocation,String awd, String corporateEmailId, String firstName, String lastName,
+                                                                    String email, String phoneNumber, String IATA,String ccNo, String cvv, String residentCurrencySymbol, String USCurrencyValue) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_InboundAndMultiCurrency_IATA_PayNow(pickUpLocation, residencyLocation, awd, corporateEmailId, firstName, lastName, email,
+                phoneNumber, IATA, ccNo, cvv, residentCurrencySymbol, USCurrencyValue);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.verifyCurrencyOnConfirmationPage(USCurrencyValue), "Currency value is incorrect");
+       // assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+        assertTrue(confirmation.isIATAValueDisplayed(IATA), "IATA value is not displayed");
+        confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 41, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US(String pickUpLocation, String pickupTime,String awd, String corporateEmailId, String firstName, String lastName,
+                                                                                     String email, String phoneNumber,String ccNo, String cvv, String PickUpLocCurrencySymbol, String PickupLocCurrencyCode, String USCurrencyCode) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Outbound_CorpCust_InsuranceCover_PayNow(pickUpLocation, pickupTime, awd, corporateEmailId, firstName, lastName, email,
+                phoneNumber, ccNo, cvv, PickUpLocCurrencySymbol, PickupLocCurrencyCode, USCurrencyCode);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.verifyCurrencyOnConfirmationPage(PickupLocCurrencyCode), "Currency value is incorrect");
+        assertTrue(confirmation.isAWDMessageTextDisplayed(), "AWD message is not displayed");
+        assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+        confirmation.cancelReservation();
+    }
+
+  //  @Test(groups = {REGRESSION, SMOKE}, priority = 42, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_DigitalWallet_AmazonPay_Paynow_US(String pickUpLocation, String fname, String lname,
+                                                                   String email, String phoneNo, String AmazonEmail, String AmazonPassword) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_DigitalWallet_AmazonPay_PayNow(pickUpLocation, fname, lname, email, phoneNo, AmazonEmail, AmazonPassword);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        confirmation.cancelReservationWithConfirmationBox();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 43, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Modify_flow_Step1_to_step4_US(String pickUpLocation, String firstName, String lastName,
+                                                                                     String email, String phoneNumber,String ccNo, String cvv, String Country, String modifiedPickupLocation) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation =  reservationHelper.Reservation_ModifyFlow_PayNow(pickUpLocation, firstName, lastName, email,
+                phoneNumber, ccNo, cvv, Country, modifiedPickupLocation);
+        confirmation.GetConfirmationNumber();
+        confirmation.isEmailSentTextDisplayed(email);
+        confirmation.isModifiedReservationTextDisplayed(firstName);
+
     }
 
 

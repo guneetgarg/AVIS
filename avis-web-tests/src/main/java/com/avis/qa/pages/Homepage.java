@@ -47,6 +47,22 @@ public class Homepage extends AbstractBasePage {
     @FindBy(xpath = "(//a[text()='Sign Up'])[2]")
     private WebElement signUpLink;
 
+    @FindBy(xpath = "(//a[@id='res-login-profile'])[2]")
+    private WebElement LogInLink;
+
+
+
+    @FindBy(xpath = "//span[@class='hidden-xs']/child::p[1]")
+    private WebElement FindYourBestCarRentalWithAvisText;
+
+    @FindBy(xpath = "(//a[text()='Reservations'])[1]")
+    private WebElement ReservationsTab;
+
+
+    @FindBy(xpath = "//a[text()='View / Modify / Cancel']")
+    private WebElement Reservation_ViewModifyCancelLink;
+
+
     public Homepage(WebDriver driver) {
         super(driver);
     }
@@ -73,9 +89,20 @@ public class Homepage extends AbstractBasePage {
         return new Locations(driver);
     }
 
+    public Homepage clickAvisLogo() {
+        clickUsingJS(avisLogo);
+        return this;
+    }
+
     public Enrollment clickSignupLink() {
         waitForVisibilityOfElement(signUpLink);
         clickUsingJS(signUpLink);
+        return new Enrollment(driver);
+    }
+
+    public Enrollment clickLogInLink() {
+        waitForVisibilityOfElement(LogInLink);
+        clickUsingJS(LogInLink);
         return new Enrollment(driver);
     }
 
@@ -93,9 +120,16 @@ public class Homepage extends AbstractBasePage {
         return new ProfileDashboard(driver);
     }
 
+    public ReservationViewModifyCancel goToViewModifyCancelPage() {
+        clickUsingJS(ReservationsTab);
+        clickUsingJS(Reservation_ViewModifyCancelLink);
+        return new ReservationViewModifyCancel(driver);
+    }
+
     @Override
     public void isOnPage() {
         log.info("Verify Home Page");
         waitForVisibilityOfElement(avisLogo);
+        waitForVisibilityOfElement(FindYourBestCarRentalWithAvisText);
     }
 }

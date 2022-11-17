@@ -28,6 +28,8 @@ public class LocationTests extends TestBase {
     public void Avis_Location_Browse_Category_US() {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
+
+
         Locations locations = homepage.goToFindALocationPage();
         locations.browserLocation();
         Assert.assertTrue(locations.isMakeAReservationButtonDisplayed(), "Make a Reservation button is not displayed");

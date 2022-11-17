@@ -24,6 +24,9 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//span[@class='confirmation-num']")
     private WebElement confirmationNumber;
 
+    @FindBy(xpath = "//a[@class='navbar-brand']")
+    private WebElement avisLogo;
+
     @FindBy(xpath = "//button[contains(@id,'res-cancelReservation')]")
     private WebElement cancelResCTA;
 
@@ -127,6 +130,37 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "(//img[@title='Paypal'])[2]")
     private WebElement CardTypePaypal;
 
+    @FindBy(xpath = "//p[@class='cancel-restxt-pad']")
+    private WebElement ModifiedTextMsg;
+
+    //Thank you Abhishek, your reservation has been modified and your car is reserved.
+
+    @FindBy(xpath = "//div[@class='confirmation-info-holder-text']")
+    private WebElement EmailSentMsg;
+
+    //A confirmation email has been sent to abhi@gmail.com
+
+    @FindBy(xpath = "//div[@class='info-msg-text']")
+    private WebElement AWDMessageText;
+
+    //Your provided AWD number includes or discounts certain extras, and may include
+
+    @FindBy(xpath = "(//div[@class='summary-location'])[1]")
+    private WebElement PickUpLocValue;
+
+    @FindBy(xpath = "(//div[@class='summary-location'])[2]")
+    private WebElement ReturnLocValue;
+
+    @FindBy(xpath = "(//div[@class='summary-time'])[1]")
+    private WebElement PickupDateTime;
+
+    @FindBy(xpath = "(//div[@class='summary-time'])[2]")
+    private WebElement ReturnDateTime;
+
+    @FindBy(xpath = "//h1[text()='Your car is reserved.']")
+    private WebElement CarReservedTextMsg;
+
+
 
     public Confirmation(WebDriver driver) {
         super(driver);
@@ -135,6 +169,26 @@ public class Confirmation extends AbstractBasePage {
     public boolean isConfirmationNumberDisplayed() {
         System.out.println("Confirmation num :"+confirmationNumber.getText());
         return confirmationNumber.isDisplayed();
+    }
+    public boolean isCarReservedTextDisplayed() {
+        return CarReservedTextMsg.isDisplayed();
+    }
+
+    public boolean isAWDMessageTextDisplayed() {
+        return AWDMessageText.getText().contains("Your provided AWD number includes or discounts certain extras, and may include ");
+    }
+
+
+    public boolean isConfirmationNumberSame(String ConfirmationNum) {
+        return confirmationNumber.getText().contains(ConfirmationNum);
+    }
+
+    public boolean isModifiedReservationTextDisplayed(String firstname) {
+        return ModifiedTextMsg.getText().contains("Thank you"+" "+firstname+","+" "+"your reservation has been modified and your car is reserved.");
+    }
+
+    public boolean isEmailSentTextDisplayed(String email) {
+        return EmailSentMsg.getText().contains("A confirmation email has been sent to"+" "+email);
     }
 
     public boolean isAWDCouponMessageDisplayed() {
@@ -185,17 +239,23 @@ public class Confirmation extends AbstractBasePage {
 
     }
 
-    public boolean isFlightInfoDisplayed() {
+    public boolean isFlightInfoDisplayed(String flightName) {
         helper.scrollToElement(FlightInfo);
         threadSleep(TWO_SECONDS);
         System.out.println("FlightInfo :"+FlightInfo.getText());
-        return FlightInfo.getText().contains("Aerolineas Argentinas");
+        return FlightInfo.getText().contains(flightName);
 
     }
 
     public Confirmation ClickRentalOption() {
         RentalOption.click();
         return this;
+    }
+
+    public Homepage ClickAvisLogo() {
+        avisLogo.click();
+        driver.navigate().refresh();
+        return new Homepage(driver);
     }
 
     public Confirmation ClickDiscountCodesArrow() {
@@ -300,6 +360,26 @@ public class Confirmation extends AbstractBasePage {
         helper.scrollToElement(CardTypePaypal);
         threadSleep(TWO_SECONDS);
         return CardTypePaypal.isDisplayed();
+    }
+
+    public String GetConfirmationNumber() {
+        System.out.println("Confirmation num get text :" + confirmationNumber.getText());
+        String ConfNum = confirmationNumber.getText();
+        System.out.println("Confirmation num :"+ConfNum.substring(14));
+        return ConfNum.substring(14);
+    }
+
+    public boolean validatePickupAndReturnLocValue(String pickupLoc, String DropLoc) {
+        if(PickUpLocValue.getText().contains(pickupLoc) && ReturnLocValue.getText().contains(DropLoc));
+        return true;
+    }
+
+    public boolean isPickUpDateTimeDisplayed(String PickupTime) {
+        return PickupDateTime.getText().contains(PickupTime);
+    }
+
+    public boolean isDropDateTimeDisplayed(String DropTime) {
+        return ReturnDateTime.getText().contains(DropTime);
     }
 
     @Override

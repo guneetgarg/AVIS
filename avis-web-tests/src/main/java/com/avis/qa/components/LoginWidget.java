@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
-import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static com.avis.qa.utilities.CommonUtils.*;
 
 
 /**
@@ -48,8 +47,10 @@ public class LoginWidget extends AbstractBasePage {
         UserName.sendKeys(emailNew);
         waitForVisibilityOfElement(Password);
         Password.sendKeys(passwordNew);
-        waitForVisibilityOfElement(LoginButton);
-        LoginButton.click();
+        threadSleep(ONE_SECOND);
+       // waitForVisibilityOfElement(LoginButton);
+        threadSleep(TWO_SECONDS);
+        clickUsingJS(LoginButton);
         threadSleep(TWO_SECONDS);
         threadSleep(TWO_SECONDS);
         return this;

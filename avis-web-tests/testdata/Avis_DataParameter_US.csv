@@ -1,10 +1,13 @@
 ####################################_RESERVATION_##################################
 Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,1234,USD
-Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,USD
+Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,C$,USD
+Avis_RES_DigitalWallet_AmazonPay_Paynow_US,EWR,Abhishek,K,test,8980765645,abhishek.jn@statusneo.com,Aj527@321
+Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,YYZ,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,CAD,USD
+Avis_RES_Modify_flow_Step1_to_step4_US,SFO,Abhishek,J,test,9600685486,343710684134463,123,U S A,EWR
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
 Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_US,SAN,A6666000,A6666000@ACCBUSINESS.COM,Abhishek,K,test,8980765645,4929723679720422,5447144508353949
-Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US,SFO,GUZZ007,Abhishek,J,test,8658066321,0123141G,GUZZ007 - Free Tank of Gas w/ Rental of XMR/Paperless
+Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US,SFO,GUZZ007,Abhishek,J,test,8658066321,Aer Lingus,1234,0123141G,GUZZ007 - Free Tank of Gas w/ Rental of XMR/Paperless
 Avis_RES_UtypeCoupon_Tierbundle_PayLater_US,SFO,11:00 AM,2:30 PM,UUZZ003,Abhishek,J,test,8658066321,UUZZ003 - Single Upgrade w/ Rental of GPS/Paperless Cpn
 #Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,YYZ,3:00 AM,A5461000,Dhanapriya,K,test,9600685486,0123141G,YYZ
 #Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,EWR,3:00 AM,X1962090,Tester,M,test,8622443583,0123141G,YYZ,Windows,10,Chrome,89.0,800x600,https://www.avis.com/en/home
@@ -13,6 +16,7 @@ Avis_Reservation_UTypeKeyDropLocation_PayLater_US,LAS,YYZ,2:00 AM,UUZZ003,Abhish
 Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_US,MSO,3:00 AM,MUYY001,Abhishek,J,test,9600685486
 Avis_Reservation_AnonymousDomesticAWD_Paylater_US,EWR,A433301,Abhishek,J,test,9600685486
 Avis_RES_Costco_DigitalWallet_PayPal_PayLater_US,LAS,A108301,111789732130,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321
+Avis_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US,SFO,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
 Avis_Reservation_Recognised_Paylater_US,LAS,8TL47W,G,LAS
 Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_US,LAS,Dhanapriya,K,test,9600685486,123,YGK,TUZZ004
 Avis_Reservation_FleetVerification_Price_US,EWR,Tester,M,test,9838234567,345836415546724,123
@@ -26,6 +30,7 @@ Avis_Reservation_Domestic_PayNow_US,EWR,ishan,K,AbgEcom,8980765645,3437106841344
 Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Inbound_PayNow_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645,343710684134463,123
+Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_Reservation_USAA_PayLater_US,XB4,A177201,14518727,Tester,M,test,8980765645
 Avis_RES_OneWay_USAA_PayLater_US,EWR,JFK,A177201,38298026,Abhishek,J,test,9600685486
 Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
@@ -67,7 +72,11 @@ Avis_Location_Search_Suggestion_US,EWR
 #Avis_Profile_Management_AvisChargeCard_US,B0738T,Testing100@,Avis,625829600273
 #Avis_Profile_OneClick_OAUTHLogin_US,/api/oauth/authorize?response_type=token&client_id=QUJHQUJHR09PR0xFNzAwMA11&redirect_uri=https://oauth-redirect.googleusercontent.com/r/my-voice-carbook&scope=trip&state=QUJHU0FMVEdPT0dMRTcwMDA=RCA
 #Avis_Profile_OneClick_EmailLink_US,/en/loyalty-profile/avis-preferred/login?MID=expressconsent_02142018_av01expressconsentus_na_na&utm_source=newsletter&utm_medium=email&utm_content=email_476120&utm_campaign=expressconsent_02142018_av01expressconsentus_na_na&et_rid=73051010
-
+Avis_RES_Profile_EMEA90Days_ErrorMessage_Step1_Res_widget_US,NAVEEN12345,Avis$12345,LDY,5
+Avis_RES_Profile_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,NAVEEN12345,Avis$12345,SFO
+Avis_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US,NAVEEN12345,Avis$12345,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,jjj,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,5447144508353949
+Avis_RES_Profile_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,NAVEEN12345,Avis$12345,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
+Avis_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US,NAVEEN12345,Avis$12345,SFO,12:30 PM,12:30 PM,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
 
 
 

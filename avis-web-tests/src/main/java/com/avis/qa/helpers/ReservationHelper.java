@@ -319,7 +319,8 @@ public class ReservationHelper {
                 .lastname(lastName)
                 .email(email)
                 .phone(phoneNumber)
-                .flightInfo()
+
+                .SelectflightInfo(3)
                 .enterflightNumber(flightNumber)
                 .checkTermsAndConditions()
                 .step4Submit();
@@ -734,7 +735,7 @@ public class ReservationHelper {
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
-        assertTrue(vehicles.isUSAACoupontextDisplayed(), "USAA coupon text is not displayed");
+      //  assertTrue(vehicles.isUSAACoupontextDisplayed(), "USAA coupon text is not displayed");
         //Extras extras = vehicles.Step2_ClickDiscountAppliedSubmit();
         Extras extras = vehicles.step2Submit();
         extras.verifyCurbsideNotDisplayed();
@@ -777,7 +778,7 @@ public class ReservationHelper {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
-                .flightInfo()
+                .SelectflightInfo(3)
                 .enterflightNumber(flightNumber)
                 .checkTermsAndConditions()
                 .step4Submit();
@@ -786,7 +787,7 @@ public class ReservationHelper {
     }
 
     public Confirmation Reservation_InboundAndMultiCurrency_Paylater(String pickUpLocation,String residencyLocation, String firstName, String lastName,
-                                                                      String email, String phoneNumber, String flightNumber, String currencyValue) {
+                                                                      String email, String phoneNumber, String flightNumber,String residentCurrencySymbol, String currencyValue) {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
@@ -795,9 +796,9 @@ public class ReservationHelper {
 
         Vehicles vehicles = new Vehicles(driver);
         assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
-        assertTrue(vehicles.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
         Extras extras = vehicles.step2Submit();
-        assertTrue(extras.verifyCurrencySymbolDisplayed(), "Currency  value is not same as residence country");
+        assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
         reviewAndBook
@@ -805,7 +806,7 @@ public class ReservationHelper {
                 .lastname(lastName)
                 .email(email)
                 .phone(phoneNumber)
-                .flightInfo()
+                .SelectflightInfo(3)
                 .enterflightNumber(flightNumber)
                 .checkTermsAndConditions()
                 .step4Submit();
@@ -862,7 +863,7 @@ public class ReservationHelper {
     }
 
     public Confirmation Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(String pickUpLocation, String couponNo, String fname,
-                                                                                                 String lname, String email, String phoneNo, String IATANumber, String couponMsg) {
+                                                                                                 String lname, String email, String phoneNo,String flightName, String flightNumber, String IATANumber, String couponMsg) {
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)
@@ -872,8 +873,7 @@ public class ReservationHelper {
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
-        vehicles
-                .DiscountDropDownClick();
+       // vehicles.DiscountDropDownClick();
                // .isCouponvalueDisplayed(couponNo);
         Extras extras = vehicles.step2Submit();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
@@ -885,8 +885,8 @@ public class ReservationHelper {
                 .email(email)
                 .phone(phoneNo)
                 .smsOptInCheckbox()
-                .SelectflightInfo(4)
-                .enterflightNumber("1234")
+                .flightInfo(flightName)
+                .enterflightNumber(flightNumber)
                 .iataNumber(IATANumber)
 
                 .checkTermsAndConditions()
@@ -985,6 +985,426 @@ public class ReservationHelper {
                 .ReserveButton();
 
         return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_FlightInfo_DigitalWallet_Paypal_PayNow(String pickUpLocation, String fname, String lname,
+                                                                         String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(vehicles.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(vehicles.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        vehicles.clickViewCloseVehicleInformation();
+        assertTrue(vehicles.isPayLaterButtonEnabled(),"PayLater button is not displayed");
+        Extras extras = vehicles.step2SubmitPayNow();
+        assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(extras.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(extras.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+        extras.isExtrasTabDisplayed();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(reviewAndBook.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+
+        PayPalPage paypalpage = new PayPalPage(driver);
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .clickPaypalButton();
+        //Get handles of the windows
+        String mainWindowHandle = driver.getWindowHandle();
+        System.out.println("Parentwindowhandle :"+mainWindowHandle);
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        System.out.println("Allwindowhandle :"+allWindowHandles);
+        Iterator<String> iterator = allWindowHandles.iterator();
+
+        // Here we will check if child window is present and then switch to child window
+        while (iterator.hasNext()) {
+            String ChildWindow = iterator.next();
+            if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+
+                paypalpage
+                        .enterEmail(paypalEmail)
+                        .ClickNext()
+                        .enterPassword(paypalPassword)
+                        .ClickLogin()
+                        .ClickAgreeAndContinueButton();
+            }
+        }
+
+        driver.switchTo().window(mainWindowHandle);
+
+        assertTrue(reviewAndBook.isPaypalImageDisplayed(), "Paypal Image is not displayed");
+        reviewAndBook.isFlightInfoDisplayed();
+        reviewAndBook
+                .checkTermsAndConditions()
+                .flightInfo(flightName)
+                .enterflightNumber(flightNumber)
+                .ReserveButton();
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_InboundAndMultiCurrency_IATA_PayNow(String pickUpLocation,String residencyLocation,String awd, String corporateEmailId, String firstName, String lastName,
+                                                                     String email, String phoneNumber, String IATA,String ccNo, String cvv, String residentCurrencySymbol, String USCurrencyValue) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .selectCountry(residencyLocation)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
+        assertTrue(vehicles.isTipForInternationaltravellerTextDisplayed(), "Tip for international Traveller is not displayed");
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(vehicles.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(vehicles.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        vehicles.clickViewCloseVehicleInformation();
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(extras.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(extras.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(reviewAndBook.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+        reviewAndBook.isFlightInfoDisplayed();
+        reviewAndBook.isPayPalAndAmazonPayDisplayed();
+
+        reviewAndBook
+                .firstname(firstName)
+                .lastname(lastName)
+                .email(email)
+                .phone(phoneNumber)
+                .step4_AddCreditCardCheckBox()
+                .enterCardNumber(ccNo)
+                // .selectExpiryDateAndYear()
+                .EnterExpiryDateAndYear()
+                .enterSecurityCode(cvv)
+                .enterAddressInboundSpecific(residencyLocation);
+                assertTrue(reviewAndBook.isNativeCurrencyMsgtextDisplayed(), "Native currency pay message not displayed");
+        reviewAndBook
+                .iataNumber(IATA)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+
+    }
+
+
+    public Confirmation Reservation_Outbound_CorpCust_InsuranceCover_PayNow(String pickUpLocation, String pickupTime,String awd, String corporateEmailId, String firstName, String lastName,
+                                                                            String email, String phoneNumber,String ccNo, String cvv, String PickUpLocCurrencySymbol,String PickupLocCurrencyCode, String USCurrencyCode) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .pickUpTime(pickupTime)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
+        //vehicles.DiscountDropDownClick(awd);
+        assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(vehicles.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
+        assertTrue(vehicles.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        vehicles.clickViewCloseVehicleInformation();
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(PickUpLocCurrencySymbol), "Currency  value is not same as residence country");
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(extras.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
+        assertTrue(extras.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+        assertTrue(extras.isAWDIncludedInsuranceCoveragetextDisplayed(), "AWD Included Insurance Coverage text is not displayed");
+        assertTrue(extras.verifyCurrencySymbolDisplayed(PickUpLocCurrencySymbol), "Currency  value is not same as residence country");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(reviewAndBook.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+        reviewAndBook.isFlightInfoDisplayed();
+        reviewAndBook.isPayPalAndAmazonPayDisplayed();
+
+        reviewAndBook
+                .firstname(firstName)
+                .lastname(lastName)
+                .email(email)
+                .phone(phoneNumber)
+                .step4_AddCreditCardCheckBox()
+                .enterCardNumber(ccNo)
+                // .selectExpiryDateAndYear()
+                .EnterExpiryDateAndYear()
+                .enterSecurityCode(cvv)
+                .enterAddressInboundSpecific("U S A");
+        reviewAndBook
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+
+    }
+
+    public Confirmation Reservation_DigitalWallet_AmazonPay_PayNow(String pickUpLocation, String fname, String lname,
+                                                                   String email, String phoneNo, String AmazonEmail, String AmazonPassword) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation);
+        vehicles.isPayLaterButtonEnabled();
+        Extras extras = vehicles.step2SubmitPayNow();
+        extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation);
+        extras.isExtrasTabDisplayed();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        AmazonPayPage amazonpage = new AmazonPayPage(driver);
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .clickAmazonPayButton();
+
+        //Get handles of the windows
+        String mainWindowHandle = driver.getWindowHandle();
+        System.out.println("Parentwindowhandle :"+mainWindowHandle);
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        System.out.println("Allwindowhandle :"+allWindowHandles);
+        Iterator<String> iterator = allWindowHandles.iterator();
+
+        // Here we will check if child window is present and then switch to child window
+        while (iterator.hasNext()) {
+            String ChildWindow = iterator.next();
+            if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+                System.out.println("Allwindowhandle :"+allWindowHandles);
+
+                amazonpage
+                        .enterEmail(AmazonEmail)
+                        .enterPassword(AmazonPassword)
+                        .ClickLogin();
+            }
+        }
+
+        driver.switchTo().window(mainWindowHandle);
+
+        reviewAndBook
+                .checkTermsAndConditions()
+                .ReserveButton();
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_ModifyFlow_PayNow(String pickUpLocation, String firstName, String lastName,
+                                                                            String email, String phoneNumber,String ccNo, String cvv, String Country, String modifiedPickupLocation) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .expandDiscountCode()
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .firstname(firstName)
+                .lastname(lastName)
+                .email(email)
+                .phone(phoneNumber)
+                .step4_AddCreditCardCheckBox()
+                .enterCardNumber(ccNo)
+                .EnterExpiryDateAndYear()
+                .enterSecurityCode(cvv)
+                .enterAddressInboundSpecific("U S A");
+        reviewAndBook
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        Confirmation confirmation = new Confirmation(driver);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        String cNum= confirmation.GetConfirmationNumber();
+        confirmation.ClickAvisLogo();
+
+        Homepage homepage = new Homepage(driver);
+
+        homepage.goToViewModifyCancelPage();
+        ReservationViewModifyCancel reservationViewModifyCancel = new ReservationViewModifyCancel(driver);
+        reservationViewModifyCancel.selectCountry(Country);
+        reservationViewModifyCancel.enterLastname(lastName);
+        reservationViewModifyCancel.enterConfirmationNumber(cNum);
+        reservationViewModifyCancel.ClickFindReservationButton();
+
+        ManageReservationPage managereservationpage = new ManageReservationPage(driver);
+        managereservationpage.isCarReservedTextMessageDisplayed();
+        managereservationpage.isConfirmationNumberSame(cNum);
+        managereservationpage.ClickRateAndBenefitInfoModifyButton();
+
+        ModifyReservationTimeAndPlacePage TimeAndPlacePage =new ModifyReservationTimeAndPlacePage(driver);
+        TimeAndPlacePage.isModifyReservationTextMsgDisplayed();
+        TimeAndPlacePage
+                .pickUpLocation(modifiedPickupLocation)
+                .calendarSelection(2)
+                .selectMyCar();
+       // vehicles.isVehicleReselectionTextMessageDisplayed();
+        extras = vehicles.step2Submit();
+        reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook.reviewModifications();
+        ReviewModificationPage reviewmodificationpage = new ReviewModificationPage(driver);
+
+        reviewmodificationpage.isHeaderTextDisplayed();
+        reviewmodificationpage.isChangesInRedTextDisplayed();
+        reviewmodificationpage.isOriginalTextDisplayed();
+        reviewmodificationpage.isModifiedTextDisplayed();
+        reviewmodificationpage.isCancelModificationButtonEnabled();
+        reviewmodificationpage.clickKeepModificationButton();
+
+        confirmation.isConfirmationNumberSame(cNum);
+        return new Confirmation(driver);
+
+
+
+    }
+
+    public Confirmation Reservation_Profile_FlightInfo_DigitalWallet_Paypal_PayNow(String pickUpLocation,String PickupTime,String DropTime, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .pickUpTime(PickupTime)
+                .dropOffTime(DropTime)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(vehicles.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(vehicles.isDropDateTimeDisplayed(DropTime));
+        vehicles.clickViewCloseVehicleInformation();
+        assertTrue(vehicles.isPayLaterButtonEnabled());
+        Extras extras = vehicles.step2SubmitPayNow();
+        assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(extras.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(extras.isDropDateTimeDisplayed(DropTime));
+        assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed());
+        extras.isExtrasTabDisplayed();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(reviewAndBook.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed(DropTime));
+        assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed());
+
+        PayPalPage paypalpage = new PayPalPage(driver);
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .clickPaypalButton();
+        //Get handles of the windows
+        String mainWindowHandle = driver.getWindowHandle();
+        System.out.println("Parentwindowhandle :"+mainWindowHandle);
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        System.out.println("Allwindowhandle :"+allWindowHandles);
+        Iterator<String> iterator = allWindowHandles.iterator();
+
+        // Here we will check if child window is present and then switch to child window
+        while (iterator.hasNext()) {
+            String ChildWindow = iterator.next();
+            if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+
+                paypalpage
+                        .enterEmail(paypalEmail)
+                        .ClickNext()
+                        .enterPassword(paypalPassword)
+                        .ClickLogin()
+                        .ClickAgreeAndContinueButton();
+            }
+        }
+
+        driver.switchTo().window(mainWindowHandle);
+
+        assertTrue(reviewAndBook.isPaypalImageDisplayed(), "Paypal Image is not displayed");
+        reviewAndBook.isFlightInfoDisplayed();
+        reviewAndBook
+                .checkTermsAndConditions()
+                .flightInfo(flightName)
+                .enterflightNumber(flightNumber)
+                .ReserveButton();
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_InboundAndMultiCurrency_IATA_PayNow(String pickUpLocation,String residencyLocation,String PickupTime, String DropTime, String awd, String corporateEmailId,
+                                                                        String IATA, String residentCurrencySymbol, String USCurrencyValue) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .selectCountry(residencyLocation)
+                .pickUpTime(PickupTime)
+                .dropOffTime(DropTime)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isCurrencyValueDisplayed());
+        assertTrue(vehicles.isTipForInternationaltravellerTextDisplayed());
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol));
+        assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(vehicles.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(vehicles.isDropDateTimeDisplayed(DropTime));
+        vehicles.clickViewCloseVehicleInformation();
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol));
+        assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(extras.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(extras.isDropDateTimeDisplayed(DropTime));
+        assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed());
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(reviewAndBook.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed(DropTime));
+        assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed());
+        reviewAndBook.isFlightInfoDisplayed();
+        reviewAndBook.isPayPalAndAmazonPayDisplayed();
+
+        assertTrue(reviewAndBook.isNativeCurrencyMsgtextDisplayed());
+        reviewAndBook
+                .iataNumber(IATA)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+
     }
 
 

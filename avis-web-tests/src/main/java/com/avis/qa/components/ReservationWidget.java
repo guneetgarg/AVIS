@@ -89,6 +89,37 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//input[@id='partnerMembershipId']")
     private WebElement membershipTextField;
 
+    @FindBy(xpath = "//button[text()='Accept Terms']")
+    private WebElement AcceptTermsButton;
+
+    @FindBy(xpath = "//span[text()='Please enter a ']/b[text()='Pick-up Location']")
+    private WebElement PickUpLocMissingErrorMsg;
+
+    @FindBy(xpath = "//span[text()='Please enter a valid  ']/b[text()=' Pick-up Date']")
+    private WebElement PickUpDateErrorMsg;
+
+    @FindBy(xpath = "(//span[text()='This should be date format'])[1]")
+    private WebElement PickUpInvalidDateMsg;
+
+    @FindBy(xpath = "//span[text()='Please enter a valid  ']/b[text()='Return Date']")
+    private WebElement ReturnDateErrorMsg;
+
+    @FindBy(xpath = "(//span[text()='This should be date format'])[2]")
+    private WebElement ReturnDateInvalidMsg;
+
+    @FindBy(xpath = "(//span[text()='Whoops! Your return time has already passed. Please select a new time.'])[1]")
+    private WebElement ReturnTimeErrorMsg;
+
+
+    @FindBy(xpath = "(//span[text()='Enter your Wizard Number'])[2]")
+    private WebElement AWDBlankErrorMsg;
+
+    @FindBy(xpath = "(//span[text()='Enter your Last Name'])[2]")
+    private WebElement LastnameBlankErrorMsg;
+
+
+
+
     @FindBy(xpath = "(//div[contains(@class,'row res-inputFldPrt res-inputFldBack')]/div[4]/div[4]/div[3]/div)|(//div[contains(@class,'res-wizardFld form-controlD')])")
     private WebElement AvisWizardNumberLink;
 
@@ -127,6 +158,24 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "(//input[@name='email'])[1]")
     private WebElement corporatEmailTextField;
+
+    @FindBy(xpath = "//span[text()='Your discount code is invalid ']")
+    private WebElement AWDCouponCodeInvalidErrorMsg;
+
+    @FindBy(xpath = "//span[@class='platform-error-message error']")
+    private WebElement CorporateEmailIDBlankErrorMsg;
+
+    @FindBy(xpath = "(//span[contains(text(),'Please enter a valid corporate email address.')])[1]")
+    private WebElement CorporateEmailIDInvalidErrorMsg;
+
+
+
+
+
+
+
+
+
 
 
     public ReservationWidget(WebDriver driver) {
@@ -168,6 +217,7 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     private void enterLocation(String location, WebElement element) {
+        waitForVisibilityOfElement(element);
         element.click();
         element.clear();
         element.sendKeys(location);
@@ -232,6 +282,11 @@ public class ReservationWidget extends AbstractBasePage {
 
     public ReservationWidget selectCountry(String country) {
         helper.selectValueFromDropDown(selectCountry, country);
+        return this;
+    }
+
+    public ReservationWidget clickAcceptTermsButton() {
+        helper.clickIfElementIsDisplayed(AcceptTermsButton);
         return this;
     }
 
@@ -350,6 +405,7 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     public ReservationWidget enterAwd(String awd) {
+        AWDOrBCDOrPDN_TextField.clear();
         AWDOrBCDOrPDN_TextField.sendKeys(awd, Keys.TAB);
         //event.tabOut("AWDOrBCDOrPDN_TextField");
         return this;
@@ -374,7 +430,9 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     public ReservationWidget enterAwdAndLastname(String wizardNo, String lastName) {
+        WizardNoTextField.clear();
         WizardNoTextField.sendKeys(wizardNo);
+        LastNameTextField.clear();
         LastNameTextField.sendKeys(lastName);
         return this;
     }
@@ -397,6 +455,77 @@ public class ReservationWidget extends AbstractBasePage {
         }};
     }
 
+    public boolean verifyPickUpLocationErrorMessage() {
+        return PickUpLocMissingErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyAWDCouponcodeInvalidErrorMessage() {
+        return AWDCouponCodeInvalidErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyPickUpReturnDateInvalidErrorMessage() {
+        if(PickUpInvalidDateMsg.isDisplayed() && ReturnDateInvalidMsg.isDisplayed());
+        return true;
+    }
+
+    public boolean verifyPickUpDateErrorMessage() {
+        return PickUpDateErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyCorpEmailIDBlankErrorMessage() {
+        return CorporateEmailIDBlankErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyCorpEmailIDInvalidErrorMessage() {
+        return CorporateEmailIDInvalidErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyAWDBlankErrorMessage() {
+        return AWDBlankErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyLastNameBlankErrorMessage() {
+        return LastnameBlankErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyReturnDateErrorMessage() {
+        return ReturnDateErrorMsg.isDisplayed();
+    }
+
+    public boolean verifyReturnTimeErrorMessage() {
+        return ReturnTimeErrorMsg.isDisplayed();
+    }
+
+    public ReservationWidget clearPickUpDateValue() {
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
+        pickupDate.clear();
+        pickupDate.sendKeys(Keys.TAB);
+        return this;
+    }
+
+    public ReservationWidget clearDropOffDateValue() {
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        returnDate.click();
+        returnDate.clear();
+        returnDate.sendKeys(Keys.TAB);
+        return this;
+    }
+
+    public ReservationWidget enterpickUpDropOffDate(String pickDate, String dropDate) {
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
+        pickupDate.clear();
+        pickupDate.sendKeys(pickDate);
+        dropOffLocation.click();
+        returnDate.click();
+        returnDate.clear();
+        returnDate.sendKeys(dropDate);
+        return this;
+    }
 
     @Override
     public void isOnPage() {

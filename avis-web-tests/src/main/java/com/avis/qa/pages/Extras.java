@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import static com.avis.qa.utilities.CommonUtils.*;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
 
@@ -49,11 +50,39 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//p[text()='Certain extras are included or discounted due to your provided AWD number.']")
     private WebElement ExtrasIncludedText;
 
+    @FindBy(xpath = "//span[contains(text(),'Your provided AWD number includes or discounts certain extras, and may include')]")
+    private WebElement AWDIncludedCoveragesText;
+
+
     @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
     private WebElement ProtectionAndCoveragesTab;
 
+    @FindBy(xpath = "//a[contains(text(),'Equipment')]")
+    private WebElement EquipmentTab;
+
     @FindBy(xpath = "//input[@id='CDWchk']")
     private WebElement LDWCheckbox;
+
+    @FindBy(xpath = "(//div[@class='location-info'])[1]")
+    private WebElement PickUpLocValue;
+
+    @FindBy(xpath = "(//div[@class='location-info'])[2]")
+    private WebElement ReturnLocValue;
+
+    @FindBy(xpath = "(//div[@class='day-time-info'])[1]")
+    private WebElement PickupDateTime;
+
+    @FindBy(xpath = "(//div[@class='day-time-info'])[2]")
+    private WebElement ReturnDateTime;
+
+    @FindBy(xpath = "//span[@class='four-seats-feat']")
+    private WebElement NumberOfSeats;
+
+    @FindBy(xpath = "//a[@id='rate-terms']")
+    private WebElement SeeRateTerms;
+
+    @FindBy(xpath = "//span[text()='Base Rate']")
+    private WebElement BaseRate;
 
     public Extras(WebDriver driver) {
         super(driver);
@@ -82,12 +111,21 @@ public class Extras extends AbstractBasePage {
         return DiscountCodeSaving.isDisplayed();
     }
 
-    public boolean verifyCurrencySymbolDisplayed() {
-        return currencySymbol.getText().contains("C$");
+    public boolean isAWDIncludedInsuranceCoveragetextDisplayed() {
+        return AWDIncludedCoveragesText.isDisplayed();
+    }
+
+    public boolean verifyCurrencySymbolDisplayed(String symbol) {
+        return currencySymbol.getText().contains(symbol);
     }
 
     public boolean isExtrasIncludedTextDisplayed() {
         return ExtrasIncludedText.isDisplayed();
+    }
+
+    public boolean isExtrasTabDisplayed() {
+         if(ProtectionAndCoveragesTab.isDisplayed() && Step3ServicesTab.isDisplayed() && EquipmentTab.isDisplayed() && Step3DiscountPackages.isDisplayed() );
+         return true;
     }
 
     public void verifyCurbsideNotDisplayed(){
@@ -115,6 +153,25 @@ public class Extras extends AbstractBasePage {
         LDWCheckbox.click();
         CommonUtils.threadSleep(TWO_SECONDS);
         return this;
+    }
+
+    public boolean validatePickupAndReturnLocValue(String pickupLoc, String DropLoc) {
+        if(PickUpLocValue.getText().contains(pickupLoc) && ReturnLocValue.getText().contains(DropLoc));
+        return true;
+    }
+
+    public boolean isPickUpDateTimeDisplayed(String PickupTime) {
+        return PickupDateTime.getText().contains(PickupTime);
+    }
+
+    public boolean isDropDateTimeDisplayed(String DropTime) {
+        return ReturnDateTime.getText().contains(DropTime);
+    }
+
+    public Boolean isRateTermAndBaseRateAndNumberOfSeatsDisplayed()
+    {
+        if(BaseRate.isDisplayed() && SeeRateTerms.isDisplayed() && NumberOfSeats.isDisplayed());
+        return true;
     }
 
     @Override

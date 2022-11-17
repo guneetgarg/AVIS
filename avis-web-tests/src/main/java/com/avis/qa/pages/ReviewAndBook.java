@@ -13,6 +13,7 @@ import java.util.Random;
 import java.util.Set;
 
 import static com.avis.qa.utilities.CommonUtils.*;
+import static org.testng.Assert.assertEquals;
 
 
 /**
@@ -153,6 +154,9 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//div[@data-funding-source='paypal']")
     private WebElement PaypalButton;
 
+    @FindBy(xpath = "//img[@id='OffAmazonPaymentsWidgets0']")
+    private WebElement AmazonpayButton;
+
     @FindBy(xpath = "//span[text()='Paying With ']")
     private WebElement PayingWithText;
 
@@ -165,6 +169,45 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//span[text()='Estimated Total']/following-sibling::span/child::span/child::span[2]")
     private WebElement EstimatedTotalText;
+
+    @FindBy(xpath = "//span[contains(text(),'You have the option to pay with your Visa or MasterCard in your native currency. If you choose to pay with different card type your charges will be posted in USD ($')]")
+    private WebElement NativeCurrencyPayInfoMsg;
+
+    @FindBy(xpath = "//button[text()='Review Modifications']")
+    private WebElement ReviewModificationsButton;
+
+    @FindBy(xpath = "(//div[@class='location-info'])[1]")
+    private WebElement PickUpLocValue;
+
+    @FindBy(xpath = "(//div[@class='location-info'])[2]")
+    private WebElement ReturnLocValue;
+
+    @FindBy(xpath = "(//div[@class='day-time-info'])[1]")
+    private WebElement PickupDateTime;
+
+    @FindBy(xpath = "(//div[@class='day-time-info'])[2]")
+    private WebElement ReturnDateTime;
+
+    @FindBy(xpath = "//span[@class='four-seats-feat']")
+    private WebElement NumberOfSeats;
+
+    @FindBy(xpath = "//a[@id='rate-terms']")
+    private WebElement SeeRateTerms;
+
+    @FindBy(xpath = "//span[text()='Base Rate']")
+    private WebElement BaseRate;
+
+    @FindBy(xpath = "//span[@id='errTermsCheck']")
+    private WebElement TermsAndConditionCheckBoxErrorMsg;
+
+
+
+    //card type (//div[@class='col-sm-9 col-xs-8 noPad'])[1]
+
+         //cardnumber   (//div[@class='col-sm-9 col-xs-8 noPad'])[2]
+
+
+
 
     private String selectedCountryText;
 
@@ -436,9 +479,9 @@ public class ReviewAndBook extends AbstractBasePage {
     /**
      * To enter flight Info
      */
-    public ReviewAndBook flightInfo() {
+    public ReviewAndBook flightInfo(String flightname) {
         waitForVisibilityOfElement(step4_flightInfo);
-        helper.selectValueFromDropDown(step4_flightInfo, 3);
+        helper.selectValueFromDropDown(step4_flightInfo, flightname);
         return this;
     }
 
@@ -502,6 +545,20 @@ public class ReviewAndBook extends AbstractBasePage {
         return new PayPalPage(driver);
     }
 
+    public AmazonPayPage clickAmazonPayButton() {
+        zip.click();
+        waitForVisibilityOfElement(iFramePayPal);
+       // driver.switchTo().frame(0);
+      //  System.out.println("IFramePaypal switched");
+        threadSleep(TWO_SECONDS);
+        helper.waitUntilClickabilityOfElement(AmazonpayButton);
+        clickUsingJS(AmazonpayButton);
+        threadSleep(TWO_SECONDS);
+        //driver.switchTo().defaultContent();
+        return new AmazonPayPage(driver);
+    }
+
+
     public Boolean verifySelectedCountryText(String country) {
         return selectedCountryText.contains(country);
     }
@@ -518,14 +575,48 @@ public class ReviewAndBook extends AbstractBasePage {
         return DiscountCodeSaving.isDisplayed();
     }
 
+    public boolean isNativeCurrencyMsgtextDisplayed() {
+        return NativeCurrencyPayInfoMsg.isDisplayed();
+    }
+
     public boolean isPrimaryCardtextDisplayed() { return PrimaryCardText.isDisplayed(); }
+
+    public boolean isTncErrorMsgtextDisplayed() { return TermsAndConditionCheckBoxErrorMsg.isDisplayed(); }
 
     public boolean isSecondaryCardtextDisplayed() {
         return SecondaryCardText.isDisplayed();
     }
 
+    public boolean isFlightInfoDisplayed() {
+        return step4_flightInfo.isDisplayed();
+    }
+
+    public boolean isPayPalAndAmazonPayDisplayed() {
+        if(AmazonpayButton.isDisplayed() && PaypalButton.isDisplayed());
+        return true;
+    }
+
     public boolean isPaypalImageDisplayed() {
         return PayPalImage.isDisplayed();
+    }
+
+    public boolean validatePickupAndReturnLocValue(String pickupLoc, String DropLoc) {
+        if(PickUpLocValue.getText().contains(pickupLoc) && ReturnLocValue.getText().contains(DropLoc));
+        return true;
+    }
+
+    public boolean isPickUpDateTimeDisplayed(String PickupTime) {
+        return PickupDateTime.getText().contains(PickupTime);
+    }
+
+    public boolean isDropDateTimeDisplayed(String DropTime) {
+        return ReturnDateTime.getText().contains(DropTime);
+    }
+
+    public Boolean isRateTermAndBaseRateAndNumberOfSeatsDisplayed()
+    {
+        if(BaseRate.isDisplayed() && SeeRateTerms.isDisplayed() && NumberOfSeats.isDisplayed());
+        return true;
     }
 
     @Override
