@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d36c7c11-bbaf-4a04-a896-c48edeee3d7d" name="Changes" comment="resolved merge conflicts">
-      <change beforePath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/DockerInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/DockerInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/AbstractBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/AbstractBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/LocationHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/LocationHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/MiscHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/MiscHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/ReservationHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/ReservationHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

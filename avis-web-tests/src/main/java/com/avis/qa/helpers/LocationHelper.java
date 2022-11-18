@@ -3,9 +3,11 @@ package com.avis.qa.helpers;
 import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.pages.*;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+@Log4j2
 public class LocationHelper extends AbstractBasePage {
 
     private final WebDriver driver;
@@ -20,7 +22,8 @@ public class LocationHelper extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        System.out.println("hello");
+        log.info("Is on LocationHelper");
+
     }
 
     public Confirmation Location_Search_MnemonicCodeRes(String pickUpLocation, String firstName, String lastName, String email,
