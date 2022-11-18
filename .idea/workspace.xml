@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d36c7c11-bbaf-4a04-a896-c48edeee3d7d" name="Changes" comment="resolved merge conflicts">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/AbstractBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/AbstractBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/LocationHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/LocationHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/MiscHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/MiscHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/ReservationHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa/helpers/ReservationHelper.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Avis_executionXml" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2GRbvGdGe3hZxyd9O5nqr5nYlvX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/devarshi/Documents/repos/ecom-us-web&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/avis-web-tests/src/main/java/com/avis/qa" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.avis.qa.core" />
+    </key>
+  </component>
+  <component name="RunManager" selected="TestNG.MiscellaneousTests.Avis_Misc_CarGuide_Res_US">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LocationTests" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="avis-web-tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.avis.qa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.avis.qa" />
+      <option name="MAIN_CLASS_NAME" value="com.avis.qa.LocationTests" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MiscellaneousTests.Avis_Misc_CarGuide_Res_US" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="avis-web-tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.avis.qa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.avis.qa" />
+      <option name="MAIN_CLASS_NAME" value="com.avis.qa.MiscellaneousTests" />
+      <option name="METHOD_NAME" value="Avis_Misc_CarGuide_Res_US" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MiscellaneousTests.Avis_Misc_OffersPage_Reservation_US" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="avis-web-tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.avis.qa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.avis.qa" />
+      <option name="MAIN_CLASS_NAME" value="com.avis.qa.MiscellaneousTests" />
+      <option name="METHOD_NAME" value="Avis_Misc_OffersPage_Reservation_US" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReservationTests.Avis_Reservation_Outbound_PayNow_US" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="avis-web-tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.avis.qa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.avis.qa" />
+      <option name="MAIN_CLASS_NAME" value="com.avis.qa.ReservationTests" />
+      <option name="METHOD_NAME" value="Avis_Reservation_Outbound_PayNow_US" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReservationTests.Avis_Reservation_TierBundle_PayLater_US" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="avis-web-tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.avis.qa.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.avis.qa" />
+      <option name="MAIN_CLASS_NAME" value="com.avis.qa.ReservationTests" />
+      <option name="METHOD_NAME" value="Avis_Reservation_TierBundle_PayLater_US" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.MiscellaneousTests.Avis_Misc_CarGuide_Res_US" />
+        <item itemvalue="TestNG.LocationTests" />
+        <item itemvalue="TestNG.MiscellaneousTests.Avis_Misc_OffersPage_Reservation_US" />
+        <item itemvalue="TestNG.ReservationTests.Avis_Reservation_TierBundle_PayLater_US" />
+        <item itemvalue="TestNG.ReservationTests.Avis_Reservation_Outbound_PayNow_US" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d36c7c11-bbaf-4a04-a896-c48edeee3d7d" name="Changes" comment="resolved merge conflicts" />
+      <created>1666354571958</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1666354571958</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="resolved merge conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolved merge conflicts" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/avis-web-framework/src/main/java/com/avis/qa/core/PopUpProxy.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

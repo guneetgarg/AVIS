@@ -1,38 +1,36 @@
 package com.avis.qa.core;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class PopUp {
+@Log4j2
+public class PopUpHandler {
 
     private WebDriver driver;
-    public PopUp(WebDriver driver) {
+    public PopUpHandler(WebDriver driver) {
+
         this.driver = driver;
+        if(isDisplayed()){
+            close();
+        }
     }
 
     public boolean isDisplayed(){
-//        FluentWait wait = new FluentWait(driver);
-//        wait.withTimeout(Duration.ofSeconds(3));
-//        wait.pollingEvery(Duration.ofMillis(100));
-//        wait.ignoring(NoSuchElementException.class);
-
-
-//        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='bx-wrap']")));
         WebDriverWait wait = new WebDriverWait(driver, 5);
         try {
+            log.info("Waiting for PopUp");
            return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='bx-wrap']"))).isDisplayed();
         }catch (Exception e){
+            log.info("PopUp is not present");
             return false;
         }
     }
 
     public void close(){
+        log.info("PopUp is present. Killing it!!");
         this.driver.findElement(By.xpath("//button[@data-click='close']")).click();
     }
 

@@ -62,19 +62,21 @@ public class BrowserInstance {
     }
 
     protected void initializeChrome() {
-        System.out.println("CHROME IS STARTED1");
+        System.out.println("Setting up chromedriver instance");
         WebDriverManager.chromedriver().setup();
-        System.out.println("CHROME IS STARTE2");
+        System.out.println("Adding chrome options");
         ChromeOptions chromeOptions = new ChromeOptions();
-        System.out.println("CHROME IS STARTED3");
+//        System.out.println("CHROME IS STARTED3");
         chromeOptions.setAcceptInsecureCerts(true);
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--headless");
         //chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-dev-shm-usage");
-        System.out.println("CHROME IS STARTED4");
+        chromeOptions.addArguments("--proxy-server='direct://'");
+        chromeOptions.addArguments("--proxy-bypass-list=*");
+        System.out.println("Launching chrome");
         webDriver = new ChromeDriver(chromeOptions);
-        System.out.println("CHROME IS STARTED5");
+//        System.out.println("CHROME IS STARTED5");
     }
 
     protected void initializeFirefox() {

@@ -4,19 +4,30 @@ import com.avis.qa.components.AvisFlyout;
 import com.avis.qa.components.Footer;
 import com.avis.qa.components.Header;
 import com.avis.qa.components.ReservationWidget;
+import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.pages.*;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
+
+import java.sql.SQLOutput;
 
 import static org.testng.Assert.assertTrue;
 
-public class MiscHelper {
+@Log4j2
+public class MiscHelper extends AbstractBasePage {
 
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
 
     public MiscHelper(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         this.reservationWidget = new ReservationWidget(driver);
+    }
+
+    @Override
+    public void isOnPage() {
+        log.info("On MiscHelper");
     }
 
     private Confirmation getConfirmation(String pickupLocation, String fName, String lName, String email, String phone) {
