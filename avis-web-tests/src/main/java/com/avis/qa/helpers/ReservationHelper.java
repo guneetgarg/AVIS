@@ -2,7 +2,9 @@ package com.avis.qa.helpers;
 
 import com.avis.qa.components.LoginWidget;
 import com.avis.qa.components.ReservationWidget;
+import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.pages.*;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import lombok.extern.log4j.Log4j2;
@@ -14,14 +16,20 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
 import static org.testng.Assert.assertTrue;
 
 @Log4j2
-public class ReservationHelper {
+public class ReservationHelper extends AbstractBasePage {
 
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
 
     public ReservationHelper(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         this.reservationWidget = new ReservationWidget(driver);
+    }
+
+    @Override
+    public void isOnPage() {
+        log.info("Is on Reservationhelper");
     }
 
 

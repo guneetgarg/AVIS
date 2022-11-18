@@ -20,7 +20,7 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
  * @author ikumar
  */
 @Log4j2
-public abstract class AbstractBasePage {
+public abstract class AbstractBasePage{
 
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -32,6 +32,12 @@ public abstract class AbstractBasePage {
         helper = new ElementHelper(driver);
         PageFactory.initElements(driver, this);
         isOnPage();
+        findAndKillPopup();
+    }
+
+    protected void findAndKillPopup(){
+        PopUpHandler popUpHandler = new PopUpHandler(driver);
+        if(popUpHandler.isDisplayed()) popUpHandler.close();
     }
 
     /**

@@ -2,15 +2,12 @@ package com.avis.qa.components;
 
 import com.avis.qa.core.AbstractBasePage;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.avis.qa.constants.TextComparison.ABOVE_NINETY_ERROR_MESSAGE;
@@ -167,16 +164,6 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "(//span[contains(text(),'Please enter a valid corporate email address.')])[1]")
     private WebElement CorporateEmailIDInvalidErrorMsg;
-
-
-
-
-
-
-
-
-
-
 
     public ReservationWidget(WebDriver driver) {
         super(driver);
