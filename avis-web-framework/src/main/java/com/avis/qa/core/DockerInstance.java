@@ -1,9 +1,11 @@
 package com.avis.qa.core;
 
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
@@ -29,14 +31,27 @@ public class DockerInstance extends BrowserInstance {
         try {
             ChromeOptions options = new ChromeOptions();
             options.setAcceptInsecureCerts(true);
-            options.addArguments("start-maximized"); // open Browser in maximized mode
-            options.addArguments("disable-infobars"); // disabling infobars
-            options.addArguments("--disable-extensions"); // disabling extensions
-            options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-            options.addArguments("--no-sandbox"); // Bypass OS security model
-            options.addArguments("--proxy-server='direct://'");
-            options.addArguments("--proxy-bypass-list=*");
-            webDriver = new RemoteWebDriver(new URL(REMOTE_URL), options);
+//            options.addArguments("start-maximized"); // open Browser in maximized mode
+//            options.addArguments("disable-infobars"); // disabling infobars
+//            options.addArguments("--disable-extensions"); // disabling extensions
+//            options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+//            options.addArguments("--no-sandbox"); // Bypass OS security model
+//            options.addArguments("--proxy-server='direct://'");
+//            options.addArguments("--proxy-bypass-list=*");
+            String USERNAME = "devarshiojha_Bcr5Gp";
+            String AUTOMATE_KEY = "cqqduZCiCQz3SvMuj2SH";
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setCapability("os", "Windows");
+            caps.setCapability("os_version", "10");
+            caps.setCapability("browser", "Chrome");
+            caps.setCapability("browser_version", "latest");
+            caps.setCapability("browserstack.local", "false");
+            caps.setCapability("browserstack.console", "disable");
+            caps.setCapability("browserstack.selenium_version", "3.141.59");
+            caps.setCapability(ChromeOptions.CAPABILITY, options);
+
+            String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+            webDriver = new RemoteWebDriver(new URL(URL), caps);
         } catch (MalformedURLException malformedURLException) {
             throw new RuntimeException("MalformedURLException");
         }
