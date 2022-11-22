@@ -22,7 +22,7 @@ public class PopUpHandler {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         try {
             log.info("Waiting for PopUp");
-           return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='bx-wrap']"))).isDisplayed();
+           return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@data-click='close']"))).isDisplayed();
         }catch (Exception e){
             log.info("PopUp is not present");
             return false;
