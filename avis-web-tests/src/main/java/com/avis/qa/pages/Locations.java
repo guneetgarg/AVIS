@@ -46,7 +46,7 @@ public class Locations extends AbstractBasePage {
     @FindBy(xpath = "//button[contains(text(),'Abg/parsippany')]")
     WebElement ABGparsiPpanyCategory;
 
-    @FindBy(xpath = "(//a[contains(text(), 'Make a Reservation')])[2]")
+    @FindBy(xpath = "(//a[@title='Newark Liberty Intl Airport 1 car rental'])[2]")
     WebElement makeAReservationButton;
 
 
@@ -83,7 +83,7 @@ public class Locations extends AbstractBasePage {
         threadSleep(CommonUtils.TWO_SECONDS);
         waitForVisibilityOfElement(NewJersyCategory).click();
         threadSleep(CommonUtils.TWO_SECONDS);
-        waitForVisibilityOfElement(ABGparsiPpanyCategory).click();
+        waitForVisibilityOfElement(NewarkCategory).click();
         threadSleep(CommonUtils.TWO_SECONDS);
 
     }

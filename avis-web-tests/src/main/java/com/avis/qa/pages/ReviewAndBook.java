@@ -200,11 +200,26 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//span[@id='errTermsCheck']")
     private WebElement TermsAndConditionCheckBoxErrorMsg;
 
+    @FindBy(xpath = "//span[text()='Please enter valid CVV code.']")
+    private WebElement CvvInvalidErrorMsg;
+
+    @FindBy(xpath = "//span[text()=' should contain atleast six characters.']")
+    private WebElement EmailInvalidErrorMsg;
+
+    @FindBy(xpath = "//span[text()='Please provide a valid ']")
+    private WebElement PhoneNumInvalidErrorMsg;
+
+    @FindBy(xpath = "//span[text()='The credit card number you have entered is not valid. Please check to ensure that you have entered the correct credit card type and number.']")
+    private WebElement CreditCardInvalidErrorMsg;
+
+    @FindBy(xpath = "//span[text()=' cannot contain numeric or special characters. Please remove and try again.']")
+    private WebElement FirstNameInvalidErrorMsg;
+
+    @FindBy(xpath = "//span[text()=' cannot contain special characters. Please remove and try again.']")
+    private WebElement LastNamenvalidErrorMsg;
 
 
-    //card type (//div[@class='col-sm-9 col-xs-8 noPad'])[1]
 
-         //cardnumber   (//div[@class='col-sm-9 col-xs-8 noPad'])[2]
 
 
 
@@ -250,6 +265,18 @@ public class ReviewAndBook extends AbstractBasePage {
             emailID = emailID.replace("-", "");
         }
         emailField.sendKeys(emailID);
+        return this;
+    }
+
+    public ReviewAndBook enterEmail(String email) {
+        emailField.clear();
+        emailField.sendKeys(email);
+        return this;
+    }
+
+    public ReviewAndBook enterPhnNo(String PhnNo) {
+        phoneField.clear();
+        phoneField.sendKeys(PhnNo);
         return this;
     }
 
@@ -599,6 +626,32 @@ public class ReviewAndBook extends AbstractBasePage {
     public boolean isPaypalImageDisplayed() {
         return PayPalImage.isDisplayed();
     }
+
+    public boolean isEmailInvalidErrorMsgDisplayed() {
+        return EmailInvalidErrorMsg.isDisplayed();
+    }
+
+    public boolean isPhonenumInvalidErrorMsgDisplayed() {
+        return PhoneNumInvalidErrorMsg.isDisplayed();
+    }
+
+    public boolean isCVVInvalidErrorMsgDisplayed() {
+        return CvvInvalidErrorMsg.isDisplayed();
+    }
+
+    public boolean isCreditCardInvalidErrorMsgDisplayed() {
+        return CreditCardInvalidErrorMsg.isDisplayed();
+    }
+
+    public boolean isFnameInvalidErrorMsgDisplayed() {
+        return FirstNameInvalidErrorMsg.isDisplayed();
+    }
+
+    public boolean isLnameInvalidErrorMsgDisplayed() {
+        return LastNamenvalidErrorMsg.isDisplayed();
+    }
+
+
 
     public boolean validatePickupAndReturnLocValue(String pickupLoc, String DropLoc) {
         if(PickUpLocValue.getText().contains(pickupLoc) && ReturnLocValue.getText().contains(DropLoc));

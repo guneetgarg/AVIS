@@ -1,13 +1,18 @@
 package com.avis.qa;
 
 import com.avis.qa.components.Header;
+import com.avis.qa.components.LoginWidget;
+import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.TestBase;
 import com.avis.qa.helpers.MiscHelper;
 import com.avis.qa.pages.Confirmation;
+import com.avis.qa.pages.Vehicles;
 import com.avis.qa.utilities.CSVUtils;
 import org.testng.annotations.Test;
 
 import static com.avis.qa.constants.AvisConstants.*;
+import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
+import static com.avis.qa.utilities.CommonUtils.threadSleep;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -75,6 +80,46 @@ MiscellaneousTests extends TestBase {
                 companyName, address1, city, province, zipcode, country);
 
     }
+
+    @Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US(String pickUpLocation, String months) {
+        launchUrl();
+        ReservationWidget reservationWidget = new ReservationWidget(getDriver());
+
+        reservationWidget
+
+                .clickAcceptTermsButton()
+                .pickUpLocation(pickUpLocation)
+                .aboveThirtyDaysCalendarSelection(months)
+                .selectMyCar();
+        assertTrue(reservationWidget.isErrorMessageDisplayed(months));
+    }
+
+    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String pickUpLocation, String age)  {
+        launchUrl();
+        ReservationWidget reservationWidget = new ReservationWidget(getDriver());
+
+        reservationWidget
+                .clickAcceptTermsButton()
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(2)
+                .selectAge(age)
+                .selectMyCar();
+        Vehicles vehicles = new Vehicles(getDriver());
+        vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        vehicles.clickFilterOptionAndVerifyData();
+
+    }
+
+   // @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US(String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
+        launchUrl();
+        MiscHelper miscHelper = new MiscHelper(getDriver());
+        miscHelper.Reservation_Misc_Step1AndStep4_ErrorMsg_Validation(pickUpLocation,pickUpDate, pickUpTime, dropOffLocation, dropOffDate,dropOffTime,WizardNumber,lastName,awdCode,corporateEmail,rateCode,couponCode,creditcardNumber);
+
+    }
+
 
 
 }

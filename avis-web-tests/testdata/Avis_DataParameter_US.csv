@@ -74,7 +74,7 @@ Avis_Location_Search_Suggestion_US,EWR
 #Avis_Profile_OneClick_EmailLink_US,/en/loyalty-profile/avis-preferred/login?MID=expressconsent_02142018_av01expressconsentus_na_na&utm_source=newsletter&utm_medium=email&utm_content=email_476120&utm_campaign=expressconsent_02142018_av01expressconsentus_na_na&et_rid=73051010
 Avis_RES_Profile_EMEA90Days_ErrorMessage_Step1_Res_widget_US,NAVEEN12345,Avis$12345,LDY,5
 Avis_RES_Profile_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,NAVEEN12345,Avis$12345,SFO
-Avis_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US,NAVEEN12345,Avis$12345,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,jjj,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,5447144508353949
+Avis_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US,NAVEEN12345,Avis$12345,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,jj,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,5447144508353949
 Avis_RES_Profile_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,NAVEEN12345,Avis$12345,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US,NAVEEN12345,Avis$12345,SFO,12:30 PM,12:30 PM,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
 
@@ -96,6 +96,9 @@ Avis_Misc_OneClick_VanityURL_US,/localmarket,Avis.com Link Builder
 Avis_Misc_OneClick_VanityURL_US,/terms,Avis Preferred Terms
 Avis_Misc_OneClick_VanityURL_US,/usaa,USAA
 BRG,/en/products-and-services/services/best-rate-guarantee/best-rate-claim-form
+Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,22
+Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LDY,5
+Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
 #################################_GENERIC_#####################################
 Concur_AuthCredentials,8TN00U,Password123
 SimplifiedRegistration_creditCardLogin,A3S032,Password123

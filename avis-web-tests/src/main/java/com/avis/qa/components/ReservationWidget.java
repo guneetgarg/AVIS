@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.avis.qa.constants.TextComparison.ABOVE_NINETY_ERROR_MESSAGE;
@@ -164,6 +165,9 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "(//span[contains(text(),'Please enter a valid corporate email address.')])[1]")
     private WebElement CorporateEmailIDInvalidErrorMsg;
+
+    @FindBy(xpath = "//span[text()='Based on your age selection, there are no cars available at this location-']")
+    private WebElement AgeSelectionNocarsErrorMsg;
 
     public ReservationWidget(WebDriver driver) {
         super(driver);
@@ -417,8 +421,10 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     public ReservationWidget enterAwdAndLastname(String wizardNo, String lastName) {
+        WizardNoTextField.click();
         WizardNoTextField.clear();
-        WizardNoTextField.sendKeys(wizardNo);
+        WizardNoTextField.sendKeys(wizardNo,Keys.TAB);
+        LastNameTextField.click();
         LastNameTextField.clear();
         LastNameTextField.sendKeys(lastName);
         return this;
@@ -483,6 +489,10 @@ public class ReservationWidget extends AbstractBasePage {
         return ReturnTimeErrorMsg.isDisplayed();
     }
 
+    public boolean isAgeSelectionNocarErrorMsgDisplayed() {
+        return AgeSelectionNocarsErrorMsg.isDisplayed();
+    }
+
     public ReservationWidget clearPickUpDateValue() {
         helper.scrollBy("-600");
         threadSleep(TWO_SECONDS);
@@ -511,6 +521,24 @@ public class ReservationWidget extends AbstractBasePage {
         returnDate.click();
         returnDate.clear();
         returnDate.sendKeys(dropDate);
+        return this;
+    }
+
+    public ReservationWidget enterCurrentDatePickUpDropOffDate()
+    {
+        Date date = new Date();
+        String DATE_FORMAT = "MM/dd/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        System.out.println("Today is " + sdf.format(date));
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
+        pickupDate.clear();
+        pickupDate.sendKeys(sdf.format(date));
+        dropOffLocation.click();
+        returnDate.click();
+        returnDate.clear();
+        returnDate.sendKeys(sdf.format(date));
         return this;
     }
 

@@ -113,8 +113,6 @@ public class MiscHelper extends AbstractBasePage {
                 .calendarSelection(1)
                 .clearPickUpDateValue()
                 //empty pickUp date
-                .pickUpTime(pickUpTime)
-                .dropOffTime(dropOffTime)
                 .selectMyCar()
                 .verifyPickUpDateErrorMessage(); //validate pickUp empty date msg
 
@@ -125,8 +123,6 @@ public class MiscHelper extends AbstractBasePage {
                 .dropOffLocation(dropOffLocation)
                 .calendarSelection(1)
                 .clearDropOffDateValue() //empty dropoff date
-                .pickUpTime(pickUpTime)
-                .dropOffTime(dropOffTime)
                 .selectMyCar()
                 .verifyReturnDateErrorMessage();  //validate dropoff empty date msg
 
@@ -136,7 +132,7 @@ public class MiscHelper extends AbstractBasePage {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
-                .enterpickUpDropOffDate("11/15/2022","11/15/2022")
+                .enterCurrentDatePickUpDropOffDate()
                 .pickUpTime("11:00 AM")
                 .dropOffTime("10:00 AM") //dropoff time before pickuptime for same date
                 .selectMyCar()
@@ -148,7 +144,7 @@ public class MiscHelper extends AbstractBasePage {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
-                .enterpickUpDropOffDate("10/01/22","12/01/22")
+                .enterpickUpDropOffDate("10/01/22","12/01/22") //wrong date format
                 .selectMyCar()
                 .verifyPickUpReturnDateInvalidErrorMessage();
         //validate date error
@@ -156,33 +152,10 @@ public class MiscHelper extends AbstractBasePage {
 
         homepage.clickAvisLogo();
 
-
-/*
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
                 .calendarSelection(1)
-                .pickUpTime(pickUpTime)
-                .dropOffTime(dropOffTime)
-                .expandAvisWizardNumber()
-                .enterAwdAndLastname("",lastName) //blank wizard number
-                //validate for blank wizard number error
-                .selectMyCar()
-                .verifyAWDBlankErrorMessage();
-        reservationWidget
-                .enterAwdAndLastname(WizardNumber,"") // blank last name
-                //validate for blank last name error msg
-                .selectMyCar()
-                .verifyLastNameBlankErrorMessage();
-
-        homepage.clickAvisLogo();
-*/
-        reservationWidget
-                .pickUpLocation(pickUpLocation)
-                .dropOffLocation(dropOffLocation)
-                .calendarSelection(1)
-                .pickUpTime(pickUpTime)
-                .dropOffTime(dropOffTime)
                 .expandDiscountCode()
                 .enterAwd("abc123") //Invalid AWD code
                 //validate for invalid awd code
@@ -193,21 +166,21 @@ public class MiscHelper extends AbstractBasePage {
                 //Validate for corporate email ID
                 .selectMyCar()
                 .verifyCorpEmailIDBlankErrorMessage();
-System.out.println("test");
+        reservationWidget.expandDiscountCode();
+
         homepage.clickAvisLogo();
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
                 .calendarSelection(1)
-                .pickUpTime(pickUpTime)
-                .dropOffTime(dropOffTime)
-                //.expandDiscountCode()
+                .expandDiscountCode()
                 .enterCouponCode("test")//invalid discount code
                 //Validation for invalid discount code
                 .selectMyCar()
                 .verifyAWDCouponcodeInvalidErrorMessage();
-        System.out.println("test2");
+        reservationWidget.expandDiscountCode();
+
         homepage.clickAvisLogo();
 
         reservationWidget
@@ -216,22 +189,21 @@ System.out.println("test");
                 .calendarSelection(1)
                 .pickUpTime(pickUpTime)
                 .dropOffTime(dropOffTime)
-                //.expandDiscountCode()
+                .expandDiscountCode()
                 .enterAwd(awdCode)  // valid discount code
                 .enterCorporateEmailId("test@hh.com") //invalid corporate email id
                 //Validation for invalid corporate email id
                 .selectMyCar()
                 .verifyCorpEmailIDInvalidErrorMessage();
-        System.out.println("test3");
+        reservationWidget.expandDiscountCode();
+
         homepage.clickAvisLogo();
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
                 .calendarSelection(1)
-                .pickUpTime(pickUpTime)
-                .dropOffTime(dropOffTime)
-                //.expandDiscountCode()
+                .expandDiscountCode()
                 .enterAwd(awdCode)
                 .enterCorporateEmailId(corporateEmail)
                 .selectMyCar();
@@ -245,12 +217,196 @@ System.out.println("test");
 
 
         reviewAndBook
-
+                .enterEmail("abc")
+                .enterPhnNo("abc")
+                .enterSecurityCode("12")
                 .step4Submit()
-                .isTncErrorMsgtextDisplayed();
+                .isCVVInvalidErrorMsgDisplayed();
+        reviewAndBook.isEmailInvalidErrorMsgDisplayed();
+        reviewAndBook.isPhonenumInvalidErrorMsgDisplayed();
+        reviewAndBook.isTncErrorMsgtextDisplayed();
 
 
 
     }
+
+    public void Reservation_Misc_Step1AndStep4_ErrorMsg_Validation(String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
+        reservationWidget
+                .clickAcceptTermsButton()
+                .pickUpTime(pickUpTime)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .dropOffTime(dropOffTime)
+                .selectMyCar()
+                .verifyPickUpLocationErrorMessage();
+
+        homepage.clickAvisLogo();
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .selectAge("18")
+                .selectMyCar()
+                .isAgeSelectionNocarErrorMsgDisplayed();
+
+
+        homepage.clickAvisLogo();
+
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .selectAge("25+")
+                .clearPickUpDateValue()
+                //empty pickUp date
+                .selectMyCar()
+                .verifyPickUpDateErrorMessage(); //validate pickUp empty date msg
+
+        homepage.clickAvisLogo();
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .clearDropOffDateValue() //empty dropoff date
+                .selectMyCar()
+                .verifyReturnDateErrorMessage();  //validate dropoff empty date msg
+
+        homepage.clickAvisLogo();
+
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .enterCurrentDatePickUpDropOffDate()
+                .pickUpTime("11:00 AM")
+                .dropOffTime("10:00 AM") //dropoff time before pickuptime for same date
+                .selectMyCar()
+                .verifyReturnTimeErrorMessage();
+
+
+        homepage.clickAvisLogo();
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .enterpickUpDropOffDate("10/01/22","12/01/22") //wrong date format
+                .selectMyCar()
+                .verifyPickUpReturnDateInvalidErrorMessage();
+        //validate date error
+
+
+        homepage.clickAvisLogo();
+*/
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .expandAvisWizardNumber()
+                .enterAwdAndLastname(WizardNumber,"") // blank last name
+                //validate for blank last name error msg
+                .selectMyCar()
+                .verifyLastNameBlankErrorMessage();
+        /*
+        reservationWidget
+                .enterAwdAndLastname("",lastName) //blank wizard number
+                //validate for blank wizard number error
+                .selectMyCar()
+                .verifyAWDBlankErrorMessage()
+                .expandAvisWizardNumber();
+
+*/
+
+        homepage.clickAvisLogo();
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .expandDiscountCode()
+                .enterAwd("abc123") //Invalid AWD code
+                //validate for invalid awd code
+                .selectMyCar()
+                .verifyAWDCouponcodeInvalidErrorMessage();
+        reservationWidget
+                .enterAwd(awdCode)  //correct corporate AWD code
+                //Validate for corporate email ID
+                .selectMyCar()
+                .verifyCorpEmailIDBlankErrorMessage()
+        reservationWidget.expandDiscountCode();
+
+        homepage.clickAvisLogo();
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .expandDiscountCode()
+                .enterCouponCode("test")//invalid discount code
+                //Validation for invalid discount code
+                .selectMyCar()
+                .verifyAWDCouponcodeInvalidErrorMessage();
+        reservationWidget.expandDiscountCode();
+
+        homepage.clickAvisLogo();
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .expandDiscountCode()
+                .enterAwd(awdCode)  // valid discount code
+                .enterCorporateEmailId("test@hh.com") //invalid corporate email id
+                //Validation for invalid corporate email id
+                .selectMyCar()
+                .verifyCorpEmailIDInvalidErrorMessage();
+        reservationWidget.expandDiscountCode();
+
+        homepage.clickAvisLogo();
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection(1)
+                .expandDiscountCode()
+                .enterAwd(awdCode)
+                .enterCorporateEmailId(corporateEmail)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        vehicles.DiscountDropDownClick("test");
+        vehicles.verifyAWDCouponcodeInvalidErrorMessage();
+        vehicles.DiscountDropDownAWDClear();
+        Extras extras = vehicles.step2Submit();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+
+        reviewAndBook
+                .firstname("123@$")
+                .lastname("12@")
+                .enterEmail("abc")
+                .enterPhnNo("abc")
+                .step4_AddCreditCardCheckBox()
+                .enterCardNumber(creditcardNumber)
+                .EnterExpiryDateAndYear()
+                .enterSecurityCode("12")
+                .enterAddressInboundSpecific("U S A")
+                .step4Submit()
+                .isCVVInvalidErrorMsgDisplayed();
+
+        reviewAndBook.isLnameInvalidErrorMsgDisplayed();
+        reviewAndBook.isFnameInvalidErrorMsgDisplayed();
+        reviewAndBook.isCreditCardInvalidErrorMsgDisplayed();
+
+        reviewAndBook.isEmailInvalidErrorMsgDisplayed();
+        reviewAndBook.isPhonenumInvalidErrorMsgDisplayed();
+        reviewAndBook.isTncErrorMsgtextDisplayed();
+
+
+
+    }
+
 
 }
