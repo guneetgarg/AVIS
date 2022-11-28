@@ -299,7 +299,7 @@ public class MiscHelper extends AbstractBasePage {
 
 
         homepage.clickAvisLogo();
-*/
+
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
@@ -334,7 +334,7 @@ public class MiscHelper extends AbstractBasePage {
                 .enterAwd(awdCode)  //correct corporate AWD code
                 //Validate for corporate email ID
                 .selectMyCar()
-                .verifyCorpEmailIDBlankErrorMessage()
+                .verifyCorpEmailIDBlankErrorMessage();
         reservationWidget.expandDiscountCode();
 
         homepage.clickAvisLogo();
