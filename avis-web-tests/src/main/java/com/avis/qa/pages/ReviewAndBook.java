@@ -70,6 +70,9 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//input[contains(@id,'securitycode')]")
     private WebElement step4_CVV;
 
+    @FindBy(xpath = "(//input[contains(@id,'securitycode')])[2]")
+    private WebElement step4_CVV2;
+
     @FindBy(xpath = "//*[contains(@for,'creditcard')]")
     private WebElement creditCardCheckBox;
 
@@ -442,7 +445,16 @@ public class ReviewAndBook extends AbstractBasePage {
      * @param secCode to enter CVV code
      */
     public ReviewAndBook enterSecurityCode(String secCode) {
+        waitForVisibilityOfElement(step4_CVV);
+        step4_CVV.click();
         step4_CVV.sendKeys(secCode);
+        return this;
+    }
+
+    public ReviewAndBook enterSecurityCodeProfileUser(String secCode) {
+        waitForVisibilityOfElement(step4_CVV2);
+        step4_CVV2.click();
+        step4_CVV2.sendKeys(secCode);
         return this;
     }
 

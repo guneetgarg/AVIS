@@ -187,8 +187,16 @@ public class Confirmation extends AbstractBasePage {
         return ModifiedTextMsg.getText().contains("Thank you"+" "+firstname+","+" "+"your reservation has been modified and your car is reserved.");
     }
 
+    public boolean isModifiedReservationTextDisplayed() {
+        return ModifiedTextMsg.getText().contains("your reservation has been modified and your car is reserved.");
+    }
+
     public boolean isEmailSentTextDisplayed(String email) {
         return EmailSentMsg.getText().contains("A confirmation email has been sent to"+" "+email);
+    }
+
+    public boolean isEmailSentTextDisplayed() {
+        return EmailSentMsg.getText().contains("A confirmation email has been sent to");
     }
 
     public boolean isAWDCouponMessageDisplayed() {

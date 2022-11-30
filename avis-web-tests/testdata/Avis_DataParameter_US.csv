@@ -77,8 +77,8 @@ Avis_RES_Profile_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mile
 Avis_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US,NAVEEN12345,Avis$12345,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,jj,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,5447144508353949
 Avis_RES_Profile_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,NAVEEN12345,Avis$12345,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US,NAVEEN12345,Avis$12345,SFO,12:30 PM,12:30 PM,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
-
-
+Avis_RES_Profile_Modify_flow_Step1_to_step4_US,NAVEEN12345,Avis$12345,SFO,EWR,U S A
+Avis_RES_Profile_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,NAVEEN12345,Avis$12345,YYZ,11:00 AM,12:00 PM,D674000,w@google.com,123,C$,CAD,USD
 
 ####################################_MISC_######################################
 Avis_Misc_SmallBizz_Enrollment_US,,,Hrishi,K,ABGnetworkSmall,8970987867,Hrishikesh129,calicut university,College Station,Texas,77845 

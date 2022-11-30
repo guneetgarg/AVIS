@@ -134,4 +134,40 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservationWithConfirmationBox();
     }
 
+    @Test(groups = {REGRESSION, SMOKE}, priority = 6, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Profile_Modify_flow_Step1_to_step4_US(String username, String password,String pickUpLocation, String modifiedPickupLocation,String Country) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(TWO_SECONDS);
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation =  reservationHelper.Reservation_Profile_ModifyFlow_PayNow(pickUpLocation,modifiedPickupLocation, Country);
+        confirmation.GetConfirmationNumber();
+        confirmation.isEmailSentTextDisplayed();
+        confirmation.isModifiedReservationTextDisplayed();
+
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 7, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Profile_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US(String username, String password, String pickUpLocation, String pickupTime, String dropTime,String awd, String corporateEmailId,String cvv, String PickUpLocCurrencySymbol, String PickupLocCurrencyCode, String USCurrencyCode) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(TWO_SECONDS);
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_Outbound_CorpCust_InsuranceCover_PayNow(pickUpLocation, pickupTime,dropTime, awd, corporateEmailId, cvv, PickUpLocCurrencySymbol, PickupLocCurrencyCode, USCurrencyCode);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed());
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(pickupTime));
+        assertTrue(confirmation.isDropDateTimeDisplayed(dropTime));
+        assertTrue(confirmation.verifyCurrencyOnConfirmationPage(PickupLocCurrencyCode));
+        assertTrue(confirmation.isAWDMessageTextDisplayed());
+        assertTrue(confirmation.isCarReservedTextDisplayed());
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd));
+        confirmation.cancelReservation();
+    }
+
 }

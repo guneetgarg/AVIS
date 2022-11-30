@@ -1175,6 +1175,50 @@ public class ReservationHelper extends AbstractBasePage {
 
     }
 
+    public Confirmation Reservation_Profile_Outbound_CorpCust_InsuranceCover_PayNow(String pickUpLocation, String pickupTime,String dropTime,String awd, String corporateEmailId,String cvv, String PickUpLocCurrencySymbol,String PickupLocCurrencyCode, String USCurrencyCode) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .pickUpTime(pickupTime)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isCurrencyValueDisplayed());
+        //vehicles.DiscountDropDownClick(awd);
+        assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(vehicles.isPickUpDateTimeDisplayed(pickupTime));
+        assertTrue(vehicles.isDropDateTimeDisplayed(dropTime));
+        vehicles.clickViewCloseVehicleInformation();
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(PickUpLocCurrencySymbol));
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(extras.isPickUpDateTimeDisplayed(pickupTime));
+        assertTrue(extras.isDropDateTimeDisplayed(dropTime));
+        assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed());
+        assertTrue(extras.isAWDIncludedInsuranceCoveragetextDisplayed());
+        assertTrue(extras.verifyCurrencySymbolDisplayed(PickUpLocCurrencySymbol));
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(reviewAndBook.isPickUpDateTimeDisplayed(pickupTime));
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed(dropTime));
+        assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed());
+        reviewAndBook.isFlightInfoDisplayed();
+        reviewAndBook.isPayPalAndAmazonPayDisplayed();
+
+        reviewAndBook
+                .step4_CreditCardCheckBox()
+                .enterSecurityCodeProfileUser(cvv)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+
+    }
+
     public Confirmation Reservation_DigitalWallet_AmazonPay_PayNow(String pickUpLocation, String fname, String lname,
                                                                    String email, String phoneNo, String AmazonEmail, String AmazonPassword) {
 
@@ -1282,6 +1326,66 @@ public class ReservationHelper extends AbstractBasePage {
                 .calendarSelection(2)
                 .selectMyCar();
        // vehicles.isVehicleReselectionTextMessageDisplayed();
+        extras = vehicles.step2Submit();
+        reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook.reviewModifications();
+        ReviewModificationPage reviewmodificationpage = new ReviewModificationPage(driver);
+
+        reviewmodificationpage.isHeaderTextDisplayed();
+        reviewmodificationpage.isChangesInRedTextDisplayed();
+        reviewmodificationpage.isOriginalTextDisplayed();
+        reviewmodificationpage.isModifiedTextDisplayed();
+        reviewmodificationpage.isCancelModificationButtonEnabled();
+        reviewmodificationpage.clickKeepModificationButton();
+
+        confirmation.isConfirmationNumberSame(cNum);
+        return new Confirmation(driver);
+
+
+
+    }
+
+    public Confirmation Reservation_Profile_ModifyFlow_PayNow(String pickUpLocation, String modifiedPickupLocation, String Country) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .expandDiscountCode()
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        Confirmation confirmation = new Confirmation(driver);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        String cNum= confirmation.GetConfirmationNumber();
+        confirmation.ClickAvisLogo();
+
+        Homepage homepage = new Homepage(driver);
+
+        homepage.goToViewModifyCancelPage();
+        ReservationViewModifyCancel reservationViewModifyCancel = new ReservationViewModifyCancel(driver);
+        reservationViewModifyCancel.selectCountry(Country);
+        reservationViewModifyCancel.enterConfirmationNumber(cNum);
+        reservationViewModifyCancel.ClickFindReservationButton();
+
+        ManageReservationPage managereservationpage = new ManageReservationPage(driver);
+        managereservationpage.isCarReservedTextMessageDisplayed();
+        managereservationpage.isConfirmationNumberSame(cNum);
+        managereservationpage.ClickRateAndBenefitInfoModifyButton();
+
+        ModifyReservationTimeAndPlacePage TimeAndPlacePage =new ModifyReservationTimeAndPlacePage(driver);
+        TimeAndPlacePage.isModifyReservationTextMsgDisplayed();
+        TimeAndPlacePage
+                .pickUpLocation(modifiedPickupLocation)
+                .calendarSelection(2)
+                .selectMyCar();
+        // vehicles.isVehicleReselectionTextMessageDisplayed();
         extras = vehicles.step2Submit();
         reviewAndBook = extras.Step3Submit();
 
