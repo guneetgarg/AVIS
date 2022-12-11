@@ -193,6 +193,30 @@ public class ReservationHelper extends AbstractBasePage {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_Profile_TtypeCouponProcessing_PayLater(String pickUpLocation, String couponNo, String couponMsg) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        vehicles.savingMessageValidation(couponNo);
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
     public Confirmation Reservation_Inbound_PayLater(String pickUpLocation, String Country, String firstName, String lastName,
                                                      String email, String phoneNumber) {
         reservationWidget
@@ -216,6 +240,25 @@ public class ReservationHelper extends AbstractBasePage {
 
         return new Confirmation(driver);
     }
+
+    public Confirmation Reservation_Profile_Domestic_PayLater(String pickUpLocation) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
 
     public Confirmation Reservation_Inbound_PayNow(String pickUpLocation, String country, String firstName, String lastName,
                                                    String email, String phoneNumber, String ccNumber, String cvv) {
@@ -694,6 +737,37 @@ public class ReservationHelper extends AbstractBasePage {
         return confirmation;
     }
 
+    public Confirmation Reservation_Profile_MTypeKeyDropLocation_PayLater(String pickUpLocation, String dropOffTime, String couponNo){
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .dropOffTime(dropOffTime)
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                //.enterAwd(awd)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        vehicles.keyDropMessageValidation();
+        Extras extras = vehicles.Step2_DiscountAppliedSubmit();
+        assertTrue(extras.isDiscountCodeSavingtextDisplayed());
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed());
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .checkTermsAndConditions()
+                .step4Submit();
+
+
+        Confirmation confirmation = new Confirmation(driver);
+        //  assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+       // assertTrue(confirmation.isConfirmationNumberDisplayed());
+
+
+        return confirmation;
+    }
+
     public Confirmation Reservation_AnonymousDomesticAWD_Paylater(String pickUpLocation, String awd, String firstName, String lastName, String email, String phoneNo) {
 
         reservationWidget
@@ -762,6 +836,33 @@ public class ReservationHelper extends AbstractBasePage {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_Profile_OneWay_USAA_PayLater(String pickUpLocation, String dropOffLocation, String awd, String membershipNo) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .dropOffLocation(dropOffLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterMembershipNo(membershipNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        //  assertTrue(vehicles.isUSAACoupontextDisplayed(), "USAA coupon text is not displayed");
+        //Extras extras = vehicles.Step2_ClickDiscountAppliedSubmit();
+        Extras extras = vehicles.step2Submit();
+        extras.verifyCurbsideNotDisplayed();
+
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
     public Confirmation Reservation_OutboundAndStrikeThroughCoupon_Paylater(String pickUpLocation,String residencyLocation, String awd, String fname, String lname,
                                                                             String email, String phoneNo, String flightNumber) {
 
@@ -786,6 +887,33 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
+                .SelectflightInfo(3)
+                .enterflightNumber(flightNumber)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_Profile_OutboundAndStrikeThroughCoupon_Paylater(String pickUpLocation,String residencyLocation, String awd, String flightNumber) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .selectCountry(residencyLocation)
+                .calendarSelection(2)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Assert.assertTrue(vehicles.isStrikreThroughPriceIndicatorDisplayed(), "Strikre Through Price Indicator not Displayed");
+        Assert.assertTrue(vehicles.isSavingtextDisplayed(), "Extras and protection text not Displayed");
+        Extras extras = vehicles.step2Submit();
+        //  assertTrue(extras.verifyLossDamageWaiverIsSelected(),"LDW is not selected");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
                 .SelectflightInfo(3)
                 .enterflightNumber(flightNumber)
                 .checkTermsAndConditions()
@@ -822,6 +950,30 @@ public class ReservationHelper extends AbstractBasePage {
         return new Confirmation(driver);
 
     }
+
+    public Confirmation Reservation_Profile_InboundAndMultiCurrency_Paylater(String pickUpLocation, String flightNumber,String residentCurrencySymbol, String currencyValue) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .SelectflightInfo(3)
+                .enterflightNumber(flightNumber)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+
+    }
+
 
     public Confirmation Reservation_SplitBillItemized_CorpCust_PayLater(String pickUpLoction, String AWD, String corporateEmailId, String fname, String lname,
                                                                String mail, String pNo, String primaryCardNo, String secCardNo) {
@@ -904,6 +1056,36 @@ public class ReservationHelper extends AbstractBasePage {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_Profile_G_typeCoupon_SMSCheckbox_IATA_PayLater(String pickUpLocation, String couponNo,String flightName, String flightNumber, String IATANumber, String couponMsg) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        // vehicles.DiscountDropDownClick();
+        // .isCouponvalueDisplayed(couponNo);
+        Extras extras = vehicles.step2Submit();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .smsOptInCheckbox()
+                .flightInfo(flightName)
+                .enterflightNumber(flightNumber)
+                .iataNumber(IATANumber)
+
+                .checkTermsAndConditions()
+                .step4Submit();
+
+
+        return new Confirmation(driver);
+    }
+
+
     public Confirmation Reservation_UTypeCouponProcessing_tierbundle_PayLater(String pickUpLocation,String pickupTime, String dropOffTime, String couponNo, String fname,
 
                                                               String lname, String email, String phoneNo, String couponText) {
@@ -930,6 +1112,32 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_Profile_UTypeCouponProcessing_tierbundle_PayLater(String pickUpLocation,String pickupTime, String dropOffTime, String couponNo, String couponText) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(1)
+                .pickUpTime(pickupTime)
+                .dropOffTime(dropOffTime)
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        // vehicles.verifyCouponSavingtextDisplayed(couponNo);
+        Extras extras = vehicles.Step2_DiscountAppliedSubmit();
+        ReviewAndBook reviewAndBook = extras
+                .selectTierBundle()
+                .Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -994,6 +1202,61 @@ public class ReservationHelper extends AbstractBasePage {
 
         return new Confirmation(driver);
     }
+
+    public Confirmation Reservation_Profile_Costco_DigitalWallet_Paypal_PayLater(String pickUpLocation, String awd, String membershipNo, String paypalEmail, String paypalPassword) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterMembershipNo(membershipNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        vehicles.savingMessageValidation("Your Costco savings are reflected below.");
+        //Extras extras = vehicles.Step2_ClickDiscountAppliedSubmit();
+        Extras extras = vehicles.step2Submit();
+
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        PayPalPage paypalpage = new PayPalPage(driver);
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .step4_AddCreditCardCheckBox()
+                .clickPaypalButton();
+        //Get handles of the windows
+        String mainWindowHandle = driver.getWindowHandle();
+        System.out.println("windowhandle :"+mainWindowHandle);
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        System.out.println("windowhandle :"+allWindowHandles);
+        Iterator<String> iterator = allWindowHandles.iterator();
+
+        // Here we will check if child window is present and then switch to child window
+        while (iterator.hasNext()) {
+            String ChildWindow = iterator.next();
+            if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+
+                paypalpage
+                        .enterEmail(paypalEmail)
+                        .ClickNext()
+                        .enterPassword(paypalPassword)
+                        .ClickLogin()
+                        .ClickAgreeAndContinueButton();
+            }
+        }
+
+        driver.switchTo().window(mainWindowHandle);
+
+        assertTrue(reviewAndBook.isPaypalImageDisplayed(), "Paypal Image is not displayed");
+        reviewAndBook
+                .checkTermsAndConditions()
+                .ReserveButton();
+
+        return new Confirmation(driver);
+    }
+
 
     public Confirmation Reservation_FlightInfo_DigitalWallet_Paypal_PayNow(String pickUpLocation, String fname, String lname,
                                                                          String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
@@ -1111,6 +1374,52 @@ public class ReservationHelper extends AbstractBasePage {
                 .enterSecurityCode(cvv)
                 .enterAddressInboundSpecific(residencyLocation);
                 assertTrue(reviewAndBook.isNativeCurrencyMsgtextDisplayed(), "Native currency pay message not displayed");
+        reviewAndBook
+                .iataNumber(IATA)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+
+    }
+
+    public Confirmation Reservation_Profile_InboundAndMultiCurrency_IATA_PayNow(String pickUpLocation, String PickupTime, String DropTime,String awd, String corporateEmailId, String IATA,String cvv, String residentCurrencySymbol, String USCurrencyValue) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(3)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
+        assertTrue(vehicles.isTipForInternationaltravellerTextDisplayed(), "Tip for international Traveller is not displayed");
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(vehicles.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(vehicles.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        vehicles.clickViewCloseVehicleInformation();
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(extras.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(extras.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(reviewAndBook.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
+        reviewAndBook.isFlightInfoDisplayed();
+        reviewAndBook.isPayPalAndAmazonPayDisplayed();
+
+        reviewAndBook
+
+                .step4_AddCreditCardCheckBox()
+                .enterSecurityCode(cvv);
+        assertTrue(reviewAndBook.isNativeCurrencyMsgtextDisplayed(), "Native currency pay message not displayed");
         reviewAndBook
                 .iataNumber(IATA)
                 .checkTermsAndConditions()

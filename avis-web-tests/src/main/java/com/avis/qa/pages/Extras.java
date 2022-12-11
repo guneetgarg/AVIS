@@ -1,6 +1,7 @@
 package com.avis.qa.pages;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.utilities.CommonUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -57,8 +58,16 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
     private WebElement ProtectionAndCoveragesTab;
 
+    @FindBy(xpath = "//span[text()='Protections & Coverages']")
+    private WebElement Budget_ProtectionAndCoverages;
+
     @FindBy(xpath = "//a[contains(text(),'Equipment')]")
     private WebElement EquipmentTab;
+
+    @FindBy(xpath = "//p[contains(text(),'Equipment & Services')]")
+    private WebElement Budget_EquipmentAndServices;
+
+
 
     @FindBy(xpath = "//input[@id='CDWchk']")
     private WebElement LDWCheckbox;
@@ -124,8 +133,17 @@ public class Extras extends AbstractBasePage {
     }
 
     public boolean isExtrasTabDisplayed() {
-         if(ProtectionAndCoveragesTab.isDisplayed() && Step3ServicesTab.isDisplayed() && EquipmentTab.isDisplayed() && Step3DiscountPackages.isDisplayed() );
-         return true;
+        if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
+            if (ProtectionAndCoveragesTab.isDisplayed() && Step3ServicesTab.isDisplayed() && EquipmentTab.isDisplayed() && Step3DiscountPackages.isDisplayed()) ;
+            return true;
+        }
+        else if(Configuration.BRAND.equalsIgnoreCase("Budget"))
+        {
+            System.out.println("test");
+            if (Budget_ProtectionAndCoverages.isDisplayed() && Budget_EquipmentAndServices.isDisplayed()) ;
+            return true;
+        }
+        return false;
     }
 
     public void verifyCurbsideNotDisplayed(){

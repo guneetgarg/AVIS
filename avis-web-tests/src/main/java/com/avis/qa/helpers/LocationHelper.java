@@ -36,7 +36,7 @@ public class LocationHelper extends AbstractBasePage {
                 .clickOnMakeAReservation();
 
         reservationWidget
-                .calendarSelection(2)
+                .calendarSelection(1)
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);

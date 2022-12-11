@@ -1,6 +1,7 @@
 package com.avis.qa.pages;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -156,6 +157,9 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//div[@data-funding-source='paypal']")
     private WebElement PaypalButton;
+
+    @FindBy(xpath = "//label[@for='payPal']")
+    private WebElement Budget_PaypalRadioButton;
 
     @FindBy(xpath = "//img[@id='OffAmazonPaymentsWidgets0']")
     private WebElement AmazonpayButton;
@@ -567,22 +571,63 @@ public class ReviewAndBook extends AbstractBasePage {
         return this;
     }
 
-    public PayPalPage clickPaypalButton() {
-        //threadSleep(TWO_SECONDS);
-       // driver.switchTo().frame(0);
+    public PayPalPage handlePaypal()
+    {
         waitForVisibilityOfElement(iFramePayPal);
         driver.switchTo().frame(0);
         System.out.println("IFramePaypal switched");
         threadSleep(TWO_SECONDS);
-       // helper.scrollToElement(PaypalButton);
-       // threadSleep(ONE_SECOND);
-        //helper.scrollBy(100);
         helper.waitUntilClickabilityOfElement(PaypalButton);
         clickUsingJS(PaypalButton);
-        //PaypalButton.click();
         driver.switchTo().defaultContent();
         return new PayPalPage(driver);
     }
+
+    public PayPalPage clickPaypalButton() {
+        System.out.println("test");
+        if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
+            waitForVisibilityOfElement(iFramePayPal);
+            driver.switchTo().frame(0);
+            System.out.println("IFramePaypal switched");
+            threadSleep(TWO_SECONDS);
+            helper.waitUntilClickabilityOfElement(PaypalButton);
+            clickUsingJS(PaypalButton);
+            driver.switchTo().defaultContent();
+        }
+        else if(Configuration.BRAND.equalsIgnoreCase("Budget"))
+        {
+            System.out.println("budget");
+            waitForVisibilityOfElement(Budget_PaypalRadioButton);
+            Budget_PaypalRadioButton.click();
+            waitForVisibilityOfElement(iFramePayPal);
+            driver.switchTo().frame(0);
+            System.out.println("IFramePaypal switched budget");
+            threadSleep(TWO_SECONDS);
+            helper.waitUntilClickabilityOfElement(PaypalButton);
+            clickUsingJS(PaypalButton);
+            driver.switchTo().defaultContent();
+        }
+        System.out.println("test2");
+            return new PayPalPage(driver);
+        }
+
+
+//    public PayPalPage clickPaypalButton() {
+//        if(Configuration.BRAND=="Avis")
+//        {
+//            handlePaypal();
+//        }
+//
+//        else if(Configuration.BRAND=="Budget")
+//        {
+//            waitForVisibilityOfElement(Budget_PaypalRadioButton);
+//            Budget_PaypalRadioButton.click();
+//            handlePaypal();
+//        }
+//
+//        return new PayPalPage(driver);
+//    }
+
 
     public AmazonPayPage clickAmazonPayButton() {
         zip.click();
@@ -636,6 +681,7 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public boolean isPaypalImageDisplayed() {
+        waitForVisibilityOfElement(PayPalImage);
         return PayPalImage.isDisplayed();
     }
 

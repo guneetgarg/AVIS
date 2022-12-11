@@ -16,7 +16,7 @@ Avis_Reservation_UTypeKeyDropLocation_PayLater_US,LAS,YYZ,2:00 AM,UUZZ003,Abhish
 Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_US,MSO,3:00 AM,MUYY001,Abhishek,J,test,9600685486
 Avis_Reservation_AnonymousDomesticAWD_Paylater_US,EWR,A433301,Abhishek,J,test,9600685486
 Avis_RES_Costco_DigitalWallet_PayPal_PayLater_US,LAS,A108301,111789732130,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321
-Avis_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US,SFO,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
+Budget_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US,SFO,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
 Avis_Reservation_Recognised_Paylater_US,LAS,8TL47W,G,LAS
 Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_US,LAS,Dhanapriya,K,test,9600685486,123,YGK,TUZZ004
 Avis_Reservation_FleetVerification_Price_US,EWR,Tester,M,test,9838234567,345836415546724,123
@@ -46,7 +46,7 @@ Avis_Reservation_SnowChain_PayLater_US,MXP,Hrishi,K,ABGSnowChain,8622443583
 Avis_Reservation_LastMinuteBundle_PayLater_US,LAS,Dhanapriya,K,roytesting,9600685486
 Avis_Reservation_OneClick_Step3_US,/en/reservation#/oneclick?PICKUP_YEAR=2019&PICKUP_MONTH=7&PICKUP_DAY=23&PICKUP_HOUR=9&PICKUP_MINUTE=0&PICKUP_AM_PM=AM&RETURN_YEAR=2019&RETURN_MONTH=7&RETURN_DAY=30&RETURN_HOUR=9&RETURN_MINUTE=0&RETURN_AM_PM=AM&PICKUP_LOCATION_CODE=SFO&RETURN_LOCATION_CODE=SFO&RENTAL_ONEWAY=false&RATE_CODE=76&COUNTRY_OF_RESIDENCE_CODE=US&CAR_GROUP_CODE=W&STEP_CODE=4
 Avis_Reservation_FTPPayLater_Authenticated_US,K0832G,Priyajeevi2!,EWR,American Advantage,1K56E60
-Avis_Reservation_EMEA90Days_ErrorMessage_US,LDY,5
+Budget_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LHR,5
 Avis_Reservation_EMEA330Days_ErrorMessage_US,CPT,14
 Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,8622196015
 Avis_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
@@ -105,7 +105,7 @@ Avis_Misc_OneClick_VanityURL_US,/localmarket,Avis.com Link Builder
 Avis_Misc_OneClick_VanityURL_US,/terms,Avis Preferred Terms
 Avis_Misc_OneClick_VanityURL_US,/usaa,USAA
 BRG,/en/products-and-services/services/best-rate-guarantee/best-rate-claim-form
-Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,22
+Budget_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,22
 Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LDY,5
 Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
 

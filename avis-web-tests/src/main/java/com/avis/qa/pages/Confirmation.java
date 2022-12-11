@@ -294,6 +294,7 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean isCouponAppliedMessageDisplayed(String couponApplied) {
+        waitForVisibilityOfElement(ConfirmationCouponValidation);
         String actualText = ConfirmationCouponValidation.getText();
         return actualText.contains("Coupon savings applied") || actualText.contains(couponApplied);
     }
@@ -359,6 +360,7 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public Confirmation keyDropMessageValidation() {
+        waitForVisibilityOfElement(keyDropInfo);
         String actualMessage = keyDropInfo.getText();
         assertEquals(actualMessage, KEY_DROP_LOCATION_MESSAGE);
         return this;

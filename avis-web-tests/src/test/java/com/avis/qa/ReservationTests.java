@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.util.Map;
 
 import static com.avis.qa.constants.AvisConstants.*;
-import static com.avis.qa.constants.TextComparison.DUMMY_CC_ERROR_MESSAGE;
+import static com.avis.qa.constants.TextComparison.*;
 import static org.testng.Assert.*;
 
 /**
@@ -107,6 +107,18 @@ public class ReservationTests extends TestBase {
         log.info("Test case execution ended :Avis_Reservation_EMEA90Days_ErrorMessage_US");
     }
 
+   // @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US(String pickUpLocation, String months) {
+        launchUrl();
+        ReservationWidget reservationWidget = new ReservationWidget(getDriver());
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .aboveThirtyDaysCalendarSelection(months)
+                .selectMyCar();
+        assertTrue(reservationWidget.isErrorMessageDisplayed(months));
+    }
+
     @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 6, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_EMEA330Days_ErrorMessage_US(String pickUpLocation, String months) {
         launchUrl();
@@ -118,6 +130,10 @@ public class ReservationTests extends TestBase {
                 .selectMyCar();
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
+
+
+
+
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_ErrorMessage_PayNow_US(String pickUpLocation, String firstName, String lastName, String email,
@@ -411,9 +427,9 @@ public class ReservationTests extends TestBase {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_MTypeKeyDropLocation_PayLater(pickUpLocation, dropOffTime, couponNo, fname, lname, email, phoneNo);
-        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
-        confirmation.keyDropMessageValidation();
+        assertTrue(confirmation.isConfirmationNumberDisplayed(),CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.closeGetFreeCouponPopup().isCouponAppliedMessageDisplayed(couponNo),COUPON_NOT_APPLIED_MESSAGE);
+        confirmation.closeGetFreeCouponPopup().keyDropMessageValidation();
         confirmation.closeGetFreeCouponPopup().cancelReservation();
         // confirmation.cancelReservation();
     }
@@ -537,6 +553,24 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isFlightInfoDisplayed(flightName), "Flight Info is not displayed");
         confirmation.cancelReservationWithConfirmationBox();
     }
+
+   // @Test(groups = {REGRESSION, SMOKE}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US(String pickUpLocation, String fname, String lname,
+                                                                   String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_FlightInfo_DigitalWallet_Paypal_PayNow(pickUpLocation, fname, lname, email, phoneNo, paypalEmail, paypalPassword, flightName, flightNumber);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.isCardTypePaypalDisplayed(), "Card Type Paypal is not displayed");
+        //confirmation.cancelReservation();
+        assertTrue(confirmation.isFlightInfoDisplayed(flightName), "Flight Info is not displayed");
+        confirmation.cancelReservationWithConfirmationBox();
+    }
+
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US(String pickUpLocation, String residencyLocation,String awd, String corporateEmailId, String firstName, String lastName,

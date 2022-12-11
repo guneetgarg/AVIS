@@ -1,6 +1,7 @@
 package com.avis.qa.pages;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
@@ -162,6 +163,7 @@ public class Vehicles extends AbstractBasePage {
     public Vehicles(WebDriver driver) {
         super(driver);
     }
+
     int sizeAllVehicle;
 
     public Extras step2Submit() {
