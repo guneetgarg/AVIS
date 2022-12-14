@@ -3,6 +3,7 @@ package com.avis.qa.helpers;
 import com.avis.qa.components.LoginWidget;
 import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.pages.*;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,8 @@ import lombok.extern.log4j.Log4j2;
 import java.util.Iterator;
 import java.util.Set;
 
+import static com.avis.qa.constants.AvisConstants.*;
+import static com.avis.qa.constants.TextComparison.*;
 import static com.avis.qa.utilities.CommonUtils.ONE_SECOND;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 import static org.testng.Assert.assertTrue;
@@ -168,16 +171,22 @@ public class ReservationHelper extends AbstractBasePage {
                                                               String lname, String email, String phoneNo, String couponMsg) {
 
         reservationWidget
+                .closeAdPopup()
                 .pickUpLocation(pickUpLocation)
-                .calendarSelection()
+                .calendarSelection(2)
                 .expandDiscountCode()
                 .enterCouponCode(couponNo)
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
-        vehicles.savingMessageValidation(couponNo);
-        Extras extras = vehicles.step2Submit();
+       // vehicles.savingMessageValidation(couponNo);
+            Extras  extras = vehicles.step2Submit2();
+
         assertTrue(extras.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
+        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
+            extras.isUpliftTextDisplayed();
+        }
+
         ReviewAndBook reviewAndBook = extras.Step3Submit();
         assertTrue(reviewAndBook.isDiscountCodeSavingtextDisplayed(),"Discount Code Saving text is not displayed");
 
@@ -186,7 +195,17 @@ public class ReservationHelper extends AbstractBasePage {
                 .firstname(fname)
                 .lastname(lname)
                 .email(email)
-                .phone(phoneNo)
+                .phone(phoneNo);
+        if(Configuration.BRAND.equalsIgnoreCase("Budget"))
+        {
+            reviewAndBook
+                    .step4_CreditCardCheckBox()
+                    .enterCardNumber(CreditCardNumber)
+                    .EnterExpiryDateAndYear()
+                    .enterSecurityCode(CVV)
+                    .enterAddressInboundSpecific(ResidentLoc);
+        }
+        reviewAndBook
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -925,24 +944,27 @@ public class ReservationHelper extends AbstractBasePage {
     public Confirmation Reservation_InboundAndMultiCurrency_Paylater(String pickUpLocation,String residencyLocation, String firstName, String lastName,
                                                                       String email, String phoneNumber, String flightNumber,String residentCurrencySymbol, String currencyValue) {
         reservationWidget
+                .closeAdPopup()
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
                 .selectCountry(residencyLocation)
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
-        assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
-        assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        vehicles.closeAdPopup();
+        assertTrue(vehicles.isCurrencyValueDisplayed(), CURRENCY_VALUE_NOT_DISPLAYED_MESSAGE);
+        assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol), CURRENCY_VALUE_NOT_SAME_RESIDENCE_COUNTRY_MESSAGE);
         Extras extras = vehicles.step2Submit();
-        assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
+        assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), CURRENCY_VALUE_NOT_SAME_RESIDENCE_COUNTRY_MESSAGE);
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
         reviewAndBook
                 .firstname(firstName)
                 .lastname(lastName)
                 .email(email)
-                .phone(phoneNumber)
-                .SelectflightInfo(3)
+                .phone(phoneNumber);
+        reviewAndBook
+                .SelectflightInfo(FLIGHT_NAME)
                 .enterflightNumber(flightNumber)
                 .checkTermsAndConditions()
                 .step4Submit();
@@ -1148,6 +1170,7 @@ public class ReservationHelper extends AbstractBasePage {
                                                          String email, String phoneNo, String paypalEmail, String paypalPassword) {
 
         reservationWidget
+                .closeAdPopup()
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
                 .expandDiscountCode()

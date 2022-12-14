@@ -48,7 +48,7 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "(//p[contains(text(),'Coupon savings applied')])[2]|//span[contains(@class,'coupon-value')]")
     private WebElement ConfirmationCouponValidation;
 
-    @FindBy(xpath = "(//p[contains(text(),'AWD savings applied')])[2]")
+    @FindBy(xpath = "(//p[contains(text(),'AWD savings applied')])[2] | (//p[contains(text(),'BCD savings applied')])[2]")
     private WebElement ConfirmationAWDCouponValidation;
 
     @FindBy(xpath = "//button[@aria-label='Close']")
@@ -202,7 +202,6 @@ public class Confirmation extends AbstractBasePage {
     public boolean isAWDCouponMessageDisplayed() {
         helper.scrollToElement(ConfirmationAWDCouponValidation);
         threadSleep(TWO_SECONDS);
-        System.out.println("AWD coupon applied verification on Confirmation page");
         return ConfirmationAWDCouponValidation.isDisplayed();
     }
 
@@ -348,6 +347,7 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean verifyRentalOptionsText() {
+        waitForVisibilityOfElement(rentalOptionsRSN);
         return rentalOptionsRSN.getText().contains("Cover Roadside Issues (RSN)");
     }
 

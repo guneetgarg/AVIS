@@ -115,7 +115,8 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//span[text()='Enter your Last Name'])[2]")
     private WebElement LastnameBlankErrorMsg;
 
-
+    @FindBy(xpath = "(//button[@type='reset'])[1]")
+    private WebElement AdPopup;
 
 
     @FindBy(xpath = "(//div[contains(@class,'row res-inputFldPrt res-inputFldBack')]/div[4]/div[4]/div[3]/div)|(//div[contains(@class,'res-wizardFld form-controlD')])")
@@ -541,6 +542,13 @@ public class ReservationWidget extends AbstractBasePage {
         returnDate.sendKeys(sdf.format(date));
         return this;
     }
+
+    public ReservationWidget closeAdPopup()
+    {
+        helper.clickIfElementIsDisplayed(AdPopup);
+        return this;
+    }
+
 
     @Override
     public void isOnPage() {

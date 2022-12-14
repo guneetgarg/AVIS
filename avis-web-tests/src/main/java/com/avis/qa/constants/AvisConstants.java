@@ -10,7 +10,11 @@ public class AvisConstants {
     public static final String TEST_DATA = "testData";
     public static final String HOMEPAGE = "Homepage";
     public static final String RESERVATION = "Reservation";
-
+    public static final String CreditCardNumber = "343710684134463";
+    public static final String CARDEXPIRATIONDATE = "0630"; //mmyy
+    public static final String CVV = "123";
+    public static final String ResidentLoc = "U S A";
+    public static final int FLIGHT_NAME = 3; //dropdown index value
 
     public static String getAvisUrl(String path) {
         return Configuration.URL.replace("/en/home", path);

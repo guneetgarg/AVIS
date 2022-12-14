@@ -29,6 +29,9 @@ public class Extras extends AbstractBasePage {
     private WebElement TieredBundle;
 
     @FindBy(xpath = "//input[@id='Protection & Safety PackagepaiChk']")
+    private WebElement ProtectionSafetyTireBundle_old;
+
+    @FindBy(xpath = "//label[@for='Protection & Safety PackagepaiChk']")
     private WebElement ProtectionSafetyTireBundle;
 
 
@@ -66,6 +69,11 @@ public class Extras extends AbstractBasePage {
 
     @FindBy(xpath = "//p[contains(text(),'Equipment & Services')]")
     private WebElement Budget_EquipmentAndServices;
+
+    @FindBy(xpath = "(//span[@class='c-icon uplift-logo'])[2]")
+    private WebElement Budget_UpliftLogo;
+
+
 
 
 
@@ -132,6 +140,10 @@ public class Extras extends AbstractBasePage {
         return ExtrasIncludedText.isDisplayed();
     }
 
+    public boolean isUpliftTextDisplayed() {
+        return Budget_UpliftLogo.isDisplayed();
+    }
+
     public boolean isExtrasTabDisplayed() {
         if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
             if (ProtectionAndCoveragesTab.isDisplayed() && Step3ServicesTab.isDisplayed() && EquipmentTab.isDisplayed() && Step3DiscountPackages.isDisplayed()) ;
@@ -147,7 +159,15 @@ public class Extras extends AbstractBasePage {
     }
 
     public void verifyCurbsideNotDisplayed(){
-        waitForVisibilityOfElement(Step3ServicesTab).click();
+        if(Configuration.BRAND.equalsIgnoreCase("Avis"))
+        {
+            waitForVisibilityOfElement(Step3ServicesTab).click();
+        }
+
+        else if(Configuration.BRAND.equalsIgnoreCase("Budget"))
+        {
+            waitForVisibilityOfElement(Budget_EquipmentAndServices);
+        }
         //waitForVisibilityOfElement(CurbsideDropoffText);
         //Assert.assertTrue(!CurbsideDropoffText.isDisplayed());
         try {

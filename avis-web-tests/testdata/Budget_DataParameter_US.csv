@@ -1,6 +1,6 @@
 ####################################_RESERVATION_##################################
 Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,1234,USD
-Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,C$,USD
+Budget_RES_Inbound_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,C$,USD
 Avis_RES_DigitalWallet_AmazonPay_Paynow_US,EWR,Abhishek,K,test,8980765645,abhishek.jn@statusneo.com,Aj527@321
 Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,YYZ,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,CAD,USD
 Avis_RES_Modify_flow_Step1_to_step4_US,SFO,Abhishek,J,test,9600685486,343710684134463,123,U S A,EWR
@@ -15,7 +15,7 @@ Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US,LAS
 Avis_Reservation_UTypeKeyDropLocation_PayLater_US,LAS,YYZ,2:00 AM,UUZZ003,Abhishek,J,test,9600685486
 Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_US,MSO,3:00 AM,MUYY001,Abhishek,J,test,9600685486
 Avis_Reservation_AnonymousDomesticAWD_Paylater_US,EWR,A433301,Abhishek,J,test,9600685486
-Avis_RES_Costco_DigitalWallet_PayPal_PayLater_US,LAS,A108301,111789732130,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321
+Budget_RES_Costco_DigitalWallet_PayPal_PayLater_US,LAS,W852801,111789732130,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321
 Budget_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US,SFO,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
 Avis_Reservation_Recognised_Paylater_US,LAS,8TL47W,G,LAS
 Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_US,LAS,Dhanapriya,K,test,9600685486,123,YGK,TUZZ004
@@ -32,13 +32,13 @@ Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Inbound_PayNow_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645,343710684134463,123
 Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_Reservation_USAA_PayLater_US,XB4,A177201,14518727,Tester,M,test,8980765645
-Avis_RES_OneWay_USAA_PayLater_US,EWR,JFK,A177201,38298026,Abhishek,J,test,9600685486
+Budget_RES_OneWay_USAA_PayLater_US,EWR,JFK,Y126501,38298026,Abhishek,J,test,9600685486
 Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
 Avis_Reservation_OneWay_PayLater_US,LAS,JFK,Ishita,Garg,test,8658066321
 Avis_Reservation_MtypeCouponProcessing_PayLater_US,LAS,MUZZ012,Ishita,Garg,test,8658066321
 Avis_Reservation_UtypeCouponProcessing_PayLater_US,LAS,UUZZ003,Ishita,Garg,test,8658066321
 Avis_Reservation_GtypeCouponProcessing_PayLater_US,YYZ,GUZZ001,Ishita,Garg,test,8658066321
-Avis_Reservation_TtypeCoupon_PayLater_US,LAS,TUZZ006,Abhishek,J,test,8658066321,TUZZ006 - Reward Day PLUS 500 Bon Mls/Paperless Coupon - 1 Coupons
+Budget_RES_T_typeCoupon_CCOLocation_PayLater_US,MAD,TUZZ008,Abhishek,J,test,8658066321,TUZZ008 - Reward Day & 500 Bon Mls/Paperless Cpn - 1 Days
 Avis_Reservation_SplitBillItemized_PayLater_US,SAN,A0097099,Hrishi,K,ABGsplitbill098,8087444804,4916012228357695,370170242163692
 Avis_Reservation_OnAirport_PayLater_US,A4E966,Password123,BRL,Ishita,Garg,test,8658066321
 Avis_Reservation_GEBUser_PayLater_US,LAS,EV300W,GEB,Corpo,test,8658066321
@@ -46,7 +46,7 @@ Avis_Reservation_SnowChain_PayLater_US,MXP,Hrishi,K,ABGSnowChain,8622443583
 Avis_Reservation_LastMinuteBundle_PayLater_US,LAS,Dhanapriya,K,roytesting,9600685486
 Avis_Reservation_OneClick_Step3_US,/en/reservation#/oneclick?PICKUP_YEAR=2019&PICKUP_MONTH=7&PICKUP_DAY=23&PICKUP_HOUR=9&PICKUP_MINUTE=0&PICKUP_AM_PM=AM&RETURN_YEAR=2019&RETURN_MONTH=7&RETURN_DAY=30&RETURN_HOUR=9&RETURN_MINUTE=0&RETURN_AM_PM=AM&PICKUP_LOCATION_CODE=SFO&RETURN_LOCATION_CODE=SFO&RENTAL_ONEWAY=false&RATE_CODE=76&COUNTRY_OF_RESIDENCE_CODE=US&CAR_GROUP_CODE=W&STEP_CODE=4
 Avis_Reservation_FTPPayLater_Authenticated_US,K0832G,Priyajeevi2!,EWR,American Advantage,1K56E60
-Budget_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LHR,5
+Budget_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LHR,3
 Avis_Reservation_EMEA330Days_ErrorMessage_US,CPT,14
 Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,8622196015
 Avis_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463

@@ -22,5 +22,9 @@ public class TextComparison {
 
 
     public static final String CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE = "Confirmation number is not displayed";
+    public static final String CURRENCY_VALUE_NOT_DISPLAYED_MESSAGE = "Currency value is not displayed";
+    public static final String CURRENCY_VALUE_NOT_SAME_RESIDENCE_COUNTRY_MESSAGE = "Currency  value is not same as residence country";
+
+
 
 }

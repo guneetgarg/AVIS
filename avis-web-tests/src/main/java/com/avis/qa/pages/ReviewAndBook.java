@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
+import static com.avis.qa.constants.AvisConstants.CARDEXPIRATIONDATE;
 import static com.avis.qa.utilities.CommonUtils.*;
 import static org.testng.Assert.assertEquals;
 
@@ -76,6 +77,10 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//*[contains(@for,'creditcard')]")
     private WebElement creditCardCheckBox;
+
+    @FindBy(xpath = "//label[@for='ccCard']")
+    private WebElement Budget_CreditCardRadioButton;
+
 
     @FindBy(xpath = "//*[contains(@id,'address1')]")
     private WebElement address1;
@@ -441,7 +446,7 @@ public class ReviewAndBook extends AbstractBasePage {
 
     public ReviewAndBook EnterExpiryDateAndYear() {
         expiryDate.click();
-        expiryDate.sendKeys("0627");
+        expiryDate.sendKeys(CARDEXPIRATIONDATE);
         return this;
     }
 
@@ -465,6 +470,11 @@ public class ReviewAndBook extends AbstractBasePage {
     public ReviewAndBook step4_CreditCardCheckBox() {
         if (helper.isElementDisplayed(creditCardCheckBox))
             creditCardCheckBox.click();
+        if(Configuration.BRAND.equalsIgnoreCase("Budget"))
+        {
+            helper.waitUntilClickabilityOfElement(Budget_CreditCardRadioButton);
+            helper.clickIfElementIsDisplayed(Budget_CreditCardRadioButton);
+        }
         return this;
     }
 
@@ -584,30 +594,16 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public PayPalPage clickPaypalButton() {
-        System.out.println("test");
+
         if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
-            waitForVisibilityOfElement(iFramePayPal);
-            driver.switchTo().frame(0);
-            System.out.println("IFramePaypal switched");
-            threadSleep(TWO_SECONDS);
-            helper.waitUntilClickabilityOfElement(PaypalButton);
-            clickUsingJS(PaypalButton);
-            driver.switchTo().defaultContent();
+            handlePaypal();
         }
         else if(Configuration.BRAND.equalsIgnoreCase("Budget"))
         {
-            System.out.println("budget");
-            waitForVisibilityOfElement(Budget_PaypalRadioButton);
-            Budget_PaypalRadioButton.click();
-            waitForVisibilityOfElement(iFramePayPal);
-            driver.switchTo().frame(0);
-            System.out.println("IFramePaypal switched budget");
-            threadSleep(TWO_SECONDS);
-            helper.waitUntilClickabilityOfElement(PaypalButton);
-            clickUsingJS(PaypalButton);
-            driver.switchTo().defaultContent();
+            helper.waitUntilClickabilityOfElement(Budget_PaypalRadioButton);
+            clickUsingJS(Budget_PaypalRadioButton);
+            handlePaypal();
         }
-        System.out.println("test2");
             return new PayPalPage(driver);
         }
 

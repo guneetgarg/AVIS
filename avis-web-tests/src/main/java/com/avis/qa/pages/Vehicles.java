@@ -1,5 +1,6 @@
 package com.avis.qa.pages;
 
+import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.core.Configuration;
 import lombok.extern.log4j.Log4j2;
@@ -31,9 +32,15 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "(//a[@id='res-vehicles-pay-now'])[1]")
     private WebElement step2PayNowSubmitButton;
 
-    @FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[1] | (//a[contains(text(),'Pay Later')])[2]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]|((//p[contains(@class,'totalPay')]/../a)[1])")
+   // @FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[1] | (//a[contains(text(),'Pay Later')])[2]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
+  //  private WebElement step2SubmitButton;
+    //((//p[contains(@class,'totalPay')]/../a)[1]) removed from above xpath
+
+    @FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[4] | (//a[contains(text(),'Pay Later')])[4]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
     private WebElement step2SubmitButton;
 
+    @FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[1]|(//a[@id='res-vehicles-pay-later'])[2] | (//a[contains(text(),'Pay Later')])[1]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
+    private WebElement step2SubmitButton2;
 
     @FindBy(css = "li[title='Select a Car']")
     private WebElement selectACarText;
@@ -157,7 +164,8 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//span[text()='Your discount code is invalid ']")
     private WebElement AWDCouponCodeInvalidErrorMsg;
 
-
+    @FindBy(xpath = "(//button[@type='reset'])[1]")
+    private WebElement AdPopup;
 
 
     public Vehicles(WebDriver driver) {
@@ -171,6 +179,14 @@ public class Vehicles extends AbstractBasePage {
         helper.scrollToElement(step2SubmitButton);
         threadSleep(TWO_SECONDS);
         clickUsingJS(step2SubmitButton);
+        return new Extras(driver);
+    }
+
+    public Extras step2Submit2() {
+        threadSleep(TWO_SECONDS);
+        helper.scrollToElement(step2SubmitButton2);
+        threadSleep(TWO_SECONDS);
+        clickUsingJS(step2SubmitButton2);
         return new Extras(driver);
     }
 
@@ -426,6 +442,11 @@ public class Vehicles extends AbstractBasePage {
         return sizeAllVehicle;
     }
 
+    public Vehicles closeAdPopup()
+    {
+        helper.clickIfElementIsDisplayed(AdPopup);
+        return this;
+    }
 
     public boolean isSavingtextDisplayed() {
         return savingText.isDisplayed();
