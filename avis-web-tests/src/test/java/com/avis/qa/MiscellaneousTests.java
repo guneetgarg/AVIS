@@ -9,7 +9,7 @@ import com.avis.qa.pages.Confirmation;
 import com.avis.qa.pages.Vehicles;
 import com.avis.qa.utilities.CSVUtils;
 import org.testng.annotations.Test;
-
+import static com.avis.qa.constants.TextComparison.*;
 import static com.avis.qa.constants.AvisConstants.*;
 import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
@@ -108,6 +108,26 @@ MiscellaneousTests extends TestBase {
                 .selectMyCar();
         Vehicles vehicles = new Vehicles(getDriver());
         vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        vehicles.clickFilterOptionAndVerifyData();
+
+    }
+
+    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String pickUpLocation, String age1, String age2)  {
+        launchUrl();
+        ReservationWidget reservationWidget = new ReservationWidget(getDriver());
+
+        reservationWidget
+                .clickAcceptTermsButton()
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(2)
+                .selectAge(age1)
+                .selectMyCar()
+                .VerifyErrorMessageDisplayed(MINIMUM_AGE_ERROR_MESSAGE);
+        reservationWidget
+                .selectAge(age2)
+                .selectMyCar();
+        Vehicles vehicles = new Vehicles(getDriver());
         vehicles.clickFilterOptionAndVerifyData();
 
     }

@@ -577,7 +577,6 @@ public class ReservationTests extends TestBase {
     @Test(groups = {REGRESSION, SMOKE}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String pickUpLocation, String residencyLocation, String awd, String fname, String lname,
                                                                               String email, String phoneNo, String flightNumber) {
-        log.info("Test case execution started :Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US");
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_OutboundAndStrikeThroughCoupon_Paylater(pickUpLocation, residencyLocation, awd, fname, lname, email, phoneNo, flightNumber);
@@ -585,7 +584,21 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         confirmation.cancelReservation();
-        log.info("Test case execution ended :Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US");
+
+    }
+
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US(String pickUpLocation, String residencyLocation, String awd,String MembershipNum, String fname, String lname,
+                                                                              String email, String phoneNo, String flightNumber) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_OutboundAndStrikeThroughCoupon_LocMandate_FlightInfo_Paylater(pickUpLocation, residencyLocation, awd, MembershipNum,  fname, lname, email, phoneNo, flightNumber);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+        confirmation.cancelReservation();
+
     }
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
@@ -642,6 +655,28 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isIATAValueDisplayed(IATA), "IATA value is not displayed");
         confirmation.cancelReservation();
     }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Inbound_MultiCurrency_IATA_Cancellation_PayNow_US(String pickUpLocation, String residencyLocation,String awd, String corporateEmailId, String firstName, String lastName,
+                                                                                     String email, String phoneNumber, String IATA,String ccNo, String cvv, String residentCurrencySymbol, String USCurrencyValue) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_InboundAndMultiCurrency_IATA_PayNow(pickUpLocation, residencyLocation, awd, corporateEmailId, firstName, lastName, email,
+                phoneNumber, IATA, ccNo, cvv, residentCurrencySymbol, USCurrencyValue);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.verifyCurrencyOnConfirmationPage(USCurrencyValue), "Currency value is incorrect");
+        // assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
+       // assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+        assertTrue(confirmation.isIATAValueDisplayed(IATA), "IATA value is not displayed");
+        confirmation.cancelReservation();
+    }
+
+
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 41, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US(String pickUpLocation, String pickupTime,String awd, String corporateEmailId, String firstName, String lastName,

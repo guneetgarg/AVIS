@@ -25,12 +25,12 @@ Avis_Reservation_OneClick_GPSSelection_US,/en/reservation#/oneclick?resForm.conf
 Avis_Reservation_ErrorMessage_PayNow_US,YYZ,Tester,M,test,9838234567,345836415546724,123
 Avis_Reservation_TierBundle_PayLater_US,LAS,Dhanapriya,K,test,9600685486,4263982640269299,738
 Avis_Reservation_Inbound_PayLater_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645
-Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,YYZ,U S A,P469100,Abhishek,J,test,8980765645,1234
+Budget_RES_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US,YYZ,U.S.A.,Y126501,38298026,Abhishek,J,test,8980765645,1234
 Avis_Reservation_Domestic_PayNow_US,EWR,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Inbound_PayNow_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645,343710684134463,123
-Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
+Budget_RES_Inbound_MultiCurrency_IATA_Cancellation_PayNow_US,SFO,Canada,V4989000,test@microsoft.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_Reservation_USAA_PayLater_US,XB4,A177201,14518727,Tester,M,test,8980765645
 Budget_RES_OneWay_USAA_PayLater_US,EWR,JFK,Y126501,38298026,Abhishek,J,test,9600685486
 Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
@@ -105,7 +105,7 @@ Avis_Misc_OneClick_VanityURL_US,/localmarket,Avis.com Link Builder
 Avis_Misc_OneClick_VanityURL_US,/terms,Avis Preferred Terms
 Avis_Misc_OneClick_VanityURL_US,/usaa,USAA
 BRG,/en/products-and-services/services/best-rate-guarantee/best-rate-claim-form
-Budget_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,22
+Budget_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,19,25+
 Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LDY,5
 Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
 

@@ -160,13 +160,13 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@for,'creditcard')] ")
     private WebElement AddCreditCardCheckbox;
 
-    @FindBy(xpath = "//div[@data-funding-source='paypal']")
+    @FindBy(xpath = "//div[@data-funding-source='paypal'] | //span[@class='c-icon paypal-logo']")
     private WebElement PaypalButton;
 
     @FindBy(xpath = "//label[@for='payPal']")
     private WebElement Budget_PaypalRadioButton;
 
-    @FindBy(xpath = "//img[@id='OffAmazonPaymentsWidgets0']")
+    @FindBy(xpath = "//img[@id='OffAmazonPaymentsWidgets0'] | //span[@class='c-icon amazonpay-logo']")
     private WebElement AmazonpayButton;
 
     @FindBy(xpath = "//span[text()='Paying With ']")
@@ -182,7 +182,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//span[text()='Estimated Total']/following-sibling::span/child::span/child::span[2]")
     private WebElement EstimatedTotalText;
 
-    @FindBy(xpath = "//span[contains(text(),'You have the option to pay with your Visa or MasterCard in your native currency. If you choose to pay with different card type your charges will be posted in USD ($')]")
+    @FindBy(xpath = "//span[contains(text(),'You have the option to pay with your Visa or MasterCard in your native currency. If you choose to pay with different card type your charges will be posted in USD ($')] | //span[contains(text(),'native currency'] | //span[@class='mainErrorText']")
     private WebElement NativeCurrencyPayInfoMsg;
 
     @FindBy(xpath = "//button[text()='Review Modifications']")
@@ -468,8 +468,10 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public ReviewAndBook step4_CreditCardCheckBox() {
-        if (helper.isElementDisplayed(creditCardCheckBox))
-            creditCardCheckBox.click();
+        if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
+            if (helper.isElementDisplayed(creditCardCheckBox))
+                creditCardCheckBox.click();
+        }
         if(Configuration.BRAND.equalsIgnoreCase("Budget"))
         {
             helper.waitUntilClickabilityOfElement(Budget_CreditCardRadioButton);

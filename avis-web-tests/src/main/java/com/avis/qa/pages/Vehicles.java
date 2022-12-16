@@ -29,7 +29,7 @@ import static org.testng.Assert.assertEquals;
 @Log4j2
 public class Vehicles extends AbstractBasePage {
 
-    @FindBy(xpath = "(//a[@id='res-vehicles-pay-now'])[1]")
+    @FindBy(xpath = "(//a[@id='res-vehicles-pay-now'])[1] | (//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]")
     private WebElement step2PayNowSubmitButton;
 
    // @FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[1] | (//a[contains(text(),'Pay Later')])[2]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
@@ -131,6 +131,8 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//a[@id='res-vehicles-sort']")
     private WebElement SortByDropDown;
 
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[1]/a")
+    private WebElement PriceLowToHighValue;
     @FindBy(xpath = "//ul[@class='dropdown-menu']/li[2]/a")
     private WebElement MileageHighToLowValue;
 
@@ -359,7 +361,11 @@ public class Vehicles extends AbstractBasePage {
     public Vehicles clickFilterOptionAndVerifyData()
     {
         int size = clickAllVehicesOption();
-
+        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
+            helper.mouseHover(SortByDropDown);
+            helper.clickIfElementIsDisplayed(SortByDropDown);
+            helper.clickIfElementIsDisplayed(PriceLowToHighValue);
+        }
         ArrayList<Double> obtainedList1 = new ArrayList<>();
         for(WebElement s:AllPayLaterPrice){
             try {
@@ -383,9 +389,15 @@ public class Vehicles extends AbstractBasePage {
         helper.clickIfElementIsDisplayed(SortByDropDown);
         helper.clickIfElementIsDisplayed(MileageHighToLowValue);
         ArrayList<String> obtainedList = new ArrayList<>();
-        for(WebElement s:AllMileage){
-            obtainedList.add(s.getText().substring(3));
+        if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
+            for (WebElement s : AllMileage) {
+                obtainedList.add(s.getText().substring(3));
+            }
         }
+        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
+            for (WebElement s : AllMileage) {
+                obtainedList.add(s.getText());
+        }}
         System.out.println("Mileage obtainedList "+obtainedList);
         ArrayList<String> sortedList = new ArrayList<>();
         for(String s:obtainedList){
@@ -395,7 +407,7 @@ public class Vehicles extends AbstractBasePage {
         Collections.reverse(sortedList);
         System.out.println(" Mileage sorted list "+sortedList);
         Assert.assertTrue(sortedList.equals(obtainedList));
-        Assert.assertTrue(size==AllMileage.size());
+      //  Assert.assertTrue(size==AllMileage.size());
         helper.mouseHover(SortByDropDown);
         helper.clickIfElementIsDisplayed(SortByDropDown);
         helper.clickIfElementIsDisplayed(SeatsHighToLowValue);

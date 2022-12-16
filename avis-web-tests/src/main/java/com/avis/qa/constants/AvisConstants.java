@@ -13,6 +13,9 @@ public class AvisConstants {
     public static final String CreditCardNumber = "343710684134463";
     public static final String CARDEXPIRATIONDATE = "0630"; //mmyy
     public static final String CVV = "123";
+
+    public static final String Default_PickUpTime_Noon = "12:00 PM";
+    public static final String Default_DropTime_Noon = "12:00 PM";
     public static final String ResidentLoc = "U S A";
     public static final int FLIGHT_NAME = 3; //dropdown index value
 

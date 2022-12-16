@@ -386,6 +386,12 @@ public class ReservationWidget extends AbstractBasePage {
         return errorMessage.contains(ABOVE_NINETY_ERROR_MESSAGE);
     }
 
+    public boolean VerifyErrorMessageDisplayed(String message) {
+        waitForVisibilityOfElement(ErrorMessagePath);
+        String errorMessage = ErrorMessagePath.getText();
+        return errorMessage.contains(message);
+    }
+
     public ReservationWidget expandDiscountCode() {
         Discount_Codes.click();
         return this;

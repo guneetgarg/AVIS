@@ -914,6 +914,40 @@ public class ReservationHelper extends AbstractBasePage {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_OutboundAndStrikeThroughCoupon_LocMandate_FlightInfo_Paylater(String pickUpLocation,String residencyLocation, String awd, String MembershipNum,  String fname, String lname,
+                                                                            String email, String phoneNo, String flightNumber) {
+
+        reservationWidget
+                .closeAdPopup()
+                .pickUpLocation(pickUpLocation)
+                .selectCountry(residencyLocation)
+                .calendarSelection(2)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterMembershipNo(MembershipNum)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Assert.assertTrue(vehicles.isStrikreThroughPriceIndicatorDisplayed(), "Strikre Through Price Indicator not Displayed");
+       // Assert.assertTrue(vehicles.isSavingtextDisplayed(), "Extras and protection text not Displayed");
+        Extras extras = vehicles.step2Submit();
+        //  assertTrue(extras.verifyLossDamageWaiverIsSelected(),"LDW is not selected");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .SelectflightInfo(3)
+                .enterflightNumber(flightNumber)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
     public Confirmation Reservation_Profile_OutboundAndStrikeThroughCoupon_Paylater(String pickUpLocation,String residencyLocation, String awd, String flightNumber) {
 
         reservationWidget
@@ -1354,6 +1388,7 @@ public class ReservationHelper extends AbstractBasePage {
     public Confirmation Reservation_InboundAndMultiCurrency_IATA_PayNow(String pickUpLocation,String residencyLocation,String awd, String corporateEmailId, String firstName, String lastName,
                                                                      String email, String phoneNumber, String IATA,String ccNo, String cvv, String residentCurrencySymbol, String USCurrencyValue) {
         reservationWidget
+                .closeAdPopup()
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection(3)
                 .selectCountry(residencyLocation)
@@ -1370,7 +1405,8 @@ public class ReservationHelper extends AbstractBasePage {
         assertTrue(vehicles.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
         assertTrue(vehicles.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
         vehicles.clickViewCloseVehicleInformation();
-        Extras extras = vehicles.step2Submit();
+        Extras   extras = vehicles.step2SubmitPayNow();
+
         assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), "Currency  value is not same as residence country");
         assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
         assertTrue(extras.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
@@ -1390,7 +1426,7 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lastName)
                 .email(email)
                 .phone(phoneNumber)
-                .step4_AddCreditCardCheckBox()
+                .step4_CreditCardCheckBox()
                 .enterCardNumber(ccNo)
                 // .selectExpiryDateAndYear()
                 .EnterExpiryDateAndYear()
