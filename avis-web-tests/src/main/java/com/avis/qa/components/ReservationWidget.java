@@ -158,7 +158,7 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//input[@name='email'])[1]")
     private WebElement corporatEmailTextField;
 
-    @FindBy(xpath = "//span[text()='Your discount code is invalid ']")
+    @FindBy(xpath = "//span[text()='Your discount code is invalid '] | //span[text()='Your offer code is invalid ']")
     private WebElement AWDCouponCodeInvalidErrorMsg;
 
     @FindBy(xpath = "//span[@class='platform-error-message error']")
@@ -167,7 +167,7 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//span[contains(text(),'Please enter a valid corporate email address.')])[1]")
     private WebElement CorporateEmailIDInvalidErrorMsg;
 
-    @FindBy(xpath = "//span[text()='Based on your age selection, there are no cars available at this location-']")
+    @FindBy(xpath = "//span[text()='Based on your age selection, there are no cars available at this location-'] | //span[@class='mainErrorText info-error-msg-text' and @ng-bind-html='error.message | htmlFilter']")
     private WebElement AgeSelectionNocarsErrorMsg;
 
     public ReservationWidget(WebDriver driver) {

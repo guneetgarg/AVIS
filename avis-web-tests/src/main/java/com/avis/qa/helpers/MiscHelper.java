@@ -330,7 +330,9 @@ public class MiscHelper extends AbstractBasePage {
                 //validate for invalid awd code
                 .selectMyCar()
                 .verifyAWDCouponcodeInvalidErrorMessage();
+        reservationWidget.expandDiscountCode();
         reservationWidget
+                .expandDiscountCode()
                 .enterAwd(awdCode)  //correct corporate AWD code
                 //Validate for corporate email ID
                 .selectMyCar()
@@ -343,7 +345,7 @@ public class MiscHelper extends AbstractBasePage {
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
                 .calendarSelection(1)
-                .expandDiscountCode()
+               // .expandDiscountCode()
                 .enterCouponCode("test")//invalid discount code
                 //Validation for invalid discount code
                 .selectMyCar()

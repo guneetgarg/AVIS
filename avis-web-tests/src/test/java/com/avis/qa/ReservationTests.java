@@ -212,6 +212,20 @@ public class ReservationTests extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
+    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_U_type_Coupon_PayLater_US(String pickUpLocation, String couponNo, String fname,
+                                                                   String lname, String email, String phoneNo) {
+
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
+                phoneNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+    }
+
+
     @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 12, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_MtypeCouponProcessing_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                                    String lname, String email, String phoneNo) {
@@ -436,6 +450,17 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
+    @Test(groups = {REGRESSION, SANITY, SMOKE},priority=30, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Domestic_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
+                                                String phoneNo) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Domestic_PayLater( pickUpLocation,  firstName,  lastName,  email,
+                 phoneNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(),CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+    }
+
     @Test(groups = {REGRESSION, SMOKE}, priority = 31, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_US(String pickUpLocation, String dropOffTime, String couponNo, String fname, String lname,
                                                                   String email, String phoneNo) {
@@ -512,6 +537,19 @@ public class ReservationTests extends TestBase {
         //confirmation.cancelReservation();
     }
 
+    @Test(groups = {REGRESSION, SMOKE}, priority = 34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_BCD_CorpCust_insuranceCover_Validate_Paylater_US(String pickUpLoction, String BCD, String corporateEmailId, String fname, String lname,
+                                                                                                        String mail, String pNo) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_CorpCust_PayLater(pickUpLoction, BCD, corporateEmailId, fname, lname,
+                mail, pNo);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+
+    }
+
     @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                                                          String lname, String email, String phoneNo,String flightName, String flightNumber, String IATA, String couponMsg) {
@@ -528,6 +566,24 @@ public class ReservationTests extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
         // confirmation.cancelReservation();
     }
+
+    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_G_typeCoupon__SMSCheckbox_IATA_PayLater_US(String pickUpLocation, String couponNo, String fname,
+                                                                                         String lname, String email, String phoneNo,String flightName, String flightNumber, String IATA, String couponMsg) {
+
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(pickUpLocation, couponNo, fname, lname,
+                email, phoneNo,flightName, flightNumber, IATA, couponMsg);
+
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponCodeMessageDisplayed(couponMsg), "Coupon Code is not displayed");
+        assertTrue(confirmation.isIATAValueDisplayed(IATA), "IATA value is not displayed");
+        assertTrue(confirmation.isFlightInfoDisplayed(flightName), "Flight Info is not displayed");
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+
+    }
+
 
     @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_UtypeCoupon_Tierbundle_PayLater_US(String pickUpLocation, String pickupTime, String dropOffTime, String couponNo, String fname,

@@ -114,6 +114,30 @@ public class ReservationHelper extends AbstractBasePage {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_Domestic_PayLater(String pickUpLocation, String fname,
+                                                         String lname, String email, String phoneNo) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(2)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        assertTrue(extras.isUpliftTextDisplayed());
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
     public Confirmation Reservation_GEBUser_PayLater(String pickUpLocation, String wizardNo, String lastName, String firstName,
                                                      String email, String phoneNo) {
 
@@ -1078,6 +1102,38 @@ public class ReservationHelper extends AbstractBasePage {
         return new Confirmation(driver);
     }
 
+    public Confirmation Reservation_CorpCust_PayLater(String pickUpLoction, String BCD, String corporateEmailId, String fname, String lname,
+                                                                        String mail, String pNo) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLoction)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(BCD)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2Submit();
+        //ReviewAndBook reviewAndBook = extras.selectTierBundle().Step3Submit();
+        extras.isUpliftTextDisplayed();
+        extras.ClickLDWCoverage();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+
+                .firstname(fname)
+                .lastname(lname)
+                .email(mail)
+                .phone(pNo);
+
+        reviewAndBook
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
     public Confirmation Reservation_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater(String pickUpLocation, String couponNo, String fname,
                                                                                                  String lname, String email, String phoneNo,String flightName, String flightNumber, String IATANumber, String couponMsg) {
 
@@ -1445,11 +1501,14 @@ public class ReservationHelper extends AbstractBasePage {
     public Confirmation Reservation_Profile_InboundAndMultiCurrency_IATA_PayNow(String pickUpLocation, String PickupTime, String DropTime,String awd, String corporateEmailId, String IATA,String cvv, String residentCurrencySymbol, String USCurrencyValue) {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
-                .calendarSelection(3)
-                .expandDiscountCode()
-                .enterAwd(awd)
-                .enterCorporateEmailId(corporateEmailId)
-                .selectMyCar();
+                .calendarSelection(3);
+        if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
+            reservationWidget
+                    .expandDiscountCode()
+                    .enterAwd(awd)
+                    .enterCorporateEmailId(corporateEmailId);
+        }
+        reservationWidget.selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
         assertTrue(vehicles.isCurrencyValueDisplayed(), "Currency value is not displayed");
@@ -1475,8 +1534,7 @@ public class ReservationHelper extends AbstractBasePage {
         reviewAndBook.isPayPalAndAmazonPayDisplayed();
 
         reviewAndBook
-
-                .step4_AddCreditCardCheckBox()
+                .step4_CreditCardCheckBox()
                 .enterSecurityCode(cvv);
         assertTrue(reviewAndBook.isNativeCurrencyMsgtextDisplayed(), "Native currency pay message not displayed");
         reviewAndBook
