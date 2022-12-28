@@ -70,17 +70,4 @@ public class ReviewModificationPage extends AbstractBasePage {
     public void isOnPage() {
         waitForVisibilityOfElement(HeaderText);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
