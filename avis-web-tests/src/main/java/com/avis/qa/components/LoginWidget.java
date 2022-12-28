@@ -20,6 +20,9 @@ public class LoginWidget extends AbstractBasePage {
     @FindBy(xpath = "((//a[@id='res-login-profile'])[2]) | ((//a[contains(text(),'Sign In')])[1])")
     private WebElement HeaderLoginButton;
 
+    @FindBy(xpath = "(//ul[@class='header-secondary']//li//a[@id='res-login-profile'])[1]")
+    private WebElement HeaderLoginButtonBudget;
+
     @FindBy(id = "username")
     private WebElement UserName;
 
@@ -32,13 +35,20 @@ public class LoginWidget extends AbstractBasePage {
     @FindBy(id = "PicLoc_value")
     private WebElement pickUpLocation;
 
+    @FindBy(xpath = "//span[@class='close-FC g-icon']")
+    public WebElement PopupBudget;
+
 
     public LoginWidget(WebDriver driver) {
         super(driver);
     }
 
     public LoginWidget loginHeaderclick() {
-        clickUsingJS(waitForVisibilityOfElement(HeaderLoginButton));
+        if (driver.getCurrentUrl().contains("avis")){
+            clickUsingJS(waitForVisibilityOfElement(HeaderLoginButton));}
+        else {
+            clickUsingJS(waitForVisibilityOfElement(HeaderLoginButtonBudget));
+        }
         return this;
     }
 
@@ -51,8 +61,12 @@ public class LoginWidget extends AbstractBasePage {
        // waitForVisibilityOfElement(LoginButton);
         threadSleep(TWO_SECONDS);
         clickUsingJS(LoginButton);
+        threadSleep(FIVE_SECONDS);
         threadSleep(TWO_SECONDS);
         threadSleep(TWO_SECONDS);
+        if(helper.isElementDisplayed(PopupBudget)){
+            PopupBudget.click();
+        }
         return this;
     }
 
@@ -66,6 +80,10 @@ public class LoginWidget extends AbstractBasePage {
     @Override
     public void isOnPage() {
         log.info("Verify Login Widget");
-        waitForVisibilityOfElement(HeaderLoginButton);
+        if (driver.getCurrentUrl().contains("avis")){
+        waitForVisibilityOfElement(HeaderLoginButton);}
+        else {
+            waitForVisibilityOfElement(HeaderLoginButtonBudget);
+        }
     }
 }

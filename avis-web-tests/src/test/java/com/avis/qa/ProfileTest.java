@@ -8,6 +8,7 @@ import com.avis.qa.helpers.ReservationHelper;
 import com.avis.qa.pages.*;
 import com.avis.qa.utilities.CSVUtils;
 import com.avis.qa.utilities.ElementHelper;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,7 +22,7 @@ public class ProfileTest  extends TestBase {
     /**
      * ALM Testcase: NA
      */
-    //@Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Profile_Enrollment_Activation_US(String fname, String lname, String email, String phoneNo, String username, String pwd, String AddLine1) {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -73,13 +74,45 @@ public class ProfileTest  extends TestBase {
                 .calendarSelection(2)
                 .selectMyCar();
         Vehicles vehicles = new Vehicles(getDriver());
-        //vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        vehicles.verifyUnderAgeSurchargeTextDisplayed();
         vehicles.clickFilterOptionAndVerifyData();
 
     }
 
-    //@Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String username, String password, String pickUpLocation)  {
+        launchUrl();
+
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        ReservationWidget reservationWidget = new ReservationWidget(getDriver());
+
+        reservationWidget
+                .clickAcceptTermsButton()
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection(2)
+                .selectMyCar();
+        Vehicles vehicles = new Vehicles(getDriver());
+        vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        vehicles.clickFilterOptionAndVerifyData();
+
+    }
+    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US(String username, String password, String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(TWO_SECONDS);
+        MiscHelper miscHelper = new MiscHelper(getDriver());
+        miscHelper.Reservation_Profile_Misc_Step1AndStep4_ErrorMsg_Validation(pickUpLocation,pickUpDate, pickUpTime, dropOffLocation, dropOffDate,dropOffTime,WizardNumber,lastName,awdCode,corporateEmail,rateCode,couponCode,creditcardNumber);
+
+    }
+
+    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US(String username, String password, String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
         launchUrl();
 
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -91,7 +124,6 @@ public class ProfileTest  extends TestBase {
 
     }
 
-   //
     @Test(groups = {REGRESSION, SMOKE}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US(String username, String password
             ,String pickUpLocation, String PickupTime, String DropTime,String awd, String corporateEmailId, String IATA,String cvv, String residentCurrencySymbol, String USCurrencyValue) {
@@ -102,7 +134,6 @@ public class ProfileTest  extends TestBase {
         threadSleep(TWO_SECONDS);
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Profile_InboundAndMultiCurrency_IATA_PayNow(pickUpLocation, PickupTime,DropTime, awd, corporateEmailId,IATA,cvv, residentCurrencySymbol, USCurrencyValue);
-
         assertTrue(confirmation.isConfirmationNumberDisplayed());
         assertTrue(confirmation.isCarReservedTextDisplayed());
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
@@ -117,6 +148,26 @@ public class ProfileTest  extends TestBase {
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US(String username, String password,String pickUpLocation,String PickupTime,String DropTime, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(TWO_SECONDS);
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_FlightInfo_DigitalWallet_Paypal_PayNow(pickUpLocation, PickupTime, DropTime, paypalEmail, paypalPassword, flightName, flightNumber);
+        assertTrue(confirmation.isConfirmationNumberDisplayed());
+        assertTrue(confirmation.isCarReservedTextDisplayed());
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(confirmation.isDropDateTimeDisplayed(DropTime));
+        assertTrue(confirmation.isCardTypePaypalDisplayed());
+        //confirmation.cancelReservation();
+        assertTrue(confirmation.isFlightInfoDisplayed(flightName));
+        confirmation.cancelReservationWithConfirmationBox();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US(String username, String password,String pickUpLocation,String PickupTime,String DropTime, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
         loginwidget.loginHeaderclick();
@@ -158,8 +209,7 @@ public class ProfileTest  extends TestBase {
         loginwidget.login(username, password);
         threadSleep(TWO_SECONDS);
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_Profile_Outbound_CorpCust_InsuranceCover_PayNow(pickUpLocation, pickupTime,dropTime, awd, corporateEmailId, cvv, PickUpLocCurrencySymbol, PickupLocCurrencyCode, USCurrencyCode);
-
+        Confirmation confirmation = reservationHelper.Avis_Reservation_Profile_Outbound_CorpCust_InsuranceCover_PayNow(pickUpLocation, pickupTime,dropTime, awd, corporateEmailId, cvv, PickUpLocCurrencySymbol, PickupLocCurrencyCode, USCurrencyCode);
         assertTrue(confirmation.isConfirmationNumberDisplayed());
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
         assertTrue(confirmation.isPickUpDateTimeDisplayed(pickupTime));
@@ -186,6 +236,22 @@ public class ProfileTest  extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 9, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_KeyDropLocation_M_typeCoupon_PayLater_US(String username, String password,String pickUpLocation, String dropOffTime, String couponNo) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_MTypeKeyDropLocation_PayLater(pickUpLocation, dropOffTime, couponNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(),CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.closeGetFreeCouponPopup().isCouponAppliedMessageDisplayed(couponNo),COUPON_NOT_APPLIED_MESSAGE);
+        confirmation.closeGetFreeCouponPopup().keyDropMessageValidation();
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+    }
     @Test(groups = {REGRESSION, SMOKE}, priority = 9, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Costco_DigitalWallet_PayPal_PayLater_US(String username, String password,String pickUpLocation, String awd, String membershipNo, String paypalEmail, String paypalPassword) {
         launchUrl();
@@ -203,6 +269,23 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservationWithConfirmationBox();
     }
 
+    @Test(groups = {REGRESSION, SMOKE}, priority = 9, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Costco_DigitalWallet_PayPal_PayLater_US(String username, String password,String pickUpLocation, String awd, String membershipNo, String paypalEmail, String paypalPassword) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_Costco_DigitalWallet_Paypal_PayLater(pickUpLocation, awd, membershipNo, paypalEmail, paypalPassword);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(),CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.isAWDCouponMessageDisplayed(), COUPON_NOT_APPLIED_MESSAGE);
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), AWD_CONFIRMATION_TEXT_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.isCardTypePaypalDisplayed(), CARD_TYPE_PAYPAL_NOT_DISPLAYED_MESSAGE);
+//        confirmation.cancelReservation();
+        confirmation.cancelReservationWithConfirmationBox();
+    }
     @Test(groups = {REGRESSION, SMOKE}, priority = 10, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_OneWay_USAA_PayLater_US(String username, String password,String pickUpLocation, String dropOffLocation, String awd, String membershipNo) {
         launchUrl();
@@ -210,6 +293,20 @@ public class ProfileTest  extends TestBase {
         loginwidget.loginHeaderclick();
         loginwidget.login(username, password);
         threadSleep(TWO_SECONDS);
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 10, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_OneWay_USAA_PayLater_US(String username, String password,String pickUpLocation, String dropOffLocation, String awd, String membershipNo) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Profile_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
@@ -232,12 +329,41 @@ public class ProfileTest  extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 12, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Inbound_MultiCurrency_PayLater_US(String username, String password,String pickUpLocation, String flightNumber,String residentCurrencySymbol, String currencyValue) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);// need to create profile user for canada region
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_InboundAndMultiCurrency_Paylater(pickUpLocation,flightNumber,residentCurrencySymbol, currencyValue);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.verifyCurrencyOnConfirmationPage(currencyValue), CURRENCY_VALUE_INCORRECT_MESSAGE);
+        confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 12, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Domestic_PayLater_US(String username, String password,String pickUpLocation) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
         loginwidget.loginHeaderclick();
         loginwidget.login(username, password);// need to create profile user for canada region
         threadSleep(TWO_SECONDS);
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_Domestic_PayLater(pickUpLocation);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 12, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Domestic_PayLater_US(String username, String password,String pickUpLocation) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);// need to create profile user for canada region
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Profile_Domestic_PayLater(pickUpLocation);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
@@ -255,6 +381,24 @@ public class ProfileTest  extends TestBase {
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Profile_G_typeCoupon_SMSCheckbox_IATA_PayLater(pickUpLocation, couponNo, flightName, flightNumber, IATA, couponMsg);
 
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.isCouponCodeMessageDisplayed(couponMsg), COUPON_CODE_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.isIATAValueDisplayed(IATA), IATA_VALUE_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.isFlightInfoDisplayed(flightName), FLIGHTINFO_NOT_DISPLAYED_MESSAGE);
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+        // confirmation.cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 13, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_G_typeCoupon_SMSCheckbox_IATA_PayLater_US(String username, String password,String pickUpLocation, String couponNo, String flightName, String flightNumber, String IATA, String couponMsg) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);// need to create profile user for canada region
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_G_typeCoupon_SMSCheckbox_IATA_PayLater(pickUpLocation, couponNo, flightName, flightNumber, IATA, couponMsg);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
         assertTrue(confirmation.isCouponCodeMessageDisplayed(couponMsg), COUPON_CODE_NOT_DISPLAYED_MESSAGE);
         assertTrue(confirmation.isIATAValueDisplayed(IATA), IATA_VALUE_NOT_DISPLAYED_MESSAGE);
@@ -309,6 +453,89 @@ public class ProfileTest  extends TestBase {
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), AWD_CONFIRMATION_TEXT_NOT_DISPLAYED_MESSAGE);
         confirmation.cancelReservation();
 
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 16, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String pickUpLocation, String residencyLocation, String awd, String flightNumber) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_OutboundAndStrikeThroughCoupon_Paylater(pickUpLocation, residencyLocation, awd, flightNumber);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.isAWDCouponMessageDisplayed(), COUPON_NOT_APPLIED_MESSAGE);
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), AWD_CONFIRMATION_TEXT_NOT_DISPLAYED_MESSAGE);
+        confirmation.cancelReservation();
+
+    }
+    @Test(groups = {REGRESSION, SMOKE}, priority = 9, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_KeyDropLocation_U_typeCoupon_PayLater_US(String username, String password,String pickUpLocation, String dropOffTime, String couponNo) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_MTypeKeyDropLocation_PayLater(pickUpLocation, dropOffTime, couponNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(),CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
+        assertTrue(confirmation.closeGetFreeCouponPopup().isCouponAppliedMessageDisplayed(couponNo),COUPON_NOT_APPLIED_MESSAGE);
+        confirmation.closeGetFreeCouponPopup().keyDropMessageValidation();
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SANITY,SMOKE},priority=28, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_T_typeCoupon_CCOLocation_PayLater_US(String username,String password,String pickUpLocation, String couponNo,
+                                                                String couponMsg) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Budget_RES_Profile_T_typeCoupon_CCOLocation_PayLater_US(pickUpLocation, couponNo,couponMsg);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
+        assertTrue(confirmation.isCouponCodeMessageDisplayed(couponMsg),"Coupon Applied Message is not displayed");
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US(String username, String password,String pickUpLocation, String residencyLocation, String awd,String MembershipNum,
+                                                                                                         String flightNumber) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Budget_RES_Profile_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US(pickUpLocation, residencyLocation, awd, MembershipNum,flightNumber);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
+        confirmation.cancelReservation();
+
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 45, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_BCD_CorpCust_insuranceCover_Validate_Paylater_US(String username, String password, String pickUpLocation, String pickupTime, String dropTime,String awd, String corporateEmailId) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(SIXTY_SECONDS);
+        loginwidget.PopupBudget.click();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_Outbound_CorpCust_InsuranceCover_PayNow(pickUpLocation, pickupTime,dropTime, awd, corporateEmailId);
+        assertTrue(confirmation.isConfirmationNumberDisplayed());
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(pickupTime));
+        assertTrue(confirmation.isDropDateTimeDisplayed(dropTime));
+       // assertTrue(confirmation.verifyCurrencyOnConfirmationPage(PickupLocCurrencyCode));
+        assertTrue(confirmation.isAWDMessageTextDisplayed());
+        assertTrue(confirmation.isCarReservedTextDisplayed());
+        assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd));
+        confirmation.cancelReservation();
     }
 
 }

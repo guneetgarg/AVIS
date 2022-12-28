@@ -24,13 +24,14 @@ import static com.avis.qa.utilities.CommonUtils.*;
 @Log4j2
 public class ReservationWidget extends AbstractBasePage {
 
+    public static WebElement PopupBudget;
     @FindBy(xpath = "//*[contains(@id,'DropLoc_value')]")
     private WebElement dropOffLocation;
 
     @FindBy(xpath = "(//div[@class='angucomplete-description'])[1]")
     private WebElement dropOffSuggestion;
 
-    @FindBy(id = "PicLoc_value")
+    @FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
     private WebElement pickUpLocation;
 
     @FindBy(xpath = "((//div[@class='angucomplete-results'])[1]//div[@class='angucomplete-description'])[1] | ((//div[@id='PicLoc_dropdown'])[1]//div[@class='angucomplete-row'])[1]")

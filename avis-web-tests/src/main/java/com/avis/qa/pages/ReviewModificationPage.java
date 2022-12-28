@@ -24,7 +24,7 @@ public class ReviewModificationPage extends AbstractBasePage {
     @FindBy(xpath = "//h1[text()='Modify Reservation - Review & Confirm']")
     private WebElement HeaderText;
 
-    @FindBy(xpath = "//strong[text()='Changes in Red Below']")
+    @FindBy(xpath = "//strong[text()='Changes in Red Below' or text()='Changes in Orange Below']")
     private WebElement ChangesInRedBelowText;
 
     @FindBy(xpath = "//strong[text()='ORIGINAL']")

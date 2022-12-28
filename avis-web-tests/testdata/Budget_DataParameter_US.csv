@@ -2,8 +2,9 @@
 Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,1234,USD
 Budget_RES_Inbound_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,C$,USD
 Avis_RES_DigitalWallet_AmazonPay_Paynow_US,EWR,Abhishek,K,test,8980765645,abhishek.jn@statusneo.com,Aj527@321
-Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,YYZ,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,CAD,USD
+	,YYZ,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,CAD,USD
 Avis_RES_Modify_flow_Step1_to_step4_US,SFO,Abhishek,J,test,9600685486,343710684134463,123,U S A,EWR
+Budget_RES_Modify_flow_Step1_to_step4_US,SFO,Abhishek,J,test,9600685486,343710684134463,123,UNITED STATES,EWR
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
 Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_US,SAN,A6666000,A6666000@ACCBUSINESS.COM,Abhishek,K,test,8980765645,4929723679720422,5447144508353949
@@ -26,6 +27,7 @@ Avis_Reservation_ErrorMessage_PayNow_US,YYZ,Tester,M,test,9838234567,34583641554
 Avis_Reservation_TierBundle_PayLater_US,LAS,Dhanapriya,K,test,9600685486,4263982640269299,738
 Avis_Reservation_Inbound_PayLater_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645
 Budget_RES_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US,YYZ,U.S.A.,Y126501,38298026,Abhishek,J,test,8980765645,1234
+Budget_RES_Profile_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US,LAST123@YOPMAIL.COM,Last@12345,SYD,U.S.A.,Y126501,38298026,1234
 Avis_Reservation_Domestic_PayNow_US,EWR,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
@@ -50,6 +52,7 @@ Budget_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LHR,3
 Avis_Reservation_EMEA330Days_ErrorMessage_US,CPT,14
 Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,8622196015
 Avis_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
+Budget_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
 Avis_Profile_Enrollment_Activation_US,Abhishek,Jain,abhi527@yopmail.com,919654354519,ajain527,Password@789,900 Oxford Exchange Blvd
 ##############################_LOCATION_#################################
 Avis_Location_Search_MnemonicCodeRes_US,EWR,Hrishi,K,ABG_Location,9897867898
@@ -79,15 +82,25 @@ Avis_RES_Profile_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,abh
 Avis_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US,NAVEEN12345,Avis$12345,SFO,12:30 PM,12:30 PM,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
 Avis_RES_Profile_Modify_flow_Step1_to_step4_US,NAVEEN12345,Avis$12345,SFO,EWR,U S A
 Avis_RES_Profile_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,NAVEEN12345,Avis$12345,YYZ,11:00 AM,12:00 PM,D674000,w@google.com,123,C$,CAD,USD
+Budget_RES_Profile_BCD_CorpCust_insuranceCover_Validate_Paylater_US,LAST1234@YOPMAIL.COM,Last@12345,SFO,11:00 AM,12:00 PM,V4989000,test@microsoft.com
 Avis_RES_Profile_KeyDropLocation_M_typeCoupon_PayLater_US,NAVEEN12345,Avis$12345,MSO,3:00 AM,MUYY001
+Budget_RES_Profile_KeyDropLocation_M_typeCoupon_PayLater_US,LAST@YOPMAIL.COM,Last@12345,EWR,3:00 AM,MUZZ012
+Budget_RES_Profile_KeyDropLocation_U_typeCoupon_PayLater_US,LAST123@YOPMAIL.COM,Last@12345,SFO,3:00 AM,U072200
 Avis_RES_Profile_Costco_DigitalWallet_PayPal_PayLater_US,NAVEEN12345,Avis$12345,LAS,A108301,111789732130,abhishekjain527@gmail.com,Aj527@321
+Budget_RES_Profile_Costco_DigitalWallet_PayPal_PayLater_US,LAST123@YOPMAIL.COM,Last@12345,LAS,W852801,111789732130,abhishekjain527@gmail.com,Aj527@321
 Avis_RES_Profile_OneWay_USAA_PayLater_US,NAVEEN12345,Avis$12345,EWR,JFK,A177201,38298026
+Budget_RES_Profile_OneWay_USAA_PayLater_US,ANIL@YOPMAIL.COM,Anil@@12345,EWR,JFK,A177201,38298026
 Avis_RES_Profile_Inbound_MultiCurrency_PayLater_US,abhishek12345,Avis$12345,LAS,1234,C$,USD
+Budget_RES_Profile_Inbound_MultiCurrency_PayLater_US,MASS@YOPMAIL.COM,Mass@@1234,LAS,1234,C$,USD
 Avis_RES_Profile_Domestic_PayLater_US,NAVEEN12345,Avis$12345,SFO
+Budget_RES_Profile_Domestic_PayLater_US,USER123@YOPMAIL.COM,User@12345,SFO
 Avis_RES_Profile_G_typeCoupon_SMSCheckbox_IATA_PayLater_US,NAVEEN12345,Avis$12345,SFO,GUZZ007,Aer Lingus,1234,0123141G,GUZZ007 - Free Tank of Gas w/ Rental of XMR/Paperless
+Budget_RES_Profile_G_typeCoupon_SMSCheckbox_IATA_PayLater_US,LAST@YOPMAIL.COM,Last@12345,SFO,GUZZ007,Aer Lingus,1234,0123141G,GUZZ007 - Free Tank of Gas w/ Rental of XMR/Paperless
 Avis_RES_Profile_U_typeCoupon_Tierbundle_PayLater_US,NAVEEN12345,Avis$12345,SFO,11:00 AM,2:30 PM,UUZZ003,UUZZ003 - Single Upgrade w/ Rental of GPS/Paperless Cpn
 Avis_Res_Profile_TtypeCoupon_PayLater_US,NAVEEN12345,Avis$12345,LAS,TUZZ006,TUZZ006 - Reward Day PLUS 500 Bon Mls/Paperless Coupon - 1 Coupons
 Avis_RES_Profile_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,NAVEEN12345,Avis$12345,YYZ,U S A,P469100,1234
+Budget_RES_Profile_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,ANIL@YOPMAIL.COM,Anil@@12345,SYD,USA,Y126501,38298026
+Budget_RES_Profile_T_typeCoupon_CCOLocation_PayLater_US,LAST@YOPMAIL.COM,Last@12345,MAD,TUZZ008,TUZZ008 - Reward Day & 500 Bon Mls/Paperless Cpn - 1 Days
 
 ####################################_MISC_######################################
 Avis_Misc_SmallBizz_Enrollment_US,,,Hrishi,K,ABGnetworkSmall,8970987867,Hrishikesh129,calicut university,College Station,Texas,77845 

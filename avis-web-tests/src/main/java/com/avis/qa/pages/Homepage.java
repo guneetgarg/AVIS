@@ -62,7 +62,6 @@ public class Homepage extends AbstractBasePage {
     @FindBy(xpath = "//a[text()='View / Modify / Cancel']")
     private WebElement Reservation_ViewModifyCancelLink;
 
-
     public Homepage(WebDriver driver) {
         super(driver);
     }

@@ -63,9 +63,8 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@name,'selectedExpYear')]")
     private WebElement year;
 
-    @FindBy(xpath = "//input[@id='cardnumber']")
+    @FindBy(xpath = "//div[@class='cardNumber icon-padding']//input[@id='cardnumber']")
     private WebElement cardNumber;
-
     @FindBy(xpath = "(//input[@id='cardnumber'])[2]")
     private WebElement splitPageCardNumber;
 
@@ -78,8 +77,8 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@for,'creditcard')]")
     private WebElement creditCardCheckBox;
 
-    @FindBy(xpath = "//label[@for='ccCard']")
-    private WebElement Budget_CreditCardRadioButton;
+//    @FindBy(xpath = "label[for='cccard']")
+//    private WebElement Budget_CreditCardRadioButton;
 
 
     @FindBy(xpath = "//*[contains(@id,'address1')]")
@@ -157,8 +156,11 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//strong[text()='Secondary']")
     private WebElement SecondaryCardText;
 
-    @FindBy(xpath = "//*[contains(@for,'creditcard')] ")
+    @FindBy(css = "label[for='creditcard']")
     private WebElement AddCreditCardCheckbox;
+
+    @FindBy(css = "label[for='ccCard']")
+    private WebElement AddCreditCardCheckboxBudget;
 
     @FindBy(xpath = "//div[@data-funding-source='paypal'] | //span[@class='c-icon paypal-logo']")
     private WebElement PaypalButton;
@@ -336,7 +338,7 @@ public class ReviewAndBook extends AbstractBasePage {
     public ReviewAndBook getEstimatedTotalvalue() {
         value = EstimatedTotalText.getText();
         return this;
-}
+    }
 
     public ReviewAndBook enterPrimaryAndSecondaryAmount() {
         double  CreditCardAmount2 = 5.00;
@@ -468,21 +470,27 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public ReviewAndBook step4_CreditCardCheckBox() {
-        if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
+//        if(Configuration.BRAND.equalsIgnoreCase("Avis"))
             if (helper.isElementDisplayed(creditCardCheckBox))
                 creditCardCheckBox.click();
-        }
-        if(Configuration.BRAND.equalsIgnoreCase("Budget"))
-        {
-            helper.waitUntilClickabilityOfElement(Budget_CreditCardRadioButton);
-            helper.clickIfElementIsDisplayed(Budget_CreditCardRadioButton);
-        }
+
+//        if(Configuration.BRAND.equalsIgnoreCase("Budget"))
+//            if (helper.isElementDisplayed(Budget_CreditCardRadioButton));
+////            helper.waitUntilClickabilityOfElement(Budget_CreditCardRadioButton);
+//        helper.clickIfElementIsDisplayed(Budget_CreditCardRadioButton);
+//        Budget_CreditCardRadioButton.click();
         return this;
     }
 
     public ReviewAndBook step4_AddCreditCardCheckBox() {
-         //   helper.scrollToElement(AddCreditCardCheckbox);
+        helper.waitUntilVisibilityOfElement(AddCreditCardCheckbox);
         AddCreditCardCheckbox.click();
+
+        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
+            helper.scrollBy("100");
+            helper.waitUntilVisibilityOfElement(AddCreditCardCheckboxBudget);
+            AddCreditCardCheckboxBudget.click();
+        }
         threadSleep(THREE_SECONDS);
         threadSleep(THREE_SECONDS);
         return this;
@@ -606,8 +614,8 @@ public class ReviewAndBook extends AbstractBasePage {
             clickUsingJS(Budget_PaypalRadioButton);
             handlePaypal();
         }
-            return new PayPalPage(driver);
-        }
+        return new PayPalPage(driver);
+    }
 
 
 //    public PayPalPage clickPaypalButton() {
@@ -630,8 +638,8 @@ public class ReviewAndBook extends AbstractBasePage {
     public AmazonPayPage clickAmazonPayButton() {
         zip.click();
         waitForVisibilityOfElement(iFramePayPal);
-       // driver.switchTo().frame(0);
-      //  System.out.println("IFramePaypal switched");
+        // driver.switchTo().frame(0);
+        //  System.out.println("IFramePaypal switched");
         threadSleep(TWO_SECONDS);
         helper.waitUntilClickabilityOfElement(AmazonpayButton);
         clickUsingJS(AmazonpayButton);

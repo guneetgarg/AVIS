@@ -138,4 +138,8 @@ public class ElementHelper {
         }
     }
 
+    public void waitUntilVisibilityOfElement(WebElement webElement) {
+        new WebDriverWait(driver, Configuration.DEFAULT_EXPLICIT_TIMEOUT).until(ExpectedConditions.visibilityOf(webElement));
+    }
+
 }
