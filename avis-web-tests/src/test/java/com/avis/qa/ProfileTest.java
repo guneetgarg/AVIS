@@ -79,7 +79,9 @@ public class ProfileTest  extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+
+
+    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Profile_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String username, String password, String pickUpLocation)  {
         launchUrl();
 
@@ -87,6 +89,7 @@ public class ProfileTest  extends TestBase {
         loginwidget.loginHeaderclick();
         loginwidget.login(username, password);
         threadSleep(SIXTY_SECONDS);
+        threadSleep(TWO_SECONDS);
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
 
         reservationWidget
@@ -99,7 +102,8 @@ public class ProfileTest  extends TestBase {
         vehicles.clickFilterOptionAndVerifyData();
 
     }
-    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+
+    //@Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US(String username, String password, String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -145,6 +149,28 @@ public class ProfileTest  extends TestBase {
         assertTrue(confirmation.isIATAValueDisplayed(IATA));
         confirmation.cancelReservation();
     }
+    @Test(groups = {REGRESSION, SMOKE}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Inbound_MultiCurrency_IATA_Cancellation_PayNow_US(String username, String password
+            ,String pickUpLocation, String PickupTime, String DropTime,String awd, String corporateEmailId, String IATA,String cvv, String residentCurrencySymbol, String USCurrencyValue) throws InterruptedException {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        String otp =LoginWidget.getOtp("https://www.receivesms.co/","us-phone-number/3411/");
+        loginwidget.EnterOTP(otp);
+        threadSleep(TWO_SECONDS);
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_InboundAndMultiCurrency_IATA_PayNow(pickUpLocation, PickupTime,DropTime, awd, corporateEmailId,IATA,cvv, residentCurrencySymbol, USCurrencyValue);
+        assertTrue(confirmation.isConfirmationNumberDisplayed());
+        assertTrue(confirmation.isCarReservedTextDisplayed());
+        assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(PickupTime));
+        assertTrue(confirmation.isDropDateTimeDisplayed(DropTime));
+        assertTrue(confirmation.verifyCurrencyOnConfirmationPage(USCurrencyValue));
+        assertTrue(confirmation.isIATAValueDisplayed(IATA));
+        confirmation.cancelReservation();
+    }
+
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US(String username, String password,String pickUpLocation,String PickupTime,String DropTime, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {

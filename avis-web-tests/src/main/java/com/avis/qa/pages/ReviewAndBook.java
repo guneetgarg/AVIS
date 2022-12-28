@@ -168,6 +168,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//label[@for='payPal']")
     private WebElement Budget_PaypalRadioButton;
 
+
     @FindBy(xpath = "//img[@id='OffAmazonPaymentsWidgets0'] | //span[@class='c-icon amazonpay-logo']")
     private WebElement AmazonpayButton;
 
