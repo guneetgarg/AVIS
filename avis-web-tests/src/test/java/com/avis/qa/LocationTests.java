@@ -28,20 +28,30 @@ public class LocationTests extends TestBase {
     public void Avis_Location_Browse_Category_US() {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
+        Locations locations = homepage.goToFindALocationPage();
+        locations.browserLocation();
+        Assert.assertTrue(locations.isMakeAReservationButtonDisplayed(), "Make a Reservation button is not displayed");
+        locations.clickOnMakeAReservationWidget();
+    }
 
+    /**
+     * To verify the Browse functionality on the Location Page for Budget
+     */
+    @Test(groups = {REGRESSION, SANITY, SMOKE})
+    public void Budget_Location_Browse_Category_US() {
+        launchUrl();
+        Homepage homepage = new Homepage(getDriver());
 
         Locations locations = homepage.goToFindALocationPage();
         locations.browserLocation();
         Assert.assertTrue(locations.isMakeAReservationButtonDisplayed(), "Make a Reservation button is not displayed");
-        locations.clickOnMakeAReservation();
-        
+        locations.clickOnMakeAReservationWidget();
     }
 
     /**
      * To search for the location from location field.
      **/
-    @Test
-            (groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Location_Search_MnemonicCodeRes_US(String pickUpLocation, String firstName, String lastName, String email,
                                                 String phoneNo) {
         launchUrl();
@@ -51,4 +61,13 @@ public class LocationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
+    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_Location_Search_MnemonicCodeRes_US(String pickUpLocation, String firstName, String lastName, String email,
+                                                        String phoneNo) {
+        launchUrl();
+        LocationHelper locationHelper = new LocationHelper(getDriver());
+        Confirmation confirmation = locationHelper.Location_Search_MnemonicCodeRes(pickUpLocation, firstName, lastName, email, phoneNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        confirmation.cancelReservation();
+    }
 }

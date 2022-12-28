@@ -14,7 +14,6 @@ import static com.avis.qa.utilities.CommonUtils.*;
  */
 
 public class ReviewModificationPage extends AbstractBasePage {
-
     @FindBy(xpath = "//button[text()='Cancel Modifications']")
     private WebElement CancelModificationButton;
 
@@ -24,7 +23,7 @@ public class ReviewModificationPage extends AbstractBasePage {
     @FindBy(xpath = "//h1[text()='Modify Reservation - Review & Confirm']")
     private WebElement HeaderText;
 
-    @FindBy(xpath = "//strong[text()='Changes in Red Below']")
+    @FindBy(xpath = "//strong[text()='Changes in Red Below' or text()='Changes in Orange Below']")
     private WebElement ChangesInRedBelowText;
 
     @FindBy(xpath = "//strong[text()='ORIGINAL']")
@@ -37,12 +36,11 @@ public class ReviewModificationPage extends AbstractBasePage {
     public ReviewModificationPage(WebDriver driver) {
         super(driver);
     }
-
     public Confirmation clickKeepModificationButton() {
         helper.scrollToElement(KeepModificationButton);
         clickUsingJS(waitForVisibilityOfElement(KeepModificationButton));
         //waitForVisibilityOfElement(KeepModificationButton);
-      //  KeepModificationButton.click();
+      // KeepModificationButton.click();
         return new Confirmation(driver);
     }
 
@@ -72,17 +70,4 @@ public class ReviewModificationPage extends AbstractBasePage {
     public void isOnPage() {
         waitForVisibilityOfElement(HeaderText);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

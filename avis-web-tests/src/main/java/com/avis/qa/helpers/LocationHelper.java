@@ -17,20 +17,17 @@ public class LocationHelper extends AbstractBasePage {
         super(webDriver);
         this.driver = webDriver;
         this.homepage = new Homepage(webDriver);
-
     }
 
     @Override
     public void isOnPage() {
         log.info("Is on LocationHelper");
-
     }
 
     public Confirmation Location_Search_MnemonicCodeRes(String pickUpLocation, String firstName, String lastName, String email,
                                                         String phoneNo) {
 
         Locations locations = homepage.goToFindALocationPage();
-
         ReservationWidget reservationWidget = locations
                 .searchLocation(pickUpLocation)
                 .clickOnMakeAReservation();

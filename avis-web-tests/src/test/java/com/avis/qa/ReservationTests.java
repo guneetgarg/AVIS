@@ -79,6 +79,18 @@ public class ReservationTests extends TestBase {
         log.info("Test case execution ended :Avis_Reservation_CCOLocation_PayLater_US");
     }
 
+    @Test(groups = {REGRESSION, SMOKE}, priority = 3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_Reservation_CCOLocation_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
+                                                         String phoneNo, String cCNumber) {
+        log.info("Test case execution started :Avis_Reservation_CCOLocation_PayLater_US");
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        ReviewAndBook reviewAndBook = reservationHelper.Reservation_CCOLocation_PayLater(pickUpLocation, firstName, lastName, email, phoneNo,
+                cCNumber);
+        assertFalse(reviewAndBook.cvvCCOValidation(), "CVV is displayed");
+        log.info("Test case execution ended :Avis_Reservation_CCOLocation_PayLater_US");
+    }
+
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_Costco_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname,
@@ -657,7 +669,7 @@ public class ReservationTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US(String pickUpLocation, String fname, String lname,
                                                                  String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
         launchUrl();
@@ -732,8 +744,6 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-
-
     @Test(groups = {REGRESSION, SMOKE}, priority = 41, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US(String pickUpLocation, String pickupTime,String awd, String corporateEmailId, String firstName, String lastName,
                                                                                      String email, String phoneNumber,String ccNo, String cvv, String PickUpLocCurrencySymbol, String PickupLocCurrencyCode, String USCurrencyCode) {
@@ -766,6 +776,18 @@ public class ReservationTests extends TestBase {
     @Test(groups = {REGRESSION, SMOKE}, priority = 43, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Modify_flow_Step1_to_step4_US(String pickUpLocation, String firstName, String lastName,
                                                                                      String email, String phoneNumber,String ccNo, String cvv, String Country, String modifiedPickupLocation) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation =  reservationHelper.Reservation_ModifyFlow_PayNow(pickUpLocation, firstName, lastName, email,
+                phoneNumber, ccNo, cvv, Country, modifiedPickupLocation);
+        confirmation.GetConfirmationNumber();
+        confirmation.isEmailSentTextDisplayed(email);
+        confirmation.isModifiedReservationTextDisplayed(firstName);
+
+    }
+    @Test(groups = {REGRESSION, SMOKE}, priority = 44, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Modify_flow_Step1_to_step4_US(String pickUpLocation, String firstName, String lastName,
+                                                       String email, String phoneNumber,String ccNo, String cvv, String Country, String modifiedPickupLocation) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation =  reservationHelper.Reservation_ModifyFlow_PayNow(pickUpLocation, firstName, lastName, email,

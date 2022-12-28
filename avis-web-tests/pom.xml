@@ -30,7 +30,7 @@
                 <version>${maven-surefire-plugin}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/smoke.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/regression.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

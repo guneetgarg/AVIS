@@ -49,6 +49,14 @@ public class Locations extends AbstractBasePage {
     @FindBy(xpath = "(//a[@title='Newark Liberty Intl Airport 1 car rental'])[1]")
     WebElement makeAReservationButton;
 
+    @FindBy(xpath = "(//a[@title=\"Newark Liberty Intl Airport car rental\"])[1]")
+    WebElement makeAReservationButtonBudget;
+
+    @FindBy(xpath = "(//a[@title='Newark Liberty Intl Airport 1 car rental'])[2]")
+    WebElement makeAReservationButtonWidget;
+
+    @FindBy(xpath = "(//a[@title=\"Newark Liberty Intl Airport car rental\"])[2]")
+    WebElement makeAReservationButtonBudgetWidget;
 
     public Locations(WebDriver driver) {
         super(driver);
@@ -62,9 +70,29 @@ public class Locations extends AbstractBasePage {
         return this;
     }
 
+    public ReservationWidget clickOnMakeAReservationWidget() {
+        if(driver.getCurrentUrl().contains("avis")) {
+            waitForVisibilityOfElement(makeAReservationButtonWidget);
+            makeAReservationButtonWidget.click();
+        }
+        else
+        {
+            waitForVisibilityOfElement(makeAReservationButtonBudgetWidget);
+            makeAReservationButtonBudgetWidget.click();
+        }
+        return new ReservationWidget(driver);
+    }
+
     public ReservationWidget clickOnMakeAReservation() {
-        waitForVisibilityOfElement(makeAReservationButton);
-        makeAReservationButton.click();
+        if(driver.getCurrentUrl().contains("avis")) {
+            waitForVisibilityOfElement(makeAReservationButton);
+            makeAReservationButton.click();
+        }
+        else
+        {
+            waitForVisibilityOfElement(makeAReservationButtonBudget);
+            makeAReservationButtonBudget.click();
+        }
         return new ReservationWidget(driver);
     }
 
@@ -90,7 +118,9 @@ public class Locations extends AbstractBasePage {
     }
 
     public boolean isMakeAReservationButtonDisplayed() {
-        return makeAReservationButton.isDisplayed();
+        if (driver.getCurrentUrl().contains("avis"))
+            return  makeAReservationButtonWidget.isDisplayed();
+        return makeAReservationButtonBudgetWidget.isDisplayed();
     }
 
     @Override

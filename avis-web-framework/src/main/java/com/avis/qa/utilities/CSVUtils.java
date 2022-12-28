@@ -18,7 +18,7 @@ import static com.avis.qa.core.Configuration.DOMAIN;
  * @author ikumar
  */
 public class CSVUtils {
-    public static String method = null;
+    public static String method =null;
     static Object[][] obj1;
     static Object[][] obj2;
     static Object[][] obj3;
