@@ -499,7 +499,7 @@ public class ProfileTest  extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE}, priority = 37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Profile_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US(String username, String password,String pickUpLocation, String residencyLocation, String awd,String MembershipNum,
                                                                                                          String flightNumber) {
         launchUrl();
@@ -531,7 +531,7 @@ public class ProfileTest  extends TestBase {
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation));
         assertTrue(confirmation.isPickUpDateTimeDisplayed(pickupTime));
         assertTrue(confirmation.isDropDateTimeDisplayed(dropTime));
-       // assertTrue(confirmation.verifyCurrencyOnConfirmationPage(PickupLocCurrencyCode));
+//        assertTrue(confirmation.verifyCurrencyOnConfirmationPage(PickupLocCurrencyCode));
         assertTrue(confirmation.isAWDMessageTextDisplayed());
         assertTrue(confirmation.isCarReservedTextDisplayed());
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd));

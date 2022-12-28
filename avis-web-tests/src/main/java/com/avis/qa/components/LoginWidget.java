@@ -42,7 +42,6 @@ public class LoginWidget extends AbstractBasePage {
     public LoginWidget(WebDriver driver) {
         super(driver);
     }
-
     public LoginWidget loginHeaderclick() {
         if (driver.getCurrentUrl().contains("avis")){
             clickUsingJS(waitForVisibilityOfElement(HeaderLoginButton));}

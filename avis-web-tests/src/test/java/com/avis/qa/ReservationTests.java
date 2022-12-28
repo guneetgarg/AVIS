@@ -613,7 +613,7 @@ public class ReservationTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US(String pickUpLocation, String fname, String lname,
                                                                  String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
         launchUrl();

@@ -14,7 +14,6 @@ import static com.avis.qa.utilities.CommonUtils.*;
  */
 
 public class ReviewModificationPage extends AbstractBasePage {
-
     @FindBy(xpath = "//button[text()='Cancel Modifications']")
     private WebElement CancelModificationButton;
 
@@ -37,12 +36,11 @@ public class ReviewModificationPage extends AbstractBasePage {
     public ReviewModificationPage(WebDriver driver) {
         super(driver);
     }
-
     public Confirmation clickKeepModificationButton() {
         helper.scrollToElement(KeepModificationButton);
         clickUsingJS(waitForVisibilityOfElement(KeepModificationButton));
         //waitForVisibilityOfElement(KeepModificationButton);
-      //  KeepModificationButton.click();
+      // KeepModificationButton.click();
         return new Confirmation(driver);
     }
 
