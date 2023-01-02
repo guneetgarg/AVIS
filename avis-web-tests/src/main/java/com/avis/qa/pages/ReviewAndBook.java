@@ -3,10 +3,12 @@ package com.avis.qa.pages;
 import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.core.Configuration;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.math.BigDecimal;
 import java.util.Iterator;
@@ -37,6 +39,12 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(id = "phone")
     private WebElement phoneField;
+
+    @FindBy(id = "airlineobj")
+    private WebElement  airlineField;
+
+    @FindBy(xpath = "//input[@name='flightnumberMob']")
+    private WebElement flightNumberField;
 
     @FindBy(id = "comboPhone")
     private WebElement comboPhone;
@@ -317,6 +325,21 @@ public class ReviewAndBook extends AbstractBasePage {
             phoneField.sendKeys(pno);
         } else {
             comboPhone.sendKeys(pno);
+        }
+        return this;
+    }
+
+    public ReviewAndBook SelectAirline(String airLine){
+        if(helper.isElementDisplayed(airlineField)){
+        Select dropdown = new Select(airlineField);
+        dropdown.selectByVisibleText(airLine);
+        }
+        return this;
+    }
+
+    public ReviewAndBook SelectFlightNum(String flightNumber){
+        if(helper.isElementDisplayed(flightNumberField)){
+            flightNumberField.sendKeys(flightNumber);
         }
         return this;
     }

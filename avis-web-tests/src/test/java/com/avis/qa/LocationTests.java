@@ -53,20 +53,20 @@ public class LocationTests extends TestBase {
      **/
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Location_Search_MnemonicCodeRes_US(String pickUpLocation, String firstName, String lastName, String email,
-                                                String phoneNo) {
+                                                String phoneNo,String airline, String flightNumber) {
         launchUrl();
         LocationHelper locationHelper = new LocationHelper(getDriver());
-        Confirmation confirmation = locationHelper.Location_Search_MnemonicCodeRes(pickUpLocation, firstName, lastName, email, phoneNo);
+        Confirmation confirmation = locationHelper.Location_Search_MnemonicCodeRes(pickUpLocation, firstName, lastName, email, phoneNo, airline, flightNumber);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
     }
 
     @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_Location_Search_MnemonicCodeRes_US(String pickUpLocation, String firstName, String lastName, String email,
-                                                        String phoneNo) {
+                                                        String phoneNo, String airline, String flightNumber) {
         launchUrl();
         LocationHelper locationHelper = new LocationHelper(getDriver());
-        Confirmation confirmation = locationHelper.Location_Search_MnemonicCodeRes(pickUpLocation, firstName, lastName, email, phoneNo);
+        Confirmation confirmation = locationHelper.Location_Search_MnemonicCodeRes(pickUpLocation, firstName, lastName, email, phoneNo, airline, flightNumber);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
     }
