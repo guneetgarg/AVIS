@@ -62,6 +62,9 @@ public class Homepage extends AbstractBasePage {
     @FindBy(xpath = "//a[text()='View / Modify / Cancel']")
     private WebElement Reservation_ViewModifyCancelLink;
 
+    @FindBy(xpath = "(//a[text()='Sign In'])[2] | (//a[text()='Log In'])[2]")
+    private WebElement LoginLink;
+
     public Homepage(WebDriver driver) {
         super(driver);
     }
@@ -124,6 +127,12 @@ public class Homepage extends AbstractBasePage {
         clickUsingJS(Reservation_ViewModifyCancelLink);
         return new ReservationViewModifyCancel(driver);
     }
+
+    public void clickLoginLink(){
+        waitForVisibilityOfElement(LoginLink);
+        clickUsingJS(LoginLink);
+    }
+
 
     @Override
     public void isOnPage() {

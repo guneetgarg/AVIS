@@ -54,6 +54,8 @@ Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,86221960
 Avis_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
 Budget_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
 Avis_Profile_Enrollment_Activation_US,Abhishek,Jain,abhi527@yopmail.com,919654354519,ajain527,Password@789,900 Oxford Exchange Blvd
+Budget_RES_Profile_Outbound_USAA_Validate_CorpBooking_URS,LAST123@YOPMAIL.COM,Last@12345,SYD,Y126501,38298026
+
 ##############################_LOCATION_#################################
 Avis_Location_Search_MnemonicCodeRes_US,EWR,Hrishi,K,ABG_Location,9897867898
 Avis_Location_Search_Suggestion_US,EWR

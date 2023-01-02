@@ -160,7 +160,8 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//h1[text()='Your car is reserved.']")
     private WebElement CarReservedTextMsg;
 
-
+    @FindBy(xpath = "//div[@class='confirmation-info-holder-text']")
+    private WebElement ConfirmationMessage;
 
     public Confirmation(WebDriver driver) {
         super(driver);
@@ -284,7 +285,9 @@ public class Confirmation extends AbstractBasePage {
         return IATAvalue.getText().contains(IATA);
     }
 
-
+    public boolean isConfirmationMessageDisplayed(){
+        return ConfirmationMessage.getText().contains("A confirmation email has been sent");
+    }
 
     public boolean isAwdConfirmationPageTextDisplayed(String coupon) {
         helper.scrollToElement(AWDConfirmationPage);

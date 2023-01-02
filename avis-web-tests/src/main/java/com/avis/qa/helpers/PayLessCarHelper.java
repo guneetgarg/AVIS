@@ -16,16 +16,27 @@ public class PayLessCarHelper {
     }
 
     public Confirmation Reservation_Inbound_IATA_M_type_PayLater_US(String pickUpLocation, String country, String fname,
-                                                            String lname, String email, String phoneNo){
+                                                                    String lname, String email, String phoneNo){
         payLessCar
                 .pickUpLocation(pickUpLocation)
                 .residenceCountry(country)
                 .getRates();
 
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyVehicleName();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyVehicleName();
         reviewAndBook
                 .clickContinueReservationButton()
                 .firstname(fname)
@@ -34,6 +45,10 @@ public class PayLessCarHelper {
                 .phone(phoneNo)
                 .checkTermsAndConditions()
                 .step4Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyPayLaterUserInfo(email, country);
 
         return new Confirmation(driver);
     }
@@ -43,14 +58,24 @@ public class PayLessCarHelper {
         payLessCar
                 .pickUpLocation(pickUpLocation)
                 .residenceCountry(country)
-                //.clickCouponCheckBox()
-                //.enterCouponCode(couponNo)
+                .clickCouponCheckBox()
+                .enterCouponCode(couponNo)
                 .getRates();
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyCouponCode(couponNo);
 
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         reviewAndBook
                 .clickContinueReservationButton()
                 .firstname(fname)
@@ -59,12 +84,17 @@ public class PayLessCarHelper {
                 .phone(phoneNo)
                 .checkTermsAndConditions()
                 .step4Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyCouponCode(couponNo)
+                .verifyPayLaterUserInfo(email, country);
 
         return new Confirmation(driver);
     }
 
     public Confirmation Reservation_Outbound_PDN_Paylater_US(String pickUpLocation, String country, String pickUpTime,
-                                                                String pdn, String fname, String lname, String email, String phoneNo){
+                                                             String pdn, String fname, String lname, String email, String phoneNo){
         payLessCar
                 .pickUpLocation(pickUpLocation)
                 .residenceCountry(country)
@@ -74,10 +104,18 @@ public class PayLessCarHelper {
                 .enterPdn(pdn)
                 .getRates();
 
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPdnNumber(pdn);
+
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation);
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation);
         reviewAndBook
                 .clickContinueReservationButton()
                 .firstname(fname)
@@ -86,6 +124,10 @@ public class PayLessCarHelper {
                 .phone(phoneNo)
                 .checkTermsAndConditions()
                 .step4Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPdnNumber(pdn)
+                .verifyPayLaterUserInfo(email, country);
 
         return new Confirmation(driver);
     }
@@ -99,20 +141,28 @@ public class PayLessCarHelper {
                 .dropOffTime(dropOffTime)
                 .selectAge(age)
                 .getRates();
+        assertTrue(payLessCar.isNoCarsAvailableMessageDisplayed(), TextComparison.NO_CARS_AVAILABLE_MESSAGE);
 
-         assertTrue(payLessCar.isNoCarsAvailableMessageDisplayed(), TextComparison.NO_CARS_AVAILABLE_MESSAGE);
+        payLessCar.selectAge("21")
+                .getRates();
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
 
-         payLessCar.selectAge("21")
-                   .getRates();
-
-         assertTrue(payLessCar.isUnderAgeSubChargeMessageDisplayed(), TextComparison.UNDER_SUB_AGE_MESSAGE);
-         assertTrue(payLessCar.isLocationClosedMessageDisplayed(), TextComparison.LOCATION_CLOSED_MESSAGE);
+        assertTrue(payLessCar.isUnderAgeSubChargeMessageDisplayed(), TextComparison.UNDER_SUB_AGE_MESSAGE);
+        assertTrue(payLessCar.isLocationClosedMessageDisplayed(), TextComparison.LOCATION_CLOSED_MESSAGE);
 
 
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2SubmitPayNow();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         reviewAndBook
                 .clickContinueReservationButton()
                 .firstname(fname)
@@ -126,25 +176,45 @@ public class PayLessCarHelper {
                 .checkTermsAndConditions()
                 .step4Submit();
 
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyPayNowUserInfo(email);
+
+
         return new Confirmation(driver);
     }
 
     public Confirmation Reservation_Profile_G_typeCoupon_Extras_Paylater_US(String pickUpLocation, String couponNo){
         payLessCar
                 .pickUpLocation(pickUpLocation)
-                //.clickCouponCheckBox()
-                //.enterCouponCode(couponNo)
+                .clickCouponCheckBox()
+                .enterCouponCode(couponNo)
                 .getRates();
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyCouponCode(couponNo);
 
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         reviewAndBook
                 .clickContinueReservationButton()
                 .checkTermsAndConditions()
                 .step4Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyCouponCode(couponNo)
+                .verifyUserEmail();
         return new Confirmation(driver);
     }
 
@@ -154,15 +224,30 @@ public class PayLessCarHelper {
                 .clickCouponCheckBox()
                 .enterPdn(pdn)
                 .getRates();
-
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyPdnNumber(pdn);
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
 
         reviewAndBook
                 .clickContinueReservationButton()
                 .checkTermsAndConditions()
                 .step4Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyPdnNumber(pdn)
+                .verifyUserEmail();
 
         return new Confirmation(driver);
     }
@@ -170,25 +255,40 @@ public class PayLessCarHelper {
     public Confirmation Reservation_Profile_Inbound_IATA_M_type_PayLater_US(String pickUpLocation, String coupon){
         payLessCar
                 .pickUpLocation(pickUpLocation)
-                //.clickCouponCheckBox()
-                //.enterCouponCode(coupon)
+                .clickCouponCheckBox()
+                .enterCouponCode(coupon)
                 .getRates();
-
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyCouponCode(coupon);
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         reviewAndBook
                 .clickContinueReservationButton()
                 .checkTermsAndConditions()
                 .step4Submit();
 
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyCouponCode(coupon)
+                .verifyUserEmail();
+
         return new Confirmation(driver);
     }
 
     public Confirmation Reservation_Profile_Verify_Underage_onStep1_keydrop_US(String pickUpLocation, String dropOffLocation, String country, String pickUpTime,
-                                                                       String dropOffTime, String age, String fname, String lname, String email, String phoneNo,
-                                                                       String ccNumber, String cvv){
+                                                                               String dropOffTime, String age, String fname, String lname, String email, String phoneNo,
+                                                                               String ccNumber, String cvv){
         payLessCar
                 .pickUpLocation(pickUpLocation)
                 .residenceCountry(country)
@@ -206,11 +306,20 @@ public class PayLessCarHelper {
                 .pickUpLocation(pickUpLocation)
                 .pickUpTime(pickUpTime)
                 .getRates();
-
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2SubmitPayNow();
-        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
 
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         reviewAndBook
                 .clickContinueReservationButton()
                 .firstname(fname)
@@ -223,21 +332,34 @@ public class PayLessCarHelper {
                 .enterAddressInboundSpecific(country)
                 .checkTermsAndConditions()
                 .step4Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyPayNowUserInfo(email);
 
         return new Confirmation(driver);
     }
 
     public Confirmation Reservation_Profile_Outbound_DCC_Paynow_US(String pickUpLocation, String country, String pickUpTime, String fname, String lname,
-                                                           String email, String phoneNo, String ccNumber, String cvv){
+                                                                   String email, String phoneNo, String ccNumber, String cvv){
         payLessCar
                 .pickUpLocation(pickUpLocation)
                 .pickUpTime(pickUpTime)
                 .getRates();
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
 
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2SubmitPayNow();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
-
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         reviewAndBook
                 .clickContinueReservationButton()
                 .enterCardNumber(ccNumber)
@@ -245,6 +367,11 @@ public class PayLessCarHelper {
                 .enterSecurityCode(cvv)
                 .checkTermsAndConditions()
                 .step4Submit();
+
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyUserEmail();
 
         return new Confirmation(driver);
     }
@@ -257,10 +384,20 @@ public class PayLessCarHelper {
                 .clickCouponCheckBox()
                 .enterPdn(pdn)
                 .getRates();
-
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyPdnNumber(pdn);
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
 
         reviewAndBook
                 .clickContinueReservationButton()
@@ -271,10 +408,15 @@ public class PayLessCarHelper {
                 .checkTermsAndConditions()
                 .step4Submit()
                 .waitForConfirmationMessage();
+
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyPdnNumber(pdn)
+                .verifyPayLaterUserInfo(email, country);
+
         Confirmation confirmation = new Confirmation(driver);
         confirmation.closeGetFreeCouponPopup();
-
-
 
         payLessCar
                 .clickEditButton()
@@ -289,6 +431,7 @@ public class PayLessCarHelper {
                 .clickEditRentalDetails()
                 .verifyReservationDetails()
                 .Step3Submit();
+
         reviewAndBook.clickReviewModificationsButton()
                 .clickKeepModificationButton();
         String reservationNo = reviewAndBook.getConfirmationNumber();
@@ -301,19 +444,35 @@ public class PayLessCarHelper {
     }
 
     public Confirmation Reservation_Profile_Modify_cancel_flow_Step1_to_Step4_US(String pickUpLocation, String country, String pickUpTime, String pdn,
-                                                                         String fname, String lname, String email, String phoneNo) throws InterruptedException {
+                                                                                 String fname, String lname, String email, String phoneNo) throws InterruptedException {
         payLessCar
                 .pickUpLocation(pickUpLocation)
                 .getRates();
-
+        Validations validate = new Validations(driver);
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
+
         ReviewAndBook reviewAndBook = extras.Step3Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate();
 
         reviewAndBook
                 .clickContinueReservationButton()
                 .checkTermsAndConditions()
                 .step4Submit();
+        validate
+                .verifyPickUpLocation(pickUpLocation)
+                .verifyPickUpDate()
+                .verifyUserEmail();
+
+
         Confirmation confirmation = new Confirmation(driver);
         confirmation.closeGetFreeCouponPopup();
 
@@ -330,6 +489,7 @@ public class PayLessCarHelper {
                 .clickEditRentalDetails()
                 .verifyReservationDetails()
                 .Step3Submit();
+
         reviewAndBook.clickReviewModificationsButton()
                 .clickKeepModificationButton();
         String reservationNo = reviewAndBook.getConfirmationNumber();

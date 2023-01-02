@@ -89,6 +89,19 @@ Avis_RES_Profile_U_typeCoupon_Tierbundle_PayLater_US,NAVEEN12345,Avis$12345,SFO,
 Avis_Res_Profile_TtypeCoupon_PayLater_US,NAVEEN12345,Avis$12345,LAS,TUZZ006,TUZZ006 - Reward Day PLUS 500 Bon Mls/Paperless Coupon - 1 Coupons
 Avis_RES_Profile_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,NAVEEN12345,Avis$12345,YYZ,U S A,P469100,1234
 
+Avis_Profile_View_Updation_dashboard_US,vishnu.m@statusneo.com,Automation@123
+Avis_Profile_WizardLookUp_UserName_ForgotPassword_US,Automation,Test,avisautomation1@yopmail.com,52245
+Avis_Profile_Loyalty_OptOut_US,vishnu.m@statusneo.com,Automation@123
+Avis_Profile_ExpressProfile_Login_US,avisautomation1@yopmail.com,Sample@123
+Avis_Profile_AccountLock_Authenticated_US,avisautomation1@yomail.com,test
+Avis_Profile_Loyalty_OptIn_US,vishnu.m@statusneo.com,Automation@123
+Avis_Profile_OneClick_OAUTHLogin_US,https://qa.avis.com/api/oauth/authorize?response_type=token&client_id=R29vZ2xlQ2xpZW50QXZpcw&redirect_uri=https://oauth-redirect.googleusercontent.com/r/my-voice-carbook&scope=trip&state=abcd
+Avis_Profile_OneClick_EmailLink_US,https://qa.avis.com/en/loyalty-profile/avis-preferred/login?MID=expressconsent_02142018_av01expressconsentus_na_na&utm_source=newsletter&utm_medium=email&utm_content=email_476120& utm_campaign=expressconsent_02142018_av01expressconsentus_na_na&et_rid=73051010,avisautomation@yopmail.com,Sample@123
+Avis_RES_Profile_Misc_Step1_and_Step4_ErrorMsg_Validation_US,avisautomation1@yopmail.com,Sample@123,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
+
+Budget_RES_Profile_Modify_flow_Step1_to_step4_US,DYANI@YOPMAIL.COM,Dyani@1234,SFO,EWR,U S A
+Budget_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US,abhishekjain527@gmail.com,Aj527@321,SFO,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
+
 ####################################_MISC_######################################
 Avis_Misc_SmallBizz_Enrollment_US,,,Hrishi,K,ABGnetworkSmall,8970987867,Hrishikesh129,calicut university,College Station,Texas,77845 
 Avis_Misc_CBPDirect_EnrollmentAndReservation_US,U S A ,hrishi,k,ABGEcom,ABGEcomA@789,701 Ocean ave,address 2,08701,lakewood,NJ,LAS

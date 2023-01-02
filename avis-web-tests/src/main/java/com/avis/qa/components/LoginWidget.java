@@ -22,7 +22,7 @@ public class LoginWidget extends AbstractBasePage {
     @FindBy(xpath = "((//a[@id='res-login-profile'])[2]) | ((//a[contains(text(),'Sign In')])[1])")
     private WebElement HeaderLoginButton2;
 
-    @FindBy(xpath = "(//a[contains(text(),'Sign In')])[2]")
+    @FindBy(xpath = "(//a[contains(text(),'Sign In')])[2] | (//a[@id='res-login-profile'])[2]")
     private WebElement HeaderLoginButton;
 
     @FindBy(xpath = "(//ul[@class='header-secondary']//li//a[@id='res-login-profile'])[1]")
@@ -63,8 +63,10 @@ public class LoginWidget extends AbstractBasePage {
 
     public LoginWidget login(String emailNew, String passwordNew) {
         waitForVisibilityOfElement(UserName);
+        UserName.clear();
         UserName.sendKeys(emailNew);
         waitForVisibilityOfElement(Password);
+        Password.clear();
         Password.sendKeys(passwordNew);
         threadSleep(ONE_SECOND);
        // waitForVisibilityOfElement(LoginButton);

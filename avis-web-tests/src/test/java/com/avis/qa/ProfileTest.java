@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.avis.qa.constants.AvisConstants.*;
 import static com.avis.qa.constants.TextComparison.*;
 import static com.avis.qa.utilities.CommonUtils.*;
@@ -564,4 +566,149 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservation();
     }
 
+    //@Test(groups = {REGRESSION, SANITY,SMOKE}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_View_Updation_dashboard_US(String username, String pwd) {
+
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, pwd);
+        ProfileDashboard profileDashboard = new ProfileDashboard(getDriver());
+
+        profileDashboard
+                .clickProfile()
+                .verifyMyRentalTab()
+                .verifyRewardsTab()
+                .verifyPreferenceTab()
+                .verifyAboutTab()
+                .verifyPrivacyPolicyTab()
+                .verifyTermsAndConditionsTab();
+    }
+
+   // @Test(groups = {REGRESSION, SANITY,SMOKE}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_WizardLookUp_UserName_ForgotPassword_US(String firstname, String lastname, String email, String zip) throws InterruptedException {
+        launchUrl();
+        Homepage homepage = new Homepage(getDriver());
+        Login login = new Login(getDriver());
+        homepage.clickLoginLink();
+
+        login
+                .clickForgotPassword()
+                .enterResetPasswordDetails(firstname, lastname, email, zip)
+                .checkMailInbox(email);
+    }
+
+   // @Test(groups = {REGRESSION, SANITY,SMOKE}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_Loyalty_OptOut_US(String username, String pwd){
+        launchUrl();
+        Homepage homepage = new Homepage(getDriver());
+        LoginWidget loginWidget = new LoginWidget(getDriver());
+        ProfileDashboard profileDashboard = new ProfileDashboard(getDriver());
+        homepage.clickLoginLink();
+        loginWidget.login(username,pwd);
+        profileDashboard
+                .clickProfile()
+                .verifyRewardsTab()
+                .clickEarnPointsButton();
+    }
+
+   // @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_ExpressProfile_Login_US(String username, String pwd){
+        launchUrl();
+        Homepage homepage = new Homepage(getDriver());
+        LoginWidget loginWidget = new LoginWidget(getDriver());
+        homepage.clickLoginLink();
+        loginWidget.login(username,pwd);
+    }
+
+    @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_AccountLock_Authenticated_US(String username, String pwd) throws InterruptedException {
+        launchUrl();
+        Homepage homepage = new Homepage(getDriver());
+        LoginWidget loginWidget = new LoginWidget(getDriver());
+        homepage.clickLoginLink();
+        for (int i = 0; i < 4; i++) {
+            loginWidget.login(username, pwd);
+        }
+        TimeUnit.SECONDS.sleep(5);
+    }
+
+    // @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_Loyalty_OptIn_US(String username, String pwd){
+        launchUrl();
+        Homepage homepage = new Homepage(getDriver());
+        LoginWidget loginWidget = new LoginWidget(getDriver());
+        ProfileDashboard profileDashboard = new ProfileDashboard(getDriver());
+        homepage.clickLoginLink();
+        loginWidget.login(username,pwd);
+        profileDashboard
+                .clickProfile()
+                .verifyRewardsTab()
+                .clickEarnPointsButton();
+    }
+
+    @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_OneClick_OAUTHLogin_US(String emailUrl) {
+        launchUrl(emailUrl);
+    }
+
+    //@Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Profile_OneClick_EmailLink_US(String emailUrl, String username, String pwd){
+        launchUrl(emailUrl);
+        LoginWidget loginWidget = new LoginWidget(getDriver());
+        loginWidget.login(username,pwd);
+    }
+
+   // @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Profile_Misc_Step1_and_Step4_ErrorMsg_Validation_US(String username, String pwd, String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber){
+        launchUrl();
+        Homepage homepage = new Homepage(getDriver());
+        com.avis.qa.components.LoginWidget loginWidget = new com.avis.qa.components.LoginWidget(getDriver());
+        homepage.clickLoginLink();
+        loginWidget.login(username,pwd);
+        MiscHelper miscHelper = new MiscHelper(getDriver());
+        miscHelper.Reservation_Misc_Step1AndStep4_ErrorMsg_Validation(pickUpLocation,pickUpDate, pickUpTime, dropOffLocation, dropOffDate,dropOffTime,WizardNumber,lastName,awdCode,corporateEmail,rateCode,couponCode,creditcardNumber);
+
+    }
+
+    @Test(groups = {REGRESSION, SMOKE}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_OneWay_USAA_PayLater_US(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
+                                                 String email, String phoneNo) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        confirmation.cancelReservation();
+    }
+
+    //@Test(groups = {REGRESSION, SMOKE}, priority = 6, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Modify_flow_Step1_to_step4_US(String username, String password,String pickUpLocation, String modifiedPickupLocation,String Country) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(TWO_SECONDS);
+        loginwidget.PopupBudget.click();
+
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation =  reservationHelper.Reservation_Profile_ModifyFlow_PayNow(pickUpLocation,modifiedPickupLocation, Country);
+        confirmation.GetConfirmationNumber();
+        confirmation.isEmailSentTextDisplayed();
+        confirmation.isModifiedReservationTextDisplayed();
+
+    }
+
+    //@Test(groups = {REGRESSION, SMOKE}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Budget_RES_Profile_Outbound_USAA_Validate_CorpBooking_URS(String username, String password, String pickUpLocation, String BCD, String membershipNo) {
+        launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);
+        threadSleep(TWO_SECONDS);
+        loginwidget.PopupBudget.click();
+
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_Profile_Outbound_USAA_Validate_CorpBooking_URS(pickUpLocation, BCD, membershipNo);
+        assertTrue(confirmation.isConfirmationNumberDisplayed());
+    }
 }
