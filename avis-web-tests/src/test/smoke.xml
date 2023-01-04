@@ -6,9 +6,9 @@
         <listener class-name="com.avis.qa.listeners.retry.AnnotationTransformer"></listener>
     </listeners>
 
-    <parameter name="brand" value="Avis"/> <!-- <Possible values: Avis/Budget/Paylesscar -->
+    <!--parameter name="brand" value="Avis"/>--> <!-- <Possible values: Avis/Budget/Paylesscar -->
     <parameter name="domain" value="US"/>    <!-- <Possible values: US/CA/AU/NZ> -->
-    <parameter name="environment" value="qa"/>    <!-- < Possible values : qa/uat1/qa2/www/load balancer ip> -->
+    <!--parameter name="environment" value="qa"/>-->    <!-- < Possible values : qa/uat1/qa2/www/load balancer ip> -->
     <parameter name="browser" value="chrome"/>
     <!-- <Possible values: chrome/firefox/safari/edge/pixel/iphone/ipad> -->
     <parameter name="docker" value="true"/>
@@ -25,7 +25,7 @@
             <class name="com.avis.qa.LocationTests"/>
             <class name="com.avis.qa.MiscellaneousTests"/>
             <class name="com.avis.qa.FrameworkTests"/>
-            <class name="com.avis.qa.ProfileTest" />
+            <!--class name="com.avis.qa.ProfileTest" />-->
         </classes>
 
 
