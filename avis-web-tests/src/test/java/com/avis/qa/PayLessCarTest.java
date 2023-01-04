@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 public class PayLessCarTest extends TestBase {
 
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Inbound_IATA_M_type_PayLater_US(String pickUpLocation, String country, String fname,
                                                                String lname, String email, String phoneNo){
         launchUrl();
@@ -24,7 +24,7 @@ public class PayLessCarTest extends TestBase {
     }
 
     //Check
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_G_typeCoupon_Extras_paylater_US(String pickUpLocation, String country, String coupon, String fname,
                                                                String lname, String email, String phoneNo){
         launchUrl();
@@ -33,7 +33,7 @@ public class PayLessCarTest extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Outbound_PDN_Paylater_US(String pickUpLocation, String country, String pickUpTime, String pdn,
                                                         String fname, String lname, String email, String phoneNo){
         launchUrl();
@@ -42,7 +42,7 @@ public class PayLessCarTest extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Verify_Underage_onStep1_keydrop_US(String pickUpLocation, String dropOffLocation, String country, String pickUpTime,
                                                                   String dropOffTime, String age, String fname, String lname, String email, String phoneNo,
                                                                   String ccNumber, String cvv){
@@ -53,7 +53,7 @@ public class PayLessCarTest extends TestBase {
     }
 
     //Check
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Profile_G_typeCoupon_Extras_Paylater_US(String username, String password, String pickUpLocation, String coupon){
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
@@ -69,7 +69,7 @@ public class PayLessCarTest extends TestBase {
     }
 
     //bug
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Profile_Outbound_PDN_Paylater_US(String username, String password, String pickUpLocation, String pdn){
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
@@ -84,7 +84,7 @@ public class PayLessCarTest extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Profile_Inbound_IATA_M_type_PayLater_US(String username, String password, String pickUpLocation, String coupon){
         launchUrl();
 
@@ -101,7 +101,7 @@ public class PayLessCarTest extends TestBase {
     }
 
     //Under age will not work
-   // @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Profile_Verify_Underage_onStep1_keydrop_US(String username, String password, String pickUpLocation, String dropOffLocation, String country, String pickUpTime,
                                                                   String dropOffTime, String age, String fname, String lname, String email, String phoneNo,
                                                                   String ccNumber, String cvv){
@@ -117,7 +117,7 @@ public class PayLessCarTest extends TestBase {
         Confirmation confirmation = payLessCarHelper.Reservation_Profile_Verify_Underage_onStep1_keydrop_US(pickUpLocation, dropOffLocation, country, pickUpTime, dropOffTime, age, fname, lname, email, phoneNo, ccNumber, cvv);
     }
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Outbound_DCC_Paynow_US(String pickUpLocation, String country, String pickUpTime, String fname, String lname, String email, String phoneNo,
                                                                           String ccNumber, String cvv){
         launchUrl();
@@ -127,7 +127,7 @@ public class PayLessCarTest extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Profile_Outbound_DCC_Paynow_US(String username, String password, String pickUpLocation, String country, String pickUpTime, String fname, String lname, String email, String phoneNo,
                                                       String ccNumber, String cvv){
         launchUrl();
@@ -143,7 +143,7 @@ public class PayLessCarTest extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Modify_cancel_flow_Step1_to_Step4_US(String pickUpLocation, String country, String pickUpTime, String pdn,
                                                                     String fname, String lname, String email, String phoneNo) throws InterruptedException {
         launchUrl();
@@ -153,7 +153,7 @@ public class PayLessCarTest extends TestBase {
         assertTrue(confirmation.isCancellationMessageDisplayed(), TextComparison.RESERVATION_CANCELLATION_MESSAGE);
     }
 
-    @Test(groups = {REGRESSION, SANITY}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Paylesscar_RES_Profile_Modify_cancel_flow_Step1_to_Step4_US(String username, String password, String pickUpLocation, String country, String pickUpTime, String pdn,
                                                                     String fname, String lname, String email, String phoneNo) throws InterruptedException {
         launchUrl();
