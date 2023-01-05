@@ -58,6 +58,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
                 .enterAddress()
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .setSelectedCountryText()
                 .step4Submit();
@@ -184,6 +186,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -480,6 +484,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 

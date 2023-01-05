@@ -136,10 +136,10 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//ul[@class='dropdown-menu']/li[2]/a")
     private WebElement MileageHighToLowValue;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[3]/a")
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[3]/a | //ul[@class='dropdown-menu']/li[2]/a")
     private WebElement SeatsHighToLowValue;
 
-    @FindBy(xpath = "(//span[contains(text(),'Small to Full Size')])[1]")
+    @FindBy(xpath = "(//span[contains(text(),'Small to Full Size')])[1] | (//span[contains(text(),'Small & Mid Size ')])[1]")
     private WebElement SmallToFullSizeText;
 
     @FindBy(xpath = "//span[text()='An underage surcharge is applicable except at participating locations.']")
@@ -367,13 +367,24 @@ public class Vehicles extends AbstractBasePage {
             helper.clickIfElementIsDisplayed(PriceLowToHighValue);
         }
         ArrayList<Double> obtainedList1 = new ArrayList<>();
-        for(WebElement s:AllPayLaterPrice){
-            try {
-                obtainedList1.add(Double.parseDouble(s.getText().replaceAll(",", "").substring(1).trim()));
+        if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+            for(WebElement s:AllPayLaterPrice){
+                try {
+                    obtainedList1.add(Double.parseDouble(s.getText().replaceAll(",", "").substring(2,8).trim()));
+                }
+                catch(Exception e)
+                {
+                    obtainedList1.add(Double.parseDouble(s.getText().substring(2,7).trim()));
+                }
             }
-            catch(Exception e)
-            {
-                obtainedList1.add(Double.parseDouble(s.getText().substring(1).trim()));
+        }
+        else {
+            for (WebElement s : AllPayLaterPrice) {
+                try {
+                    obtainedList1.add(Double.parseDouble(s.getText().replaceAll(",", "").substring(1).trim()));
+                } catch (Exception e) {
+                    obtainedList1.add(Double.parseDouble(s.getText().substring(1).trim()));
+                }
             }
         }
         System.out.println("PayLater Price obtainedList "+obtainedList1);
@@ -384,30 +395,32 @@ public class Vehicles extends AbstractBasePage {
         Collections.sort(sortedList1);
         System.out.println("Paylater Price sorted list "+sortedList1);
         Assert.assertTrue(sortedList1.equals(obtainedList1));
-
-        helper.mouseHover(SortByDropDown);
-        helper.clickIfElementIsDisplayed(SortByDropDown);
-        helper.clickIfElementIsDisplayed(MileageHighToLowValue);
-        ArrayList<String> obtainedList = new ArrayList<>();
-        if(Configuration.BRAND.equalsIgnoreCase("Avis")) {
-            for (WebElement s : AllMileage) {
-                obtainedList.add(s.getText().substring(3));
-            }
+    if(!Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+    helper.mouseHover(SortByDropDown);
+    helper.clickIfElementIsDisplayed(SortByDropDown);
+    helper.clickIfElementIsDisplayed(MileageHighToLowValue);
+    ArrayList<String> obtainedList = new ArrayList<>();
+    if (Configuration.BRAND.equalsIgnoreCase("Avis")) {
+        for (WebElement s : AllMileage) {
+            obtainedList.add(s.getText().substring(3));
         }
-        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
-            for (WebElement s : AllMileage) {
-                obtainedList.add(s.getText());
-        }}
-        System.out.println("Mileage obtainedList "+obtainedList);
-        ArrayList<String> sortedList = new ArrayList<>();
-        for(String s:obtainedList){
-            sortedList.add(s);
+    }
+    if (Configuration.BRAND.equalsIgnoreCase("Budget")) {
+        for (WebElement s : AllMileage) {
+            obtainedList.add(s.getText());
         }
-        Collections.sort(sortedList);
-        Collections.reverse(sortedList);
-        System.out.println(" Mileage sorted list "+sortedList);
-        Assert.assertTrue(sortedList.equals(obtainedList));
-      //  Assert.assertTrue(size==AllMileage.size());
+    }
+    System.out.println("Mileage obtainedList " + obtainedList);
+    ArrayList<String> sortedList = new ArrayList<>();
+    for (String s : obtainedList) {
+        sortedList.add(s);
+    }
+    Collections.sort(sortedList);
+    Collections.reverse(sortedList);
+    System.out.println(" Mileage sorted list " + sortedList);
+    Assert.assertTrue(sortedList.equals(obtainedList));
+    //  Assert.assertTrue(size==AllMileage.size());
+}
         helper.mouseHover(SortByDropDown);
         helper.clickIfElementIsDisplayed(SortByDropDown);
         helper.clickIfElementIsDisplayed(SeatsHighToLowValue);

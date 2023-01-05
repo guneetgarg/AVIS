@@ -499,6 +499,7 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public ReviewAndBook enterAddress() {
+        helper.selectValueFromDropDown(selectedCountry, "U S A");
         address1.sendKeys("701 West St");
         city.sendKeys("San Antonio");
         helper.selectValueFromDropDown(state, 47);

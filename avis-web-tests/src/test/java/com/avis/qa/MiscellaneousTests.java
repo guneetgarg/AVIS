@@ -3,6 +3,7 @@ package com.avis.qa;
 import com.avis.qa.components.Header;
 import com.avis.qa.components.LoginWidget;
 import com.avis.qa.components.ReservationWidget;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.core.TestBase;
 import com.avis.qa.helpers.MiscHelper;
 import com.avis.qa.pages.Confirmation;
@@ -107,7 +108,9 @@ MiscellaneousTests extends TestBase {
                 .selectAge(age)
                 .selectMyCar();
         Vehicles vehicles = new Vehicles(getDriver());
-        vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
+            vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        }
         vehicles.clickFilterOptionAndVerifyData();
 
     }

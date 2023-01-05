@@ -22,6 +22,7 @@ public class AvisConstants {
     public static final String Default_DropTime_Noon = "12:00 PM";
     public static final String ResidentLoc = "U S A";
     public static final int FLIGHT_NAME = 3; //dropdown index value
+    public static final String FLIGHT_NUMBER = "1234";
 
     public static String getAvisUrl(String path) {
         return Configuration.URL.replace("/en/home", path);
