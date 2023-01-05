@@ -95,7 +95,7 @@ MiscellaneousTests extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE,AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String pickUpLocation, String age)  {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -112,7 +112,7 @@ MiscellaneousTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE,BUDGET},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String pickUpLocation, String age1, String age2)  {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
