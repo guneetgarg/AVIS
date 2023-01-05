@@ -489,7 +489,7 @@ public class ReservationTests extends TestBase {
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_OneWay_USAA_PayLater_US(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
-                                                 String email, String phoneNo, String airline, String flightNumber) {
+                                                 String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo);
@@ -499,7 +499,7 @@ public class ReservationTests extends TestBase {
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_OneWay_USAA_PayLater_US(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
-                                                 String email, String phoneNo, String airline, String flightNumber) {
+                                                 String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo);
