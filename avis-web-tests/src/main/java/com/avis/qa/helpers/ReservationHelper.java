@@ -126,7 +126,7 @@ public class ReservationHelper extends AbstractBasePage {
 
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
-        if (Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US")){
+        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))){
             assertTrue(extras.isUpliftTextDisplayed());
         }
         ReviewAndBook reviewAndBook = extras.Step3Submit();
@@ -893,7 +893,7 @@ public class ReservationHelper extends AbstractBasePage {
     }
 
     public Confirmation Reservation_OneWay_USAA_PayLater(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
-                                                    String email, String phoneNo, String airline, String flightNumber) {
+                                                    String email, String phoneNo) {
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)
@@ -918,8 +918,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
-                .SelectAirline(airline)
-                .SelectFlightNum(flightNumber)
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -999,7 +999,7 @@ public class ReservationHelper extends AbstractBasePage {
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
-        if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US")) {
+        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
             Assert.assertTrue(vehicles.isStrikreThroughPriceIndicatorDisplayed(), "Strikre Through Price Indicator not Displayed");
         }
        // Assert.assertTrue(vehicles.isSavingtextDisplayed(), "Extras and protection text not Displayed");
@@ -1194,7 +1194,7 @@ public class ReservationHelper extends AbstractBasePage {
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
         //ReviewAndBook reviewAndBook = extras.selectTierBundle().Step3Submit();
-        if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US")) {
+        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
             extras.isUpliftTextDisplayed();
         }
         extras.ClickLDWCoverage();
