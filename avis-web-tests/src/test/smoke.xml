@@ -16,7 +16,9 @@
     <test name="avis-smoke-result">
         <groups>
             <run>
-                <include name="PAYLESSCAR,AVIS,BUDGET"/>
+                <include name="Paylesscar"></include>
+                <include name = "Avis"></include>
+                <include name = "Budget"></include>
             </run>
         </groups>
         <packages>
