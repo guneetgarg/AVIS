@@ -136,6 +136,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -236,6 +238,8 @@ public class ReservationHelper extends AbstractBasePage {
                     .enterAddressInboundSpecific(ResidentLoc);
         }
         reviewAndBook
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 

@@ -80,7 +80,7 @@ public class ReservationTests extends TestBase {
         log.info("Test case execution ended :Avis_Reservation_CCOLocation_PayLater_US");
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,BUDGET}, priority = 3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_Reservation_CCOLocation_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
                                                          String phoneNo, String cCNumber) {
         log.info("Test case execution started :Avis_Reservation_CCOLocation_PayLater_US");
@@ -120,7 +120,7 @@ public class ReservationTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE, BUDGET}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -225,7 +225,7 @@ public class ReservationTests extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,BUDGET}, priority = 11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_U_type_Coupon_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                                    String lname, String email, String phoneNo) {
 
@@ -431,7 +431,7 @@ public class ReservationTests extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE},priority=28, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE,BUDGET},priority=28, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_T_typeCoupon_CCOLocation_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                          String lname, String email, String phoneNo, String couponMsg) {
 
@@ -463,7 +463,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE},priority=30, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,BUDGET},priority=30, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Domestic_PayLater_US(String pickUpLocation, String firstName, String lastName, String email,
                                                 String phoneNo) {
         launchUrl();
@@ -497,7 +497,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,BUDGET}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_OneWay_USAA_PayLater_US(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
                                                  String email, String phoneNo) {
         launchUrl();
@@ -521,7 +521,7 @@ public class ReservationTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 33, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, BUDGET}, priority = 33, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Inbound_MultiCurrency_PayLater_US(String pickUpLocation, String residencyLocation, String firstName, String lastName,
                                                                     String email, String phoneNumber, String flightNumber,String residentCurrencySymbol, String currencyValue) {
         launchUrl();
@@ -550,7 +550,7 @@ public class ReservationTests extends TestBase {
         //confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, BUDGET}, priority = 34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_BCD_CorpCust_insuranceCover_Validate_Paylater_US(String pickUpLoction, String BCD, String corporateEmailId, String fname, String lname,
                                                                                                         String mail, String pNo) {
         launchUrl();
@@ -580,7 +580,7 @@ public class ReservationTests extends TestBase {
         // confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE, BUDGET}, priority = 35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_G_typeCoupon__SMSCheckbox_IATA_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                                                          String lname, String email, String phoneNo,String flightName, String flightNumber, String IATA, String couponMsg) {
 
@@ -629,7 +629,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservationWithConfirmationBox();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, BUDGET}, priority = 37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Costco_DigitalWallet_PayPal_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname, String lname,
                                                                  String email, String phoneNo, String paypalEmail, String paypalPassword) {
         launchUrl();
@@ -657,7 +657,7 @@ public class ReservationTests extends TestBase {
     }
 
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, BUDGET}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US(String pickUpLocation, String residencyLocation, String awd,String MembershipNum, String fname, String lname,
                                                                               String email, String phoneNo, String flightNumber) {
         launchUrl();
@@ -687,7 +687,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservationWithConfirmationBox();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, BUDGET}, priority = 39, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US(String pickUpLocation, String fname, String lname,
                                                                    String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
         launchUrl();
@@ -732,7 +732,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, BUDGET}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Inbound_MultiCurrency_IATA_Cancellation_PayNow_US(String pickUpLocation, String residencyLocation,String awd, String corporateEmailId, String firstName, String lastName,
                                                                                      String email, String phoneNumber, String IATA,String ccNo, String cvv, String residentCurrencySymbol, String USCurrencyValue) {
         launchUrl();
@@ -793,7 +793,7 @@ public class ReservationTests extends TestBase {
         confirmation.isModifiedReservationTextDisplayed(firstName);
 
     }
-    @Test(groups = {REGRESSION, SMOKE}, priority = 44, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, BUDGET}, priority = 44, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Modify_flow_Step1_to_step4_US(String pickUpLocation, String firstName, String lastName,
                                                        String email, String phoneNumber,String ccNo, String cvv, String Country, String modifiedPickupLocation) {
         launchUrl();
