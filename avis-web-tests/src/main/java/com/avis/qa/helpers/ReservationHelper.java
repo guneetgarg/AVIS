@@ -58,6 +58,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
                 .enterAddress()
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .setSelectedCountryText()
                 .step4Submit();
@@ -184,6 +186,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -480,6 +484,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo)
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 
@@ -2053,6 +2059,84 @@ public class ReservationHelper extends AbstractBasePage {
 
     }
 
+    public Confirmation Reservation_Amazon_Customer_Paynow_US(String pickUpLocation, String firstName, String lastName,
+
+                                                              String email, String phoneNumber, String ccNumber, String cvv) {
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.step2SubmitPayNow();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(firstName)
+                .lastname(lastName)
+                .email(email)
+                .phone(phoneNumber)
+                .enterCardNumber(ccNumber)
+                .EnterExpiryDateAndYear()
+                .enterSecurityCode(cvv)
+                .enterAddress()
+                .checkTermsAndConditions()
+                .setSelectedCountryText()
+                .step4Submit();
+
+        Assert.assertTrue(reviewAndBook.verifySelectedCountryText("U S A") || reviewAndBook.verifySelectedCountryText("U.S.A."), "Country Text is incorrect");
+        return new Confirmation(driver);
+    }
+
+    public Confirmation ReservationProfileUTypeCouponTireBundlePayLaterUS(String pickUpLocation, String coupon, String firstName, String lastName, String email,
+                                                                          String phoneNo, String cCNumber) {
+
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterCouponCode(coupon)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.payLater();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .firstname(firstName)
+                .lastname(lastName)
+                .email(email)
+                .phone(phoneNo)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+
+        return new Confirmation(driver);
+    }
+
+    public Confirmation Reservation_Profile_Outbound_USAA_Validate_CorpBooking_URS(String pickUpLocation, String BCD, String membershipNo){
+        reservationWidget
+                .pickUpLocation(pickUpLocation)
+                .calendarSelection()
+                .expandDiscountCode()
+                .enterAwd(BCD)
+                .enterMembershipNo(membershipNo)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Extras extras = vehicles.payLater();
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        reviewAndBook
+                .step4_CreditCardCheckBox()
+                .checkTermsAndConditions()
+                .step4Submit();
+
+
+        return new Confirmation(driver);
+    }
 
     public ReservationWidget getReservationWidget(){
         return this.reservationWidget;

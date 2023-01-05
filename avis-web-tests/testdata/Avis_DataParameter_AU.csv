@@ -1,8 +1,8 @@
 ####################################_RESERVATION_##################################
-Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,1234,USD
+Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,Australia,Hrishi,K,AbgEcom,8980765645,1234,AUD
 Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,C$,USD
 Avis_RES_DigitalWallet_AmazonPay_Paynow_US,EWR,Abhishek,K,test,8980765645,abhishek.jn@statusneo.com,Aj527@321
-Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,YYZ,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,CAD,USD
+Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,YYZ,11:00 AM,12:00 PM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,CAD,USD
 Avis_RES_Modify_flow_Step1_to_step4_US,SFO,Abhishek,J,test,9600685486,343710684134463,123,U S A,EWR
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
@@ -22,7 +22,7 @@ Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater
 Avis_Reservation_FleetVerification_Price_US,EWR,Tester,M,test,9838234567,345836415546724,123
 Avis_Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater_US,YYZ,21,Tester,M,test,9838234567
 Avis_Reservation_OneClick_GPSSelection_US,/en/reservation#/oneclick?resForm.confirmationNumber=15680825US6&resForm.lastName.value=G&accept_GPS=true
-Avis_Reservation_ErrorMessage_PayNow_US,YYZ,Tester,M,test,9838234567,345836415546724,123
+Avis_Reservation_ErrorMessage_PayNow_US,SYD,Tester,M,test,9838234567,345836415546724,123
 Avis_Reservation_TierBundle_PayLater_US,LAS,Dhanapriya,K,test,9600685486,4263982640269299,738
 Avis_Reservation_Inbound_PayLater_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645
 Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,SYD,U S A,P469100,38298026,Abhishek,J,test,8980765645,1234
@@ -30,29 +30,29 @@ Avis_Reservation_Domestic_PayNow_US,EWR,ishan,K,AbgEcom,8980765645,3437106841344
 Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Inbound_PayNow_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645,343710684134463,123
-Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
+Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,SFO,Canada,12:00 PM,12:00 PM,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_Reservation_USAA_PayLater_US,XB4,A177201,14518727,Tester,M,test,8980765645
 Avis_RES_OneWay_USAA_PayLater_US,EWR,JFK,A177201,38298026,Abhishek,J,test,9600685486
 Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
-Avis_Reservation_OneWay_PayLater_US,LAS,JFK,Ishita,Garg,test,8658066321
-Avis_Reservation_MtypeCouponProcessing_PayLater_US,LAS,MUZZ012,Ishita,Garg,test,8658066321
-Avis_Reservation_UtypeCouponProcessing_PayLater_US,LAS,UUZZ003,Ishita,Garg,test,8658066321
-Avis_Reservation_GtypeCouponProcessing_PayLater_US,YYZ,GUZZ001,Ishita,Garg,test,8658066321
+Avis_Reservation_OneWay_PayLater_US,SYD,NSW,Ishita,Garg,test,8658066321
+Avis_Reservation_MtypeCouponProcessing_PayLater_US,SYD,MUZZ020,Ishita,Garg,test,8658066321
+Avis_Reservation_UtypeCouponProcessing_PayLater_US,SYD,UUZZ003,Ishita,Garg,test,8658066321
+Avis_Reservation_GtypeCouponProcessing_PayLater_US,SYD,GUZZ003,Ishita,Garg,test,8658066321
 Avis_Reservation_TtypeCoupon_PayLater_US,LAS,TUZZ006,Abhishek,J,test,8658066321,TUZZ006 - Reward Day PLUS 500 Bon Mls/Paperless Coupon - 1 Coupons
 Avis_Reservation_SplitBillItemized_PayLater_US,SAN,A0097099,Hrishi,K,ABGsplitbill098,8087444804,4916012228357695,370170242163692
 Avis_Reservation_OnAirport_PayLater_US,A4E966,Password123,BRL,Ishita,Garg,test,8658066321
 Avis_Reservation_GEBUser_PayLater_US,LAS,EV300W,GEB,Corpo,test,8658066321
 Avis_Reservation_SnowChain_PayLater_US,MXP,Hrishi,K,ABGSnowChain,8622443583
 Avis_Reservation_LastMinuteBundle_PayLater_US,LAS,Dhanapriya,K,roytesting,9600685486
-Avis_Reservation_OneClick_Step3_US,/en/reservation#/oneclick?PICKUP_YEAR=2019&PICKUP_MONTH=7&PICKUP_DAY=23&PICKUP_HOUR=9&PICKUP_MINUTE=0&PICKUP_AM_PM=AM&RETURN_YEAR=2019&RETURN_MONTH=7&RETURN_DAY=30&RETURN_HOUR=9&RETURN_MINUTE=0&RETURN_AM_PM=AM&PICKUP_LOCATION_CODE=SFO&RETURN_LOCATION_CODE=SFO&RENTAL_ONEWAY=false&RATE_CODE=76&COUNTRY_OF_RESIDENCE_CODE=US&CAR_GROUP_CODE=W&STEP_CODE=4
+Avis_Reservation_OneClick_Step3_US,/en/reservation#/oneclick?PICKUP_YEAR=2019&PICKUP_MONTH=7&PICKUP_DAY=23&PICKUP_HOUR=9&PICKUP_MINUTE=0&PICKUP_AM_PM=AM&RETURN_YEAR=2019&RETURN_MONTH=7&RETURN_DAY=30&RETURN_HOUR=9&RETURN_MINUTE=0&RETURN_AM_PM=AM&PICKUP_LOCATION_CODE=SYD&RETURN_LOCATION_CODE=SYD&RENTAL_ONEWAY=false&RATE_CODE=76&COUNTRY_OF_RESIDENCE_CODE=US&CAR_GROUP_CODE=W&STEP_CODE=4
 Avis_Reservation_FTPPayLater_Authenticated_US,K0832G,Priyajeevi2!,EWR,American Advantage,1K56E60
-Avis_Reservation_EMEA90Days_ErrorMessage_US,LDY,5
-Avis_Reservation_EMEA330Days_ErrorMessage_US,CPT,14
+Avis_Reservation_EMEA90Days_ErrorMessage_US,LDY,4
+Avis_Reservation_EMEA330Days_ErrorMessage_US,SYD,13
 Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,8622196015
 Avis_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
 Avis_Profile_Enrollment_Activation_US,Abhishek,Jain,abhi527@yopmail.com,919654354519,ajain527,Password@789,900 Oxford Exchange Blvd
 ##############################_LOCATION_#################################
-Avis_Location_Search_MnemonicCodeRes_US,EWR,Hrishi,K,ABG_Location,9897867898
+Avis_Location_Search_MnemonicCodeRes_US,SYD,Hrishi,K,ABG_Location,9897867898
 Avis_Location_Search_Suggestion_US,EWR
 
 #############################_RENTAL_###################################
@@ -89,19 +89,6 @@ Avis_RES_Profile_U_typeCoupon_Tierbundle_PayLater_US,NAVEEN12345,Avis$12345,SFO,
 Avis_Res_Profile_TtypeCoupon_PayLater_US,NAVEEN12345,Avis$12345,LAS,TUZZ006,TUZZ006 - Reward Day PLUS 500 Bon Mls/Paperless Coupon - 1 Coupons
 Avis_RES_Profile_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,NAVEEN12345,Avis$12345,YYZ,U S A,P469100,1234
 
-Avis_Profile_View_Updation_dashboard_US,vishnu.m@statusneo.com,Automation@123
-Avis_Profile_WizardLookUp_UserName_ForgotPassword_US,Automation,Test,avisautomation1@yopmail.com,52245
-Avis_Profile_Loyalty_OptOut_US,vishnu.m@statusneo.com,Automation@123
-Avis_Profile_ExpressProfile_Login_US,avisautomation1@yopmail.com,Sample@123
-Avis_Profile_AccountLock_Authenticated_US,avisautomation1@yomail.com,test
-Avis_Profile_Loyalty_OptIn_US,vishnu.m@statusneo.com,Automation@123
-Avis_Profile_OneClick_OAUTHLogin_US,https://qa.avis.com/api/oauth/authorize?response_type=token&client_id=R29vZ2xlQ2xpZW50QXZpcw&redirect_uri=https://oauth-redirect.googleusercontent.com/r/my-voice-carbook&scope=trip&state=abcd
-Avis_Profile_OneClick_EmailLink_US,https://qa.avis.com/en/loyalty-profile/avis-preferred/login?MID=expressconsent_02142018_av01expressconsentus_na_na&utm_source=newsletter&utm_medium=email&utm_content=email_476120& utm_campaign=expressconsent_02142018_av01expressconsentus_na_na&et_rid=73051010,avisautomation@yopmail.com,Sample@123
-Avis_RES_Profile_Misc_Step1_and_Step4_ErrorMsg_Validation_US,avisautomation1@yopmail.com,Sample@123,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
-
-Budget_RES_Profile_Modify_flow_Step1_to_step4_US,DYANI@YOPMAIL.COM,Dyani@1234,SFO,EWR,U S A
-Budget_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US,abhishekjain527@gmail.com,Aj527@321,SFO,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
-
 ####################################_MISC_######################################
 Avis_Misc_SmallBizz_Enrollment_US,,,Hrishi,K,ABGnetworkSmall,8970987867,Hrishikesh129,calicut university,College Station,Texas,77845 
 Avis_Misc_CBPDirect_EnrollmentAndReservation_US,U S A ,hrishi,k,ABGEcom,ABGEcomA@789,701 Ocean ave,address 2,08701,lakewood,NJ,LAS
@@ -110,7 +97,7 @@ Avis_Misc_OffersPage_SignUp_US,sharanya.g@mindtree.com,Ishita,Garg,test
 Avis_Misc_CarGuide_Res_US,YYZ,Ishita,Garg,test,8658066321
 Avis_Misc_SmallAndMidSizedBusiness_FlyOutSignUp_US,YYZ,Hrishi,K,ABGemail,9363738292,MindtreeIBM,55 Hemlock St,Hampton,New Hampshire,03842,U.S.A.
 Avis_Misc_BusinessPrograms_BaseRateGuarnatee_US,B0738T,Testing100@,ewr,Shravan,k,shravan,238478234,290,200,PIR,PIR,Economy Group A - Ford Fiesta or similar,www.test.com,For testing purpose.Please ignore
-Avis_Misc_OneClick_VanityURL_US,/aarporg,AARP
+#Avis_Misc_OneClick_VanityURL_US,/aarporg,AARP
 Avis_Misc_OneClick_VanityURL_US,/preferred,Avis Preferred Registration
 Avis_Misc_OneClick_VanityURL_US,/expressenrollment,Join Avis Preferred
 Avis_Misc_OneClick_VanityURL_US,/login,Login into your Avis Account
@@ -118,8 +105,8 @@ Avis_Misc_OneClick_VanityURL_US,/localmarket,Avis.com Link Builder
 Avis_Misc_OneClick_VanityURL_US,/terms,Avis Preferred Terms
 Avis_Misc_OneClick_VanityURL_US,/usaa,USAA
 BRG,/en/products-and-services/services/best-rate-guarantee/best-rate-claim-form
-Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,22
-Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LDY,5
+Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SYD,22
+Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LDY,3
 Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
 
 #################################_GENERIC_#####################################

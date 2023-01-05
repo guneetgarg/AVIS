@@ -3,6 +3,7 @@ package com.avis.qa;
 import com.avis.qa.components.Header;
 import com.avis.qa.components.LoginWidget;
 import com.avis.qa.components.ReservationWidget;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.core.TestBase;
 import com.avis.qa.helpers.MiscHelper;
 import com.avis.qa.pages.Confirmation;
@@ -95,7 +96,7 @@ MiscellaneousTests extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE,AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String pickUpLocation, String age)  {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -107,12 +108,14 @@ MiscellaneousTests extends TestBase {
                 .selectAge(age)
                 .selectMyCar();
         Vehicles vehicles = new Vehicles(getDriver());
-        vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
+            vehicles.verifyUnderAgeSurchargeTextDisplayed();
+        }
         vehicles.clickFilterOptionAndVerifyData();
 
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE,BUDGET},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String pickUpLocation, String age1, String age2)  {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());

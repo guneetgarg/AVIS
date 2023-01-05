@@ -7,6 +7,9 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import static com.avis.qa.constants.AvisConstants.FLIGHT_NAME;
+import static com.avis.qa.constants.AvisConstants.FLIGHT_NUMBER;
+
 @Log4j2
 public class LocationHelper extends AbstractBasePage {
 
@@ -46,8 +49,8 @@ public class LocationHelper extends AbstractBasePage {
                 .lastname(lastName)
                 .email(email)
                 .phone(phoneNo)
-                .SelectAirline(AirLine)
-                .SelectFlightNum(flightNumber)
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
 
