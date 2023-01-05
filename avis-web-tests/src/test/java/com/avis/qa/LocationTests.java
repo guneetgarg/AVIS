@@ -24,7 +24,7 @@ public class LocationTests extends TestBase {
     /**
      * To verify the Browse functionality on the Location Page
      */
-    @Test(groups = {REGRESSION, SANITY, SMOKE})
+    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS})
     public void Avis_Location_Browse_Category_US() {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -37,7 +37,7 @@ public class LocationTests extends TestBase {
     /**
      * To verify the Browse functionality on the Location Page for Budget
      */
-    @Test(groups = {REGRESSION, SANITY, SMOKE})
+    @Test(groups = {REGRESSION, SANITY, SMOKE,BUDGET})
     public void Budget_Location_Browse_Category_US() {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -51,7 +51,7 @@ public class LocationTests extends TestBase {
     /**
      * To search for the location from location field.
      **/
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE,AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Location_Search_MnemonicCodeRes_US(String pickUpLocation, String firstName, String lastName, String email,
                                                 String phoneNo) {
         launchUrl();
@@ -61,7 +61,7 @@ public class LocationTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE,BUDGET}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_Location_Search_MnemonicCodeRes_US(String pickUpLocation, String firstName, String lastName, String email,
                                                         String phoneNo) {
         launchUrl();

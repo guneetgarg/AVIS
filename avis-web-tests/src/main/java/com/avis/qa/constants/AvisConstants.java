@@ -7,6 +7,10 @@ public class AvisConstants {
     public static final String REGRESSION = "regression";
     public static final String SANITY = "sanity";
     public static final String SMOKE = "smoke";
+
+    public static final String PAYLESSCAR = "Paylesscar";
+    public static final String AVIS = "Avis";
+    public static final String BUDGET = "Budget";
     public static final String TEST_DATA = "testData";
     public static final String HOMEPAGE = "Homepage";
     public static final String RESERVATION = "Reservation";
