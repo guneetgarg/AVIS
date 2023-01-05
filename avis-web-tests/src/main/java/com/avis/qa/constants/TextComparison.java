@@ -4,6 +4,8 @@ public class TextComparison {
 
     public static final String ABOVE_NINETY_ERROR_MESSAGE = "Sorry, 90 days is the maximum number of days that can be reserved.";
     public static final String ABOVE_THREE_THIRTY_ERROR_MESSAGE = "Sorry, 330 days is the maximum number of days that can be reserved online.";
+
+    public static final String ABOVE_FIFTY_NINE_DAYS_ERROR_MESSAGE = "Sorry, rentals of 59 days or more can't be booked online. Travelling for between 28 days and 11 months in New Zealand? Consider the ";
     public static final String MINIMUM_AGE_ERROR_MESSAGE = "Sorry!, You are Younger than the minimum AGE required for Renting at this location.";
     public static final String DUMMY_CC_ERROR_MESSAGE = "Credit card format is invalid.";
     public static final String KEY_DROP_LOCATION_MESSAGE = "The location you selected is closed at the time of drop off, but a key-drop box is available for your convenience. Learn more about after-hours drop-off.";
@@ -29,6 +31,6 @@ public class TextComparison {
     public static final String CURRENCY_VALUE_NOT_DISPLAYED_MESSAGE = "Currency value is not displayed";
     public static final String CURRENCY_VALUE_NOT_SAME_RESIDENCE_COUNTRY_MESSAGE = "Currency  value is not same as residence country";
 
-
-
+    public static final String PICK_UP_TIME = "9:00 AM";
+    public static final String DROP_UP_TIME = "9:00 AM";
 }

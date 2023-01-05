@@ -74,6 +74,6 @@ public class Configuration {
     }
 
     public static void setURL() {
-        URL = getValue(ENVIRONMENT + "_" + BRAND + "_" + DOMAIN);
+        URL = getValue(ENVIRONMENT + "_" + BRAND + "_" + DOMAIN + "_EN");
     }
 }

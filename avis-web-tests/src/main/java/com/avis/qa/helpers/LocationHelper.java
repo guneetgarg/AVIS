@@ -28,7 +28,7 @@ public class LocationHelper extends AbstractBasePage {
     }
 
     public Confirmation Location_Search_MnemonicCodeRes(String pickUpLocation, String firstName, String lastName, String email,
-                                                        String phoneNo, String AirLine, String flightNumber) {
+                                                        String phoneNo) {
 
         Locations locations = homepage.goToFindALocationPage();
         ReservationWidget reservationWidget = locations

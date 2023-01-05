@@ -3,6 +3,7 @@ package com.avis.qa;
 
 import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.core.TestBase;
 import com.avis.qa.helpers.ReservationHelper;
 import com.avis.qa.pages.*;
@@ -488,20 +489,20 @@ public class ReservationTests extends TestBase {
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_OneWay_USAA_PayLater_US(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
-                                                 String email, String phoneNo) {
+                                                 String email, String phoneNo, String airline, String flightNumber) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo);
+        Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo, airline, flightNumber);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
         confirmation.cancelReservation();
     }
 
     @Test(groups = {REGRESSION, SMOKE}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_OneWay_USAA_PayLater_US(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
-                                                 String email, String phoneNo) {
+                                                 String email, String phoneNo, String airline, String flightNumber) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo);
+        Confirmation confirmation = reservationHelper.Reservation_OneWay_USAA_PayLater(pickUpLocation, dropOffLocation, awd, membershipNo, fname, lname, email, phoneNo, airline, flightNumber);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
         confirmation.cancelReservation();
     }
@@ -695,12 +696,19 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
-        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
-        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
-        assertTrue(confirmation.isCardTypePaypalDisplayed(), "Card Type Paypal is not displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(PICK_UP_TIME), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed(DROP_UP_TIME),"Drop Time is not Displayed");
+        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
+            assertTrue(confirmation.isCardTypePaypalDisplayed(), "Card Type Paypal is not displayed");
+        }
         //confirmation.cancelReservation();
         assertTrue(confirmation.isFlightInfoDisplayed(flightName), "Flight Info is not displayed");
-        confirmation.cancelReservationWithConfirmationBox();
+        if((Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
+            confirmation.cancelReservation();
+        }
+        else {
+            confirmation.cancelReservationWithConfirmationBox();
+        }
     }
 
 
@@ -735,8 +743,8 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
-        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
-        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(PICK_UP_TIME), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed(DROP_UP_TIME),"Drop Time is not Displayed");
         assertTrue(confirmation.verifyCurrencyOnConfirmationPage(USCurrencyValue), "Currency value is incorrect");
         // assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
        // assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");

@@ -60,7 +60,7 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//div[contains(@class,'info-error-msg-text')]/span")
     private WebElement underAgeMsg_Step2;
 
-    @FindBy(xpath = "(//del[@ng-if='car.displayRate.displayStkPayLater'])[1]|(//p[@ng-if='car.displayRate.displayStkSelect'])[1]")
+    @FindBy(xpath = "(//del[@ng-if='car.displayRate.displayStkPayLater'])[1]|(//p[@ng-if='car.displayRate.displayStkSelect'])[1] | //del[contains(@ng-if,'vm.prod.reservationSummary.rateSummary')]")
     private WebElement StrikreThroughPriceIndicator;
 
     @FindBy(xpath = "//div[contains(@class,'info-key-drop-text')]/p")
@@ -178,6 +178,9 @@ public class Vehicles extends AbstractBasePage {
 
     public Extras step2Submit() {
         threadSleep(TWO_SECONDS);
+        if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
+            helper.isElementDisplayed(StrikreThroughPriceIndicator);
+        }
         helper.scrollToElement(step2SubmitButton);
         threadSleep(TWO_SECONDS);
         clickUsingJS(step2SubmitButton);
