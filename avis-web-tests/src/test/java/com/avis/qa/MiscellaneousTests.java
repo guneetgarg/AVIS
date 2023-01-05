@@ -24,14 +24,14 @@ import static org.testng.Assert.assertTrue;
 public class
 MiscellaneousTests extends TestBase {
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE,AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_OneClick_VanityURL_US(String url, String title) {
         System.out.println(getAvisUrl(url));
         launchUrl(getAvisUrl(url));
         assertTrue(getDriver().getTitle().contains(title), "Page title is incorrect");
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE, AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_OffersPage_Reservation_US(String pickUplocation, String firstName, String lastName, String email,
                                             String phoneNo) {
         launchUrl();
@@ -53,7 +53,7 @@ MiscellaneousTests extends TestBase {
                 webSite, comments);
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE, AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_CarGuide_Res_US(String pickUpLoc, String firstName, String lastName, String email, String phoneNo) {
         launchUrl();
         MiscHelper miscHelper = new MiscHelper(getDriver());
@@ -62,7 +62,7 @@ MiscellaneousTests extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE, AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_OffersPage_SignUp_US(String email, String firstName, String lastName, String country) {
         launchUrl();
         Header header = new Header(getDriver());
@@ -82,7 +82,7 @@ MiscellaneousTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE, AVIS},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US(String pickUpLocation, String months) {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
@@ -135,7 +135,7 @@ MiscellaneousTests extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE, AVIS},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US(String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
         launchUrl();
         MiscHelper miscHelper = new MiscHelper(getDriver());
@@ -144,7 +144,7 @@ MiscellaneousTests extends TestBase {
     }
 
 
-    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE, BUDGET},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public
     void Budget_RES_Misc_Step1_2_Step4_ErrorMsg_Validation_US(String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
         launchUrl();
