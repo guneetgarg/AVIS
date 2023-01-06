@@ -31,6 +31,6 @@ public class TextComparison {
     public static final String CURRENCY_VALUE_NOT_DISPLAYED_MESSAGE = "Currency value is not displayed";
     public static final String CURRENCY_VALUE_NOT_SAME_RESIDENCE_COUNTRY_MESSAGE = "Currency  value is not same as residence country";
 
-    public static final String PICK_UP_TIME = "9:00 AM";
-    public static final String DROP_UP_TIME = "9:00 AM";
+    public static final String PICK_UP_TIME = "12:00 PM";
+    public static final String DROP_UP_TIME = "12:00 PM";
 }

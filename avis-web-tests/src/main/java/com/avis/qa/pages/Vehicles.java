@@ -136,7 +136,7 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "//ul[@class='dropdown-menu']/li[2]/a")
     private WebElement MileageHighToLowValue;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[3]/a | //ul[@class='dropdown-menu']/li[2]/a")
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[3]/a")
     private WebElement SeatsHighToLowValue;
 
     @FindBy(xpath = "(//span[contains(text(),'Small to Full Size')])[1] | (//span[contains(text(),'Small & Mid Size ')])[1]")

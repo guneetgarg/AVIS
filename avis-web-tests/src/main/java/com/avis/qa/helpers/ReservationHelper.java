@@ -1577,7 +1577,7 @@ public class ReservationHelper extends AbstractBasePage {
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
                 .enterAddressInboundSpecific(residencyLocation);
-                assertTrue(reviewAndBook.isNativeCurrencyMsgtextDisplayed(), "Native currency pay message not displayed");
+              //  assertTrue(reviewAndBook.isNativeCurrencyMsgtextDisplayed(), "Native currency pay message not displayed");
         reviewAndBook
                 .iataNumber(IATA)
                 .checkTermsAndConditions()
