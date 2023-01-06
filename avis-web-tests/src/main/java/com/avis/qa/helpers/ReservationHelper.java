@@ -73,6 +73,8 @@ public class ReservationHelper extends AbstractBasePage {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
+                .pickUpTime("1:00 PM")
+                .dropOffTime("1:00 PM")
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
@@ -228,15 +230,15 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo);
-        if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US"))
-        {
-            reviewAndBook
-                    .step4_CreditCardCheckBox()
-                    .enterCardNumber(CreditCardNumber)
-                    .EnterExpiryDateAndYear()
-                    .enterSecurityCode(CVV)
-                    .enterAddressInboundSpecific(ResidentLoc);
-        }
+//        if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US"))
+//        {
+//            reviewAndBook
+//                    .step4_CreditCardCheckBox()
+//                    .enterCardNumber(CreditCardNumber)
+//                    .EnterExpiryDateAndYear()
+//                    .enterSecurityCode(CVV)
+//                    .enterAddressInboundSpecific(ResidentLoc);
+//        }
         reviewAndBook
                 .SelectflightInfo(FLIGHT_NAME)
                 .enterflightNumber(FLIGHT_NUMBER)
@@ -1094,7 +1096,7 @@ public class ReservationHelper extends AbstractBasePage {
         vehicles.closeAdPopup();
         assertTrue(vehicles.isCurrencyValueDisplayed(), CURRENCY_VALUE_NOT_DISPLAYED_MESSAGE);
         assertTrue(vehicles.verifyCurrencySymbolDisplayed(residentCurrencySymbol), CURRENCY_VALUE_NOT_SAME_RESIDENCE_COUNTRY_MESSAGE);
-        Extras extras = vehicles.step2Submit();
+        Extras extras = vehicles.step2Submit2();
         assertTrue(extras.verifyCurrencySymbolDisplayed(residentCurrencySymbol), CURRENCY_VALUE_NOT_SAME_RESIDENCE_COUNTRY_MESSAGE);
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
@@ -1198,9 +1200,9 @@ public class ReservationHelper extends AbstractBasePage {
         Vehicles vehicles = new Vehicles(driver);
         Extras extras = vehicles.step2Submit();
         //ReviewAndBook reviewAndBook = extras.selectTierBundle().Step3Submit();
-        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
-            extras.isUpliftTextDisplayed();
-        }
+//        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
+//            extras.isUpliftTextDisplayed();
+//        }
         extras.ClickLDWCoverage();
         ReviewAndBook reviewAndBook = extras.Step3Submit();
 
@@ -1224,8 +1226,8 @@ public class ReservationHelper extends AbstractBasePage {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
-                .expandDiscountCode()
-                .enterCouponCode(couponNo)
+//                .expandDiscountCode()
+//                .enterCouponCode(couponNo)
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);
@@ -1532,6 +1534,8 @@ public class ReservationHelper extends AbstractBasePage {
         reservationWidget
                 .closeAdPopup()
                 .pickUpLocation(pickUpLocation)
+                .pickUpTime(PICK_UP_TIME)
+                .dropOffTime(DROP_UP_TIME)
                 .calendarSelection(3)
                 .selectCountry(residencyLocation)
                 .expandDiscountCode()

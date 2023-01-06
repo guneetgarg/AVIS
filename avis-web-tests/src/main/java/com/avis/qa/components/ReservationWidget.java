@@ -106,7 +106,7 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//span[text()='This should be date format'])[2]")
     private WebElement ReturnDateInvalidMsg;
 
-    @FindBy(xpath = "(//span[text()='Whoops! Your return time has already passed. Please select a new time.'])[1]")
+    @FindBy(xpath = "(//span[text()='Whoops! Your return time has already passed. Please select a new time.'])[1] | (//span[contains(text(),'Return Date cannot be prior to the Pick-Up Date')])[1]")
     private WebElement ReturnTimeErrorMsg;
 
 

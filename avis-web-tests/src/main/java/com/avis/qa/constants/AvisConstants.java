@@ -24,6 +24,8 @@ public class AvisConstants {
     public static final int FLIGHT_NAME = 3; //dropdown index value
     public static final String FLIGHT_NUMBER = "1234";
 
+    public static final String PICK_UP_TIME = "9:00 AM";
+    public static final String DROP_UP_TIME = "9:00 AM";
     public static String getAvisUrl(String path) {
         return Configuration.URL.replace("/en/home", path);
     }

@@ -61,7 +61,7 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
     private WebElement ProtectionAndCoveragesTab;
 
-    @FindBy(xpath = "//a[contains(text(),'Protections & Coverages')]")
+    @FindBy(xpath = "//*[contains(text(),'Protections & Coverages')]")
     private WebElement Budget_ProtectionAndCoverages;
 
     @FindBy(xpath = "//a[contains(text(),'Equipment')]")
@@ -186,7 +186,12 @@ public class Extras extends AbstractBasePage {
     }
 
     public Extras ClickLDWCoverage() {
-        waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
+            waitForVisibilityOfElement(Budget_ProtectionAndCoverages).click();
+        }
+        else {
+            waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        }
         CommonUtils.threadSleep(ONE_SECOND);
         LDWCheckbox.click();
         CommonUtils.threadSleep(TWO_SECONDS);
