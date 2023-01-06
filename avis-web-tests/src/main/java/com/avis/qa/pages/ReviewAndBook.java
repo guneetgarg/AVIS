@@ -63,7 +63,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@name,'selectedExpYear')]")
     private WebElement year;
 
-    @FindBy(xpath = "//div[@class='cardNumber icon-padding']//input[@id='cardnumber']")
+    @FindBy(xpath = "//div[@class='cardNumber icon-padding']//input[@id='cardnumber'] | //div[@class='icon-padding']//input[@id='cardnumber']")
     private WebElement cardNumber;
     @FindBy(xpath = "(//input[@id='cardnumber'])[2]")
     private WebElement splitPageCardNumber;
@@ -87,6 +87,8 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//*[@id='States']")
     private WebElement state;
 
+    @FindBy(xpath = "//*[@name='address3']")
+    private WebElement Suburb;
     @FindBy(xpath = "(//*[contains(@id,'city')])|(//*[contains(@name,'city')])")
     private WebElement city;
 
@@ -120,7 +122,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(id = "selectedCountry")
     private WebElement selectedCountry;
 
-    @FindBy(xpath = "//span[text()='Discount Code Savings']")
+    @FindBy(xpath = "//span[text()='Discount Code Savings'] | //span[text()='Coupon savings applied ']")
     private WebElement DiscountCodeSaving;
 
     @FindBy(xpath = "//a[contains(text(),'Save time and add your card now.')]")
@@ -187,6 +189,9 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//span[contains(text(),'You have the option to pay with your Visa or MasterCard in your native currency. If you choose to pay with different card type your charges will be posted in USD ($')] | //span[contains(text(),'native currency'] | //span[@class='mainErrorText']")
     private WebElement NativeCurrencyPayInfoMsg;
+
+    @FindBy(xpath = "//span[contains(text(),'Pay with your Visa or MasterCard to pay in your native currency and save on conversion fees. If you choose to pay with a different card type your charges will be posted in USD ($')]")
+    private WebElement NativeCurrencyPayTextMsg;
 
     @FindBy(xpath = "//button[text()='Review Modifications']")
     private WebElement ReviewModificationsButton;
@@ -487,7 +492,7 @@ public class ReviewAndBook extends AbstractBasePage {
         helper.waitUntilVisibilityOfElement(AddCreditCardCheckbox);
         AddCreditCardCheckbox.click();
 
-        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
+        if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US")) {
             helper.scrollBy("100");
             helper.waitUntilVisibilityOfElement(AddCreditCardCheckboxBudget);
             AddCreditCardCheckboxBudget.click();
@@ -575,7 +580,9 @@ public class ReviewAndBook extends AbstractBasePage {
         return this;
     }
     public ReviewAndBook ReserveButton() {
-        waitForVisibilityOfElement(PayingWithText);
+        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
+            waitForVisibilityOfElement(PayingWithText);
+        }
         helper.scrollToElement(step4Submit);
         clickUsingJS(step4Submit);
         return this;
@@ -668,7 +675,12 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public boolean isNativeCurrencyMsgtextDisplayed() {
-        return NativeCurrencyPayInfoMsg.isDisplayed();
+        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
+            return NativeCurrencyPayInfoMsg.isDisplayed();
+        }
+        else {
+            return NativeCurrencyPayTextMsg.isDisplayed();
+        }
     }
 
     public boolean isPrimaryCardtextDisplayed() { return PrimaryCardText.isDisplayed(); }

@@ -42,7 +42,7 @@ public class Extras extends AbstractBasePage {
     private WebElement Step3DiscountPackages;
 
 
-    @FindBy(xpath = "//span[text()='Discount Code Savings']")
+    @FindBy(xpath = "//span[text()='Discount Code Savings'] | //span[text()='Coupon savings applied ']")
     private WebElement DiscountCodeSaving;
 
     @FindBy(xpath = "(//span[@class='pull-left'])[2]")
@@ -61,13 +61,13 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
     private WebElement ProtectionAndCoveragesTab;
 
-    @FindBy(xpath = "//span[text()='Protections & Coverages']")
+    @FindBy(xpath = "//a[contains(text(),'Protections & Coverages')]")
     private WebElement Budget_ProtectionAndCoverages;
 
     @FindBy(xpath = "//a[contains(text(),'Equipment')]")
     private WebElement EquipmentTab;
 
-    @FindBy(xpath = "//p[contains(text(),'Equipment & Services')]")
+    @FindBy(xpath = "//a[contains(text(),'Equipment')]")
     private WebElement Budget_EquipmentAndServices;
 
     @FindBy(xpath = "(//span[@class='c-icon uplift-logo'])[2]")
@@ -164,7 +164,7 @@ public class Extras extends AbstractBasePage {
             waitForVisibilityOfElement(Step3ServicesTab).click();
         }
 
-        else if(Configuration.BRAND.equalsIgnoreCase("Budget"))
+        else if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US"))
         {
             waitForVisibilityOfElement(Budget_EquipmentAndServices);
         }
