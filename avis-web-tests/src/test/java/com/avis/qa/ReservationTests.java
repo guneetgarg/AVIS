@@ -120,7 +120,6 @@ public class ReservationTests extends TestBase {
 
     }
 
-
     @Test(groups = {REGRESSION, SANITY, SMOKE,BUDGET}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US(String pickUpLocation, String months) {
         launchUrl();
@@ -581,7 +580,7 @@ public class ReservationTests extends TestBase {
         // confirmation.cancelReservation();
     }
 
-   @Test(groups = {REGRESSION, SANITY, SMOKE,BUDGET}, priority = 35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,BUDGET}, priority = 35, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_G_typeCoupon__SMSCheckbox_IATA_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                                                          String lname, String email, String phoneNo,String flightName, String flightNumber, String IATA, String couponMsg) {
 
@@ -630,7 +629,7 @@ public class ReservationTests extends TestBase {
         confirmation.cancelReservationWithConfirmationBox();
     }
 
-   @Test(groups = {REGRESSION, SMOKE,BUDGET}, priority = 37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,BUDGET}, priority = 37, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Costco_DigitalWallet_PayPal_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname, String lname,
                                                                  String email, String phoneNo, String paypalEmail, String paypalPassword) {
         launchUrl();
