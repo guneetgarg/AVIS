@@ -158,10 +158,10 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//strong[text()='Secondary']")
     private WebElement SecondaryCardText;
 
-    @FindBy(css = "label[for='creditcard']")
+    @FindBy(xpath = "//*[@for='creditcard']")
     private WebElement AddCreditCardCheckbox;
 
-    @FindBy(css = "label[for='ccCard']")
+    @FindBy(xpath = ".//label[@for='ccCard']")
     private WebElement AddCreditCardCheckboxBudget;
 
     @FindBy(xpath = "//div[@data-funding-source='paypal'] | //span[@class='c-icon paypal-logo']")
@@ -489,8 +489,10 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public ReviewAndBook step4_AddCreditCardCheckBox() {
-        helper.waitUntilVisibilityOfElement(AddCreditCardCheckbox);
-        AddCreditCardCheckbox.click();
+        helper.scrollBy("100");
+        threadSleep(THREE_SECONDS);
+//        helper.waitUntilVisibilityOfElement(AddCreditCardCheckbox);
+        clickUsingJS(AddCreditCardCheckbox);
 
         if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US")) {
             helper.scrollBy("100");

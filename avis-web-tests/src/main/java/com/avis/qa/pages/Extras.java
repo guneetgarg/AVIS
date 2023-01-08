@@ -48,7 +48,7 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "(//span[@class='pull-left'])[2]")
     private WebElement currencySymbol;
 
-    @FindBy(xpath = "//p[contains(text(),'Curbside Drop Off')]")
+    @FindBy(xpath = "//p[contains(text(),'Curbside Drop Off')] | //p[contains(text(),'Curbside Drop')]")
     private WebElement CurbsideDropoffText;
 
     @FindBy(xpath = "//p[text()='Certain extras are included or discounted due to your provided AWD number.']")
@@ -67,7 +67,7 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//a[contains(text(),'Equipment')]")
     private WebElement EquipmentTab;
 
-    @FindBy(xpath = "//a[contains(text(),'Equipment')]")
+    @FindBy(xpath = "//*[contains(text(),'Equipment')]")
     private WebElement Budget_EquipmentAndServices;
 
     @FindBy(xpath = "(//span[@class='c-icon uplift-logo'])[2]")

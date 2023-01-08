@@ -82,7 +82,7 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//input[@id='coupon'])[1]/following-sibling::span[@class='error']")
     private WebElement CouponErrorText;
 
-    @FindBy(id = "awd")
+    @FindBy(xpath = "//*[@id='awd']")
     private WebElement AWDOrBCDOrPDN_TextField;
 
     @FindBy(xpath = "//input[@id='partnerMembershipId']")
@@ -394,6 +394,7 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     public ReservationWidget expandDiscountCode() {
+        waitForVisibilityOfElement(Discount_Codes);
         Discount_Codes.click();
         return this;
     }
@@ -404,6 +405,7 @@ public class ReservationWidget extends AbstractBasePage {
     }
 
     public ReservationWidget enterAwd(String awd) {
+        waitForVisibilityOfElement(AWDOrBCDOrPDN_TextField);
         AWDOrBCDOrPDN_TextField.clear();
         AWDOrBCDOrPDN_TextField.sendKeys(awd, Keys.TAB);
         //event.tabOut("AWDOrBCDOrPDN_TextField");

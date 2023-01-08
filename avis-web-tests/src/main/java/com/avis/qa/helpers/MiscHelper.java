@@ -358,7 +358,7 @@ public class MiscHelper extends AbstractBasePage {
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
                 .calendarSelection(1)
-                .expandDiscountCode()
+//                .expandDiscountCode()
                 .enterAwd(awdCode)  // valid discount code
                 .enterCorporateEmailId("test@hh.com") //invalid corporate email id
                 //Validation for invalid corporate email id
@@ -372,7 +372,7 @@ public class MiscHelper extends AbstractBasePage {
                 .pickUpLocation(pickUpLocation)
                 .dropOffLocation(dropOffLocation)
                 .calendarSelection(1)
-                .expandDiscountCode()
+//                .expandDiscountCode()
                 .enterAwd(awdCode)
                 .enterCorporateEmailId(corporateEmail)
                 .selectMyCar();

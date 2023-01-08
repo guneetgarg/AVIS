@@ -1462,6 +1462,8 @@ public class ReservationHelper extends AbstractBasePage {
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)
+                .pickUpTime(PICK_UP_TIME)
+                .dropOffTime(DROP_UP_TIME)
                 .calendarSelection(3)
                 .selectMyCar();
 
@@ -1471,7 +1473,7 @@ public class ReservationHelper extends AbstractBasePage {
         assertTrue(vehicles.isDropDateTimeDisplayed(DROP_UP_TIME),"Drop Time is not Displayed");
         vehicles.clickViewCloseVehicleInformation();
         assertTrue(vehicles.isPayLaterButtonEnabled(),"PayLater button is not displayed");
-        Extras extras = vehicles.step2Submit2();
+        Extras extras = vehicles.step2SubmitPayNow();
         assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
         assertTrue(extras.isPickUpDateTimeDisplayed(PICK_UP_TIME), "Pickup Time is not Displayed");
         assertTrue(extras.isDropDateTimeDisplayed(DROP_UP_TIME),"Drop Time is not Displayed");
