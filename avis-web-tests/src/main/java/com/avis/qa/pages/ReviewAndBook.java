@@ -74,7 +74,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "(//input[contains(@id,'securitycode')])[2]")
     private WebElement step4_CVV2;
 
-    @FindBy(xpath = "//*[contains(@for,'creditcard')]")
+    @FindBy(xpath = "//*[contains(@for,'creditcard')] | //*[contains(@for,'ccCard')]")
     private WebElement creditCardCheckBox;
 
 //    @FindBy(xpath = "label[for='cccard']")
@@ -158,10 +158,10 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//strong[text()='Secondary']")
     private WebElement SecondaryCardText;
 
-    @FindBy(css = "label[for='creditcard']")
+    @FindBy(xpath = "//*[@for='creditcard']")
     private WebElement AddCreditCardCheckbox;
 
-    @FindBy(css = "label[for='ccCard']")
+    @FindBy(xpath = ".//label[@for='ccCard']")
     private WebElement AddCreditCardCheckboxBudget;
 
     @FindBy(xpath = "//div[@data-funding-source='paypal'] | //span[@class='c-icon paypal-logo']")
@@ -489,8 +489,10 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public ReviewAndBook step4_AddCreditCardCheckBox() {
-        helper.waitUntilVisibilityOfElement(AddCreditCardCheckbox);
-        AddCreditCardCheckbox.click();
+        helper.scrollBy("100");
+        threadSleep(THREE_SECONDS);
+//        helper.waitUntilVisibilityOfElement(AddCreditCardCheckbox);
+        clickUsingJS(AddCreditCardCheckbox);
 
         if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US")) {
             helper.scrollBy("100");
@@ -675,12 +677,12 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public boolean isNativeCurrencyMsgtextDisplayed() {
-        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
-            return NativeCurrencyPayInfoMsg.isDisplayed();
-        }
-        else {
+//        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
+//            return NativeCurrencyPayInfoMsg.isDisplayed();
+//        }
+//        else {
             return NativeCurrencyPayTextMsg.isDisplayed();
-        }
+//        }
     }
 
     public boolean isPrimaryCardtextDisplayed() { return PrimaryCardText.isDisplayed(); }

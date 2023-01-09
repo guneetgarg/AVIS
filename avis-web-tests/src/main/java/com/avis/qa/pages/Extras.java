@@ -48,7 +48,7 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "(//span[@class='pull-left'])[2]")
     private WebElement currencySymbol;
 
-    @FindBy(xpath = "//p[contains(text(),'Curbside Drop Off')]")
+    @FindBy(xpath = "//p[contains(text(),'Curbside Drop Off')] | //p[contains(text(),'Curbside Drop')]")
     private WebElement CurbsideDropoffText;
 
     @FindBy(xpath = "//p[text()='Certain extras are included or discounted due to your provided AWD number.']")
@@ -61,13 +61,13 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
     private WebElement ProtectionAndCoveragesTab;
 
-    @FindBy(xpath = "//a[contains(text(),'Protections & Coverages')]")
+    @FindBy(xpath = "//*[contains(text(),'Protections & Coverages')]")
     private WebElement Budget_ProtectionAndCoverages;
 
     @FindBy(xpath = "//a[contains(text(),'Equipment')]")
     private WebElement EquipmentTab;
 
-    @FindBy(xpath = "//a[contains(text(),'Equipment')]")
+    @FindBy(xpath = "//*[contains(text(),'Equipment')]")
     private WebElement Budget_EquipmentAndServices;
 
     @FindBy(xpath = "(//span[@class='c-icon uplift-logo'])[2]")
@@ -186,7 +186,12 @@ public class Extras extends AbstractBasePage {
     }
 
     public Extras ClickLDWCoverage() {
-        waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        if(Configuration.BRAND.equalsIgnoreCase("Budget")) {
+            waitForVisibilityOfElement(Budget_ProtectionAndCoverages).click();
+        }
+        else {
+            waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+        }
         CommonUtils.threadSleep(ONE_SECOND);
         LDWCheckbox.click();
         CommonUtils.threadSleep(TWO_SECONDS);
