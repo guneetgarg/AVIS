@@ -25,7 +25,7 @@ Avis_Reservation_OneClick_GPSSelection_US,/en/reservation#/oneclick?resForm.conf
 Avis_Reservation_ErrorMessage_PayNow_US,SYD,Tester,M,test,9838234567,345836415546724,123
 Avis_Reservation_TierBundle_PayLater_US,LAS,Dhanapriya,K,test,9600685486,4263982640269299,738
 Avis_Reservation_Inbound_PayLater_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645
-Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,SYD,U S A,P469100,38298026,Abhishek,J,test,8980765645,1234
+Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,SYD,U S A,P469100,Abhishek,J,test,8980765645,1234
 Avis_Reservation_Domestic_PayNow_US,EWR,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123

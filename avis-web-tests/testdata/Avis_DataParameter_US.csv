@@ -3,7 +3,7 @@ Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom
 Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,C$,USD
 Avis_RES_DigitalWallet_AmazonPay_Paynow_US,EWR,Abhishek,K,test,8980765645,abhishek.jn@statusneo.com,Aj527@321
 Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US,YYZ,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,CAD,USD
-Avis_RES_Modify_flow_Step1_to_step4_US,SFO,Abhishek,J,test,9600685486,343710684134463,123,U S A,EWR
+Avis_RES_Modify_flow_Step1_to_step4_US,SFO,Abhishek,J,test,9600685486,4929723679720422,123,U S A,EWR
 #Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,EWR,B0506T,Testing100@,LAS
 Avis_Reservation_AuthenticatedAndDomestic_Paylater_US,YYZ,B0153Z,Password@2021,LAS
 Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_US,SAN,A6666000,A6666000@ACCBUSINESS.COM,Abhishek,K,test,8980765645,4929723679720422,5447144508353949
@@ -25,7 +25,7 @@ Avis_Reservation_OneClick_GPSSelection_US,/en/reservation#/oneclick?resForm.conf
 Avis_Reservation_ErrorMessage_PayNow_US,YYZ,Tester,M,test,9838234567,345836415546724,123
 Avis_Reservation_TierBundle_PayLater_US,LAS,Dhanapriya,K,test,9600685486,4263982640269299,738
 Avis_Reservation_Inbound_PayLater_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645
-Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,SYD,U S A,P469100,38298026,Abhishek,J,test,8980765645,1234
+Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,SYD,U S A,P469100,Abhishek,J,test,8980765645,1234
 Avis_Reservation_Domestic_PayNow_US,EWR,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Outbound_PayNow_US,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123

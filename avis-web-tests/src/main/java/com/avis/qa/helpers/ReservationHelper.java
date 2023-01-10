@@ -426,7 +426,9 @@ public class ReservationHelper extends AbstractBasePage {
 
         Confirmation confirmation = new Confirmation(driver);
         ReservationWidget reservationWidget = confirmation
+
                 .closeGetFreeCouponPopup()
+                .PopupClose()
                 .flyOutClose()
                 .modifyTimeAndPlaceClick();
 
@@ -1226,8 +1228,8 @@ public class ReservationHelper extends AbstractBasePage {
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection()
-//                .expandDiscountCode()
-//                .enterCouponCode(couponNo)
+                .expandDiscountCode()
+                .enterCouponCode(couponNo)
                 .selectMyCar();
 
         Vehicles vehicles = new Vehicles(driver);

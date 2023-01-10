@@ -304,9 +304,9 @@ public class ReservationTests extends TestBase {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Recognised_Paylater(pickUpLocation, wizardNo, lastName, pickUpLocation1);
-        confirmation.closeGetFreeCouponPopup();
+        //confirmation.closeGetFreeCouponPopup();
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        confirmation.cancelReservation();
+        confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
     @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 18, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
@@ -682,8 +682,8 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
-        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
-        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(PICK_UP_TIME), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed(DROP_UP_TIME),"Drop Time is not Displayed");
         assertTrue(confirmation.isCardTypePaypalDisplayed(), "Card Type Paypal is not displayed");
         //confirmation.cancelReservation();
         assertTrue(confirmation.isFlightInfoDisplayed(flightName), "Flight Info is not displayed");
@@ -726,8 +726,8 @@ public class ReservationTests extends TestBase {
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
-        assertTrue(confirmation.isPickUpDateTimeDisplayed("12:00 PM"), "Pickup Time is not Displayed");
-        assertTrue(confirmation.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(confirmation.isPickUpDateTimeDisplayed(PICK_UP_TIME), "Pickup Time is not Displayed");
+        assertTrue(confirmation.isDropDateTimeDisplayed(DROP_UP_TIME),"Drop Time is not Displayed");
         assertTrue(confirmation.verifyCurrencyOnConfirmationPage(USCurrencyValue), "Currency value is incorrect");
        // assertTrue(confirmation.isAWDCouponMessageDisplayed(), "AWD message is not displayed");
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");

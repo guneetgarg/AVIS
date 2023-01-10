@@ -60,6 +60,9 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//iframe[@title = 'Rokt offer']")
     private WebElement roktOfferFrame;
 
+    @FindBy(xpath = "(//span[@data-dismiss='modal'])[13]")
+    private WebElement OfferPopup;
+
     @FindBy(xpath = "//strong[contains(text(),'Equipment & Services')]")
     private WebElement EquipmentAndServiceProductsInfo;
 
@@ -325,6 +328,11 @@ public class Confirmation extends AbstractBasePage {
 
     public Confirmation flyOutClose() {
         helper.clickIfElementIsDisplayed(flyoutClosebtn);
+        return this;
+    }
+
+    public Confirmation PopupClose() {
+        helper.clickIfElementIsDisplayed(OfferPopup);
         return this;
     }
 
