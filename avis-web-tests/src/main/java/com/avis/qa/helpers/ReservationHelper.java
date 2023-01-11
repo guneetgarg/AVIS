@@ -1227,7 +1227,7 @@ public class ReservationHelper extends AbstractBasePage {
 
         reservationWidget
                 .pickUpLocation(pickUpLocation)
-                .calendarSelection()
+                .calendarSelection(2)
                 .expandDiscountCode()
                 .enterCouponCode(couponNo)
                 .selectMyCar();
