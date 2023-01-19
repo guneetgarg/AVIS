@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static com.avis.qa.utilities.CommonUtils.*;
@@ -34,8 +35,13 @@ public class LoginWidget extends AbstractBasePage {
     @FindBy(id = "password")
     private WebElement Password;
 
+
     @FindBy(id = "res-login-profile")
     private WebElement LoginButton;
+
+    @FindBy(xpath = "//input[@id='rememberme']")
+    private WebElement RememberMeToggle;
+
 
     @FindBy(id = "PicLoc_value")
     private WebElement pickUpLocation;
@@ -63,21 +69,16 @@ public class LoginWidget extends AbstractBasePage {
 
     public LoginWidget login(String emailNew, String passwordNew) {
         waitForVisibilityOfElement(UserName);
-        UserName.clear();
         UserName.sendKeys(emailNew);
         waitForVisibilityOfElement(Password);
-        Password.clear();
         Password.sendKeys(passwordNew);
-        threadSleep(ONE_SECOND);
-       // waitForVisibilityOfElement(LoginButton);
+        //threadSleep(ONE_SECOND);
+        // waitForVisibilityOfElement(LoginButton);
+        threadSleep(TWO_SECONDS);
         threadSleep(TWO_SECONDS);
         clickUsingJS(LoginButton);
-        threadSleep(FIVE_SECONDS);
-        threadSleep(TWO_SECONDS);
-        threadSleep(TWO_SECONDS);
-        if(helper.isElementDisplayed(PopupBudget)){
-            PopupBudget.click();
-        }
+        // threadSleep(TWO_SECONDS);
+        //  threadSleep(TWO_SECONDS);
         return this;
     }
 

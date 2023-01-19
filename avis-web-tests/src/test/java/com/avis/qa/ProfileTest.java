@@ -24,7 +24,7 @@ public class ProfileTest  extends TestBase {
     /**
      * ALM Testcase: NA
      */
-    @Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Profile_Enrollment_Activation_US(String fname, String lname, String email, String phoneNo, String username, String pwd, String AddLine1) {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -42,7 +42,7 @@ public class ProfileTest  extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE,AVIS},priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_EMEA90Days_ErrorMessage_Step1_Res_widget_US(String username, String password, String pickUpLocation, String months) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -60,7 +60,7 @@ public class ProfileTest  extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION , SMOKE,AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String username, String password, String pickUpLocation)  {
         launchUrl();
 
@@ -90,7 +90,6 @@ public class ProfileTest  extends TestBase {
         LoginWidget loginwidget = new LoginWidget(getDriver());
         loginwidget.loginHeaderclick();
         loginwidget.login(username, password);
-        threadSleep(SIXTY_SECONDS);
         threadSleep(TWO_SECONDS);
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
 
@@ -117,7 +116,7 @@ public class ProfileTest  extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION , SMOKE},priority=3, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Budget_RES_Profile_Misc_Step1AndStep4_ErrorMsg_Validation_US(String username, String password, String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber) {
         launchUrl();
 
@@ -130,7 +129,7 @@ public class ProfileTest  extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US(String username, String password
             ,String pickUpLocation, String PickupTime, String DropTime,String awd, String corporateEmailId, String IATA,String cvv, String residentCurrencySymbol, String USCurrencyValue) {
         launchUrl();
@@ -158,8 +157,8 @@ public class ProfileTest  extends TestBase {
         LoginWidget loginwidget = new LoginWidget(getDriver());
         loginwidget.loginHeaderclick();
         loginwidget.login(username, password);
-        String otp =LoginWidget.getOtp("https://www.receivesms.co/","us-phone-number/3411/");
-        loginwidget.EnterOTP(otp);
+      //  String otp =LoginWidget.getOtp("https://www.receivesms.co/","us-phone-number/3411/");
+       // loginwidget.EnterOTP(otp);
         threadSleep(TWO_SECONDS);
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Profile_InboundAndMultiCurrency_IATA_PayNow(pickUpLocation, PickupTime,DropTime, awd, corporateEmailId,IATA,cvv, residentCurrencySymbol, USCurrencyValue);
@@ -174,7 +173,7 @@ public class ProfileTest  extends TestBase {
     }
 
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 5, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US(String username, String password,String pickUpLocation,String PickupTime,String DropTime, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -214,7 +213,7 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservationWithConfirmationBox();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 6, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 6, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Modify_flow_Step1_to_step4_US(String username, String password,String pickUpLocation, String modifiedPickupLocation,String Country) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -229,7 +228,7 @@ public class ProfileTest  extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 7, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 7, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_US(String username, String password, String pickUpLocation, String pickupTime, String dropTime,String awd, String corporateEmailId,String cvv, String PickUpLocCurrencySymbol, String PickupLocCurrencyCode, String USCurrencyCode) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -249,7 +248,7 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 8, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 8, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_KeyDropLocation_M_typeCoupon_PayLater_US(String username, String password,String pickUpLocation, String dropOffTime, String couponNo) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -280,7 +279,7 @@ public class ProfileTest  extends TestBase {
         confirmation.closeGetFreeCouponPopup().keyDropMessageValidation();
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
-    @Test(groups = {REGRESSION, SMOKE}, priority = 9, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 9, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Costco_DigitalWallet_PayPal_PayLater_US(String username, String password,String pickUpLocation, String awd, String membershipNo, String paypalEmail, String paypalPassword) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -314,7 +313,7 @@ public class ProfileTest  extends TestBase {
 //        confirmation.cancelReservation();
         confirmation.cancelReservationWithConfirmationBox();
     }
-    @Test(groups = {REGRESSION, SMOKE}, priority = 10, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 10, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_OneWay_USAA_PayLater_US(String username, String password,String pickUpLocation, String dropOffLocation, String awd, String membershipNo) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -341,7 +340,7 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Inbound_MultiCurrency_PayLater_US(String username, String password,String pickUpLocation, String flightNumber,String residentCurrencySymbol, String currencyValue) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -371,7 +370,7 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 12, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 12, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Domestic_PayLater_US(String username, String password,String pickUpLocation) {
         launchUrl();
         LoginWidget loginwidget = new LoginWidget(getDriver());
@@ -398,7 +397,7 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 13, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS}, priority = 13, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_G_typeCoupon_SMSCheckbox_IATA_PayLater_US(String username, String password,String pickUpLocation, String couponNo, String flightName, String flightNumber, String IATA, String couponMsg) {
 
         launchUrl();
@@ -435,7 +434,7 @@ public class ProfileTest  extends TestBase {
         // confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE}, priority = 14, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS}, priority = 14, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_U_typeCoupon_Tierbundle_PayLater_US(String username, String password,String pickUpLocation, String pickupTime, String dropOffTime, String couponNo, String couponText) {
 
         launchUrl();
@@ -455,7 +454,7 @@ public class ProfileTest  extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY,SMOKE},priority=15, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY,SMOKE,AVIS},priority=15, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Res_Profile_TtypeCoupon_PayLater_US(String username, String password, String pickUpLocation, String couponNo, String couponMsg) {
 
         launchUrl();
@@ -471,9 +470,13 @@ public class ProfileTest  extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE}, priority = 16, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Avis_RES_Profile_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String pickUpLocation, String residencyLocation, String awd, String flightNumber) {
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 16, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_RES_Profile_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US(String username, String password,String pickUpLocation, String residencyLocation, String awd, String flightNumber) {
         launchUrl();
+        LoginWidget loginwidget = new LoginWidget(getDriver());
+        loginwidget.loginHeaderclick();
+        loginwidget.login(username, password);// need to create profile user for canada region
+        threadSleep(TWO_SECONDS);
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Profile_OutboundAndStrikeThroughCoupon_Paylater(pickUpLocation, residencyLocation, awd, flightNumber);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), CONFIRMATION_NUMBER_NOT_DISPLAYED_MESSAGE);
@@ -621,7 +624,7 @@ public class ProfileTest  extends TestBase {
         loginWidget.login(username,pwd);
     }
 
-    @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Profile_AccountLock_Authenticated_US(String username, String pwd) throws InterruptedException {
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -633,7 +636,7 @@ public class ProfileTest  extends TestBase {
         TimeUnit.SECONDS.sleep(5);
     }
 
-    // @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+  //   @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Profile_Loyalty_OptIn_US(String username, String pwd){
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
@@ -647,19 +650,19 @@ public class ProfileTest  extends TestBase {
                 .clickEarnPointsButton();
     }
 
-    @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+   // @Test(groups = {REGRESSION,AVIS}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Profile_OneClick_OAUTHLogin_US(String emailUrl) {
         launchUrl(emailUrl);
     }
 
-    //@Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+  //  @Test(groups = {REGRESSION,AVIS}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Profile_OneClick_EmailLink_US(String emailUrl, String username, String pwd){
         launchUrl(emailUrl);
         LoginWidget loginWidget = new LoginWidget(getDriver());
         loginWidget.login(username,pwd);
     }
 
-   // @Test(groups = {REGRESSION}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION,AVIS}, priority=1, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Profile_Misc_Step1_and_Step4_ErrorMsg_Validation_US(String username, String pwd, String pickUpLocation, String pickUpDate, String pickUpTime, String dropOffLocation, String dropOffDate, String dropOffTime, String WizardNumber, String lastName, String awdCode, String corporateEmail, String rateCode, String couponCode, String creditcardNumber){
         launchUrl();
         Homepage homepage = new Homepage(getDriver());
