@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,6 +36,33 @@ public abstract class AbstractBasePage{
         findAndKillPopup();
     }
 
+    protected void clickOn(WebElement webElement) {   
+    	log.info("Click using various selenium clicks");    
+    	new WebDriverWait(driver, 5)           
+    	.until(driver -> webElement);   
+    	try{       
+    		wait.until(ExpectedConditions.elementToBeClickable(webElement));  
+    		webElement.click();  
+    		}    
+    	catch(Exception selE)
+    	{       
+    		try{     
+    			JavascriptExecutor js = (JavascriptExecutor) driver;  
+    			js.executeScript("arguments[0].click();", webElement); 
+    			}        
+    		catch (Exception JsE){    
+    			try{               
+    				Actions action = new Actions(driver);    
+    				action.click(webElement);          
+    				action.build().perform();         
+    				}            
+    			catch (Exception actionE){     
+    				log.info("WebDriver Couldn't locate the element" + actionE.getStackTrace());  
+    				}        
+    			}   
+    		}
+    	}
+ 
     protected void findAndKillPopup(){
         PopUpHandler popUpHandler = new PopUpHandler(driver);
         if(popUpHandler.isDisplayed()) popUpHandler.close();
