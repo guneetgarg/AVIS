@@ -1,6 +1,5 @@
 package com.avis.qa.core;
 
-
 import com.avis.qa.listeners.report.ExtentListener;
 import com.avis.qa.listeners.report.ExtentManager;
 import lombok.extern.log4j.Log4j2;
@@ -22,7 +21,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static com.avis.qa.core.Configuration.*;
-
 
 /**
  * Class contains the Pre-requisite setup before running a Test Case
@@ -111,7 +109,6 @@ public class TestBase {
 		}
 		}
 	}
-
 	public String readFile() throws IOException {
 		StringBuilder builder = new StringBuilder();
 		try (BufferedReader buffer = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/testResult.xml"))) {
