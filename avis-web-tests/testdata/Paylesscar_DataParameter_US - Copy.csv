@@ -1,0 +1,12 @@
+Paylesscar_RES_Inbound_IATA_M_type_PayLater_US,EWR,Thailand,Test,M,automation,9838234567,NA,NA,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_G_typeCoupon_Extras_paylater_US,EWR,U S A,GUZZ002,Test,M,automation,9838234567,NA,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_Outbound_PDN_Paylater_US,EWR,U S A,11:00 AM,A065100,Test,M,automation,9838234567,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_Verify_Underage_onStep1_keydrop_US,YYZ,YYZ,U S A,11:00 AM,11:30 PM,19,Test,M,automation,9838234567,3.44E+14,123,NA,NA
+Paylesscar_RES_Profile_G_typeCoupon_Extras_Paylater_US,automationtest,Automation@123,EWR,GUZZ002,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_Profile_Outbound_PDN_Paylater_US,automationtest,Automation@123,DUB,A065100,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_Profile_Inbound_IATA_M_type_PayLater_US,automationtest,Automation@123,EWR,GUZZ002,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_Profile_Verify_Underage_onStep1_keydrop_US,automationtest,Automation@123,YYZ,YYZ,U S A,11:00 AM,11:30 PM,19,Test,M,automation,9838234567,3.44E+14,123
+Paylesscar_RES_Outbound_DCC_Paynow_US,YYZ,U S A,11:00 AM,Test,M,automation,9838234567,3.44E+14,123,NA,NA,NA,NA,NA
+Paylesscar_RES_Profile_Outbound_DCC_Paynow_US,automationtest,Automation@123,YYZ,U S A,11:00 AM,Test,M,automation,9838234567,3.44E+14,123,NA,NA,NA
+Paylesscar_RES_Modify_cancel_flow_Step1_to_Step4_US,EWR,U S A,11:00 AM,A065100,Test,M,automation,9838234567,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_Profile_Modify_cancel_flow_Step1_to_Step4_US,automationtest,Automation@123,EWR,U S A,11:00 AM,A065100,Test,Test,automation,9838234567,NA,NA,NA,NA
