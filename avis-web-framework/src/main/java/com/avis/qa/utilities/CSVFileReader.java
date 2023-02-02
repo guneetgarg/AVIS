@@ -18,11 +18,7 @@ import com.opencsv.exceptions.CsvException;
 public class CSVFileReader {
 	static String filepath = null;
 	
-//	static {
-//		
-//		
-//	}
-
+	@SuppressWarnings("unchecked")
 	@DataProvider(name = "dataAsMap")
 	public static Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
 		int rowCount;
