@@ -1,8 +1,11 @@
 package com.avis.qa.utilities;
 
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +34,8 @@ public class CSVFileReader {
 
 		// Create an object of filereader
 		// class with CSV file as a parameter.
-		FileReader filereader = new FileReader(filepath);
+		InputStreamReader filereader = new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8);
+//		FileReader filereader = new FileReader(filepath);
 			System.out.println("FileReader");
 		// create csvReader object passing
 		// file reader as a parameter
@@ -45,7 +49,7 @@ public class CSVFileReader {
 		for (int i = 1; i < nextRecord.size(); i++) {
 			if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
 
-				// rows or lines           
+				// rows or lines
 				for (int j = 0; j < nextRecord.get(i).length; j++) {
 					if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
 						map.put(nextRecord.get(0)[j].trim(), nextRecord.get(i)[j].trim());

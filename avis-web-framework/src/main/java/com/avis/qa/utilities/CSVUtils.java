@@ -50,8 +50,8 @@ public class CSVUtils {
 		int colcount = 0;
 		try {
 			Thread.sleep(1000);			
-//			br = new BufferedReader(new FileReader(filepath));
-			InputStreamReader ir = new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8);
+			br = new BufferedReader(new FileReader(filepath));
+//			InputStreamReader ir = new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8);
 			while ((line = br.readLine()) != null) {
 				value = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 				if (value[0].equals(methodName)) {
