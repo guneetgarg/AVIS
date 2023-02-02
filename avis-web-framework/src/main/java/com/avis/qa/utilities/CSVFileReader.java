@@ -22,7 +22,6 @@ import com.opencsv.exceptions.CsvException;
 public class CSVFileReader {
 	static String filepath = null;
 	
-	
 	/**
 	 * loads the data parameter file path
 	 */
@@ -43,23 +42,8 @@ public class CSVFileReader {
 	public static Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
 		loadDataParameter();
 		int rowCount;
-		System.out.println("======= "+System.getProperty("user.dir"));
-//		System.out.println(System.getProperty("user.dir")+"\\testData\\Paylesscar_DataParameter_US.csv");
-//		String filepath = System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv";
-//		String filepath = "./testData/Paylesscar_DataParameter_US.csv";
-		System.out.println("=====filePath");
-//		CSVFileReader csvFileReader = new CSVFileReader();
-		
-		System.out.println("############### "+filepath);
-		// Create an object of filereader
-		// class with CSV file as a parameter.
-//		InputStreamReader filereader = new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8);
-		
-		
+
 		BufferedReader filereader = new BufferedReader(new FileReader(filepath));
-//		FileReader filereader = new FileReader(filepath);
-			System.out.println("FileReader");
-		// create csvReader object passing
 		// file reader as a parameter
 		CSVReader csvReader = new CSVReader(filereader);
 
