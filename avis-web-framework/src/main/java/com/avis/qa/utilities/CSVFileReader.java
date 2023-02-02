@@ -25,13 +25,13 @@ public class CSVFileReader {
 		int rowCount;
 		System.out.println("======= "+System.getProperty("user.dir"));
 		System.out.println(System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv");
-		String filePath = System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv";
+//		String filePath = System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv";
 		System.out.println("=====filePath");
 //		CSVFileReader csvFileReader = new CSVFileReader();
 
 		// Create an object of filereader
 		// class with CSV file as a parameter.
-		FileReader filereader = new FileReader(filePath);
+		FileReader filereader = new FileReader(filepath);
 			System.out.println("FileReader");
 		// create csvReader object passing
 		// file reader as a parameter
