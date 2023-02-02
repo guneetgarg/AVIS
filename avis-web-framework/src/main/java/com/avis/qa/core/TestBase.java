@@ -121,7 +121,7 @@ public class TestBase {
         } catch (Exception e) {
             System.out.println(e);
         }
-//        getDriver().quit();
+        getDriver().quit();
     }
     
     public void deleteFile() {
