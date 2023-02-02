@@ -22,6 +22,10 @@ public class ExtentListener extends TestBase implements ITestListener {
 	public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
 	public void onTestStart(ITestResult result) {
+		System.out.println("result.getTestClass().getName()= "+result.getTestClass().getName());
+		System.out.println("result.getMethod().getMethodName()= "+result.getMethod().getMethodName());
+		System.out.println("getTestMethodParameters(result)= "+getTestMethodParameters(result));
+		
 		test.set(extent.createTest(result.getTestClass().getName() + ": " + result.getMethod().getMethodName() + " " + getTestMethodParameters(result)));
 		testReport.set(test.get());
 	}
@@ -41,11 +45,14 @@ public class ExtentListener extends TestBase implements ITestListener {
 	}
 
 	public void onTestFailure(ITestResult result) {
+		System.out.println("1");
 		String excepionMessage = Arrays.toString(result.getThrowable().getStackTrace());
+		System.out.println("2");
 		testReport.get().fail("<details>" + "<summary>" + "<b>" + "<font color=" + "red>" + "Exception Occured:Click to see"
 				+ "</font>" + "</b >" + "</summary>" + excepionMessage.replaceAll(",", "<br>") + "</details>" + " \n");
-
+		System.out.println("3");
 		ExtentManager.captureScreenshot();
+		System.out.println("4");
 		testReport.get().fail("<b>" + "<font color=" + "red>" + "Screenshot of failure" + "</font>" + "</b>",
 				MediaEntityBuilder.createScreenCaptureFromPath(ExtentManager.screenshotPath)
 						.build());

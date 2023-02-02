@@ -35,11 +35,13 @@ public class TestBase {
     
     @BeforeSuite(alwaysRun = true)
 	public void beforeGroupsTest(XmlTest xmlTest) {
+    	System.out.println("BEFORE SUITE");
 		deleteFile();
 	}
 
 	@AfterSuite(alwaysRun = true)
 	public void afterGroupsTest(XmlTest xmlTest) throws IOException {
+		System.out.println("AFTER SUITE");
 		String reportContent = readFile();
 		String modifyContent = "<testsuite hostname=\"AnkurChaudhary\" ignored=\"2\" name=\"Test\" tests=\"1\" failures=\"0\" timestamp=\"2023-01-17T11:51:36 IST\" time=\"28.492\" errors=\"0\">\n"
 				+ reportContent + "\n</testsuite>";
@@ -58,6 +60,7 @@ public class TestBase {
 		f_writer.write(reportContent);
 		f_writer.newLine();
 		f_writer.close();
+		System.out.println("afterMethodTestBase5");
 	}
 
     @BeforeTest(alwaysRun = true)
@@ -65,15 +68,18 @@ public class TestBase {
         Configuration.setTestNGParameters(xmlTest);
         Configuration.setURL();
         ExtentListener.extent = ExtentManager.createInstance();
+        System.out.println("BEFORE TEST");
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodTestBase() {
+    	System.out.println("BEFORE METHOD");
         log.info("beforeMethodTestBase() called");
         if (DOCKER.equalsIgnoreCase("true"))
             appInstance.set(new DockerInstance(BROWSER));
         else
             appInstance.set(new BrowserInstance(BROWSER));
+        
     }
 
     @AfterMethod(alwaysRun = true)
@@ -81,22 +87,41 @@ public class TestBase {
         log.info("afterMethodTestBase() called");
         try {
             if (result.getStatus() == 1) {
-                System.out.println(result.getThrowable());
+            	System.out.println("PASSED");
                 String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\"/>";
                 reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
                 readWriteIntoFile(reportContent,true);
             }
             else if (result.getStatus() == 2) {
+//            	System.out.println(result.getThrowable().getStackTrace());
+            	
+            	System.out.println("FAILED");
                 String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\">";
-                reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
+               System.out.println("afterMethodTestBase1");
+                if(reportContent.contains("[TestClass name=class")){
+                	System.out.println("afterMethodTestBase2");
+                	reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
+                }
+                System.out.println("result.getThrowable(): "+result.getThrowable());
+                if(result.getThrowable().toString().contains("Exception:")) {
+                	System.out.println("afterMethodTestBase2");
                 reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Exception:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Exception:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Exception:")[1].split(":")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
+                }else if(result.getThrowable().toString().contains("Error:")) {
+                	System.out.println("afterMethodTestBase3");
+                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Error:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Error:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Error:")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
+                	
+                }else {
+                	System.out.println("afterMethodTestBase4");
+                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString()+"Exception\" message=\""+result.getThrowable().toString()+"\">\n<![CDATA["+result.getThrowable().toString()+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";          	
+                }
+                
                 readWriteIntoFile(reportContent,true);
 
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        getDriver().quit();
+//        getDriver().quit();
     }
     
     public void deleteFile() {
@@ -111,7 +136,9 @@ public class TestBase {
 	}
 	public String readFile() throws IOException {
 		StringBuilder builder = new StringBuilder();
-		try (BufferedReader buffer = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/testResult.xml"))) {
+		File file =new File(System.getProperty("user.dir") + "/testResult.xml");
+		if(file.exists()) {
+		try (BufferedReader buffer = new BufferedReader(new FileReader(file))) {
 			String str;
 			while ((str = buffer.readLine()) != null) {
 				builder.append(str).append("\n");
@@ -120,9 +147,11 @@ public class TestBase {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		}
 		return builder.toString();
 	}
     private BrowserInstance getBrowserInstance() {
+    	System.out.println("getBrowserInstance");
         return appInstance.get();
     }
 
@@ -131,6 +160,7 @@ public class TestBase {
     }
 
     public void launchUrl() {
+    	System.out.println("launchUrl");
         getBrowserInstance().start(URL);
     }
 

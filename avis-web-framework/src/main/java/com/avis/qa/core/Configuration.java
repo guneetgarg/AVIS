@@ -67,10 +67,15 @@ public class Configuration {
         Map<String, String> XML_PARAMS_MAP = xmlTest.getAllParameters();
         // Assigning all the XML parameters to the Base Class Global variables
         BRAND = XML_PARAMS_MAP.get("Brand") != null ? XML_PARAMS_MAP.get("brand") : getValue("brand");
+        System.out.println("BRAND= "+BRAND);
         ENVIRONMENT = XML_PARAMS_MAP.get("environment") != null ? XML_PARAMS_MAP.get("environment") : getValue("environment");
+        System.out.println("ENVIRONMENT= "+ENVIRONMENT);
         DOMAIN = XML_PARAMS_MAP.get("domain") != null ? XML_PARAMS_MAP.get("domain") : getValue("domain");
+        System.out.println("DOMAIN= "+DOMAIN);
         BROWSER = XML_PARAMS_MAP.get("browser") != null ? XML_PARAMS_MAP.get("browser") : getValue("browser");
+        System.out.println("BROWSER= "+BROWSER);
         DOCKER = XML_PARAMS_MAP.get("docker") != null ? XML_PARAMS_MAP.get("docker") : getValue("docker");
+        System.out.println("DOCKER= "+DOCKER);
     }
 
     public static void setURL() {

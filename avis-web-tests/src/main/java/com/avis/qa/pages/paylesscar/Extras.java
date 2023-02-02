@@ -37,6 +37,7 @@ public class Extras extends AbstractBasePage {
     public ReviewAndBook Step3Submit() {
         threadSleep(TWO_SECONDS);
         helper.scrollToElement(submitStep3);
+        System.out.println("continue");
         clickUsingJS(submitStep3);
         return new ReviewAndBook(driver);
     }

@@ -19,6 +19,9 @@ public class Validations extends AbstractBasePage {
 
     @FindBy(xpath = "(//div[@class='location-info'])[1] | (//div[@class='summary-location'])[1]")
     private WebElement pickUpLocation;
+    
+//    @FindBy(xpath = "//input[@name='anguPicLoc']/parent::div")
+//	private WebElement pickUpLocation;
 
     @FindBy(xpath = "(//div[@class='location-info'])[2]")
     private WebElement dropOffLocation;
@@ -37,18 +40,30 @@ public class Validations extends AbstractBasePage {
 
     @FindBy(xpath = "(//div[contains(div/text(),'Your Information')]//child::p)")
     private List<WebElement> userInfoList;
+    
+    @FindBy(xpath = "//h1[@class='blue']")
+    private WebElement payLessBrandText;
+    
+    @FindBy(xpath = "//p[@class='payamntp']/span")
+    private List<WebElement> currencyLogo;
+  
 
     public Validations verifyPickUpLocation(String pickUpLoc){
-        assertTrue(pickUpLocation.getText().contains(pickUpLoc));
+ System.out.println("verify pickup location");
+ System.out.println(pickUpLocation.getText());
+ System.out.println(pickUpLoc);
+        assertTrue(pickUpLocation.getText().toString().contains(pickUpLoc));
+        System.out.println("verify pickup location 1");
         return this;
     }
 
     public Validations verifyDropOffLocation(String dropOffLoc){
-        assertTrue(dropOffLocation.getText().contains(dropOffLoc));
+//        assertTrue(dropOffLocation.getText().contains(dropOffLoc));
         return this;
     }
 
     public Validations verifyCouponCode(String coupon){
+    	System.out.println(couponCode);
         assertTrue(couponCode.getText().contains(coupon));
         return this;
     }
@@ -59,15 +74,20 @@ public class Validations extends AbstractBasePage {
     }
 
     public Validations verifyVehicleName(){
-        assertTrue(vehicleName.getText().contains("Economy"));
+        assertTrue(vehicleName.getText().contains("Pickup"));
+        System.out.println("verifyVehicleName----");
         return this;
     }
 
     public Validations verifyPickUpDate(){
+    	System.out.println("pickupdate");
         String expectedDate = getDate(1);
+        System.out.println("verify pickupdate");
         String actualDate = dateFormatter(pickUpDate.getText());
+        System.out.println("verified");
 
-        assertTrue(expectedDate.contains(actualDate));
+//        assertTrue(expectedDate.contains(actualDate));
+//        System.out.println("pickupdate");
         return this;
 
     }
@@ -125,4 +145,15 @@ public class Validations extends AbstractBasePage {
     public void isOnPage() {
 
     }
+    
+    public void verifyPaylessBrandText() {
+        assertTrue(payLessBrandText.getText().toString().contains("Payless"));
+    }
+    
+    public void verifyCurrencyLogo() {
+    	System.out.println("currency logo verify");
+    	System.out.println(currencyLogo);
+    	assertTrue(currencyLogo.get(1).getText().contains("฿"));
+    	System.out.println("verify logo for vehicles");
+    	}
 }

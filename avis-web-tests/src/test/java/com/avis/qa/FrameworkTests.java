@@ -23,6 +23,7 @@ public class FrameworkTests extends TestBase {
      */
     @Test(groups = {SANITY, REGRESSION, SMOKE})
     public void AVIS_verifyHomepageLogo_US() {
+    	System.out.println("FrameworkTests");
         launchUrl();
         Homepage homePage = new Homepage(getDriver());
         assertTrue(homePage.isAvisLogoDisplayed(), "Avis logo is not displayed");

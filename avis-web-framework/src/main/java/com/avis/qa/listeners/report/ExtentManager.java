@@ -41,6 +41,8 @@ public class ExtentManager {
         extent.setSystemInfo("Brand", Configuration.BRAND);
         extent.setSystemInfo("Country", Configuration.DOMAIN);
         extent.setSystemInfo("Browser", Configuration.BROWSER);
+        
+        System.out.println("createInstance");
 
         return extent;
     }

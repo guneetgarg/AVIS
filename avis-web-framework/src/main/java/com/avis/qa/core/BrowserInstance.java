@@ -69,7 +69,7 @@ public class BrowserInstance {
 //        System.out.println("CHROME IS STARTED3");
         chromeOptions.setAcceptInsecureCerts(true);
         chromeOptions.addArguments("--no-sandbox");
-        chromeOptions.addArguments("--headless");
+//        chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         chromeOptions.addArguments("--proxy-server='direct://'");
@@ -131,8 +131,11 @@ public class BrowserInstance {
 
     public void start(String url) {
         initializeDriver();
+        System.out.println("START1");
         configureDriver();
+        System.out.println("START2");
         ExtentManager.driver = webDriver;
+        System.out.println("START3");
         webDriver.get(url);
     }
 }

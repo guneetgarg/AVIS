@@ -237,6 +237,8 @@ public class ReviewAndBook extends AbstractBasePage {
         String confirmationNo = confirmationNumber.getText();
         return confirmationNo.split(": ")[1];
     }
+    
+    
 
     @Override
     public void isOnPage() {
