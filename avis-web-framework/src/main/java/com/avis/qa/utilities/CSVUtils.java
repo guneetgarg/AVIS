@@ -3,11 +3,16 @@ package com.avis.qa.utilities;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
+import com.google.common.base.Utf8;
+
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.security.DomainCombiner;
 
 import static com.avis.qa.core.Configuration.BRAND;
@@ -45,7 +50,8 @@ public class CSVUtils {
 		int colcount = 0;
 		try {
 			Thread.sleep(1000);			
-			br = new BufferedReader(new FileReader(filepath));
+//			br = new BufferedReader(new FileReader(filepath));
+			InputStreamReader ir = new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8);
 			while ((line = br.readLine()) != null) {
 				value = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 				if (value[0].equals(methodName)) {
