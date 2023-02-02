@@ -25,7 +25,7 @@ public class PayLessCarTest2 extends TestBase {
         Confirmation confirmation = payLessCarHelper.Reservation_Inbound_IATA_M_type_PayLater_US(testDataMap);
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
-
+ 
     //Check
 //    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_G_typeCoupon_Extras_paylater_US(Map<?,?> testDataMap){

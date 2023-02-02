@@ -44,7 +44,7 @@ public class CSVUtils {
 		int rowcount = 0;
 		int colcount = 0;
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(1000);			
 			br = new BufferedReader(new FileReader(filepath));
 			while ((line = br.readLine()) != null) {
 				value = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
