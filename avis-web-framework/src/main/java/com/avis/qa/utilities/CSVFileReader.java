@@ -17,8 +17,8 @@ public class CSVFileReader {
 	@DataProvider(name = "dataAsMap")
 	public Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
 		int rowCount;
-
-		String filePath = "C:\\Users\\Lenovo\\Downloads\\econ-web-us feature-develop branch\\ecom-us-web\\avis-web-tests\\testData\\Paylesscar_DataParameter_US.csv";
+		System.out.println("======= "+System.getProperty("user.dir"));
+		String filePath = System.getProperty("user.dir")+"\\testData\\Paylesscar_DataParameter_US.csv";
 		CSVFileReader csvFileReader = new CSVFileReader();
 
 		// Create an object of filereader
