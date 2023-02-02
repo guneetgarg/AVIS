@@ -2,12 +2,12 @@ TestCaseName,PickUpLocation,Country,FirstName,LastName,Email,PhoneNumber,PickUpT
 Paylesscar_RES_Inbound_IATA_M_type_PayLater_US,EWR,Thailand,Test,M,automation,9838234567,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 Paylesscar_RES_G_typeCoupon_Extras_paylater_US,EWR,U S A,Albert,Edsin,automation,9838234567,NA,NA,NA,NA,NA,GUZZ002,NA,NA,NA,NA
 Paylesscar_RES_Outbound_PDN_Paylater_US,EWR,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,NA,NA,NA,NA,A065100,NA,NA,NA
-Paylesscar_RES_Verify_Underage_onStep1_keydrop_US,EWR,U S A,Albert,Edsin,automation,9838234567,11:00 AM,ORD,11:30 PM,123,343711000000000,NA,NA,19,NA,NA
+Paylesscar_RES_Verify_Underage_onStep1_keydrop_US,EWR,U S A,Albert,Edsin,automation,9838234567,11:00 AM,ORD,11:30 PM,123,NA,NA,NA,19,NA,NA
 Paylesscar_RES_Profile_G_typeCoupon_Extras_Paylater_US,ORD,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,GUZZ002,NA,21,automationtest,Automation@123
 Paylesscar_RES_Profile_Outbound_PDN_Paylater_US,YYZ,NA,NA,NA,NA,NA,11:00 AM,NA,NA,NA,NA,NA,A065100,NA,automationtest,Automation@123
 Paylesscar_RES_Profile_Inbound_IATA_M_type_PayLater_US,YYZ,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,GUZZ002,NA,NA,automationtest,Automation@123
 Paylesscar_RES_Profile_Verify_Underage_onStep1_keydrop_US,YYZ,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,11:30 PM,123,NA,NA,NA,19,automationtest,Automation@123
-Paylesscar_RES_Outbound_DCC_Paynow_US,YYZ,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,NA,123,343711000000000,NA,NA,NA,NA,NA
-Paylesscar_RES_Profile_Outbound_DCC_Paynow_US,YYZ,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,NA,123,343711000000000,NA,NA,NA,automationtest,Automation@123
+Paylesscar_RES_Outbound_DCC_Paynow_US,YYZ,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,NA,123,NA,NA,NA,NA,NA,NA
+Paylesscar_RES_Profile_Outbound_DCC_Paynow_US,YYZ,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,NA,123,NA,NA,NA,NA,automationtest,Automation@123
 Paylesscar_RES_Modify_cancel_flow_Step1_to_Step4_US,EWR,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,NA,NA,NA,NA,A065100,NA,NA,NA
 Paylesscar_RES_Profile_Modify_cancel_flow_Step1_to_Step4_US,YYZ,U S A,Albert,Edsin,automation,9838234567,11:00 AM,NA,NA,NA,NA,NA,A065100,NA,automationtest,Automation@123
