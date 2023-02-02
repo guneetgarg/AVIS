@@ -16,7 +16,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
 public class CSVFileReader {
-	static String filepath = null;
+//	static String filepath = null;
+	static String filepath = System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv";
 	
 //	@SuppressWarnings("unchecked")
 	@DataProvider(name = "dataAsMap")
@@ -24,10 +25,11 @@ public class CSVFileReader {
 		int rowCount;
 		System.out.println("======= "+System.getProperty("user.dir"));
 //		System.out.println(System.getProperty("user.dir")+"\\testData\\Paylesscar_DataParameter_US.csv");
-		String filepath = System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv";
+//		String filepath = System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv";
 		System.out.println("=====filePath");
 //		CSVFileReader csvFileReader = new CSVFileReader();
-
+		
+		System.out.println("###############3 "+filepath);
 		// Create an object of filereader
 		// class with CSV file as a parameter.
 		InputStreamReader filereader = new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8);
