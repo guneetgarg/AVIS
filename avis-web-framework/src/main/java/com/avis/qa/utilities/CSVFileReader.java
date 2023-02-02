@@ -18,13 +18,13 @@ import com.opencsv.exceptions.CsvException;
 public class CSVFileReader {
 	static String filepath = null;
 	
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
 	@DataProvider(name = "dataAsMap")
 	public static Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
 		int rowCount;
 		System.out.println("======= "+System.getProperty("user.dir"));
-		System.out.println(System.getProperty("user.dir")+"\\testData\\Paylesscar_DataParameter_US.csv");
-		String filepath = System.getProperty("user.dir")+"\\testData\\Paylesscar_DataParameter_US.csv";
+//		System.out.println(System.getProperty("user.dir")+"\\testData\\Paylesscar_DataParameter_US.csv");
+		String filepath = System.getProperty("user.dir")+"/testData/Paylesscar_DataParameter_US.csv";
 		System.out.println("=====filePath");
 //		CSVFileReader csvFileReader = new CSVFileReader();
 
