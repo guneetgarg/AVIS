@@ -4,12 +4,9 @@ import static com.avis.qa.core.Configuration.BRAND;
 import static com.avis.qa.core.Configuration.DOMAIN;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +25,8 @@ public class CSVFileReader {
 	public static void loadDataParameter() {
 
 		if (BRAND != null && DOMAIN != null) {
-//			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
-			filepath = "./testdata/Paylesscar_DataParameter_US.csv";
+			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
+//			filepath = "./testdata/Paylesscar_DataParameter_US.csv";
 			System.out.println("CREATED FILE PATH = " + filepath);
 		} else {
 			System.out.println("NULL RESULTS");
