@@ -26,7 +26,6 @@ public class CSVFileReader {
 
 		if (BRAND != null && DOMAIN != null) {
 			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
-//			filepath = "./testdata/Paylesscar_DataParameter_US.csv";
 			System.out.println("CREATED FILE PATH = " + filepath);
 		} else {
 			System.out.println("NULL RESULTS");
