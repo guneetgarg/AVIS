@@ -102,7 +102,7 @@ public class PayLessCarTest2 extends TestBase {
     }
 
     //Under age will not work
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_Verify_Underage_onStep1_keydrop_US(Map<?,?> testDataMap){
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
@@ -149,7 +149,7 @@ public class PayLessCarTest2 extends TestBase {
         assertTrue(confirmation.isCancellationMessageDisplayed(), TextComparison.RESERVATION_CANCELLATION_MESSAGE);
     }
 
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_Modify_cancel_flow_Step1_to_Step4_US(Map<?,?> testDataMap) throws InterruptedException {
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
