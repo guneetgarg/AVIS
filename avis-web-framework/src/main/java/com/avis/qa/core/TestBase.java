@@ -3,6 +3,10 @@ package com.avis.qa.core;
 import com.avis.qa.listeners.report.ExtentListener;
 import com.avis.qa.listeners.report.ExtentManager;
 import lombok.extern.log4j.Log4j2;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -94,7 +98,10 @@ public class TestBase {
             }
             else if (result.getStatus() == 2) {
 //            	System.out.println(result.getThrowable().getStackTrace());
-            	
+        		TakesScreenshot ss = ((TakesScreenshot) getDriver());
+        		File file = ss.getScreenshotAs(OutputType.FILE);
+        		File desti = new File("./testdata/screen.png");
+        		FileUtils.copyFile(file, desti);
             	System.out.println("FAILED");
                 String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\">";
                System.out.println("afterMethodTestBase1");

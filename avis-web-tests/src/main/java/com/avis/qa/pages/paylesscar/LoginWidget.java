@@ -2,6 +2,10 @@ package com.avis.qa.pages.paylesscar;
 
 import com.avis.qa.core.AbstractBasePage;
 import lombok.extern.log4j.Log4j2;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +13,8 @@ import org.openqa.selenium.support.FindBy;
 import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 @Log4j2
@@ -35,8 +41,11 @@ public class LoginWidget extends AbstractBasePage {
 		String passwordNew = testDataMap.get("Password").toString();
 
 		waitForVisibilityOfElement(UserName);
+        System.out.println("###################### PASS 2   #########################################");
 		UserName.clear();
+		System.out.println("###################### PASS 3   #########################################");
 		UserName.sendKeys(emailNew);
+		System.out.println("###################### PASS 4   #########################################");
 		System.out.println(emailNew);
 		waitForVisibilityOfElement(Password);
 		Password.clear();
