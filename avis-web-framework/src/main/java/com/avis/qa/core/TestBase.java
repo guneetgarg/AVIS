@@ -100,7 +100,7 @@ public class TestBase {
 //            	System.out.println(result.getThrowable().getStackTrace());
         		TakesScreenshot ss = ((TakesScreenshot) getDriver());
         		File file = ss.getScreenshotAs(OutputType.FILE);
-        		File desti = new File("./testdata/screen.png");
+        		File desti = new File("./testdata/"+result.getMethod().getMethodName().toString()+".png");
         		FileUtils.copyFile(file, desti);
             	System.out.println("FAILED");
                 String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\">";
