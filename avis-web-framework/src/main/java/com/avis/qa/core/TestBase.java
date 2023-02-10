@@ -27,6 +27,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import static com.avis.qa.core.Configuration.*;
 import static com.avis.qa.utilities.CommonUtils.ONE_SECOND;
@@ -41,7 +43,8 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
 @Log4j2
 public class TestBase {
 	protected ElementHelper helper;
-
+	private ThreadLocal<String> testName = new ThreadLocal<>();
+	private String testCaseName = "";
     private final ThreadLocal<BrowserInstance> appInstance = new ThreadLocal<>();
     
     @BeforeSuite(alwaysRun = true)
@@ -85,8 +88,16 @@ public class TestBase {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethodTestBase() {
+    public void beforeMethodTestBase(Method method, Object[] testData) {
     	System.out.println("BEFORE METHOD");
+    	ArrayList<String> testSheetData = new ArrayList<>();
+    	System.out.println("array list");
+    	testCaseName = testData[0].toString().split("TestCaseName")[1].split(",")[0].split("=")[1];
+    	System.out.println("array list test case name"); 
+    	testName.set(testCaseName);
+    	testSheetData.add(testCaseName);
+
+    	System.out.println(testCaseName);
         log.info("beforeMethodTestBase() called");
         if (DOCKER.equalsIgnoreCase("true"))
             appInstance.set(new DockerInstance(BROWSER));
@@ -94,14 +105,16 @@ public class TestBase {
             appInstance.set(new BrowserInstance(BROWSER));
         
     }
-
+    
     @AfterMethod(alwaysRun = true)
     public void afterMethodTestBase(ITestResult result) throws IOException {
         log.info("afterMethodTestBase() called");
         try {
             if (result.getStatus() == 1) {
             	System.out.println("PASSED");
-                String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\"/>";
+            	System.out.println(result.getThrowable());
+                String reportContent = "<testcase name=\""+testCaseName+"\"  classname=\""+result.getTestClass()+"\"/>";
+                System.out.println(reportContent);
                 reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
                 readWriteIntoFile(reportContent,true);
             }
