@@ -77,9 +77,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 		}
 		clickOn(termsCheck);
-		System.out.println("terms and conditions");
 		SubmitButton.click();
-		System.out.println("submit button");
 	}
 		
 //		System.out.println(driver.findElements(By.tagName("iframe")).size());

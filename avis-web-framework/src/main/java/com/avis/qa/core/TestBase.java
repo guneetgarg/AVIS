@@ -57,10 +57,8 @@ public class TestBase {
 	public void afterGroupsTest(XmlTest xmlTest) throws IOException {
 		System.out.println("AFTER SUITE");
 		String reportContent = readFile();
-		System.out.println("readfile");
 		String modifyContent = "<testsuite hostname=\"AnkurChaudhary\" ignored=\"2\" name=\"Test\" tests=\"1\" failures=\"0\" timestamp=\"2023-01-17T11:51:36 IST\" time=\"28.492\" errors=\"0\">\n"
 				+ reportContent + "\n</testsuite>";
-		System.out.println("modify content");
 		reportContent = reportContent.replace(reportContent, modifyContent);
 		readWriteIntoFile(reportContent,false);
 	}
@@ -76,7 +74,7 @@ public class TestBase {
 		f_writer.write(reportContent);
 		f_writer.newLine();
 		f_writer.close();
-		System.out.println("afterMethodTestBase5");
+
 	}
 
     @BeforeTest(alwaysRun = true)
@@ -84,20 +82,16 @@ public class TestBase {
         Configuration.setTestNGParameters(xmlTest);
         Configuration.setURL();
         ExtentListener.extent = ExtentManager.createInstance();
-        System.out.println("BEFORE TEST");
+
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodTestBase(Method method, Object[] testData) {
     	System.out.println("BEFORE METHOD");
     	ArrayList<String> testSheetData = new ArrayList<>();
-    	System.out.println("array list");
     	testCaseName = testData[0].toString().split("TestCaseName")[1].split(",")[0].split("=")[1];
-    	System.out.println("array list test case name"); 
     	testName.set(testCaseName);
     	testSheetData.add(testCaseName);
-
-    	System.out.println(testCaseName);
         log.info("beforeMethodTestBase() called");
         if (DOCKER.equalsIgnoreCase("true"))
             appInstance.set(new DockerInstance(BROWSER));
