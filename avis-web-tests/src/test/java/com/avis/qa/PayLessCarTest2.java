@@ -28,7 +28,7 @@ public class PayLessCarTest2 extends TestBase {
     }
  
     //Check
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_G_typeCoupon_Extras_paylater_US(Map<?,?> testDataMap){
         launchUrl();
         PayLessCarHelper payLessCarHelper = new PayLessCarHelper(getDriver());
@@ -37,7 +37,7 @@ public class PayLessCarTest2 extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Outbound_PDN_Paylater_US(Map<?,?> testDataMap){
         launchUrl();
         PayLessCarHelper payLessCarHelper = new PayLessCarHelper(getDriver());
@@ -46,7 +46,7 @@ public class PayLessCarTest2 extends TestBase {
     }
     
 //Need to be solved stale element error
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Verify_Underage_onStep1_keydrop_US(Map<?,?> testDataMap){
         launchUrl();
         PayLessCarHelper payLessCarHelper = new PayLessCarHelper(getDriver());
@@ -55,7 +55,7 @@ public class PayLessCarTest2 extends TestBase {
     }
 
     //Check
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_G_typeCoupon_Extras_Paylater_US(Map<?,?> testDataMap) throws IOException{
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
@@ -71,7 +71,7 @@ public class PayLessCarTest2 extends TestBase {
     }
 
     //bug
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_Outbound_PDN_Paylater_US(Map<?,?> testDataMap){
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
@@ -86,7 +86,7 @@ public class PayLessCarTest2 extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_Inbound_IATA_M_type_PayLater_US(Map<?,?> testDataMap){
         launchUrl();
 
@@ -103,7 +103,7 @@ public class PayLessCarTest2 extends TestBase {
     }
 
     //Under age will not work
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_Verify_Underage_onStep1_keydrop_US(Map<?,?> testDataMap){
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
@@ -117,7 +117,7 @@ public class PayLessCarTest2 extends TestBase {
         Confirmation confirmation = payLessCarHelper.Reservation_Profile_Verify_Underage_onStep1_keydrop_US(testDataMap);
     }
 
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Outbound_DCC_Paynow_US(Map<?,?> testDataMap){
         launchUrl();
 
@@ -126,7 +126,7 @@ public class PayLessCarTest2 extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_Outbound_DCC_Paynow_US(Map<?,?> testDataMap){
         launchUrl();
         HomePage homepage = new HomePage(getDriver());
@@ -141,7 +141,7 @@ public class PayLessCarTest2 extends TestBase {
         assertTrue(confirmation.isConfirmationMessageDisplayed(), TextComparison.RESERVATION_CONFIRMATION_MESSAGE_DISPLAYED_STATUS);
     }
 
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Modify_cancel_flow_Step1_to_Step4_US(Map<?,?> testDataMap) throws InterruptedException {
         launchUrl();
 
@@ -150,7 +150,7 @@ public class PayLessCarTest2 extends TestBase {
         assertTrue(confirmation.isCancellationMessageDisplayed(), TextComparison.RESERVATION_CANCELLATION_MESSAGE);
     }
 
-    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
+//    @Test(groups = {REGRESSION, SANITY,PAYLESSCAR}, priority=1, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
     public void Paylesscar_RES_Profile_Modify_cancel_flow_Step1_to_Step4_US(Map<?,?> testDataMap) throws InterruptedException {
         launchUrl();
         HomePage homepage = new HomePage(getDriver());

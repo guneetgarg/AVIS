@@ -25,6 +25,7 @@ public class CSVFileReader {
 	public static void loadDataParameter() {
 
 		if (BRAND != null && DOMAIN != null) {
+			System.out.println("brand");
 			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
 			System.out.println("CREATED FILE PATH = " + filepath);
 		} else {
@@ -36,6 +37,7 @@ public class CSVFileReader {
 	
 	@DataProvider(name = "dataAsMap")
 	public static Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
+		System.out.println("csv reader");
 		loadDataParameter();
 		int rowCount;
 

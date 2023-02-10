@@ -42,12 +42,13 @@ public abstract class AbstractBasePage{
     	.until(driver -> webElement);   
     	try{       
     		wait.until(ExpectedConditions.elementToBeClickable(webElement));  
+    		highLightElement(webElement);
     		webElement.click();  
     		}    
     	catch(Exception selE)
     	{       
     		try{     
-    			JavascriptExecutor js = (JavascriptExecutor) driver;  
+    			JavascriptExecutor js = (JavascriptExecutor) driver;
     			js.executeScript("arguments[0].click();", webElement); 
     			}        
     		catch (Exception JsE){    
@@ -66,6 +67,15 @@ public abstract class AbstractBasePage{
     protected void findAndKillPopup(){
         PopUpHandler popUpHandler = new PopUpHandler(driver);
         if(popUpHandler.isDisplayed()) popUpHandler.close();
+    }
+    
+    protected void fillText(WebElement webElement, String value) {
+    	new WebDriverWait(driver, 5)           
+    	.until(driver -> webElement);          
+    		wait.until(ExpectedConditions.visibilityOf(webElement));  
+    		highLightElement(webElement);
+    		webElement.sendKeys(value);  
+
     }
 
     /**
@@ -141,6 +151,15 @@ public abstract class AbstractBasePage{
     public String getPageTitle() {
         log.info("Get Page Title");
         return driver.getTitle();
+    }
+    
+    /**
+     * 
+     * @param element
+     */
+    public void highLightElement(WebElement element) {
+    	JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;  
+    	jsExecutor.executeScript("arguments[0].style.background='yellow'", element); 
     }
 
     /**

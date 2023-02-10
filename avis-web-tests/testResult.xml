@@ -1,0 +1,4 @@
+<testsuite hostname="AnkurChaudhary" ignored="2" name="Test" tests="1" failures="0" timestamp="2023-01-17T11:51:36 IST" time="28.492" errors="0">
+<testcase name="AnonymousUserTestCases"  classname=" com.abg.payless.PaylessAnonymousUser"/>
+
+</testsuite>

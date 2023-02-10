@@ -21,7 +21,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.avis.qa"></package>
+            <package name="com.abg.payless"></package>
         </packages>
 
 <!--        <classes>-->
