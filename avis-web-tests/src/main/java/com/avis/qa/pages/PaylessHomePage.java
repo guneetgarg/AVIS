@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PaylessHomePage extends AbstractBasePage {
 
+	private static final String COUPON = "Coupon";
+
 	public PaylessHomePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -112,15 +114,15 @@ public class PaylessHomePage extends AbstractBasePage {
 			clickOn(ageDropDown);
 			fillText(ageDropDown,testDataMap.get("Age").toString());
 		}
-		if (!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")) {
+		if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
 			System.out.println("country");
 			clickOn(residenceCountryDropdown);
 			fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
 			clickOn(residenceCountryDropdown);
 		}
-		if (!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")) {
+		if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
 			clickOn(CouponCheckBox);
-			fillText(CouponTextField,testDataMap.get("Coupon").toString() );
+			fillText(CouponTextField,testDataMap.get(COUPON).toString() );
 		}
 		if (!testDataMap.get("PDN").toString().equalsIgnoreCase("NA")) {
 			clickOn(CouponCheckBox);

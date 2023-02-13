@@ -19,6 +19,9 @@ public class PaylessAnonymousUser extends TestBase {
 
 	@Test(groups = {REGRESSION, SANITY, PAYLESSCAR}, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
 	public void AnonymousUserTestCases(Map<?, ?> testDataMap) {
+		System.out.println("@@@@@@=========@@@@@@");
+		testDataMap.keySet();
+		
 		launchUrl();
 		
 		PaylessHomePage paylessHomepage = new PaylessHomePage(getDriver());

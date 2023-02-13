@@ -91,7 +91,6 @@ public class TestBase {
     	ArrayList<String> testSheetData = new ArrayList<>();
     	testCaseName = testData[0].toString().split("TestCaseName")[1].split(",")[0].split("=")[1];
     	testName.set(testCaseName);
-    	System.out.println("################################   " +testCaseName);
     	testSheetData.add(testCaseName);
         log.info("beforeMethodTestBase() called");
         if (DOCKER.equalsIgnoreCase("true"))
@@ -101,7 +100,7 @@ public class TestBase {
         
     }
     
-    @AfterMethod(alwaysRun = true)
+//    @AfterMethod(alwaysRun = true)
     public void afterMethodTestBase(ITestResult result) throws IOException {
         log.info("afterMethodTestBase() called");
         try {
@@ -145,7 +144,7 @@ public class TestBase {
         } catch (Exception e) {
             System.out.println(e);
         }
-        getDriver().quit();
+//        getDriver().quit();
     }
     
     public void deleteFile() {
