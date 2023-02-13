@@ -35,10 +35,18 @@ public class VehiclesPage extends AbstractBasePage {
 	@FindBy(xpath = "//li[@ng-if='vm.response.reservationSummary.coupon.number']/span[2] | //span[@class='coupon-value']")
 	private WebElement couponCode;
 
+	@FindBy(xpath = "//li[@ng-if='vm.response.reservationSummary.awdNumber']/span[2] | //p[contains(@ng-if,'vm.confirmation.reservationSummary.awdNumber')]")
+	private WebElement pdn;
+
 
 	public void chooseVehicles(Map testDataMap) {
 		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-		assertTrue(couponCode.getText().toString().contains(testDataMap.get("Coupon").toString())); 
+		if (!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")) {
+			assertTrue(couponCode.getText().toString().contains(testDataMap.get("Coupon").toString())); 
+		}
+		if (!testDataMap.get("PDN").toString().equalsIgnoreCase("NA")) {
+			assertTrue(pdn.getText().toString().contains(testDataMap.get("PDN").toString())); 
+		}
 		assertTrue(selectACarText.getText().toString().contains("Choose a Car"));
 		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("Paylater")) {
 			helper.scrollToElement(PayLater);

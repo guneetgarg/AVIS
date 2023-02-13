@@ -52,6 +52,27 @@ public class PaylessReviewReservePage extends AbstractBasePage {
     @FindBy(xpath = "//button[@class='sc-clsFYl sc-zzebL eqOCIy dfGSsa']")
     private WebElement Nothanks;
     
+    @FindBy(xpath = "//input[contains(@id,'cardnumber')]")
+    private WebElement cardNumber;
+    
+    @FindBy(id = "expirydate")
+    private WebElement creditCardExpiryDateField;
+    
+    @FindBy(xpath = "//input[contains(@id,'securitycode')]")
+    private WebElement step4_CVV;
+    
+    @FindBy(xpath = "//*[contains(@id,'address1')]")
+    private WebElement address1;
+
+    @FindBy(xpath = "//*[@id='States']")
+    private WebElement state;
+
+    @FindBy(xpath = "(//*[contains(@id,'city')])|(//*[contains(@name,'city')])")
+    private WebElement city;
+
+    @FindBy(xpath = "//*[contains(@id,'zip')]")
+    private WebElement zip;
+    
 	public PaylessReviewReservePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -76,6 +97,19 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 		if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 			fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 		}
+		if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+			System.out.println("cc number enter");
+			fillText(cardNumber,testDataMap.get("CCNumber").toString());
+			fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
+			fillText(step4_CVV,testDataMap.get("CVV").toString());
+			fillText(address1,testDataMap.get("Address").toString());
+			fillText(city,testDataMap.get("City").toString());
+			clickOn(state);
+			fillText(state,testDataMap.get("State").toString());
+			fillText(zip,testDataMap.get("ZipCode").toString());
+//			fillText(,testDataMap.get("").toString());
+
+	    }
 		clickOn(termsCheck);
 		SubmitButton.click();
 	}

@@ -15,12 +15,14 @@ import com.avis.qa.pages.PaylessReviewReservePage;
 import com.avis.qa.pages.VehiclesPage;
 import com.avis.qa.utilities.CSVFileReader;
 
-public class PaylessAnonymousUser extends TestBase {
-
+public class PaylessAuthenticatedTestCases extends TestBase {
+	
+	
 	@Test(groups = {REGRESSION, SANITY, PAYLESSCAR}, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
-	public void AnonymousUserTestCases(Map<?, ?> testDataMap) {
+	public void AuthenticatedTestCases(Map<?, ?> testDataMap) {
+
 		launchUrl();
-		
+
 		PaylessHomePage paylessHomepage = new PaylessHomePage(getDriver());
 		paylessHomepage.getRates(testDataMap);
 
@@ -34,5 +36,6 @@ public class PaylessAnonymousUser extends TestBase {
 		paylessReviewReservePage.reviewPage(testDataMap);
 
 	}
+
 
 }

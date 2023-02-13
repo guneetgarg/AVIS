@@ -91,6 +91,7 @@ public class TestBase {
     	ArrayList<String> testSheetData = new ArrayList<>();
     	testCaseName = testData[0].toString().split("TestCaseName")[1].split(",")[0].split("=")[1];
     	testName.set(testCaseName);
+    	System.out.println("################################   " +testCaseName);
     	testSheetData.add(testCaseName);
         log.info("beforeMethodTestBase() called");
         if (DOCKER.equalsIgnoreCase("true"))
@@ -137,14 +138,14 @@ public class TestBase {
 //                	System.out.println("afterMethodTestBase4");
 //                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString()+"Exception\" message=\""+result.getThrowable().toString()+"\">\n<![CDATA["+result.getThrowable().toString()+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";          	
 //                }
-                
+//                
 //                readWriteIntoFile(reportContent,true);
 //
 //            }
         } catch (Exception e) {
             System.out.println(e);
         }
-//        getDriver().quit();
+        getDriver().quit();
     }
     
     public void deleteFile() {

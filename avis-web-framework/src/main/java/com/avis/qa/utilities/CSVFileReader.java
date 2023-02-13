@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ import com.opencsv.exceptions.CsvException;
 
 public class CSVFileReader {
 	static String filepath = null;
-	
+
 	/**
 	 * loads the data parameter file path
 	 */
@@ -34,34 +35,75 @@ public class CSVFileReader {
 		}
 
 	}
-	
+
 	@DataProvider(name = "dataAsMap")
 	public static Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
 		System.out.println("csv reader");
 		loadDataParameter();
-		int rowCount;
+		int rowCount = 0;
 
 		BufferedReader filereader = new BufferedReader(new FileReader(filepath));
 		// file reader as a parameter
 		CSVReader csvReader = new CSVReader(filereader);
 
-		List<String[]> nextRecord = csvReader.readAll();
+		List<String[]> nextRecord = csvReader.readAll();		
 
-		Map<String, String>[][] twoDHashMap = new HashMap[1][1];
+		String[][] arr = null;
+
+		List<String[]> stringList = new ArrayList<>();
+
+		for (int i = 0; i < arr.length; i++)  {   //rows or lines
+			if(method.getName().equalsIgnoreCase(arr[i][0].trim()) || i==0)
+			{
+				stringList.add(arr[i]);
+			}
+		}
+
+		Map<String, String>[][] twoDHashMap = new HashMap[stringList.size()-1][1];
 		HashMap<String, String> map = new HashMap<>();
 
-		for (int i = 1; i < nextRecord.size(); i++) {
-			if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
+		System.out.println("@@@@@@ "+stringList.size());
+		System.out.println("@@@@@@ "+method.getName());
+
+		for (int i = 1; i < stringList.size(); i++) {
+			if (stringList.get(i)[0].equalsIgnoreCase(method.getName())) {
 
 				// rows or lines
-				for (int j = 0; j < nextRecord.get(i).length; j++) {
-					if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
-						map.put(nextRecord.get(0)[j].trim(), nextRecord.get(i)[j].trim());
-						twoDHashMap[0][0] = map;
+				for (int j = 0; j < stringList.get(i).length; j++) {
+					if (stringList.get(i)[0].equalsIgnoreCase(method.getName())) {
+						map.put(stringList.get(0)[j].trim(), stringList.get(i)[j].trim());
 					}
 				}
+				twoDHashMap[i-1][0] = map;
+
 			}
 		}
 		return twoDHashMap;
+
+
+
+
+
+		//		Map<String, String>[][] twoDHashMap = new HashMap[nextRecord.size()-1][1];
+		//		HashMap<String, String> map = new HashMap<>();
+		//		
+		//		System.out.println("@@@@@@ "+nextRecord.size());
+		//		System.out.println("@@@@@@ "+method.getName());
+		//
+		//		for (int i = 1; i < nextRecord.size(); i++) {
+		//			if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
+		//
+		//				// rows or lines
+		//				for (int j = 0; j < nextRecord.get(i).length; j++) {
+		//					if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
+		//						map.put(nextRecord.get(0)[j].trim(), nextRecord.get(i)[j].trim());
+		//					}
+		//				}
+		//				twoDHashMap[i-1][0] = map;
+		//
+		//			}
+		//		}
+		//		return twoDHashMap;
+
 	}
 }

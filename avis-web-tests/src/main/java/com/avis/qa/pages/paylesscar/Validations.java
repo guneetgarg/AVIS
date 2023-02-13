@@ -13,147 +13,146 @@ import static org.testng.Assert.assertTrue;
 
 public class Validations extends AbstractBasePage {
 
-    public Validations(WebDriver driver) {
-        super(driver);
-    }
+	public Validations(WebDriver driver) {
+		super(driver);
+	}
 
-    @FindBy(xpath = "(//div[@class='location-info'])[1] | (//div[@class='summary-location'])[1]")
-    private WebElement pickUpLocation;
-    
-//    @FindBy(xpath = "//input[@name='anguPicLoc']/parent::div")
-//	private WebElement pickUpLocation;
+	@FindBy(xpath = "(//div[@class='location-info'])[1] | (//div[@class='summary-location'])[1]")
+	private WebElement pickUpLocation;
 
-    @FindBy(xpath = "(//div[@class='location-info'])[2]")
-    private WebElement dropOffLocation;
+	//    @FindBy(xpath = "//input[@name='anguPicLoc']/parent::div")
+	//	private WebElement pickUpLocation;
 
-    @FindBy(xpath = "//li[@ng-if='vm.response.reservationSummary.awdNumber']/span[2] | //p[contains(@ng-if,'vm.confirmation.reservationSummary.awdNumber')]")
-    private WebElement pdn;
+	@FindBy(xpath = "(//div[@class='location-info'])[2]")
+	private WebElement dropOffLocation;
 
-    @FindBy(xpath = "//li[@ng-if='vm.response.reservationSummary.coupon.number']/span[2] | //span[@class='coupon-value']")
-    private WebElement couponCode;
+	@FindBy(xpath = "//li[@ng-if='vm.response.reservationSummary.awdNumber']/span[2] | //p[contains(@ng-if,'vm.confirmation.reservationSummary.awdNumber')]")
+	private WebElement pdn;
 
-    @FindBy(xpath = "(//div[@class='vehicle-name'])[1] | //p[@class='car-name']")
-    private WebElement vehicleName;
+	@FindBy(xpath = "//li[@ng-if='vm.response.reservationSummary.coupon.number']/span[2] | //span[@class='coupon-value']")
+	private WebElement couponCode;
 
-    @FindBy(xpath = "(//div[@class='day-time-info'])[1] | (//div[@class='summary-time'])[1]")
-    private WebElement pickUpDate;
+	@FindBy(xpath = "(//div[@class='vehicle-name'])[1] | //p[@class='car-name']")
+	private WebElement vehicleName;
 
-    @FindBy(xpath = "(//div[contains(div/text(),'Your Information')]//child::p)")
-    private List<WebElement> userInfoList;
-    
-    @FindBy(xpath = "//h1[@class='blue']")
-    private WebElement payLessBrandText;
-    
-    @FindBy(xpath = "//p[@class='payamntp']/span")
-    private List<WebElement> currencyLogo;
-  
+	@FindBy(xpath = "(//div[@class='day-time-info'])[1] | (//div[@class='summary-time'])[1]")
+	private WebElement pickUpDate;
 
-    public Validations verifyPickUpLocation(String pickUpLoc){
- System.out.println("verify pickup location");
- System.out.println(pickUpLocation.getText());
- System.out.println(pickUpLoc);
-        assertTrue(pickUpLocation.getText().toString().contains(pickUpLoc));
-        System.out.println("verify pickup location 1");
-        return this;
-    }
+	@FindBy(xpath = "(//div[contains(div/text(),'Your Information')]//child::p)")
+	private List<WebElement> userInfoList;
 
-    public Validations verifyDropOffLocation(String dropOffLoc){
-//        assertTrue(dropOffLocation.getText().contains(dropOffLoc));
-        return this;
-    }
+	@FindBy(xpath = "//h1[@class='blue']")
+	private WebElement payLessBrandText;
 
-    public Validations verifyCouponCode(String coupon){
-    	System.out.println(couponCode);
-        assertTrue(couponCode.getText().contains(coupon));
-        return this;
-    }
+	@FindBy(xpath = "//p[@class='payamntp']/span")
+	private List<WebElement> currencyLogo;
 
-    public Validations verifyPdnNumber(String pdnNo){
-        assertTrue(pdn.getText().contains(pdnNo));
-        return this;
-    }
 
-    public Validations verifyVehicleName(){
-        assertTrue(vehicleName.getText().contains("Pickup"));
-        System.out.println("verifyVehicleName----");
-        return this;
-    }
+	public Validations verifyPickUpLocation(String pickUpLoc){
+		System.out.println(pickUpLocation.getText());
+		System.out.println(pickUpLoc);
+		assertTrue(pickUpLocation.getText().toString().contains(pickUpLoc));
+		System.out.println("verify pickup location 1");
+		return this;
+	}
 
-    public Validations verifyPickUpDate(){
-    	System.out.println("pickupdate");
-        String expectedDate = getDate(1);
-        System.out.println("verify pickupdate");
-        String actualDate = dateFormatter(pickUpDate.getText());
-        System.out.println("verified");
+	public Validations verifyDropOffLocation(String dropOffLoc){
+		//        assertTrue(dropOffLocation.getText().contains(dropOffLoc));
+		return this;
+	}
 
-//        assertTrue(expectedDate.contains(actualDate));
-//        System.out.println("pickupdate");
-        return this;
+	public Validations verifyCouponCode(String coupon){
+		System.out.println(couponCode);
+		assertTrue(couponCode.getText().contains(coupon));
+		return this;
+	}
 
-    }
+	public Validations verifyPdnNumber(String pdnNo){
+		assertTrue(pdn.getText().contains(pdnNo));
+		return this;
+	}
 
-    public void verifyCustomerInfo(String email, String age, String residence){
+	public Validations verifyVehicleName(){
+		assertTrue(vehicleName.getText().contains("Pickup"));
+		System.out.println("verifyVehicleName----");
+		return this;
+	}
 
-    }
+	public Validations verifyPickUpDate(){
+		System.out.println("pickupdate");
+		String expectedDate = getDate(1);
+		System.out.println("verify pickupdate");
+		String actualDate = dateFormatter(pickUpDate.getText());
+		System.out.println("verified");
 
-    public String getDate(int noOfDays){
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+		//        assertTrue(expectedDate.contains(actualDate));
+		//        System.out.println("pickupdate");
+		return this;
 
-        Date date = calendar.getTime();
-        return String.valueOf(date);
-    }
+	}
 
-    public Validations verifyPayNowUserInfo(String email){
-        assertTrue(userInfoList.get(0).getText().contains(email));
-        assertTrue(userInfoList.get(1).getText().contains("US"));
-        assertTrue(userInfoList.get(2).getText().contains("AmericanExpress"));
-        return this;
-    }
+	public void verifyCustomerInfo(String email, String age, String residence){
 
-    public Validations verifyUserEmail(){
-        assertTrue(userInfoList.get(0).getText().contains("paylessautomation"));
-        return this;
-    }
+	}
 
-    public Validations verifyPayLaterUserInfo(String email, String country){
-        assertTrue(userInfoList.get(0).getText().contains(email));
-        switch (country){
-            case "Thailand":
-                assertTrue(userInfoList.get(1).getText().contains("TH"));
-                break;
-            default:
-                assertTrue(userInfoList.get(1).getText().contains("US"));
-        }
+	public String getDate(int noOfDays){
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
 
-        return this;
-    }
+		Date date = calendar.getTime();
+		return String.valueOf(date);
+	}
 
-    public String dateFormatter(String date){
-        String[] dateArr = date.split(",");
+	public Validations verifyPayNowUserInfo(String email){
+		assertTrue(userInfoList.get(0).getText().contains(email));
+		assertTrue(userInfoList.get(1).getText().contains("US"));
+		assertTrue(userInfoList.get(2).getText().contains("AmericanExpress"));
+		return this;
+	}
 
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < dateArr.length-1; i++) {
-            sb.append(dateArr[i]);
-        }
+	public Validations verifyUserEmail(){
+		assertTrue(userInfoList.get(0).getText().contains("paylessautomation"));
+		return this;
+	}
 
-        return sb.toString();
+	public Validations verifyPayLaterUserInfo(String email, String country){
+		assertTrue(userInfoList.get(0).getText().contains(email));
+		switch (country){
+		case "Thailand":
+			assertTrue(userInfoList.get(1).getText().contains("TH"));
+			break;
+		default:
+			assertTrue(userInfoList.get(1).getText().contains("US"));
+		}
 
-    }
+		return this;
+	}
 
-    @Override
-    public void isOnPage() {
+	public String dateFormatter(String date){
+		String[] dateArr = date.split(",");
 
-    }
-    
-    public void verifyPaylessBrandText() {
-        assertTrue(payLessBrandText.getText().toString().contains("Payless"));
-    }
-    
-    public void verifyCurrencyLogo() {
-    	System.out.println("currency logo verify");
-    	System.out.println(currencyLogo);
-    	assertTrue(currencyLogo.get(1).getText().contains("฿"));
-    	System.out.println("verify logo for vehicles");
-    	}
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < dateArr.length-1; i++) {
+			sb.append(dateArr[i]);
+		}
+
+		return sb.toString();
+
+	}
+
+	@Override
+	public void isOnPage() {
+
+	}
+
+	public void verifyPaylessBrandText() {
+		assertTrue(payLessBrandText.getText().toString().contains("Payless"));
+	}
+
+	public void verifyCurrencyLogo() {
+		System.out.println("currency logo verify");
+		System.out.println(currencyLogo);
+		assertTrue(currencyLogo.get(1).getText().contains("฿"));
+		System.out.println("verify logo for vehicles");
+	}
 }

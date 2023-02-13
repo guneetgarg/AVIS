@@ -72,7 +72,7 @@ public abstract class AbstractBasePage{
     protected void fillText(WebElement webElement, String value) {
     	new WebDriverWait(driver, 5)           
     	.until(driver -> webElement);          
-    		wait.until(ExpectedConditions.visibilityOf(webElement));  
+    		wait.until(ExpectedConditions.visibilityOf(webElement));
     		highLightElement(webElement);
     		webElement.sendKeys(value);  
 
