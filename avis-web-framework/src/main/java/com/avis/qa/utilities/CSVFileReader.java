@@ -48,30 +48,19 @@ public class CSVFileReader {
 
 		List<String[]> nextRecord = csvReader.readAll();		
 
-		String[][] arr = null;
-
-		List<String[]> stringList = new ArrayList<>();
-
-		for (int i = 0; i < arr.length; i++)  {   //rows or lines
-			if(method.getName().equalsIgnoreCase(arr[i][0].trim()) || i==0)
-			{
-				stringList.add(arr[i]);
-			}
-		}
-
-		Map<String, String>[][] twoDHashMap = new HashMap[stringList.size()-1][1];
+		Map<String, String>[][] twoDHashMap = new HashMap[nextRecord.size()-1][1];
 		HashMap<String, String> map = new HashMap<>();
 
-		System.out.println("@@@@@@ "+stringList.size());
+		System.out.println("@@@@@@ "+nextRecord.size());
 		System.out.println("@@@@@@ "+method.getName());
 
-		for (int i = 1; i < stringList.size(); i++) {
-			if (stringList.get(i)[0].equalsIgnoreCase(method.getName())) {
+		for (int i = 1; i < nextRecord.size(); i++) {
+			if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
 
 				// rows or lines
-				for (int j = 0; j < stringList.get(i).length; j++) {
-					if (stringList.get(i)[0].equalsIgnoreCase(method.getName())) {
-						map.put(stringList.get(0)[j].trim(), stringList.get(i)[j].trim());
+				for (int j = 0; j < nextRecord.get(i).length; j++) {
+					if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
+						map.put(nextRecord.get(0)[j].trim(), nextRecord.get(i)[j].trim());
 					}
 				}
 				twoDHashMap[i-1][0] = map;
@@ -79,31 +68,6 @@ public class CSVFileReader {
 			}
 		}
 		return twoDHashMap;
-
-
-
-
-
-		//		Map<String, String>[][] twoDHashMap = new HashMap[nextRecord.size()-1][1];
-		//		HashMap<String, String> map = new HashMap<>();
-		//		
-		//		System.out.println("@@@@@@ "+nextRecord.size());
-		//		System.out.println("@@@@@@ "+method.getName());
-		//
-		//		for (int i = 1; i < nextRecord.size(); i++) {
-		//			if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
-		//
-		//				// rows or lines
-		//				for (int j = 0; j < nextRecord.get(i).length; j++) {
-		//					if (nextRecord.get(i)[0].equalsIgnoreCase(method.getName())) {
-		//						map.put(nextRecord.get(0)[j].trim(), nextRecord.get(i)[j].trim());
-		//					}
-		//				}
-		//				twoDHashMap[i-1][0] = map;
-		//
-		//			}
-		//		}
-		//		return twoDHashMap;
 
 	}
 }

@@ -113,35 +113,35 @@ public class TestBase {
                 reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
                 readWriteIntoFile(reportContent,true);
             }
-//            else if (result.getStatus() == 2) {
-////            	System.out.println(result.getThrowable().getStackTrace());
-//        		TakesScreenshot ss = ((TakesScreenshot) getDriver());
-//        		File file = ss.getScreenshotAs(OutputType.FILE);
-//        		File desti = new File("./testdata/"+result.getMethod().getMethodName().toString()+".png");
-//        		FileUtils.copyFile(file, desti);
-//            	System.out.println("FAILED");
-//                String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\">";
-//               System.out.println("afterMethodTestBase1");
-//                if(reportContent.contains("[TestClass name=class")){
-//                	System.out.println("afterMethodTestBase2");
-//                	reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
-//                }
-//                System.out.println("result.getThrowable(): "+result.getThrowable());
-//                if(result.getThrowable().toString().contains("Exception:")) {
-//                	System.out.println("afterMethodTestBase2");
-//                reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Exception:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Exception:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Exception:")[1].split(":")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
-//                }else if(result.getThrowable().toString().contains("Error:")) {
-//                	System.out.println("afterMethodTestBase3");
-//                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Error:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Error:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Error:")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
-//                	
-//                }else {
-//                	System.out.println("afterMethodTestBase4");
-//                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString()+"Exception\" message=\""+result.getThrowable().toString()+"\">\n<![CDATA["+result.getThrowable().toString()+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";          	
-//                }
-//                
-//                readWriteIntoFile(reportContent,true);
+            else if (result.getStatus() == 2) {
+//            	System.out.println(result.getThrowable().getStackTrace());
+        		TakesScreenshot ss = ((TakesScreenshot) getDriver());
+        		File file = ss.getScreenshotAs(OutputType.FILE);
+        		File desti = new File("./testdata/"+result.getMethod().getMethodName().toString()+".png");
+        		FileUtils.copyFile(file, desti);
+            	System.out.println("FAILED");
+                String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\">";
+               System.out.println("afterMethodTestBase1");
+                if(reportContent.contains("[TestClass name=class")){
+                	System.out.println("afterMethodTestBase2");
+                	reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
+                }
+                System.out.println("result.getThrowable(): "+result.getThrowable());
+                if(result.getThrowable().toString().contains("Exception:")) {
+                	System.out.println("afterMethodTestBase2");
+                reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Exception:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Exception:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Exception:")[1].split(":")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
+                }else if(result.getThrowable().toString().contains("Error:")) {
+                	System.out.println("afterMethodTestBase3");
+                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Error:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Error:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Error:")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
+                	
+                }else {
+                	System.out.println("afterMethodTestBase4");
+                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString()+"Exception\" message=\""+result.getThrowable().toString()+"\">\n<![CDATA["+result.getThrowable().toString()+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";          	
+                }
+                
+                readWriteIntoFile(reportContent,true);
 //
-//            }
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
