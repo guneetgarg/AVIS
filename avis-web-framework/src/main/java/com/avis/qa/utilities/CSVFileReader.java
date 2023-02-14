@@ -26,11 +26,8 @@ public class CSVFileReader {
 	public static void loadDataParameter() {
 
 		if (BRAND != null && DOMAIN != null) {
-//			System.out.println("brand");
 			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
-//			System.out.println("CREATED FILE PATH = " + filepath);
 		} else {
-			System.out.println("NULL RESULTS");
 			System.exit(0);
 		}
 
@@ -38,7 +35,6 @@ public class CSVFileReader {
 
 	@DataProvider(name = "dataAsMap")
 	public static Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
-//		System.out.println("csv reader");
 		loadDataParameter();
 		int rowCount = 0;
 
@@ -47,15 +43,9 @@ public class CSVFileReader {
 		CSVReader csvReader = new CSVReader(filereader);
 
 		List<String[]> nextRecord = csvReader.readAll();	
-		
-		
-//		System.out.println("###   "+nextRecord.toString());
 
 		Map<String, String>[][] twoDHashMap = new HashMap[nextRecord.size()-1][1];
-		
 
-//		System.out.println("@@@@@@ "+nextRecord.size());
-//		System.out.println("@@@@@@ "+method.getName());
 
 		for (int i = 1; i < nextRecord.size(); i++) {
 			HashMap<String, String> map = new HashMap<>();

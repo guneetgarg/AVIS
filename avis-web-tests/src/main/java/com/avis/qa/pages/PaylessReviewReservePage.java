@@ -73,6 +73,9 @@ public class PaylessReviewReservePage extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(@id,'zip')]")
     private WebElement zip;
     
+    @FindBy(xpath = "//span[@id='cancel']")
+    private WebElement close;
+    
 	public PaylessReviewReservePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -81,7 +84,6 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 	public void reviewPage(Map testDataMap) {
 		
 		assertTrue(MakeMyReservation.getText().contains("Make My Reservation"));
-		System.out.println("make my reservation verify");
 		if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
 			fillText(firstName,testDataMap.get("FirstName").toString());
 		}
@@ -107,54 +109,13 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			clickOn(state);
 			fillText(state,testDataMap.get("State").toString());
 			fillText(zip,testDataMap.get("ZipCode").toString());
-//			fillText(,testDataMap.get("").toString());
-
 	    }
 		clickOn(termsCheck);
-		SubmitButton.click();
+		clickOn(SubmitButton);
+		clickOn(close);
+		
 	}
 		
-//		System.out.println(driver.findElements(By.tagName("iframe")).size());
-//		List<WebElement> iframes = driver.findElements(By.tagName("iframe"));
-//		for(int i = 1; i<=iframes.size(); i++) {
-//		driver.switchTo().frame(i);
-//		Close.click();
-//		}
-//		try {
-//			driver.switchTo().frame(1);
-//			Close.click();
-//		}
-//			catch (Exception e) {
-//				driver.switchTo().frame(2);
-//				Close.click();
-//			}
-//		}
-	
-
-//		
-//		for(int i = 1; i<=iframes.size(); i++) {
-//			try {
-//				System.out.println("INSIDE "+i);
-//				driver.switchTo().frame(i);
-//				Close.click();
-//				
-//				System.out.println("close");
-//				
-//				if(Close.isDisplayed()) {
-//					System.out.println("FINALLY CLOSED WITH "+i);
-//				}
-//								
-//			} catch (Exception e) {
-//				// TODO: handle exception
-//				
-//				System.out.println("EXCEPTION WITH "+i);
-//			}
-//		}
-//				
-//	}
-
-
-
 	private Object getDriver() {
 		// TODO Auto-generated method stub
 		return null;

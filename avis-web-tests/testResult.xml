@@ -1,3 +1,9 @@
 <testsuite hostname="AnkurChaudhary" ignored="2" name="Test" tests="1" failures="0" timestamp="2023-01-17T11:51:36 IST" time="28.492" errors="0">
+<testcase name="Paylesscar_RES_Inbound_IATA_M_type_PayLater_US"  classname=" com.abg.payless.PaylessAnonymousUser"/>
+<testcase name="Paylesscar_RES_G_typeCoupon_Extras_paylater_US"  classname=" com.abg.payless.PaylessAnonymousUser"/>
+<testcase name="Paylesscar_RES_Outbound_PDN_Paylater_US"  classname=" com.abg.payless.PaylessAnonymousUser"/>
+<testcase name="Paylesscar_RES_Verify_Underage_onStep1_keydrop_US"  classname=" com.abg.payless.PaylessAnonymousUser"/>
+<testcase name="Paylesscar_RES_Outbound_DCC_Paynow_US"  classname=" com.abg.payless.PaylessAnonymousUser"/>
+<testcase name="Paylesscar_RES_Modify_cancel_flow_Step1_to_Step4_US"  classname=" com.abg.payless.PaylessAnonymousUser"/>
 
 </testsuite>

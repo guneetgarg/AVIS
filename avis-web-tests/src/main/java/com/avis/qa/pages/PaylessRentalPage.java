@@ -28,7 +28,6 @@ public class PaylessRentalPage extends AbstractBasePage{
 
 
 	public void rentalPage(Map testDataMap) {
-//		assertTrue(vehicleName.getText().contains("Pickup"));
 		assertTrue(recommendExtras.getText().contains("Recommended Extras"));
 		clickOn(CONTINUEBUTTON);
 	}

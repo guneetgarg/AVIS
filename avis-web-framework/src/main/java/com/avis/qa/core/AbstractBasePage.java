@@ -37,7 +37,7 @@ public abstract class AbstractBasePage{
     }
 
     protected void clickOn(WebElement webElement) {   
-    	log.info("Click using various selenium clicks");    
+//    	log.info("Click using various selenium clicks");    
     	new WebDriverWait(driver, 5)           
     	.until(driver -> webElement);   
     	try{       

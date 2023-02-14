@@ -39,28 +39,26 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
  *
  * @author ikumar
  */
-@Listeners({ExtentListener.class})
+@Listeners({ ExtentListener.class })
 @Log4j2
 public class TestBase {
 	protected ElementHelper helper;
 	private ThreadLocal<String> testName = new ThreadLocal<>();
 	private String testCaseName = "";
-    private final ThreadLocal<BrowserInstance> appInstance = new ThreadLocal<>();
-    
-    @BeforeSuite(alwaysRun = true)
+	private final ThreadLocal<BrowserInstance> appInstance = new ThreadLocal<>();
+
+	@BeforeSuite(alwaysRun = true)
 	public void beforeGroupsTest(XmlTest xmlTest) {
-    	System.out.println("BEFORE SUITE");
 		deleteFile();
 	}
 
 	@AfterSuite(alwaysRun = true)
 	public void afterGroupsTest(XmlTest xmlTest) throws IOException {
-		System.out.println("AFTER SUITE");
 		String reportContent = readFile();
 		String modifyContent = "<testsuite hostname=\"AnkurChaudhary\" ignored=\"2\" name=\"Test\" tests=\"1\" failures=\"0\" timestamp=\"2023-01-17T11:51:36 IST\" time=\"28.492\" errors=\"0\">\n"
 				+ reportContent + "\n</testsuite>";
 		reportContent = reportContent.replace(reportContent, modifyContent);
-		readWriteIntoFile(reportContent,false);
+		readWriteIntoFile(reportContent, false);
 	}
 
 	private void readWriteIntoFile(String reportContent, boolean isFileWritable) throws IOException {
@@ -77,117 +75,122 @@ public class TestBase {
 
 	}
 
-    @BeforeTest(alwaysRun = true)
-    public void startTest(XmlTest xmlTest) {
-        Configuration.setTestNGParameters(xmlTest);
-        Configuration.setURL();
-        ExtentListener.extent = ExtentManager.createInstance();
+	@BeforeTest(alwaysRun = true)
+	public void startTest(XmlTest xmlTest) {
+		Configuration.setTestNGParameters(xmlTest);
+		Configuration.setURL();
+		ExtentListener.extent = ExtentManager.createInstance();
 
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void beforeMethodTestBase(Method method, Object[] testData) {
-    	System.out.println("BEFORE METHOD");
-    	ArrayList<String> testSheetData = new ArrayList<>();
-    	testCaseName = testData[0].toString().split("TestCaseName")[1].split(",")[0].split("=")[1];
-    	testName.set(testCaseName);
-    	testSheetData.add(testCaseName);
-        log.info("beforeMethodTestBase() called");
-        if (DOCKER.equalsIgnoreCase("true"))
-            appInstance.set(new DockerInstance(BROWSER));
-        else
-            appInstance.set(new BrowserInstance(BROWSER));
-        
-    }
-    
-//    @AfterMethod(alwaysRun = true)
-    public void afterMethodTestBase(ITestResult result) throws IOException {
-        log.info("afterMethodTestBase() called");
-        try {
-            if (result.getStatus() == 1) {
-            	System.out.println("PASSED");
-            	System.out.println(result.getThrowable());
-                String reportContent = "<testcase name=\""+testCaseName+"\"  classname=\""+result.getTestClass()+"\"/>";
-                System.out.println(reportContent);
-                reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
-                readWriteIntoFile(reportContent,true);
-            }
-            else if (result.getStatus() == 2) {
-//            	System.out.println(result.getThrowable().getStackTrace());
-        		TakesScreenshot ss = ((TakesScreenshot) getDriver());
-        		File file = ss.getScreenshotAs(OutputType.FILE);
-        		File desti = new File("./testdata/"+result.getMethod().getMethodName().toString()+".png");
-        		FileUtils.copyFile(file, desti);
-            	System.out.println("FAILED");
-                String reportContent = "<testcase name=\""+result.getMethod().getMethodName()+"\"  classname=\""+result.getTestClass()+"\">";
-               System.out.println("afterMethodTestBase1");
-                if(reportContent.contains("[TestClass name=class")){
-                	System.out.println("afterMethodTestBase2");
-                	reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
-                }
-                System.out.println("result.getThrowable(): "+result.getThrowable());
-                if(result.getThrowable().toString().contains("Exception:")) {
-                	System.out.println("afterMethodTestBase2");
-                reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Exception:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Exception:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Exception:")[1].split(":")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
-                }else if(result.getThrowable().toString().contains("Error:")) {
-                	System.out.println("afterMethodTestBase3");
-                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString().split("Error:")[0]+"Exception\" message=\""+result.getThrowable().toString().split("Error:")[1].split(":")[0]+"\">\n<![CDATA["+result.getThrowable().toString().split("Error:")[1]+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";
-                	
-                }else {
-                	System.out.println("afterMethodTestBase4");
-                    reportContent = reportContent+"\n<failure type=\""+result.getThrowable().toString()+"Exception\" message=\""+result.getThrowable().toString()+"\">\n<![CDATA["+result.getThrowable().toString()+result.getThrowable().getMessage()+"]]>\n</failure>\n</testcase>";          	
-                }
-                
-                readWriteIntoFile(reportContent,true);
-//
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-//        getDriver().quit();
-    }
-    
-    public void deleteFile() {
-		File file = new File(System.getProperty("user.dir") + "/testResult.xml");
-		if(file.exists()) {
-		if (file.delete()) {
-			System.out.println("File deleted successfully");
-		} else {
-			System.out.println("Failed to delete the file");
-		}
-		}
 	}
-	public String readFile() throws IOException {
-		StringBuilder builder = new StringBuilder();
-		File file =new File(System.getProperty("user.dir") + "/testResult.xml");
-		if(file.exists()) {
-		try (BufferedReader buffer = new BufferedReader(new FileReader(file))) {
-			String str;
-			while ((str = buffer.readLine()) != null) {
-				builder.append(str).append("\n");
+
+	@BeforeMethod(alwaysRun = true)
+	public void beforeMethodTestBase(Method method, Object[] testData) {
+		ArrayList<String> testSheetData = new ArrayList<>();
+		
+		String testCaseValue= testData[0].toString();
+		
+		if (testCaseValue.contains(",") && testCaseValue.contains("=")) {
+			testCaseName = testCaseValue.split("TestCaseName")[1].split(",")[0].split("=")[1];
+		} else {
+			testCaseName = testCaseValue;
+		}
+		testName.set(testCaseName);
+		testSheetData.add(testCaseName);
+		log.info("beforeMethodTestBase() called");
+		if (DOCKER.equalsIgnoreCase("true"))
+			appInstance.set(new DockerInstance(BROWSER));
+		else
+			appInstance.set(new BrowserInstance(BROWSER));
+
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void afterMethodTestBase(ITestResult result) throws IOException {
+		try {
+			if (result.getStatus() == 1) {
+
+				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\"" + result.getTestClass()
+						+ "\"/>";
+				reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
+				readWriteIntoFile(reportContent, true);
+			} else if (result.getStatus() == 2) {
+				TakesScreenshot ss = ((TakesScreenshot) getDriver());
+				File file = ss.getScreenshotAs(OutputType.FILE);
+				File desti = new File("./testdata/" + result.getMethod().getMethodName().toString() + ".png");
+				FileUtils.copyFile(file, desti);
+				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\""
+						+ result.getTestClass() + "\">";
+				if (reportContent.contains("[TestClass name=class")) {
+					reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
+				}
+				if (result.getThrowable().toString().contains("Exception:")) {
+					reportContent = reportContent + "\n<failure type=\""
+							+ result.getThrowable().toString().split("Exception:")[0] + "Exception\" message=\""
+							+ result.getThrowable().toString().split("Exception:")[1].split(":")[0] + "\">\n<![CDATA["
+							+ result.getThrowable().toString().split("Exception:")[1].split(":")[1]
+							+ result.getThrowable().getMessage() + "]]>\n</failure>\n</testcase>";
+				} else if (result.getThrowable().toString().contains("Error:")) {
+					reportContent = reportContent + "\n<failure type=\""
+							+ result.getThrowable().toString().split("Error:")[0] + "Exception\" message=\""
+							+ result.getThrowable().toString().split("Error:")[1].split(":")[0] + "\">\n<![CDATA["
+							+ result.getThrowable().toString().split("Error:")[1] + result.getThrowable().getMessage()
+							+ "]]>\n</failure>\n</testcase>";
+
+				} else {
+					reportContent = reportContent + "\n<failure type=\"" + result.getThrowable().toString()
+							+ "Exception\" message=\"" + result.getThrowable().toString() + "\">\n<![CDATA["
+							+ result.getThrowable().toString() + result.getThrowable().getMessage()
+							+ "]]>\n</failure>\n</testcase>";
+				}
+
+				readWriteIntoFile(reportContent, true);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		getDriver().quit();
+	}
+
+	public void deleteFile() {
+		File file = new File(System.getProperty("user.dir") + "/testResult.xml");
+		if (file.exists()) {
+			if (file.delete()) {
+				System.out.println("File deleted successfully");
+			} else {
+				System.out.println("Failed to delete the file");
 			}
 		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+	}
+
+	public String readFile() throws IOException {
+		StringBuilder builder = new StringBuilder();
+		File file = new File(System.getProperty("user.dir") + "/testResult.xml");
+		if (file.exists()) {
+			try (BufferedReader buffer = new BufferedReader(new FileReader(file))) {
+				String str;
+				while ((str = buffer.readLine()) != null) {
+					builder.append(str).append("\n");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return builder.toString();
 	}
-    private BrowserInstance getBrowserInstance() {
-    	System.out.println("getBrowserInstance");
-        return appInstance.get();
-    }
 
-    public void launchUrl(String url) {
-        getBrowserInstance().start(url);
-    }
+	private BrowserInstance getBrowserInstance() {
+		return appInstance.get();
+	}
 
-    public void launchUrl() {
-    	System.out.println("launchUrl");
-        getBrowserInstance().start(URL);
-    }
+	public void launchUrl(String url) {
+		getBrowserInstance().start(url);
+	}
 
-    public WebDriver getDriver() {
-        return getBrowserInstance().getDriver();
-    }
+	public void launchUrl() {
+		getBrowserInstance().start(URL);
+	}
+
+	public WebDriver getDriver() {
+		return getBrowserInstance().getDriver();
+	}
 }

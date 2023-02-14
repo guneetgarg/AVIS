@@ -94,10 +94,13 @@ public class PaylessHomePage extends AbstractBasePage {
 
     @FindBy(xpath = "//a[text()='Make a Reservation']")
     private WebElement makeReservation;
+    
+    @FindBy(id = "//select[@id='residency']")
+	private WebElement Residency;
 
 	public void getRates(Map testDataMap) {
 		assertTrue(payLessBrandText.getText().toString().contains("Payless"));
-//		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
+		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 		clickOn(pickUpLocation);
 		fillText(pickUpLocation,testDataMap.get("PickUpLocation").toString());
 		clickOn(suggestionLocation);
@@ -115,7 +118,6 @@ public class PaylessHomePage extends AbstractBasePage {
 			fillText(ageDropDown,testDataMap.get("Age").toString());
 		}
 		if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
-			System.out.println("country");
 			clickOn(residenceCountryDropdown);
 			fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
 			clickOn(residenceCountryDropdown);
@@ -131,29 +133,67 @@ public class PaylessHomePage extends AbstractBasePage {
 
 		}
 		if (!testDataMap.get("AGE1").toString().equalsIgnoreCase("NA")) {
-			System.out.println("age error");
 			clickOn(getRatesButton);
-			assertTrue(warningMessage.getText().toString().contains("Based on your age selection, there are no cars available at this location"));
-			
-			System.out.println("age error verifed");
+			assertTrue(warningMessage.getText().toString().contains("Based on your age selection, there are no cars available at this location"));			
 			clickOn(ageDropDown);
 			fillText(ageDropDown, testDataMap.get("AGE1").toString());
 
 		}
 		clickOn(getRatesButton);
 	}
-	
-	
-	public void login(Map testDataMap) {
-		clickOn(LoginLink);
-		fillText(UserName,testDataMap.get("Username").toString());
-		fillText(Password,testDataMap.get("Password").toString());
-		clickOn(LoginButton);
-		clickOn(reservationTab);
-		clickOn(makeReservation);
-		
-		
-	}
+		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
+			clickOn(LoginLink);
+			fillText(UserName,testDataMap.get("Username").toString());
+			fillText(Password,testDataMap.get("Password").toString());
+			clickOn(LoginButton);
+			threadSleep(TEN_SECONDS);
+			clickOn(reservationTab);
+			clickOn(makeReservation);
+			clickOn(pickUpLocation);
+			fillText(pickUpLocation,testDataMap.get("PickUpLocation").toString());
+			clickOn(suggestionLocation);
+			fillText(pickUpDate,testDataMap.get("PickUpDate").toString());
+			fillText(pickUpTime,testDataMap.get("PickUpTime").toString());
+			fillText(returnDatePath,testDataMap.get("DropOffDate").toString());
+			fillText(dropOffTime,testDataMap.get("DropOffTime").toString());
+			if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+				clickOn(returnLocationCheckbox);
+				fillText(enterReturnLocation,testDataMap.get("DropOffLocation").toString() );
+				clickOn(dropOffSuggestion);
+			}
+			if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
+				clickOn(ageDropDown);
+				fillText(ageDropDown,testDataMap.get("Age").toString());
+			}
+			if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+				clickOn(residenceCountryDropdown);
+				fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
+				clickOn(residenceCountryDropdown);
+			}
+			if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+				clickOn(CouponCheckBox);
+				fillText(CouponTextField,testDataMap.get(COUPON).toString() );
+			}
+			if (!testDataMap.get("PDN").toString().equalsIgnoreCase("NA")) {
+				clickOn(CouponCheckBox);
+				clickOn(pdnTextField);
+				fillText(pdnTextField,testDataMap.get("PDN").toString() );
+
+			}
+			if (!testDataMap.get("AGE1").toString().equalsIgnoreCase("NA")) {
+				clickOn(getRatesButton);
+				threadSleep(TEN_SECONDS);
+				assertTrue(warningMessage.getText().toString().contains("Based on your age selection, there are no cars available at this location"));			
+				clickOn(ageDropDown);
+				fillText(ageDropDown, testDataMap.get("AGE1").toString());
+
+			}
+			if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
+				clickOn(Residency);
+			}
+			clickOn(getRatesButton);
+		}
+		}
 
 	@Override
 	public void isOnPage() {

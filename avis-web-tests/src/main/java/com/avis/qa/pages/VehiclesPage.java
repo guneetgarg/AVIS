@@ -52,7 +52,7 @@ public class VehiclesPage extends AbstractBasePage {
 			helper.scrollToElement(PayLater);
 			clickOn(PayLater);
 		}
-		else {
+		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
 			clickOn(PaynowButton);
 		}
 
