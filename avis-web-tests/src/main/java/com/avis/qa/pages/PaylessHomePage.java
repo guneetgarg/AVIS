@@ -183,7 +183,7 @@ public class PaylessHomePage extends AbstractBasePage {
 			if (!testDataMap.get("AGE1").toString().equalsIgnoreCase("NA")) {
 				clickOn(getRatesButton);
 				threadSleep(TEN_SECONDS);
-				assertTrue(warningMessage.getText().toString().contains("Based on your age selection, there are no cars available at this location"));			
+				assertTrue(warningMessage.getText().toString().contains("Based on your age selection, there are no cars available at this location.!"));			
 				clickOn(ageDropDown);
 				fillText(ageDropDown, testDataMap.get("AGE1").toString());
 

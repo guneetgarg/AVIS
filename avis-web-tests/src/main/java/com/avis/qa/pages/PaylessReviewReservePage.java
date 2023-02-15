@@ -76,6 +76,16 @@ public class PaylessReviewReservePage extends AbstractBasePage {
     @FindBy(xpath = "//span[@id='cancel']")
     private WebElement close;
     
+    @FindBy(xpath = "//iframe[@title = 'Rokt placement']")
+    private WebElement roktPlacementFrame;
+
+    @FindBy(xpath = "//iframe[@title = 'Rokt offer']")
+    private WebElement roktOfferFrame;
+
+    @FindBy(xpath = "//button[@aria-label='Close']")
+    private WebElement getFreeCouponPopup;
+
+    
 	public PaylessReviewReservePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -100,7 +110,6 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 		}
 		if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
-			System.out.println("cc number enter");
 			fillText(cardNumber,testDataMap.get("CCNumber").toString());
 			fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
 			fillText(step4_CVV,testDataMap.get("CVV").toString());
@@ -112,6 +121,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 	    }
 		clickOn(termsCheck);
 		clickOn(SubmitButton);
+		clickOn(getFreeCouponPopup);
 		clickOn(close);
 		
 	}
