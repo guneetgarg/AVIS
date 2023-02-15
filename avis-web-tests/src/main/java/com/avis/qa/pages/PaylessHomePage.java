@@ -165,7 +165,7 @@ public class PaylessHomePage extends AbstractBasePage {
 				clickOn(ageDropDown);
 				fillText(ageDropDown,testDataMap.get("Age").toString());
 			}
-			if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+			if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
 				clickOn(residenceCountryDropdown);
 				fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
 				clickOn(residenceCountryDropdown);

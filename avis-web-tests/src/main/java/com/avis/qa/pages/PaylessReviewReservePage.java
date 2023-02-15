@@ -85,6 +85,21 @@ public class PaylessReviewReservePage extends AbstractBasePage {
     @FindBy(xpath = "//button[@aria-label='Close']")
     private WebElement getFreeCouponPopup;
 
+    @FindBy(xpath = "//span[text()='Edit']")
+	private WebElement editLink;
+    
+    @FindBy(xpath = "(//a[contains(text(),'Pay Now')])[4]|(//a[contains(text(),'Payer maintenant')])[1]|(//a[contains(text(),'Pagar ahora')])[1]|(//a[contains(text(),'Select')])[1]")
+	private WebElement PaynowButton;
+    
+    @FindBy(xpath = "//label[@class=\"step4-checkbox-custom-label\"]")
+	private WebElement CheckboxPaynow;
+    
+    @FindBy(id = "expiryyear")
+    private WebElement expiryYearDropDown;
+    
+    @FindBy(id = "expirydate")
+    private WebElement expiryMonthDropDown;
+    
     
 	public PaylessReviewReservePage(WebDriver driver) {
 		super(driver);
@@ -109,7 +124,11 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 		if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 			fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 		}
-		if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+//		if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+			if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
+				if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+
+				System.out.println("guest paynow");
 			fillText(cardNumber,testDataMap.get("CCNumber").toString());
 			fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
 			fillText(step4_CVV,testDataMap.get("CVV").toString());
@@ -119,11 +138,18 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			fillText(state,testDataMap.get("State").toString());
 			fillText(zip,testDataMap.get("ZipCode").toString());
 	    }
+		}else {
+			fillText(cardNumber,testDataMap.get("CCNumber").toString());
+			clickOn(expiryMonthDropDown);
+			fillText(expiryMonthDropDown,testDataMap.get("ExpiryMonth").toString());
+			clickOn(expiryYearDropDown);
+			fillText(expiryYearDropDown, testDataMap.get("ExpiryYear").toString());
+			fillText(step4_CVV,testDataMap.get("CVV").toString());
+			
+			
+		}
 		clickOn(termsCheck);
 		clickOn(SubmitButton);
-		clickOn(getFreeCouponPopup);
-		clickOn(close);
-		
 	}
 		
 	private Object getDriver() {
