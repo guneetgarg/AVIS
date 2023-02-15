@@ -8,7 +8,7 @@
 
    <parameter name="brand" value="Paylesscar"/> <!-- &lt;!&ndash; <Possible values: Avis/Budget/Paylesscar &ndash;&gt;-->
       <parameter name="domain" value="US"/>    <!-- <Possible values: US/CA/AU/NZ> -->
-    <parameter name="environment" value="qa3"/>  <!--   &lt;!&ndash; < Possible values : qa/uat1/qa2/www/load balancer ip> &ndash;&gt;-->
+    <parameter name="environment" value="ci7"/>  <!--   &lt;!&ndash; < Possible values : qa/uat1/qa2/www/load balancer ip> &ndash;&gt;-->
     <parameter name="browser" value="chrome"/>  <!-- <Possible values: chrome/firefox/safari/edge/pixel/iphone/ipad> -->
     <parameter name="docker" value="true"/>
 
