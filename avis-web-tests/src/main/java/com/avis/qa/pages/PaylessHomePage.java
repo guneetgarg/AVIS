@@ -117,7 +117,7 @@ public class PaylessHomePage extends AbstractBasePage {
 			clickOn(ageDropDown);
 			fillText(ageDropDown,testDataMap.get("Age").toString());
 		}
-		if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+		if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
 			clickOn(residenceCountryDropdown);
 			fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
 			clickOn(residenceCountryDropdown);
@@ -143,6 +143,7 @@ public class PaylessHomePage extends AbstractBasePage {
 	}
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
 			clickOn(LoginLink);
+			threadSleep(TEN_SECONDS);
 			fillText(UserName,testDataMap.get("Username").toString());
 			fillText(Password,testDataMap.get("Password").toString());
 			clickOn(LoginButton);
