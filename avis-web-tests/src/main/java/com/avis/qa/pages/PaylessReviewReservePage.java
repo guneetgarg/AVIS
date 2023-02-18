@@ -152,7 +152,16 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 	@FindBy(xpath = "//span[@class='confirmation-num']")
     private WebElement confirmationNumber;
 
-
+	@FindBy(xpath = "//label[@class='step4-checkbox-custom-label']")
+    private WebElement cancelTerms;
+	
+	@FindBy(xpath = "//button[@ng-click='vm.cancelReservation.submit(cancelform)']")
+    private WebElement cancelReservation;
+	
+	@FindBy(xpath = "//h1[@class='confirmation-msg']")
+    private WebElement cancelledReservation;
+	
+	
 	public PaylessReviewReservePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -161,7 +170,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 	public void reviewPage(Map testDataMap) {
 
 		assertTrue(MakeMyReservation.getText().contains("Make My Reservation"));
-		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {			{
+		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {			
 			if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
 				fillText(firstName,testDataMap.get("FirstName").toString());
 			}
@@ -189,6 +198,47 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 				fillText(state,testDataMap.get("State").toString());
 				fillText(zip,testDataMap.get("ZipCode").toString());
 			}
+		
+			clickOn(termsCheck);
+			clickOn(SubmitButton);
+
+			threadSleep(TEN_SECONDS);
+			List<WebElement> s = driver.findElements(By.tagName("iframe"));
+			for(int i=0; i < s.size(); i++){
+				if(s.get(i).getAttribute("id").contains("rokt-placement")) {
+					driver.switchTo().frame(s.get(i).getAttribute("id"));	
+					List<WebElement> t = driver.findElements(By.tagName("iframe"));
+					driver.switchTo().frame(t.get(0).getAttribute("id"));
+					driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
+					break;
+				}				
+			}
+			
+			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
+			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			assertTrue(userInfoList.get(0).getText().contains(testDataMap.get("Email").toString()));
+			threadSleep(FIVE_SECONDS);
+			String confirmationNo = confirmationNumber.getText();
+			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
+			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
+			
+			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
+				clickOn(editLink);
+//				assertTrue(mofifyChooseCarVerify.getText().contains("Modify: Choose a Car"));
+				clickOn(PayLater);
+				clickOn(CONTINUEBUTTON);
+				clickOn(reviewModificationsButton);
+				clickOn(keepModificationButton);
+				clickOn(makeNewReservationButton);
+				if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
+					clickOn(viewOrModifyReservationButton);
+					fillText(lastNameTextField, testDataMap.get("LastName").toString());
+					confirmationNumberTextField.sendKeys(reservationNumber);
+					clickOn(submitButton);
+					threadSleep(TEN_SECONDS);
+					cancelReservationButton.click();
+					confirmCancelReservationButton.click();
+				}
 		}
 		}
 		else {
@@ -208,15 +258,14 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 
 
 			}
-		}
 		clickOn(termsCheck);
 		clickOn(SubmitButton);
 
 		threadSleep(TEN_SECONDS);
-		List<WebElement> s = driver.findElements(By.tagName("iframe"));
-		for(int i=0; i < s.size(); i++){
-			if(s.get(i).getAttribute("id").contains("rokt-placement")) {
-				driver.switchTo().frame(s.get(i).getAttribute("id"));	
+		List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
+		for(int i=0; i < s1.size(); i++){
+			if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
+				driver.switchTo().frame(s1.get(i).getAttribute("id"));	
 				List<WebElement> t = driver.findElements(By.tagName("iframe"));
 				driver.switchTo().frame(t.get(0).getAttribute("id"));
 				driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
@@ -226,13 +275,9 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 		
 		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-		assertTrue(userInfoList.get(0).getText().contains(testDataMap.get("Email").toString()));
-		threadSleep(FIVE_SECONDS);
-		String confirmationNo = confirmationNumber.getText();
-		System.out.println(confirmationNo);
-		String [] confirmationNoValue= confirmationNumber.getText().split(": ");
-		String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
-		System.out.println(reservationNumber);
+		String confirmationNo1 = confirmationNumber.getText();
+		String [] confirmationNoValue1= confirmationNumber.getText().split(": ");
+		String reservationNumber1 = confirmationNoValue1[1].replaceAll(":", "");
 		
 		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
 			clickOn(editLink);
@@ -242,21 +287,24 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			clickOn(reviewModificationsButton);
 			clickOn(keepModificationButton);
 			clickOn(makeNewReservationButton);
-			System.out.println("modify reservation modify");
 			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
 				clickOn(viewOrModifyReservationButton);
 				fillText(lastNameTextField, testDataMap.get("LastName").toString());
-				confirmationNumberTextField.sendKeys(reservationNumber);
+				confirmationNumberTextField.sendKeys(reservationNumber1);
 				clickOn(submitButton);
 				threadSleep(TEN_SECONDS);
-				cancelReservationButton.click();
-				confirmCancelReservationButton.click();
+				clickOn(cancelReservationButton);
+				clickOn(confirmCancelReservationButton);
+				clickOn(cancelTerms);
+				clickOn(cancelReservation);
+
 			}
 			
 		}
 		
-		
-	}
+		}
+		}
+	
 
 	private Object getDriver() {
 		// TODO Auto-generated method stub

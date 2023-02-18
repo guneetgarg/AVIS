@@ -1,2 +1,2 @@
-TestMethodName,TestCaseName,Location
-AnonymousUserTestCases,Budget_RES_Domestic_PayLater_US,
+TestMethodName,TestCaseName,PickUpLocation,Country,PickUpDate,PickUpTime,DropOffDate,DropOffTime,DropOffLocation,Coupon,BCDCode,Age,CustomerID,LastName,Paylater&Paynow,FirstName,LastName,Email,PhoneNumber
+AnonymousUserTestCases,Budget_RES_KeyDropLocation_M_typeCoupon_PayLater_US,MSO,NA,03/15/2023,9:00 AM,03/22/2023,11:00 AM,NA,NA,NA,NA,NA,NA,PayLater,Albert,Edsin,automation@yopmail.com,9838234567

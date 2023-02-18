@@ -9,6 +9,10 @@ import java.util.Map;
 import org.testng.annotations.Test;
 
 import com.avis.qa.core.TestBase;
+import com.avis.qa.pages.BudgetHomePage;
+import com.avis.qa.pages.BudgetRentalPage;
+import com.avis.qa.pages.BudgetReviewReservePage;
+import com.avis.qa.pages.BudgetVehiclesPage;
 import com.avis.qa.utilities.CSVFileReader;
 
 public class BudgetAnonymousTestCases extends TestBase{
@@ -19,7 +23,17 @@ public class BudgetAnonymousTestCases extends TestBase{
 		
 		launchUrl();
 		
+		BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
+		budgetHomePage.selectYourCar(testDataMap);
 		
+		BudgetVehiclesPage budgetVehiclesPage=new BudgetVehiclesPage(getDriver());
+		budgetVehiclesPage.chooseVehicles(testDataMap);
+		
+		BudgetRentalPage budgetRentalPage=new BudgetRentalPage(getDriver());
+		budgetRentalPage.rentalPage(testDataMap);
+		
+		BudgetReviewReservePage budgetReviewReservePage = new BudgetReviewReservePage(getDriver());
+		budgetReviewReservePage.reviewReserve(testDataMap);
 		
 	}
 	
