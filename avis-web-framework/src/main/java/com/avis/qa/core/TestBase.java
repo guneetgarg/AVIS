@@ -1,25 +1,8 @@
 package com.avis.qa.core;
 
-import com.avis.qa.listeners.report.ExtentListener;
-import com.avis.qa.listeners.report.ExtentManager;
-import com.avis.qa.utilities.ElementHelper;
-
-import lombok.extern.log4j.Log4j2;
-
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
-import org.testng.xml.XmlTest;
+import static com.avis.qa.core.Configuration.BROWSER;
+import static com.avis.qa.core.Configuration.DOCKER;
+import static com.avis.qa.core.Configuration.URL;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -30,9 +13,24 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import static com.avis.qa.core.Configuration.*;
-import static com.avis.qa.utilities.CommonUtils.ONE_SECOND;
-import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+import org.testng.xml.XmlTest;
+
+import com.avis.qa.listeners.report.ExtentListener;
+import com.avis.qa.listeners.report.ExtentManager;
+import com.avis.qa.utilities.ElementHelper;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * Class contains the Pre-requisite setup before running a Test Case
@@ -42,6 +40,7 @@ import static com.avis.qa.utilities.CommonUtils.threadSleep;
 @Listeners({ ExtentListener.class })
 @Log4j2
 public class TestBase {
+	private static final String TEST_RESULT_XML = "/testResult.xml";
 	protected ElementHelper helper;
 	private ThreadLocal<String> testName = new ThreadLocal<>();
 	private String testCaseName = "";
@@ -55,14 +54,14 @@ public class TestBase {
 	@AfterSuite(alwaysRun = true)
 	public void afterGroupsTest(XmlTest xmlTest) throws IOException {
 		String reportContent = readFile();
-		String modifyContent = "<testsuite hostname=\"AnkurChaudhary\" ignored=\"2\" name=\"Test\" tests=\"1\" failures=\"0\" timestamp=\"2023-01-17T11:51:36 IST\" time=\"28.492\" errors=\"0\">\n"
+		String modifyContent = "<testsuite hostname=\"TestResult\" ignored=\"2\" name=\"Test\" tests=\"1\" failures=\"0\" timestamp=\"2023-01-17T11:51:36 IST\" time=\"28.492\" errors=\"0\">\n"
 				+ reportContent + "\n</testsuite>";
 		reportContent = reportContent.replace(reportContent, modifyContent);
 		readWriteIntoFile(reportContent, false);
 	}
 
 	private void readWriteIntoFile(String reportContent, boolean isFileWritable) throws IOException {
-		File myObj = new File(System.getProperty("user.dir") + "/testResult.xml");
+		File myObj = new File(System.getProperty("user.dir") + TEST_RESULT_XML);
 		if (myObj.createNewFile()) {
 			System.out.println("File created: " + myObj.getName());
 		} else {
@@ -152,7 +151,7 @@ public class TestBase {
 	}
 
 	public void deleteFile() {
-		File file = new File(System.getProperty("user.dir") + "/testResult.xml");
+		File file = new File(System.getProperty("user.dir") + TEST_RESULT_XML);
 		if (file.exists()) {
 			if (file.delete()) {
 				System.out.println("File deleted successfully");
@@ -164,7 +163,7 @@ public class TestBase {
 
 	public String readFile() throws IOException {
 		StringBuilder builder = new StringBuilder();
-		File file = new File(System.getProperty("user.dir") + "/testResult.xml");
+		File file = new File(System.getProperty("user.dir") + TEST_RESULT_XML);
 		if (file.exists()) {
 			try (BufferedReader buffer = new BufferedReader(new FileReader(file))) {
 				String str;

@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,16 +35,14 @@ public class CSVFileReader {
 	@DataProvider(name = "dataAsMap")
 	public static Map<String, String>[][] readDataLineBymethodName(Method method) throws IOException, CsvException {
 		loadDataParameter();
-		int rowCount = 0;
 
 		BufferedReader filereader = new BufferedReader(new FileReader(filepath));
 		// file reader as a parameter
 		CSVReader csvReader = new CSVReader(filereader);
 
-		List<String[]> nextRecord = csvReader.readAll();	
+		List<String[]> nextRecord = csvReader.readAll();
 
-		Map<String, String>[][] twoDHashMap = new HashMap[nextRecord.size()-1][1];
-
+		Map<String, String>[][] twoDHashMap = new HashMap[nextRecord.size() - 1][1];
 
 		for (int i = 1; i < nextRecord.size(); i++) {
 			HashMap<String, String> map = new HashMap<>();
@@ -57,7 +54,7 @@ public class CSVFileReader {
 						map.put(nextRecord.get(0)[j].trim(), nextRecord.get(i)[j].trim());
 					}
 				}
-				twoDHashMap[i-1][0] = map;
+				twoDHashMap[i - 1][0] = map;
 
 			}
 		}
