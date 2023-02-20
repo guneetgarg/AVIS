@@ -1,2 +1,2 @@
-TestMethodName,TestCaseName,PickUpLocation,Country,PickUpDate,PickUpTime,DropOffDate,DropOffTime,DropOffLocation,Coupon,BCDCode,Age,CustomerID,LastName,Paylater&Paynow,FirstName,LastName,Email,PhoneNumber
-AnonymousUserTestCases,Budget_RES_KeyDropLocation_M_typeCoupon_PayLater_US,MSO,NA,03/15/2023,9:00 AM,03/22/2023,11:00 AM,NA,NA,NA,NA,NA,NA,PayLater,Albert,Edsin,automation@yopmail.com,9838234567
+TestMethodName,TestCaseName,PickUpLocation,Country,PickUpDate,PickUpTime,DropOffDate,DropOffTime,DropOffLocation,Coupon,BCDCode,Age,CustomerID,LastName1,Paylater&Paynow,FirstName,LastName,Email,PhoneNumber,CCNumber,ExpirationDate,Address,Address3,IATA ,CVV,City,State,ZipCode,BCD,MemberNumber
+AnonymousUserTestCases,Budget_RES_Outbound_USAA_Validate_CorpBooking_US,ORD,NA,03/13/2023,NA,03/23/2023,NA,NA,NA,NA,NA,NA,NA,PayNow,Albert,Edsin,automation@yopmail.com,9838234567,341754865028377,1129,701 West ,NA,NA,123,San Antonio,Mississippi,99022,Y126501,38298026

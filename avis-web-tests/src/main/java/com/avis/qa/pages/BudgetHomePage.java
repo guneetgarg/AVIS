@@ -2,6 +2,7 @@ package com.avis.qa.pages;
 
 import java.util.Map;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,8 +68,8 @@ public class BudgetHomePage extends AbstractBasePage{
 	@FindBy(id = "age")
 	private WebElement ageDropDown;
 
-	@FindBy(id = "residency")
-	private WebElement residenceCountryDropdown;
+	@FindBy(xpath = "(//*[@id='reservationModel.personalInfoRQ.residency'])[1]")
+    private WebElement selectCountry;
 
 	@FindBy(id = "couponpdn")
 	private WebElement CouponCheckBox;
@@ -90,6 +91,13 @@ public class BudgetHomePage extends AbstractBasePage{
     
     @FindBy(xpath = "//input[@id='res-home-lastName']")
     private WebElement enterLastName;
+    
+    @FindBy(xpath = "//*[@id='awd']")
+    private WebElement AWDOrBCDOrPDN_TextField;
+    
+    @FindBy(xpath = "//input[@id='partnerMembershipId']")
+    private WebElement membershipTextField;
+    
 //    
 //    @FindBy(xpath = "")
 //    private WebElement ;
@@ -105,11 +113,11 @@ public class BudgetHomePage extends AbstractBasePage{
     public void selectYourCar(Map testDataMap) {
     	
     	try{
-            AdOverLayDiv = waitForVisibilityOfElement(AdOverLayDiv, 10);
+    		clickOn(AdOverLayDiv);
         }catch (TimeoutException e){
             return;
         }
-        AdOverLayCloseButton.click();
+        clickOn(AdOverLayCloseButton);
         clickOn(reservation);
     	clickOn(makeaReservation);
     	clickOn(pickUpLocation);
@@ -129,9 +137,9 @@ public class BudgetHomePage extends AbstractBasePage{
 			fillText(ageDropDown,testDataMap.get("Age").toString());
 		}
 		if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
-			clickOn(residenceCountryDropdown);
-			fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
-			clickOn(residenceCountryDropdown);
+			clickOn(selectCountry);
+			fillText(selectCountry,testDataMap.get("Country").toString() );
+			clickOn(selectCountry);
 		}
 		if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
 			System.out.println("coupon");
@@ -141,10 +149,19 @@ public class BudgetHomePage extends AbstractBasePage{
 		}
 		
 		if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
+			clickOn(offerCodes);
 			clickOn(addCustomerID);
 			clickOn(enterCustomerID);
 			fillText(enterCustomerID, testDataMap.get("CustomerID").toString());
-			fillText(enterLastName, testDataMap.get("LastName").toString());
+			fillText(enterLastName, testDataMap.get("LastName1").toString());
+		}
+		if (!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
+			clickOn(offerCodes);
+			System.out.println("bcd code");
+			clickOn(AWDOrBCDOrPDN_TextField);
+			AWDOrBCDOrPDN_TextField.clear();
+		    AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
+		    fillText(membershipTextField,testDataMap.get("MemberNumber").toString() );
 		}
 		
     	clickOn(selectMyCarButton);

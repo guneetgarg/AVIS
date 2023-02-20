@@ -29,11 +29,23 @@ public class BudgetRentalPage extends AbstractBasePage{
 	
 	@FindBy(xpath = "//div[@class='uplift-step3-text hidden-xs']")
 	private WebElement upliftDetails;
+	
+	@FindBy(xpath = "//span[text()='Base Rate']")
+    private WebElement BaseRate;
+	
+	@FindBy(xpath = "//span[@class='four-seats-feat']")
+    private WebElement NumberOfSeats;
+
+    @FindBy(xpath = "//a[@id='rate-terms']")
+    private WebElement SeeRateTerms;
 
 
 	public void rentalPage(Map testDataMap) {
 //		assertTrue(upliftDetails.getText().contains("or  as low as"));
 		System.out.println("uplift details");
+		BaseRate.isDisplayed();
+		NumberOfSeats.isDisplayed();
+		SeeRateTerms.isDisplayed();
 		assertTrue(recommendExtras.getText().contains("Recommended Extras"));
 		clickOn(CONTINUEBUTTON);
 	}

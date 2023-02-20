@@ -144,6 +144,7 @@ public class PaylessHomePage extends AbstractBasePage {
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
 			clickOn(LoginLink);
 			threadSleep(TEN_SECONDS);
+			clickOn(UserName);
 			fillText(UserName,testDataMap.get("Username").toString());
 			fillText(Password,testDataMap.get("Password").toString());
 			clickOn(LoginButton);
