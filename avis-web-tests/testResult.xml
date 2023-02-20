@@ -1,3 +1,4 @@
+<testsuite hostname="AnkurChaudhary" ignored="2" name="Test" tests="1" failures="0" timestamp="2023-01-17T11:51:36 IST" time="28.492" errors="0">
 <testcase name="Paylesscar_RES_Profile_G_typeCoupon_Extras_Paylater_US"  classname=" com.abg.payless.PaylessAuthenticatedTestCases"/>
 <testcase name="Paylesscar_RES_Profile_Outbound_PDN_Paylater_US"  classname=" com.abg.payless.PaylessAuthenticatedTestCases"/>
 <testcase name="Paylesscar_RES_Profile_Inbound_IATA_M_type_PayLater_US"  classname=" com.abg.payless.PaylessAuthenticatedTestCases">
@@ -14,3 +15,7 @@ Session ID: 6394b726112e723343c7281390a64d6e
 </failure>
 </testcase>
 <testcase name="Paylesscar_RES_Profile_Modify_cancel_flow_Step1_to_Step4_US"  classname=" com.abg.payless.PaylessAuthenticatedTestCases"/>
+<testcase name="Paylesscar_RES_Profile_Outbound_DCC_Paynow_US"  classname=" com.abg.payless.PaylessAuthenticatedTestCases"/>
+<testcase name="Paylesscar_RES_Profile_Verify_keydrop_US"  classname=" com.abg.payless.PaylessAuthenticatedTestCases"/>
+
+</testsuite>
