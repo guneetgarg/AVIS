@@ -24,14 +24,16 @@
             <package name="com.avis.qa"></package>
         </packages>
 
-<!--        <classes>-->
+    <classes>
+    <class name="com.abg.payless.PaylessAnonymousTestCases" />
+        <class name="com.abg.payless.PaylessAuthenticatedTestCases" />
 <!--            <class name="com.avis.qa.ReservationTests" />-->
 <!--            <class name="com.avis.qa.LocationTests"/>-->
 <!--            <class name="com.avis.qa.MiscellaneousTests"/>-->
 <!--            <class name="com.avis.qa.FrameworkTests"/>-->
 <!--            <class name="com.avis.qa.PayLessCarTest"/>-->
 <!--            &lt;!&ndash;class name="com.avis.qa.ProfileTest" />&ndash;&gt;-->
-<!--        </classes>-->
+        </classes>
 
 
     </test>
