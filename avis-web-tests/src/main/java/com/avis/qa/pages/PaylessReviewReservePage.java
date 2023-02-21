@@ -186,10 +186,14 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 				fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 			}
-			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
-
-				System.out.println("guest paynow");
-				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+//
+//				
+//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+				fillText(cardNumber,"379381331688207");
+		}
+		if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
 				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
 				fillText(step4_CVV,testDataMap.get("CVV").toString());
 				fillText(address1,testDataMap.get("Address").toString());
@@ -241,6 +245,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 				}
 			}
 		}
+	
 		else {
 			if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
 				fillText(phoneField, testDataMap.get("PhoneNumber").toString());

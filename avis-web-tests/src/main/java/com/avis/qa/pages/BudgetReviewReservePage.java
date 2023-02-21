@@ -257,11 +257,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(reviewModificationsButton);
 				clickOn(keepModificationButton);
 //				clickOn(makeNewReservationButton);
-//				if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
-//					BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
-//					budgetHomePage.viewModify(testDataMap);
-//					
-//				}
+				if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
+					BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
+					budgetHomePage.viewModify(testDataMap);
+					
+				}
 				if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
 					threadSleep(TEN_SECONDS);
 					cancelReservationButton.click();

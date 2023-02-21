@@ -11,34 +11,34 @@ import org.openqa.selenium.support.FindBy;
 import com.avis.qa.core.AbstractBasePage;
 
 public class BudgetHomePage extends AbstractBasePage{
-	
-	
+
+
 	public BudgetHomePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}
 
 	private static final String COUPON = "Coupon";
-	
+
 	@FindBy(id = "avis-logo")
 	private WebElement payLessBrandText;
 
 	@FindBy(xpath = "//div[@class='bx-wrap']")
-    private WebElement AdOverLayDiv;
+	private WebElement AdOverLayDiv;
 
-    @FindBy(xpath = "//div[@class='bx-wrap']//button[@data-click='close']")
-    private WebElement AdOverLayCloseButton;
-    
-    @FindBy(xpath = "//li[@class='dropdown']")
-    private WebElement reservation;
-    
-    @FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
-    private WebElement makeaReservation;
-    
-    @FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
-    private WebElement pickUpLocation;
-    
-    @FindBy(xpath = "((//div[@class='angucomplete-results'])[1]//div[@class='angucomplete-description'])[1] | ((//div[@id='PicLoc_dropdown'])[1]//div[@class='angucomplete-row'])[1]")
+	@FindBy(xpath = "//div[@class='bx-wrap']//button[@data-click='close']")
+	private WebElement AdOverLayCloseButton;
+
+	@FindBy(xpath = "//li[@class='dropdown']")
+	private WebElement reservation;
+
+	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
+	private WebElement makeaReservation;
+
+	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
+	private WebElement pickUpLocation;
+
+	@FindBy(xpath = "((//div[@class='angucomplete-results'])[1]//div[@class='angucomplete-description'])[1] | ((//div[@id='PicLoc_dropdown'])[1]//div[@class='angucomplete-row'])[1]")
 	private WebElement suggestionLocation;
 
 	@FindBy(xpath = "//input[@ng-model='vm.reservationModel.pickUpDateDisplay']")
@@ -61,15 +61,15 @@ public class BudgetHomePage extends AbstractBasePage{
 
 	@FindBy(xpath = "(//div[@class='angucomplete-description'])[1]")
 	private WebElement dropOffSuggestion;
-	
+
 	@FindBy(xpath = "(//*[contains(@ng-click,'getVehicles.submit')])[1]")
-    private WebElement selectMyCarButton;
+	private WebElement selectMyCarButton;
 
 	@FindBy(id = "age")
 	private WebElement ageDropDown;
 
 	@FindBy(xpath = "(//*[@id='reservationModel.personalInfoRQ.residency'])[1]")
-    private WebElement selectCountry;
+	private WebElement selectCountry;
 
 	@FindBy(id = "couponpdn")
 	private WebElement CouponCheckBox;
@@ -79,60 +79,68 @@ public class BudgetHomePage extends AbstractBasePage{
 
 	@FindBy(id = "awd")
 	private WebElement pdnTextField;
-    
-    @FindBy(xpath = "//div[@class='res-discFld form-controlD']")
-    private WebElement offerCodes;
-    
-    @FindBy(xpath = "//div[@class='res-wizardFld form-controlD']")
-    private WebElement addCustomerID;
-    
-    @FindBy(xpath = "//input[@aria-label='Res-wizard Number']")
-    private WebElement enterCustomerID ;
-    
-    @FindBy(xpath = "//input[@id='res-home-lastName']")
-    private WebElement enterLastName;
-    
-    @FindBy(xpath = "//*[@id='awd']")
-    private WebElement AWDOrBCDOrPDN_TextField;
-    
-    @FindBy(xpath = "//input[@id='partnerMembershipId']")
-    private WebElement membershipTextField;
-    
-    @FindBy(xpath = "(//a[text()='Reservations'])[1]")
-    private WebElement ReservationsTab;
+
+	@FindBy(xpath = "//div[@class='res-discFld form-controlD']")
+	private WebElement offerCodes;
+
+	@FindBy(xpath = "//div[@class='res-wizardFld form-controlD']")
+	private WebElement addCustomerID;
+
+	@FindBy(xpath = "//input[@aria-label='Res-wizard Number']")
+	private WebElement enterCustomerID ;
+
+	@FindBy(xpath = "//input[@id='res-home-lastName']")
+	private WebElement enterLastName;
+
+	@FindBy(xpath = "//*[@id='awd']")
+	private WebElement AWDOrBCDOrPDN_TextField;
+
+	@FindBy(xpath = "//input[@id='partnerMembershipId']")
+	private WebElement membershipTextField;
+
+	@FindBy(xpath = "(//a[text()='Reservations'])[1]")
+	private WebElement ReservationsTab;
 
 
-    @FindBy(xpath = "//a[text()='View / Modify / Cancel']")
-    private WebElement Reservation_ViewModifyCancelLink;
-    
-//    
-//    @FindBy(xpath = "")
-//    private WebElement ;
-//    
-//    @FindBy(xpath = "")
-//    private WebElement ;
-//    
-//    @FindBy(xpath = "")
-//    private WebElement ;
-//    
-    
-    
-    public void selectYourCar(Map testDataMap) {
-    	
-    	try{
-    		clickOn(AdOverLayDiv);
-        }catch (TimeoutException e){
-            return;
-        }
-        clickOn(AdOverLayCloseButton);
-        clickOn(reservation);
-    	clickOn(makeaReservation);
-    	clickOn(pickUpLocation);
-    	fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
-    	clickOn(suggestionLocation);
-		fillText(pickUpDate,testDataMap.get("PickUpDate").toString());
+	@FindBy(xpath = "//a[text()='View / Modify / Cancel']")
+	private WebElement Reservation_ViewModifyCancelLink;
+
+	//    
+	//    @FindBy(xpath = "")
+	//    private WebElement ;
+	//    
+	//    @FindBy(xpath = "")
+	//    private WebElement ;
+	//    
+	//    @FindBy(xpath = "")
+	//    private WebElement ;
+	//    
+
+
+	public void selectYourCar(Map testDataMap) {
+
+		try{
+			clickOn(AdOverLayDiv);
+		}catch (TimeoutException e){
+			return;
+		}
+		clickOn(AdOverLayCloseButton);
+		clickOn(reservation);
+		clickOn(makeaReservation);
+		clickOn(pickUpLocation);
+		fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
+		clickOn(suggestionLocation);
+		if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
+			clickOn(pickUpDate);
+			pickUpDate.clear();
+			fillText(pickUpDate,testDataMap.get("PickUpDate").toString());
+		}
 		fillText(pickUpTime,testDataMap.get("PickUpTime").toString());
-		fillText(returnDatePath,testDataMap.get("DropOffDate").toString());
+		if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
+			clickOn(returnDatePath);
+			returnDatePath.clear();
+			fillText(returnDatePath,testDataMap.get("DropOffDate").toString());
+		}
 		fillText(dropOffTime,testDataMap.get("DropOffTime").toString());
 		if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 			clickOn(returnLocationCheckbox);
@@ -154,7 +162,7 @@ public class BudgetHomePage extends AbstractBasePage{
 			clickOn(CouponCheckBox);
 			fillText(CouponTextField,testDataMap.get(COUPON).toString() );
 		}
-		
+
 		if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
 			clickOn(offerCodes);
 			clickOn(addCustomerID);
@@ -167,27 +175,27 @@ public class BudgetHomePage extends AbstractBasePage{
 			System.out.println("bcd code");
 			clickOn(AWDOrBCDOrPDN_TextField);
 			AWDOrBCDOrPDN_TextField.clear();
-		    AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
-		    fillText(membershipTextField,testDataMap.get("MemberNumber").toString() );
+			AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
+			fillText(membershipTextField,"111789732130");
 		}
-		
-    	clickOn(selectMyCarButton);
-    	
-    	
-    }
 
-    public void viewModify(Map testDataMap) {
-    	clickOn(ReservationsTab);
-    	clickOn(Reservation_ViewModifyCancelLink);
-    }
+		clickOn(selectMyCarButton);
+
+
+	}
+
+	public void viewModify(Map testDataMap) {
+		clickOn(ReservationsTab);
+		clickOn(Reservation_ViewModifyCancelLink);
+	}
 
 
 
 	@Override
 	public void isOnPage() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 
 }
