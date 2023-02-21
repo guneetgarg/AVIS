@@ -100,46 +100,46 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 
 	@FindBy(id = "expirydate")
 	private WebElement expiryMonthDropDown;
-	
+
 	@FindBy(xpath = "//h1[@ng-if=\"(vm.pageName == carRentalConstant.confirmationPage || (vm.pageName == '/display-confirmationPage')) && !vm.disableModifyCancel\"]")
 	private WebElement reservationConfirmation;
-	
+
 	@FindBy(xpath = "(//div[@class='location-info'])[1] | (//div[@class='summary-location'])[1]")
 	private WebElement pickUpLocationVerify;
-	
+
 	@FindBy(xpath = "(//div[@class='day-time-info'])[1] | (//div[@class='summary-time'])[1]")
 	private WebElement pickUpDate;
-	
+
 	@FindBy(xpath = "(//div[contains(div/text(),'Your Information')]//child::p)")
 	private List<WebElement> userInfoList;
-	
+
 	@FindBy(xpath = "//span[@class='step-title']")
 	private WebElement mofifyChooseCarVerify;
-	
+
 	@FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[1] | (//a[contains(text(),'Pay Later')])[2]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]|((//p[contains(@class,'totalPay')]/../a)[1])")
 	private WebElement PayLater;
-	
+
 	@FindBy(xpath = "//button[@class='btn btn-primary-avis pull-right'] | //button[contains(@id,'res-extras-continue-bottom')] | (//button[contains(text(),'Continue')])[2] | (//button[contains(text(),'Continue')])[1]")
 	private WebElement CONTINUEBUTTON;
-	
+
 	@FindBy(xpath = "//button[text()='Review Modifications']")
-    private WebElement reviewModificationsButton;
-	
+	private WebElement reviewModificationsButton;
+
 	@FindBy(xpath = "//button[text()='Keep Modifications']")
-    private WebElement keepModificationButton;
-	
+	private WebElement keepModificationButton;
+
 	@FindBy(id = "res-conf-makeNewRes")
 	private WebElement makeNewReservationButton;
-	
+
 	@FindBy(xpath = "//a[contains(.,'Modify your reservation')]")
 	private WebElement viewOrModifyReservationButton;
-	
+
 	@FindBy(id = "VMlastName")
 	private WebElement lastNameTextField;
-	
+
 	@FindBy(id = "VMCConfirmationNumber")
 	private WebElement confirmationNumberTextField;
-	
+
 	@FindBy(id = "VMCForm")
 	private WebElement submitButton;
 
@@ -148,20 +148,20 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 
 	@FindBy(id = "res-cancelreservation-popUp")
 	private WebElement confirmCancelReservationButton;
-	
+
 	@FindBy(xpath = "//span[@class='confirmation-num']")
-    private WebElement confirmationNumber;
+	private WebElement confirmationNumber;
 
 	@FindBy(xpath = "//label[@class='step4-checkbox-custom-label']")
-    private WebElement cancelTerms;
-	
+	private WebElement cancelTerms;
+
 	@FindBy(xpath = "//button[@ng-click='vm.cancelReservation.submit(cancelform)']")
-    private WebElement cancelReservation;
-	
+	private WebElement cancelReservation;
+
 	@FindBy(xpath = "//h1[@class='confirmation-msg']")
-    private WebElement cancelledReservation;
-	
-	
+	private WebElement cancelledReservation;
+
+
 	public PaylessReviewReservePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
@@ -198,7 +198,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 				fillText(state,testDataMap.get("State").toString());
 				fillText(zip,testDataMap.get("ZipCode").toString());
 			}
-		
+
 			clickOn(termsCheck);
 			clickOn(SubmitButton);
 
@@ -213,7 +213,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 					break;
 				}				
 			}
-			
+
 			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			assertTrue(userInfoList.get(0).getText().contains(testDataMap.get("Email").toString()));
@@ -221,10 +221,10 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			String confirmationNo = confirmationNumber.getText();
 			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
 			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
-			
+
 			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
 				clickOn(editLink);
-//				assertTrue(mofifyChooseCarVerify.getText().contains("Modify: Choose a Car"));
+				//				assertTrue(mofifyChooseCarVerify.getText().contains("Modify: Choose a Car"));
 				clickOn(PayLater);
 				clickOn(CONTINUEBUTTON);
 				clickOn(reviewModificationsButton);
@@ -239,7 +239,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 					cancelReservationButton.click();
 					confirmCancelReservationButton.click();
 				}
-		}
+			}
 		}
 		else {
 			if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
@@ -248,18 +248,20 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 				fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 			}
-//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
-//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
-			fillText(cardNumber,"343248952280825");
-			if(!testDataMap.get("ExpiryMonth").toString().equalsIgnoreCase("NA")) {
-				clickOn(expiryMonthDropDown);
-				fillText(expiryMonthDropDown,testDataMap.get("ExpiryMonth").toString());
-				clickOn(expiryYearDropDown);
-				fillText(expiryYearDropDown, testDataMap.get("ExpiryYear").toString());
-				fillText(step4_CVV,testDataMap.get("CVV").toString());
+			//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
 
-			}
-//			}
+			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow"))
+				fillText(cardNumber,"343248952280825");
+		}
+		if(!testDataMap.get("ExpiryMonth").toString().equalsIgnoreCase("NA")) {
+			clickOn(expiryMonthDropDown);
+			fillText(expiryMonthDropDown,testDataMap.get("ExpiryMonth").toString());
+			clickOn(expiryYearDropDown);
+			fillText(expiryYearDropDown, testDataMap.get("ExpiryYear").toString());
+			fillText(step4_CVV,testDataMap.get("CVV").toString());
+
+
+		}
 		clickOn(termsCheck);
 		clickOn(SubmitButton);
 
@@ -275,15 +277,16 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			}				
 		}
 		
+		threadSleep(TEN_SECONDS);
 		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		String confirmationNo1 = confirmationNumber.getText();
 		String [] confirmationNoValue1= confirmationNumber.getText().split(": ");
 		String reservationNumber1 = confirmationNoValue1[1].replaceAll(":", "");
-		
+
 		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
 			clickOn(editLink);
-//			assertTrue(mofifyChooseCarVerify.getText().contains("Modify: Choose a Car"));
+			//			assertTrue(mofifyChooseCarVerify.getText().contains("Modify: Choose a Car"));
 			clickOn(PayLater);
 			clickOn(CONTINUEBUTTON);
 			clickOn(reviewModificationsButton);
@@ -301,21 +304,21 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 				clickOn(cancelReservation);
 
 			}
-			
-		}
-		
-		}
-		}
-	
 
-	private Object getDriver() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void isOnPage() {
-		// TODO Auto-generated method stub
+		}
 
 	}
+
+
+
+private Object getDriver() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public void isOnPage() {
+	// TODO Auto-generated method stub
+
+}
 }
