@@ -248,16 +248,18 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 				fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 			}
-			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
-				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+			fillText(cardNumber,"343248952280825");
+			if(!testDataMap.get("ExpiryMonth").toString().equalsIgnoreCase("NA")) {
 				clickOn(expiryMonthDropDown);
 				fillText(expiryMonthDropDown,testDataMap.get("ExpiryMonth").toString());
 				clickOn(expiryYearDropDown);
 				fillText(expiryYearDropDown, testDataMap.get("ExpiryYear").toString());
 				fillText(step4_CVV,testDataMap.get("CVV").toString());
 
-
 			}
+//			}
 		clickOn(termsCheck);
 		clickOn(SubmitButton);
 

@@ -98,6 +98,13 @@ public class BudgetHomePage extends AbstractBasePage{
     @FindBy(xpath = "//input[@id='partnerMembershipId']")
     private WebElement membershipTextField;
     
+    @FindBy(xpath = "(//a[text()='Reservations'])[1]")
+    private WebElement ReservationsTab;
+
+
+    @FindBy(xpath = "//a[text()='View / Modify / Cancel']")
+    private WebElement Reservation_ViewModifyCancelLink;
+    
 //    
 //    @FindBy(xpath = "")
 //    private WebElement ;
@@ -169,7 +176,10 @@ public class BudgetHomePage extends AbstractBasePage{
     	
     }
 
-
+    public void viewModify(Map testDataMap) {
+    	clickOn(ReservationsTab);
+    	clickOn(Reservation_ViewModifyCancelLink);
+    }
 
 
 
