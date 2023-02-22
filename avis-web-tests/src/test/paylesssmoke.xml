@@ -6,7 +6,7 @@
         <listener class-name="com.avis.qa.listeners.retry.AnnotationTransformer"></listener>
     </listeners>
 
-   <parameter name="brand" value="Budget"/> <!-- &lt;!&ndash; <Possible values: Avis/Budget/Paylesscar &ndash;&gt;-->
+   <parameter name="brand" value="Paylesscar"/> <!-- &lt;!&ndash; <Possible values: Avis/Budget/Paylesscar &ndash;&gt;-->
       <parameter name="domain" value="US"/>    <!-- <Possible values: US/CA/AU/NZ> -->
     <parameter name="environment" value="ci7"/>  <!--   &lt;!&ndash; < Possible values : qa/uat1/qa2/www/load balancer ip> &ndash;&gt;-->
     <parameter name="browser" value="chrome"/>  <!-- <Possible values: chrome/firefox/safari/edge/pixel/iphone/ipad> -->
@@ -21,8 +21,8 @@
             </run>
         </groups>
          <packages>
- 		<!--<package name="com.abg.payless"></package>-->
-             <package name="com.abg.budget"></package>
+ 		<package name="com.abg.payless"></package>
+            <!-- <package name="com.abg.budget"></package>-->
         </packages> 
 
         <classes>
