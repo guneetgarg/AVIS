@@ -160,6 +160,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//h1[@class='confirmation-msg']")
     private WebElement cancelledReservation;
 	
+	@FindBy(xpath = "//label[@class='step4-checkbox-custom-label']")
+    private WebElement userYourCreditCardCheckbox;
+	
+//	@FindBy(xpath = "//h1[@class='confirmation-msg']")
+//    private WebElement cancelledReservation;
 	
 	
 	public void reviewReserve(Map testDataMap) {
@@ -231,6 +236,28 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 				fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 			}
+			
+			if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
+				clickOn(userYourCreditCardCheckbox);
+				clickOn(creditCardCheckBox);
+				fillText(cardNumber, "347651479687420");
+//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate1").toString());
+				fillText(step4_CVV,testDataMap.get("CVV1").toString());
+				fillText(address1,testDataMap.get("Address1").toString());
+				if(!testDataMap.get("City1").toString().equalsIgnoreCase("NA")) {
+				fillText(city,testDataMap.get("City1").toString());
+				}
+				if(!testDataMap.get("State1").toString().equalsIgnoreCase("NA")) {
+				clickOn(state);
+				fillText(state,testDataMap.get("State1").toString());
+				}
+				if(!testDataMap.get("ZipCode1").toString().equalsIgnoreCase("NA")) {
+				fillText(zip,testDataMap.get("ZipCode1").toString());
+				}
+				
+			}
+			
 			
 			clickOn(termsCheck);
 			clickOn(SubmitButton);

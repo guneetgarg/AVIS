@@ -1,5 +1,8 @@
 package com.avis.qa.pages;
 
+import static com.avis.qa.utilities.CommonUtils.TEN_SECONDS;
+import static com.avis.qa.utilities.CommonUtils.threadSleep;
+
 import java.util.Map;
 
 import org.openqa.selenium.Keys;
@@ -32,7 +35,7 @@ public class BudgetHomePage extends AbstractBasePage{
 	@FindBy(xpath = "//li[@class='dropdown']")
 	private WebElement reservation;
 
-	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
+	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
 	private WebElement makeaReservation;
 
 	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
@@ -106,6 +109,9 @@ public class BudgetHomePage extends AbstractBasePage{
 	
 	@FindBy(xpath = "//a[@class='ui-datepicker-next ui-corner-all']")
 	private WebElement nextMonth;
+	
+	@FindBy(xpath = "//input[@aria-label='corporate email address']")
+	private WebElement corporateEmailId;
 
 	public void selectYourCar(Map testDataMap) {
 
@@ -166,9 +172,13 @@ public class BudgetHomePage extends AbstractBasePage{
 			clickOn(AWDOrBCDOrPDN_TextField);
 			AWDOrBCDOrPDN_TextField.clear();
 			AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
+			if(!testDataMap.get("CorporateEmailID").toString().equalsIgnoreCase("NA")) {
+				fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
+			}
+			else {
 			fillText(membershipTextField,"38298026");
+			}
 		}
-
 		clickOn(selectMyCarButton);
 
 
