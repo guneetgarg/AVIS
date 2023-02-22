@@ -251,7 +251,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(CONTINUEBUTTON);
 				clickOn(reviewModificationsButton);
 				clickOn(keepModificationButton);
-//				clickOn(makeNewReservationButton);
 				if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
 					BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
 					budgetHomePage.viewModify(testDataMap);
@@ -261,8 +260,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 					threadSleep(TEN_SECONDS);
 					cancelReservationButton.click();
 					confirmCancelReservationButton.click();
-				}
-//			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
+				}//			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 
 	}
 	}

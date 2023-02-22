@@ -97,6 +97,9 @@ public class PaylessHomePage extends AbstractBasePage {
     
     @FindBy(id = "//select[@id='residency']")
 	private WebElement Residency;
+    
+    @FindBy(xpath = "//li[@ng-show='(isAuthenticated || isRememberME) && vm.customer.onlineID === false']")
+    private WebElement signinVerify;
 
 	public void getRates(Map testDataMap) {
 		assertTrue(payLessBrandText.getText().toString().contains("Payless"));
@@ -149,7 +152,10 @@ public class PaylessHomePage extends AbstractBasePage {
 			fillText(Password,testDataMap.get("Password").toString());
 			clickOn(LoginButton);
 			threadSleep(TEN_SECONDS);
-			clickOn(reservationTab);
+			if(signinVerify.isDisplayed()) {
+				clickOn(reservationTab);
+			}
+			
 			clickOn(makeReservation);
 			clickOn(pickUpLocation);
 			fillText(pickUpLocation,testDataMap.get("PickUpLocation").toString());
