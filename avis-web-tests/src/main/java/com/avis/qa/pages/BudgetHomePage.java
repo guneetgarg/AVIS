@@ -101,9 +101,11 @@ public class BudgetHomePage extends AbstractBasePage{
 	@FindBy(xpath = "(//a[text()='Reservations'])[1]")
 	private WebElement ReservationsTab;
 
-
 	@FindBy(xpath = "//a[text()='View / Modify / Cancel']")
 	private WebElement Reservation_ViewModifyCancelLink;
+	
+	@FindBy(xpath = "//a[@class='ui-datepicker-next ui-corner-all']")
+	private WebElement nextMonth;
 
 	public void selectYourCar(Map testDataMap) {
 
@@ -164,7 +166,6 @@ public class BudgetHomePage extends AbstractBasePage{
 			clickOn(AWDOrBCDOrPDN_TextField);
 			AWDOrBCDOrPDN_TextField.clear();
 			AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
-			
 			fillText(membershipTextField,"38298026");
 		}
 
