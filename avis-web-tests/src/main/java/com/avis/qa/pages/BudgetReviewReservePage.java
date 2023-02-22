@@ -184,7 +184,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			
 			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
 				clickOn(creditCardCheckBox);
-				System.out.println("guest paynow");
 				fillText(cardNumber,testDataMap.get("CCNumber").toString());
 				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
 				fillText(step4_CVV,testDataMap.get("CVV").toString());
@@ -205,10 +204,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			}
 			if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
 				clickOn(PaypalButton);
-				System.out.println("paypal checkbox");
 				clickOn(Budget_PaypalRadioButton);
-				System.out.println("paypal link");
-				System.out.println("paypal button");
 				String mainWindowHandle = driver.getWindowHandle();
 		        System.out.println("windowhandle :"+mainWindowHandle);
 		        Set<String> allWindowHandles = driver.getWindowHandles();
@@ -238,7 +234,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			
 			clickOn(termsCheck);
 			clickOn(SubmitButton);
-			System.out.println("submit button");
 			threadSleep(TEN_SECONDS);
 			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 

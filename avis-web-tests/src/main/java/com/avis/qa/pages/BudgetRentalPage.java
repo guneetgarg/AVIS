@@ -42,7 +42,6 @@ public class BudgetRentalPage extends AbstractBasePage{
 
 	public void rentalPage(Map testDataMap) {
 //		assertTrue(upliftDetails.getText().contains("or  as low as"));
-		System.out.println("uplift details");
 		BaseRate.isDisplayed();
 		NumberOfSeats.isDisplayed();
 		SeeRateTerms.isDisplayed();

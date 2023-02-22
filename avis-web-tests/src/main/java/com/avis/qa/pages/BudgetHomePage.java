@@ -147,7 +147,6 @@ public class BudgetHomePage extends AbstractBasePage{
 			clickOn(selectCountry);
 		}
 		if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
-			System.out.println("coupon");
 			clickOn(offerCodes);
 			clickOn(CouponCheckBox);
 			fillText(CouponTextField,testDataMap.get(COUPON).toString() );
@@ -162,11 +161,11 @@ public class BudgetHomePage extends AbstractBasePage{
 		}
 		if (!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
 			clickOn(offerCodes);
-			System.out.println("bcd code");
 			clickOn(AWDOrBCDOrPDN_TextField);
 			AWDOrBCDOrPDN_TextField.clear();
 			AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
-			fillText(membershipTextField,"111789732130");
+			
+			fillText(membershipTextField,"38298026");
 		}
 
 		clickOn(selectMyCarButton);
