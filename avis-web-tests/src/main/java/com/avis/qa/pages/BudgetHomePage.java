@@ -53,8 +53,8 @@ public class BudgetHomePage extends AbstractBasePage{
 	@FindBy(xpath = "//*[contains(@name,'reservationModel.dropTime')]")
 	private WebElement dropOffTime;
 
-	@FindBy(id = "diffLoc")
-	private WebElement returnLocationCheckbox;
+	@FindBy(xpath = "//*[contains(@id,'DropLoc_value')]")
+	private WebElement dropOffLocation;
 
 	@FindBy(id = "DropLoc_value")
 	private WebElement enterReturnLocation;
@@ -105,18 +105,6 @@ public class BudgetHomePage extends AbstractBasePage{
 	@FindBy(xpath = "//a[text()='View / Modify / Cancel']")
 	private WebElement Reservation_ViewModifyCancelLink;
 
-	//    
-	//    @FindBy(xpath = "")
-	//    private WebElement ;
-	//    
-	//    @FindBy(xpath = "")
-	//    private WebElement ;
-	//    
-	//    @FindBy(xpath = "")
-	//    private WebElement ;
-	//    
-
-
 	public void selectYourCar(Map testDataMap) {
 
 		try{
@@ -130,6 +118,9 @@ public class BudgetHomePage extends AbstractBasePage{
 		clickOn(pickUpLocation);
 		fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
 		clickOn(suggestionLocation);
+		if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+			fillText(dropOffLocation, testDataMap.get("DropOffLocation").toString());
+		}
 		if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 			clickOn(pickUpDate);
 			pickUpDate.clear();
@@ -143,7 +134,6 @@ public class BudgetHomePage extends AbstractBasePage{
 		}
 		fillText(dropOffTime,testDataMap.get("DropOffTime").toString());
 		if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
-			clickOn(returnLocationCheckbox);
 			fillText(enterReturnLocation,testDataMap.get("DropOffLocation").toString() );
 			clickOn(dropOffSuggestion);
 		}
