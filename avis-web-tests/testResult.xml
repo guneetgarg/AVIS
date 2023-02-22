@@ -1,0 +1,5 @@
+<testsuite hostname="TestResult" ignored="2" name="Test" tests="1" failures="0" timestamp="2023-01-17T11:51:36 IST" time="28.492" errors="0">
+<testcase name="Budget_RES_Incognito_PayLater_US"  classname=" com.abg.budget.BudgetAnonymousTestCases"/>
+<testcase name="Budget_RES_Modify/cancel flow_Step1_to_Step4_US"  classname=" com.abg.budget.BudgetAnonymousTestCases"/>
+
+</testsuite>
