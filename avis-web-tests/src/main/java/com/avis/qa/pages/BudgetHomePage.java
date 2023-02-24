@@ -1,6 +1,8 @@
 package com.avis.qa.pages;
 
 import static com.avis.qa.utilities.CommonUtils.TEN_SECONDS;
+import static com.avis.qa.utilities.CommonUtils.FIVE_SECONDS;
+
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 
 import java.util.Map;
@@ -123,6 +125,7 @@ public class BudgetHomePage extends AbstractBasePage{
 		clickOn(AdOverLayCloseButton);
 		clickOn(reservation);
 		clickOn(makeaReservation);
+		threadSleep(FIVE_SECONDS);
 		clickOn(pickUpLocation);
 		fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
 		clickOn(suggestionLocation);

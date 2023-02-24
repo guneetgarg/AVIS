@@ -25,7 +25,8 @@ public class CSVFileReader {
 	public static void loadDataParameter() {
 
 		if (BRAND != null && DOMAIN != null) {
-			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
+//			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
+			filepath = "./testdata/" + "US/" + BRAND + "/Anonymous"+ ".csv";
 		} else {
 			System.exit(0);
 		}

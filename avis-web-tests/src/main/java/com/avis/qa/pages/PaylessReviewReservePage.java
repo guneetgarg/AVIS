@@ -112,6 +112,9 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 
 	@FindBy(xpath = "(//div[contains(div/text(),'Your Information')]//child::p)")
 	private List<WebElement> userInfoList;
+	
+	@FindBy(xpath = "//div[contains(div/text(),'Your Information')]")
+	private List<WebElement> yourInformation;
 
 	@FindBy(xpath = "//span[@class='step-title']")
 	private WebElement mofifyChooseCarVerify;
