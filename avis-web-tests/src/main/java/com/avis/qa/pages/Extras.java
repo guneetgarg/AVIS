@@ -54,7 +54,7 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//p[text()='Certain extras are included or discounted due to your provided AWD number.']")
     private WebElement ExtrasIncludedText;
 
-    @FindBy(xpath = "//span[contains(text(),'Your provided AWD number includes discounts or certain extras, and may include')] ")
+    @FindBy(xpath = "//span[contains(text(),'Your provided AWD number includes or discounts certain extras, and may include')] ")
     private WebElement AWDIncludedCoveragesText;
 
 
