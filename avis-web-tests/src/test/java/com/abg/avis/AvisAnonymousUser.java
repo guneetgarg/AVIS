@@ -91,7 +91,7 @@ public class AvisAnonymousUser extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION,SMOKE},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION,SMOKE, AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_ErrorMessage_PayNow_US(String pickUpLocation, String firstName, String lastName, String email,
                                                         String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
@@ -140,7 +140,7 @@ public class AvisAnonymousUser extends TestBase {
         assertTrue(reservationWidget.isErrorMessageDisplayed(months));
     }
 
-    @Test(groups = {REGRESSION , SMOKE,AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US(String pickUpLocation, String age)  {
         launchUrl();
         ReservationWidget reservationWidget = new ReservationWidget(getDriver());
