@@ -85,8 +85,13 @@ public class TestBase {
 	@BeforeMethod(alwaysRun = true)
 	public void beforeMethodTestBase(Method method, Object[] testData) {
 		ArrayList<String> testSheetData = new ArrayList<>();
-		
-		String testCaseValue= testData[0].toString();
+		String testCaseValue = "";
+		if(method.getName().contains("Avis")) {
+			testCaseValue = method.getName();
+		} else {
+			testCaseValue= testData[0].toString();
+		}
+
 		
 		if (testCaseValue.contains(",") && testCaseValue.contains("=")) {
 			testCaseName = testCaseValue.split("TestCaseName")[1].split(",")[0].split("=")[1];
