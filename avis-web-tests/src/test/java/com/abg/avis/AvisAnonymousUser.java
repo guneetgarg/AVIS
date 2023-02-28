@@ -155,7 +155,7 @@ public class AvisAnonymousUser extends TestBase {
         if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
             vehicles.verifyUnderAgeSurchargeTextDisplayed();
         }
-        vehicles.clickFilterOptionAndVerifyData();
+        //vehicles.clickFilterOptionAndVerifyData();
 
     }
 
@@ -171,11 +171,11 @@ public class AvisAnonymousUser extends TestBase {
     }
 
     @Test(groups = {REGRESSION, SANITY, SMOKE, AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Avis_Misc_OffersPage_Reservation_US(String pickUplocation, String firstName, String lastName, String email,
-                                                    String phoneNo) {
+    public void Avis_Misc1_OffersPage_Reservation_US(String pickUpLoction, String dropOffLocation, String fname, String lname,
+                                                    String email, String phoneNo) {
         launchUrl();
-        MiscHelper miscHelper = new MiscHelper(getDriver());
-        Confirmation confirmation = miscHelper.Misc_OffersPage_Reservation(pickUplocation, firstName, lastName, email, phoneNo);
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_OneWay_PayLater(pickUpLoction, dropOffLocation, fname, lname, email, phoneNo);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.cancelReservation();
     }

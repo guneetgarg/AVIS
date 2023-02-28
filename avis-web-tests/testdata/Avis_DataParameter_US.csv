@@ -122,6 +122,7 @@ BRG,/en/products-and-services/services/best-rate-guarantee/best-rate-claim-form
 Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,22
 Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LDY,3
 Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
+Avis_Misc1_OffersPage_Reservation_US,LAS,JFK,Ishita,Garg,test,8658066321
 
 #################################_GENERIC_#####################################
 Concur_AuthCredentials,8TN00U,Password123
