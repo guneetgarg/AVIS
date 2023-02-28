@@ -22,7 +22,7 @@ Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater
 Avis_Reservation_FleetVerification_Price_US,EWR,Tester,M,test,9838234567,345836415546724,123
 Avis_Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater_US,YYZ,21,Tester,M,test,9838234567
 Avis_Reservation_OneClick_GPSSelection_US,/en/reservation#/oneclick?resForm.confirmationNumber=15680825US6&resForm.lastName.value=G&accept_GPS=true
-Avis_Reservation_ErrorMessage_PayNow_US,YYZ,Tester,M,test,9838234567,345836415546724,123
+Avis_Reservation_ErrorMessage_PayNow_US,YYZ,Tester,M,test,9838234567,4539770399469980,576
 Avis_Reservation_TierBundle_PayLater_US,LAS,Dhanapriya,K,test,9600685486,4263982640269299,738
 Avis_Reservation_Inbound_PayLater_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645
 Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_US,SYD,U S A,P469100,Abhishek,J,test,8980765645,1234
@@ -54,6 +54,7 @@ Avis_Profile_Enrollment_Activation_US,Abhishek,Jain,abhi527@yopmail.com,91965435
 ##############################_LOCATION_#################################
 Avis_Location_Search_MnemonicCodeRes_US,EWR,Hrishi,K,ABG_Location,9897867898
 Avis_Location_Search_Suggestion_US,EWR
+Avis_Location_Browse_Category_US,test
 
 #############################_RENTAL_###################################
 #Avis_Rental_Ereceipt_LookUp_US,U S A,K,709050274,American Advantage,1K56E60

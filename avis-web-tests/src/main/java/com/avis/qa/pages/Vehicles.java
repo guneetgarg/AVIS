@@ -183,6 +183,7 @@ public class Vehicles extends AbstractBasePage {
         }
         helper.scrollToElement(step2SubmitButton);
         threadSleep(TWO_SECONDS);
+        threadSleep(TWO_SECONDS);
         clickUsingJS(step2SubmitButton);
         return new Extras(driver);
     }
