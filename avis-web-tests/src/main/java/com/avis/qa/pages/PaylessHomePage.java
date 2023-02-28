@@ -97,6 +97,9 @@ public class PaylessHomePage extends AbstractBasePage {
     
     @FindBy(id = "//select[@id='residency']")
 	private WebElement Residency;
+    
+    @FindBy(xpath = "//li[contains(@class,'welcome-menu')]/a[text()='Welcome, AUTOMATION ']")
+    private WebElement signinVerify;
 
 	public void getRates(Map testDataMap) {
 		assertTrue(payLessBrandText.getText().toString().contains("Payless"));
@@ -117,7 +120,7 @@ public class PaylessHomePage extends AbstractBasePage {
 			clickOn(ageDropDown);
 			fillText(ageDropDown,testDataMap.get("Age").toString());
 		}
-		if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+		if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
 			clickOn(residenceCountryDropdown);
 			fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
 			clickOn(residenceCountryDropdown);
@@ -143,11 +146,13 @@ public class PaylessHomePage extends AbstractBasePage {
 	}
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
 			clickOn(LoginLink);
+			threadSleep(TEN_SECONDS);
+			clickOn(UserName);
 			fillText(UserName,testDataMap.get("Username").toString());
 			fillText(Password,testDataMap.get("Password").toString());
 			clickOn(LoginButton);
 			threadSleep(TEN_SECONDS);
-			clickOn(reservationTab);
+			assertTrue(signinVerify.getText().toString().contains("Welcome"));	
 			clickOn(makeReservation);
 			clickOn(pickUpLocation);
 			fillText(pickUpLocation,testDataMap.get("PickUpLocation").toString());
@@ -165,7 +170,7 @@ public class PaylessHomePage extends AbstractBasePage {
 				clickOn(ageDropDown);
 				fillText(ageDropDown,testDataMap.get("Age").toString());
 			}
-			if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+			if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
 				clickOn(residenceCountryDropdown);
 				fillText(residenceCountryDropdown,testDataMap.get("Country").toString() );
 				clickOn(residenceCountryDropdown);

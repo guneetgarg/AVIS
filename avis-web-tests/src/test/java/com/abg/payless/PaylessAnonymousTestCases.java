@@ -15,7 +15,7 @@ import com.avis.qa.pages.PaylessReviewReservePage;
 import com.avis.qa.pages.VehiclesPage;
 import com.avis.qa.utilities.CSVFileReader;
 
-public class PaylessAnonymousUser extends TestBase {
+public class PaylessAnonymousTestCases extends TestBase {
 
 	@Test(groups = {REGRESSION, SANITY, PAYLESSCAR}, dataProvider = "dataAsMap", dataProviderClass = CSVFileReader.class)
 	public void AnonymousUserTestCases(Map<?, ?> testDataMap) {		

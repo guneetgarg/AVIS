@@ -107,7 +107,7 @@ public class TestBase {
 	public void afterMethodTestBase(ITestResult result) throws IOException {
 		try {
 			if (result.getStatus() == 1) {
-
+				System.out.println("passed");
 				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\"" + result.getTestClass()
 						+ "\"/>";
 				reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
