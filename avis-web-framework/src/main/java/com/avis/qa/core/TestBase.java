@@ -92,7 +92,7 @@ public class TestBase {
 			testCaseValue= testData[0].toString();
 		}
 
-		
+
 		if (testCaseValue.contains(",") && testCaseValue.contains("=")) {
 			testCaseName = testCaseValue.split("TestCaseName")[1].split(",")[0].split("=")[1];
 		} else {
@@ -111,12 +111,14 @@ public class TestBase {
 	@AfterMethod(alwaysRun = true)
 	public void afterMethodTestBase(ITestResult result) throws IOException {
 		try {
+
 			if (result.getStatus() == 1) {
 				System.out.println("passed");
 				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\"" + result.getTestClass()
-						+ "\"/>";
+				+ "\"/>";
 				reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
 				readWriteIntoFile(reportContent, true);
+
 			} else if (result.getStatus() == 2) {
 				TakesScreenshot ss = ((TakesScreenshot) getDriver());
 				File file = ss.getScreenshotAs(OutputType.FILE);
@@ -127,12 +129,13 @@ public class TestBase {
 				if (reportContent.contains("[TestClass name=class")) {
 					reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
 				}
+
 				if (result.getThrowable().toString().contains("Exception:")) {
 					reportContent = reportContent + "\n<failure type=\""
 							+ result.getThrowable().toString().split("Exception:")[0] + "Exception\" message=\""
 							+ result.getThrowable().toString().split("Exception:")[1].split(":")[0] + "\">\n<![CDATA["
 							+ result.getThrowable().toString().split("Exception:")[1].split(":")[1]
-							+ result.getThrowable().getMessage() + "]]>\n</failure>\n</testcase>";
+									+ result.getThrowable().getMessage() + "]]>\n</failure>\n</testcase>";
 				} else if (result.getThrowable().toString().contains("Error:")) {
 					reportContent = reportContent + "\n<failure type=\""
 							+ result.getThrowable().toString().split("Error:")[0] + "Exception\" message=\""
@@ -149,9 +152,11 @@ public class TestBase {
 
 				readWriteIntoFile(reportContent, true);
 			}
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+
 		getDriver().quit();
 	}
 
