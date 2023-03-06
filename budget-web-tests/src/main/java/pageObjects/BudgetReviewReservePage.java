@@ -225,13 +225,10 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			fillText(phoneField, testDataMap.get("PhoneNumber").toString());
 		}
 
-		//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
 		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
 			clickOn(creditCardCheckBox);
 			fillText(cardNumber,"379381331688207");
 		}
-		//				/clickOn(creditCardCheckBox);
-		//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
 		if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
 			fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
 			fillText(step4_CVV,testDataMap.get("CVV").toString());
@@ -250,7 +247,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 		if(!testDataMap.get("ZipCode").toString().equalsIgnoreCase("NA")) {
 			fillText(zip,testDataMap.get("ZipCode").toString());
 		}
-		//			}
 		if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
 			clickOn(PaypalButton);
 			clickOn(Budget_PaypalRadioButton);
@@ -361,6 +357,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				budgetHomePage.viewModify(testDataMap);
 
 			}
+		}
 			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
 				threadSleep(TEN_SECONDS);
 				clickOn(cancelReservationButton);
@@ -372,7 +369,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 			}
 
-		}
+		
 	}
 
 	private WebDriver getDriver() {
