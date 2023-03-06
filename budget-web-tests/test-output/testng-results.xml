@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="142318" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:33:30 IST">
+    <groups>
+      <group name="regression">
+        <method signature="BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" class="testCases.BudgetAnonymousTestCases"/>
+      </group> <!-- regression -->
+      <group name="Paylesscar">
+        <method signature="BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" class="testCases.BudgetAnonymousTestCases"/>
+      </group> <!-- Paylesscar -->
+      <group name="sanity">
+        <method signature="BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" class="testCases.BudgetAnonymousTestCases"/>
+      </group> <!-- sanity -->
+    </groups>
+    <test name="Test" duration-ms="142318" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:33:30 IST">
+      <class name="testCases.BudgetAnonymousTestCases">
+        <test-method status="PASS" signature="beforeGroupsTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeGroupsTest" is-config="true" duration-ms="35" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:31:07 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.xml.XmlTest@67c4372f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeGroupsTest -->
+        <test-method status="PASS" signature="startTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="startTest" is-config="true" duration-ms="484" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:31:08 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.xml.XmlTest@67c4372f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startTest -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T15:31:09 IST" finished-at="2023-03-06T15:31:09 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@1bb50f3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="140483" started-at="2023-03-06T15:31:09 IST" data-provider="dataAsMap" finished-at="2023-03-06T15:33:30 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_Incognito_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=NA, BCD=NA, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=NA, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="20" started-at="2023-03-06T15:33:30 IST" finished-at="2023-03-06T15:33:30 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="afterGroupsTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterGroupsTest" is-config="true" duration-ms="19" started-at="2023-03-06T15:33:30 IST" finished-at="2023-03-06T15:33:30 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.xml.XmlTest@67c4372f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterGroupsTest -->
+      </class> <!-- testCases.BudgetAnonymousTestCases -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

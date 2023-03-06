@@ -40,6 +40,14 @@ import lombok.extern.log4j.Log4j2;
 @Listeners({ ExtentListener.class })
 @Log4j2
 public class TestBase {
+	public static final String REGRESSION = "regression";
+	public static final String SANITY = "sanity";
+	public static final String SMOKE = "smoke";
+    public static final String PAYLESSCAR = "Paylesscar";
+    public static final String AVIS = "Avis";
+    public static final String BUDGET = "Budget";
+    public static final String TEST_DATA = "testData";
+
 	private static final String TEST_RESULT_XML = "/testResult.xml";
 	protected ElementHelper helper;
 	private ThreadLocal<String> testName = new ThreadLocal<>();

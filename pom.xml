@@ -13,7 +13,10 @@
         <!-- The repository module must be first in order to ensure
              that the local repository is populated -->
           <module>avis-web-framework</module>
-          <module>avis-web-tests</module>
-      </modules>
+          <module>${test-module}</module>
+          
+        <!--  <module>avis-web-tests</module> -->
+          <!--  <module>budget-web-tests</module> -->
+    </modules>
 
 </project>
