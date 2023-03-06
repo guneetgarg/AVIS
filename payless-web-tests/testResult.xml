@@ -1,0 +1,5 @@
+<testsuite hostname="TestResult" ignored="2" name="Test" tests="1" failures="0" timestamp="2023-01-17T11:51:36 IST" time="28.492" errors="0">
+<testcase name="Paylesscar_RES_Inbound_IATA_M_type_PayLater_US"  classname=" testCases.PaylessAnonymousTestCases"/>
+<testcase name="Paylesscar_RES_Profile_G_typeCoupon_Extras_Paylater_US"  classname=" testCases.PaylessAuthenticatedTestCases"/>
+
+</testsuite>

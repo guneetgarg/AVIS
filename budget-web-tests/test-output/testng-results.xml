@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="2" ignored="0" total="15" passed="13">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="142318" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:33:30 IST">
+  <suite name="Default suite" duration-ms="2196453" started-at="2023-03-06T17:14:54 IST" finished-at="2023-03-06T17:51:31 IST">
     <groups>
       <group name="regression">
         <method signature="BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" class="testCases.BudgetAnonymousTestCases"/>
@@ -14,31 +14,31 @@
         <method signature="BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" class="testCases.BudgetAnonymousTestCases"/>
       </group> <!-- sanity -->
     </groups>
-    <test name="Test" duration-ms="142318" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:33:30 IST">
+    <test name="Default test" duration-ms="2196453" started-at="2023-03-06T17:14:54 IST" finished-at="2023-03-06T17:51:31 IST">
       <class name="testCases.BudgetAnonymousTestCases">
-        <test-method status="PASS" signature="beforeGroupsTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeGroupsTest" is-config="true" duration-ms="35" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:31:07 IST">
+        <test-method status="PASS" signature="beforeGroupsTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeGroupsTest" is-config="true" duration-ms="25" started-at="2023-03-06T17:14:54 IST" finished-at="2023-03-06T17:14:54 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.xml.XmlTest@67c4372f]]>
+                <![CDATA[org.testng.xml.XmlTest@61afdb03]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeGroupsTest -->
-        <test-method status="PASS" signature="startTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="startTest" is-config="true" duration-ms="484" started-at="2023-03-06T15:31:07 IST" finished-at="2023-03-06T15:31:08 IST">
+        <test-method status="PASS" signature="startTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="startTest" is-config="true" duration-ms="433" started-at="2023-03-06T17:14:54 IST" finished-at="2023-03-06T17:14:55 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.xml.XmlTest@67c4372f]]>
+                <![CDATA[org.testng.xml.XmlTest@61afdb03]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTest -->
-        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T15:31:09 IST" finished-at="2023-03-06T15:31:09 IST">
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T17:14:56 IST" finished-at="2023-03-06T17:14:56 IST">
           <params>
             <param index="0">
               <value>
@@ -47,14 +47,14 @@
             </param>
             <param index="1">
               <value>
-                <![CDATA[[Ljava.lang.Object;@1bb50f3]]>
+                <![CDATA[[Ljava.lang.Object;@d0cf01]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethodTestBase -->
-        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="140483" started-at="2023-03-06T15:31:09 IST" data-provider="dataAsMap" finished-at="2023-03-06T15:33:30 IST">
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="145607" started-at="2023-03-06T17:14:56 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:17:22 IST">
           <params>
             <param index="0">
               <value>
@@ -65,7 +65,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AnonymousUserTestCases -->
-        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="20" started-at="2023-03-06T15:33:30 IST" finished-at="2023-03-06T15:33:30 IST">
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="931" started-at="2023-03-06T17:17:22 IST" finished-at="2023-03-06T17:17:23 IST">
           <params>
             <param index="0">
               <value>
@@ -76,11 +76,666 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethodTestBase -->
-        <test-method status="PASS" signature="afterGroupsTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterGroupsTest" is-config="true" duration-ms="19" started-at="2023-03-06T15:33:30 IST" finished-at="2023-03-06T15:33:30 IST">
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="0" started-at="2023-03-06T17:17:23 IST" finished-at="2023-03-06T17:17:23 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.xml.XmlTest@67c4372f]]>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@1da004a]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="197314" started-at="2023-03-06T17:17:23 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:20:40 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=ORD, Address=701 West, LastName1=NA, ModifyPickUpDate=03/13/2023, CustomerID=NA, TestCaseName=Budget_RES_Modify_Cancel_Flow_Step1_to_Step4_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=PayNow, PickUpDate=03/13/2023, BCD=NA, CCNumber=NA, IATA=NA, City=San Antonio, State=Mississippi, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=03/23/2023, PickUpLocation=SFO, CVV=123, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=99022, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=1129, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=Yes, ModifyReservation=Yes, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="1018" started-at="2023-03-06T17:20:40 IST" finished-at="2023-03-06T17:20:41 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T17:20:41 IST" finished-at="2023-03-06T17:20:41 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@1dcd9f1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="FAIL" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="164479" started-at="2023-03-06T17:20:41 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:23:26 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_KeyDropLocation_M_typeCoupon_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=03/13/2023, BCD=NA, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=MUZZ012, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.NoSuchElementException">
+            <message>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//span[@class='coupon-value']"}
+  (Session info: chrome=110.0.5481.178)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'ANKURCHAUDHARY', ip: '172.27.160.1', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_192'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\Lenovo\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:63798}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 12ff5664272bff2de4bf94fc67022555
+*** Element info: {Using=xpath, value=//span[@class='coupon-value']}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[@class='coupon-value']"}
+  (Session info: chrome=110.0.5481.178)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'ANKURCHAUDHARY', ip: '172.27.160.1', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_192'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\Lenovo\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:63798}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 12ff5664272bff2de4bf94fc67022555
+*** Element info: {Using=xpath, value=//span[@class='coupon-value']}
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at com.sun.proxy.$Proxy31.getText(Unknown Source)
+at pageObjects.BudgetReviewReservePage.reviewReserve(BudgetReviewReservePage.java:309)
+at testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(BudgetAnonymousTestCases.java:32)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:945)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(ArrayList.java:1257)
+at org.testng.TestRunner.privateRun(TestRunner.java:808)
+at org.testng.TestRunner.run(TestRunner.java:603)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:423)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:383)
+at org.testng.SuiteRunner.run(SuiteRunner.java:326)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1249)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+at org.testng.TestNG.runSuites(TestNG.java:1092)
+at org.testng.TestNG.run(TestNG.java:1060)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="1342" started-at="2023-03-06T17:23:26 IST" finished-at="2023-03-06T17:23:27 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=FAILURE method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="0" started-at="2023-03-06T17:23:27 IST" finished-at="2023-03-06T17:23:27 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@1324803]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="148389" started-at="2023-03-06T17:23:27 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:25:56 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_Costco_DigitalWallet_PayPal_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=1.12E+11, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=03/13/2023, BCD=W852801, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="1113" started-at="2023-03-06T17:25:56 IST" finished-at="2023-03-06T17:25:57 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="137748" started-at="2023-03-06T17:25:57 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:28:15 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=701 West, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_Inbound_MultiCurrency_IATA_Cancellation_PayNow_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=PayNow, PickUpDate=NA, BCD=NA, CCNumber=3.42E+14, IATA=0123141G, City=NA, State=NA, Country=India, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=123, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=NA, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=St, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=1129, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="0" started-at="2023-03-06T17:25:57 IST" finished-at="2023-03-06T17:25:57 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@1e621e3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="855" started-at="2023-03-06T17:28:15 IST" finished-at="2023-03-06T17:28:15 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="FAIL" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="128901" started-at="2023-03-06T17:28:15 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:30:24 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=701 West, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_Outbound_USAA_Validate_CorpBooking_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=38298026, PayLaterCreditcard=NA, Paylater&Paynow=PayNow, PickUpDate=03/13/2023, BCD=Y126501, CCNumber=3.42E+14, IATA=NA, City=San Antonio, State=Mississippi, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=ORD, CVV=123, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=99022, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=1129, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on WINDOWS (6ee2cc8a9082d6bb57ffaa41e108fcd1)] -> xpath: (//input[@id='PicLoc_value'])[1]] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'ANKURCHAUDHARY', ip: '172.27.160.1', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_192'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\Lenovo\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:64742}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 6ee2cc8a9082d6bb57ffaa41e108fcd1]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on WINDOWS (6ee2cc8a9082d6bb57ffaa41e108fcd1)] -> xpath: (//input[@id='PicLoc_value'])[1]] (tried for 60 second(s) with 500 milliseconds interval)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'ANKURCHAUDHARY', ip: '172.27.160.1', os.name: 'Windows 10', os.arch: 'x86', os.version: '10.0', java.version: '1.8.0_192'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 110.0.5481.178, chrome: {chromedriverVersion: 110.0.5481.77 (65ed616c6e8e..., userDataDir: C:\Users\Lenovo\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:64742}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 6ee2cc8a9082d6bb57ffaa41e108fcd1
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+at pageObjects.BudgetHomePage.selectYourCar(BudgetHomePage.java:172)
+at testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(BudgetAnonymousTestCases.java:23)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:673)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:220)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:945)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:193)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(ArrayList.java:1257)
+at org.testng.TestRunner.privateRun(TestRunner.java:808)
+at org.testng.TestRunner.run(TestRunner.java:603)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:429)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:423)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:383)
+at org.testng.SuiteRunner.run(SuiteRunner.java:326)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1249)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+at org.testng.TestNG.runSuites(TestNG.java:1092)
+at org.testng.TestNG.run(TestNG.java:1060)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="0" started-at="2023-03-06T17:28:15 IST" finished-at="2023-03-06T17:28:15 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@99a045]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="938" started-at="2023-03-06T17:30:25 IST" finished-at="2023-03-06T17:30:26 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=FAILURE method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="0" started-at="2023-03-06T17:30:26 IST" finished-at="2023-03-06T17:30:26 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@161ffb6]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="142276" started-at="2023-03-06T17:30:26 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:32:48 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_OneWay_USAA_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=38298026, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=NA, BCD=Y126501, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=NA, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=JFK, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="1087" started-at="2023-03-06T17:32:48 IST" finished-at="2023-03-06T17:32:49 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T17:32:49 IST" finished-at="2023-03-06T17:32:49 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@b0ddc9]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="139992" started-at="2023-03-06T17:32:49 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:35:09 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_Inbound_MultiCurrency_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=03/13/2023, BCD=NA, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=Thailand, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="903" started-at="2023-03-06T17:35:09 IST" finished-at="2023-03-06T17:35:10 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="0" started-at="2023-03-06T17:35:10 IST" finished-at="2023-03-06T17:35:10 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@251945]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="136325" started-at="2023-03-06T17:35:10 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:37:26 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_BCD_CorpCust_insuranceCover_Validate_Paylater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=03/13/2023, BCD=V4989000, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=test@microsoft.com, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="951" started-at="2023-03-06T17:37:26 IST" finished-at="2023-03-06T17:37:27 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="2" started-at="2023-03-06T17:37:27 IST" finished-at="2023-03-06T17:37:27 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@199114c]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="158374" started-at="2023-03-06T17:37:27 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:40:06 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_U_type Coupon_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=03/13/2023, BCD=NA, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=EWR, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=UUZZ011, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="884" started-at="2023-03-06T17:40:06 IST" finished-at="2023-03-06T17:40:07 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T17:40:07 IST" finished-at="2023-03-06T17:40:07 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@10bdd86]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="136834" started-at="2023-03-06T17:40:07 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:42:23 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=1.12E+11, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=03/13/2023, BCD=W852801, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=03/23/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="853" started-at="2023-03-06T17:42:24 IST" finished-at="2023-03-06T17:42:24 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T17:42:24 IST" finished-at="2023-03-06T17:42:24 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@171083b]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="135964" started-at="2023-03-06T17:42:24 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:44:40 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=NA, BCD=NA, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=NA, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="888" started-at="2023-03-06T17:44:40 IST" finished-at="2023-03-06T17:44:41 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="2" started-at="2023-03-06T17:44:41 IST" finished-at="2023-03-06T17:44:41 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@168cc21]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="135087" started-at="2023-03-06T17:44:41 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:46:56 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_EMEA90Days_ErrorMessage_Step1_Res widget_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=03/13/2023, BCD=NA, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=06/13/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="987" started-at="2023-03-06T17:46:56 IST" finished-at="2023-03-06T17:46:57 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="1" started-at="2023-03-06T17:46:57 IST" finished-at="2023-03-06T17:46:57 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@4aaab1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="136336" started-at="2023-03-06T17:46:57 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:49:14 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_T_typeCoupon_CCOLocation_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=NA, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=04/13/2023, BCD=NA, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=TUZZ008, ModifyDropOffDate=NA, PickUpLocation=SFO, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=04/18/2023, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="893" started-at="2023-03-06T17:49:14 IST" finished-at="2023-03-06T17:49:15 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="beforeMethodTestBase(java.lang.reflect.Method,[Ljava.lang.Object;)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="beforeMethodTestBase" is-config="true" duration-ms="0" started-at="2023-03-06T17:49:15 IST" finished-at="2023-03-06T17:49:15 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void testCases.BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[[Ljava.lang.Object;@104a253]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethodTestBase -->
+        <test-method status="PASS" signature="AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="AnonymousUserTestCases" duration-ms="135405" started-at="2023-03-06T17:49:15 IST" data-provider="dataAsMap" finished-at="2023-03-06T17:51:30 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{ModifyDropOffTime=NA, Email=automation@yopmail.com, ModifyPickUpLoc=NA, Address=NA, LastName1=NA, ModifyPickUpDate=NA, CustomerID=NA, TestCaseName=Budget_RES_Outbound_StrikeThroughCoupon_LocMandate_FlightInfo_Cancellation_PayLater_US, ModifyDropOffLocation=NA, password=NA, PickUpTime=NA, MemberNumber=38298026, PayLaterCreditcard=NA, Paylater&Paynow=Paylater, PickUpDate=NA, BCD=Y126501, CCNumber=NA, IATA=NA, City=NA, State=NA, Country=NA, CorporateEmailID=NA, LastName=Edsin, UserType=Guest, BCDCode=NA, ModifyDropOffDate=NA, PickUpLocation=SYD, CVV=NA, TestMethodName=AnonymousUserTestCases, DropOffTime=NA, CVV1=NA, State1=NA, DropOffDate=NA, Age=NA, PaypalPassword=NA, Coupon=NA, PayPal=NA, FirstName=Albert, ZipCode=NA, PaypalEmail=NA, TrackReservation=NA, City1=NA, Address3=NA, Address1=NA, DropOffLocation=NA, ExpirationDate1=NA, ExpirationDate=NA, ModifyPickUpTime=NA, PhoneNumber=9838234567, ZipCode1=NA, CancelReservation=NA, ModifyReservation=NA, username=NA}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnonymousUserTestCases -->
+        <test-method status="PASS" signature="afterMethodTestBase(org.testng.ITestResult)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterMethodTestBase" is-config="true" duration-ms="860" started-at="2023-03-06T17:51:30 IST" finished-at="2023-03-06T17:51:31 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=AnonymousUserTestCases status=SUCCESS method=BudgetAnonymousTestCases.AnonymousUserTestCases(java.util.Map)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethodTestBase -->
+        <test-method status="PASS" signature="afterGroupsTest(org.testng.xml.XmlTest)[pri:0, instance:testCases.BudgetAnonymousTestCases@2431d0]" name="afterGroupsTest" is-config="true" duration-ms="15" started-at="2023-03-06T17:51:31 IST" finished-at="2023-03-06T17:51:31 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.xml.XmlTest@61afdb03]]>
               </value>
             </param>
           </params>
@@ -88,6 +743,6 @@
           </reporter-output>
         </test-method> <!-- afterGroupsTest -->
       </class> <!-- testCases.BudgetAnonymousTestCases -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

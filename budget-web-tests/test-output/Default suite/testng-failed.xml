@@ -9,7 +9,7 @@
           <include name="beforeMethodTestBase"/>
           <include name="startTest"/>
           <include name="afterGroupsTest"/>
-          <include name="AnonymousUserTestCases" invocation-numbers="0"/>
+          <include name="AnonymousUserTestCases" invocation-numbers="2 5"/>
           <include name="beforeGroupsTest"/>
         </methods>
       </class> <!-- testCases.BudgetAnonymousTestCases -->
