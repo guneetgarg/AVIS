@@ -102,7 +102,8 @@ public class ExcelUtils {
         FileInputStream fs = null;
         try {
 //            fs = new FileInputStream(System.getProperty("user.dir")+"/testdata/"+fileName +".xlsx");
-        	 fs = new FileInputStream(System.getProperty("user.dir")+"/testdata/"+"Anonymous" +".xlsx");
+        	fs = new FileInputStream("./testdata/"+fileName +".xlsx");
+//        	 fs = new FileInputStream(System.getProperty("user.dir")+"/testdata/"+"Anonymous" +".xlsx");
             ExcelWBook = new XSSFWorkbook(fs);
         } catch (Exception e) {
             throw new RuntimeException(e);
