@@ -221,9 +221,9 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 				}				
 			}
 
-//			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-//			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-//			assertTrue(userInfoList.get(0).getText().contains(testDataMap.get("Email").toString()));
+			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
+			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			assertTrue(userInfoList.get(0).getText().contains(testDataMap.get("Email").toString()));
 			threadSleep(FIVE_SECONDS);
 			String confirmationNo = confirmationNumber.getText();
 			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
