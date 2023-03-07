@@ -20,17 +20,17 @@ public class PaylessAnonymousTestCases extends TestBase {
 	public void AnonymousUserTestCases(Map<?, ?> testDataMap) {		
 		launchUrl();
 		
-//		PaylessHomePage paylessHomepage = new PaylessHomePage(getDriver());
-//		paylessHomepage.getRates(testDataMap);
-//
-//		PaylessVehiclesPage paylessVehiclesPage = new PaylessVehiclesPage(getDriver());
-//		paylessVehiclesPage.chooseVehicles(testDataMap);
-//
-//		PaylessRentalPage paylessRentalPage = new PaylessRentalPage(getDriver());
-//		paylessRentalPage.rentalPage(testDataMap);
-//
-//		PaylessReviewReservePage paylessReviewReservePage = new PaylessReviewReservePage(getDriver());
-//		paylessReviewReservePage.reviewPage(testDataMap);
+		PaylessHomePage paylessHomepage = new PaylessHomePage(getDriver());
+		paylessHomepage.getRates(testDataMap);
+
+		PaylessVehiclesPage paylessVehiclesPage = new PaylessVehiclesPage(getDriver());
+		paylessVehiclesPage.chooseVehicles(testDataMap);
+
+		PaylessRentalPage paylessRentalPage = new PaylessRentalPage(getDriver());
+		paylessRentalPage.rentalPage(testDataMap);
+
+		PaylessReviewReservePage paylessReviewReservePage = new PaylessReviewReservePage(getDriver());
+		paylessReviewReservePage.reviewPage(testDataMap);
 
 	}
 

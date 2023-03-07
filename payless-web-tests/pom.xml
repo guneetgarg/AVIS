@@ -5,7 +5,7 @@
 		<artifactId>avis-us-web</artifactId>
 		<version>1.0.1</version>
 	</parent>
-	<artifactId>budget-web-tests</artifactId>
+	<artifactId>payless-web-tests</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>com.avis</groupId>
