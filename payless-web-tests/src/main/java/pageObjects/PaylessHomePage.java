@@ -137,10 +137,13 @@ public class PaylessHomePage extends AbstractBasePage {
 				fillText(CouponTextField,testDataMap.get(COUPON).toString() );
 			}
 			if (!testDataMap.get("PDN").toString().equalsIgnoreCase("NA")) {
+				if(CouponTextField.getText().equals(testDataMap.get(COUPON)))
+				{
+					clickOn(CouponCheckBox);
+				}
 				clickOn(CouponCheckBox);
 				clickOn(pdnTextField);
 				fillText(pdnTextField,testDataMap.get("PDN").toString() );
-
 			}
 			if (!testDataMap.get("AGE1").toString().equalsIgnoreCase("NA")) {
 				clickOn(getRatesButton);

@@ -260,7 +260,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow"))
 				fillText(cardNumber,"343248952280825");
-		}
+		
 		if(!testDataMap.get("ExpiryMonth").toString().equalsIgnoreCase("NA")) {
 			clickOn(expiryMonthDropDown);
 			fillText(expiryMonthDropDown,testDataMap.get("ExpiryMonth").toString());
@@ -300,6 +300,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			clickOn(reviewModificationsButton);
 			clickOn(keepModificationButton);
 			clickOn(makeNewReservationButton);
+		}
 			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
 				clickOn(viewOrModifyReservationButton);
 				fillText(lastNameTextField, testDataMap.get("LastName").toString());
@@ -310,12 +311,9 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 				clickOn(confirmCancelReservationButton);
 				clickOn(cancelTerms);
 				clickOn(cancelReservation);
-
 			}
-
 		}
-
-	}
+		}
 
 
 
