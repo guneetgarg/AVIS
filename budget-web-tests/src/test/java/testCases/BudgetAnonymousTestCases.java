@@ -16,7 +16,7 @@ public class BudgetAnonymousTestCases extends TestBase{
 	
 	
 	@Test(groups = {REGRESSION, SANITY, PAYLESSCAR}, dataProvider = "dataAsMap", dataProviderClass = ExcelDataProvider.class)
-	public void AnonymousUserTestCases(Map<?, ?> testDataMap) {	
+	public void AnonymousUserTestCases(Map<?, ?> testDataMap) throws InterruptedException {	
 		launchUrl();
 		
 		BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());

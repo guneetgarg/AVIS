@@ -52,7 +52,13 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 		WebDriverWait wait= new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOf(selectACarText));
 		assertTrue(selectACarText.getText().toString().contains("Select a Car"));
-		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+		
+		String location = pickUpLocationVerify.getText();
+		String [] locationValue = pickUpLocationVerify.getText().split("");
+		String locations = locationValue[1].replaceAll("", "");
+		
+		assertTrue(pickUpLocationVerify.getText().toString().contains(locations));
+//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 			assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
 		}

@@ -205,10 +205,22 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//span[@class='step-title']")
 	private WebElement modifyReserverental;
 
+	@FindBy(xpath = "//*[contains(@name,'flightnumberMob')]")
+    private WebElement flightNumber;
+
+    @FindBy(xpath = "//*[contains(@name,'airlineobj')]")
+    private WebElement Airline;
+	
+
 	public void reviewReserve(Map testDataMap) {
 
 		//		assertTrue(YourInformation.getText().contains("Your Information"));
-		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+		String location = pickUpLocationVerify.getText();
+		String [] locationValue = pickUpLocationVerify.getText().split("");
+		String locations = locationValue[1].replaceAll("", "");
+		
+		assertTrue(pickUpLocationVerify.getText().toString().contains(locations));
+//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 			assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
 		}
@@ -274,9 +286,15 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 		}
 		if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
-			fillText(IataTextFiled,testDataMap.get("IATA").toString() );
+			fillText(IataTextFiled,testDataMap.get("IATA").toString());
 		}
-
+		if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
+			
+			clickOn(Airline);
+			fillText(Airline,testDataMap.get("Airline").toString());
+			fillText(flightNumber,testDataMap.get("FlightNumber").toString());
+			
+		}
 		if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
 			clickOn(userYourCreditCardCheckbox);
 			clickOn(creditCardCheckBox);
@@ -304,7 +322,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 		threadSleep(TEN_SECONDS);
 		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 
-		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
 			assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
 		}

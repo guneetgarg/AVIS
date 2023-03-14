@@ -6,8 +6,10 @@ import static com.avis.qa.utilities.CommonUtils.FIVE_SECONDS;
 
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 
+import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -17,11 +19,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.utilities.CommonUtils;
 
 import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoveryStrategy.Explicit;
 
-public class BudgetHomePage extends AbstractBasePage{
-
+public class BudgetHomePage extends AbstractBasePage {
 
 	public BudgetHomePage(WebDriver driver) {
 		super(driver);
@@ -97,7 +99,7 @@ public class BudgetHomePage extends AbstractBasePage{
 	private WebElement addCustomerID;
 
 	@FindBy(xpath = "//input[@aria-label='Res-wizard Number']")
-	private WebElement enterCustomerID ;
+	private WebElement enterCustomerID;
 
 	@FindBy(xpath = "//input[@id='res-home-lastName']")
 	private WebElement enterLastName;
@@ -150,113 +152,144 @@ public class BudgetHomePage extends AbstractBasePage{
 	@FindBy(xpath = "//button[@id='otp_submit']")
 	private WebElement OTPSubmitButton;
 
-	public void selectYourCar(Map testDataMap) {
+	@FindBy(id = "warning-msg-err")
+	private WebElement soldOutWarningMessage;
 
-		try{
-			clickOn(AdOverLayDiv);
-		}catch (TimeoutException e){
-			clickOn(AdOverLayCloseButton);
+	@FindBy(xpath = "(//span[@class='step-title'])[2]")
+	private WebElement selectCarTitle;
 
-			return;
-		}
+	public void selectYourCar(Map testDataMap) throws InterruptedException {
+
+//		try {
+//			clickOn(AdOverLayDiv);
+//		} catch (TimeoutException e) {
+//			clickOn(AdOverLayCloseButton);
+//
+//			return;
+//		}
 		clickOn(AdOverLayCloseButton);
 
-		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
+		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 
 			clickOn(reservation);
 			clickOn(makeaReservation);
-			
-			WebDriverWait wait= new WebDriverWait(driver, 60);
 
-			
+			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
-			clickOn(pickUpLocation);
-			fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
-			clickOn(suggestionLocation);
-			if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
-				fillText(dropOffLocation, testDataMap.get("DropOffLocation").toString());
-			}
-			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(pickUpDate);
-				pickUpDate.clear();
-				fillText(pickUpDate,testDataMap.get("PickUpDate").toString());
-			}
-			fillText(pickUpTime,testDataMap.get("PickUpTime").toString());
-			if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(returnDatePath);
-				returnDatePath.clear();
-				fillText(returnDatePath,testDataMap.get("DropOffDate").toString());
-			}
-			fillText(dropOffTime,testDataMap.get("DropOffTime").toString());
-			if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
-				fillText(enterReturnLocation,testDataMap.get("DropOffLocation").toString() );
-				clickOn(dropOffSuggestion);
-			}
-			if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
-				clickOn(ageDropDown);
-				fillText(ageDropDown,testDataMap.get("Age").toString());
-			}
-			if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
-				clickOn(selectCountry);
-				fillText(selectCountry,testDataMap.get("Country").toString() );
-				clickOn(selectCountry);
-			}
-			if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
-				clickOn(offerCodes);
-				clickOn(CouponCheckBox);
-				fillText(CouponTextField,testDataMap.get(COUPON).toString() );
-			}
+			String pickupLocations[] = testDataMap.get("PickUpLocation").toString().split(",");
 
-			if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
-				clickOn(offerCodes);
-				clickOn(addCustomerID);
-				clickOn(enterCustomerID);
-				fillText(enterCustomerID, testDataMap.get("CustomerID").toString());
-				fillText(enterLastName, testDataMap.get("LastName1").toString());
-			}
-			if (!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
-				clickOn(offerCodes);
-				clickOn(AWDOrBCDOrPDN_TextField);
-				AWDOrBCDOrPDN_TextField.clear();
-				AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
-				if(!testDataMap.get("CorporateEmailID").toString().equalsIgnoreCase("NA")) {
-					fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
-				} else {				
-					if(testDataMap.get("BCD").toString().contains("W8")) {
-						fillText(membershipTextField, "112000000000");
+			for (int i = 0; i < pickupLocations.length; i++) {
+				if(i>0) {
+					pickUpLocation.click();
+					pickUpLocation.clear();
+				}
+				clickOn(pickUpLocation);
+				String randomNumber = CommonUtils.getRandomNumber(0, 6);
+				fillText(pickUpLocation, pickupLocations[Integer.valueOf(randomNumber)]);
+				clickOn(suggestionLocation);
+				if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+					fillText(dropOffLocation, testDataMap.get("DropOffLocation").toString());
+				}
+				if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
+					clickOn(pickUpDate);
+					pickUpDate.clear();
+					fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
+				}
+				fillText(pickUpTime, testDataMap.get("PickUpTime").toString());
+				if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
+					clickOn(returnDatePath);
+					returnDatePath.clear();
+					fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
+				}
+				fillText(dropOffTime, testDataMap.get("DropOffTime").toString());
+				if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+					fillText(enterReturnLocation, testDataMap.get("DropOffLocation").toString());
+					clickOn(dropOffSuggestion);
+				}
+				if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
+					clickOn(ageDropDown);
+					fillText(ageDropDown, testDataMap.get("Age").toString());
+				}
+				if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
+					clickOn(selectCountry);
+					fillText(selectCountry, testDataMap.get("Country").toString());
+					clickOn(selectCountry);
+				}
+				if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+					clickOn(offerCodes);
+					clickOn(CouponCheckBox);
+					fillText(CouponTextField, testDataMap.get(COUPON).toString());
+				}
+
+				if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
+					clickOn(offerCodes);
+					clickOn(addCustomerID);
+					clickOn(enterCustomerID);
+					fillText(enterCustomerID, testDataMap.get("CustomerID").toString());
+					fillText(enterLastName, testDataMap.get("LastName1").toString());
+				}
+				if (!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
+					clickOn(offerCodes);
+					clickOn(AWDOrBCDOrPDN_TextField);
+					AWDOrBCDOrPDN_TextField.clear();
+					AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
+					if (!testDataMap.get("CorporateEmailID").toString().equalsIgnoreCase("NA")) {
+						fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
 					} else {
-						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
+						if (testDataMap.get("BCD").toString().contains("W8")) {
+							fillText(membershipTextField, "112000000000");
+						} else {
+							fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
+						}
 					}
 				}
+				clickOn(selectMyCarButton);
+
+				if (isVehicleAvailable()) {
+					break;
+				}
+
 			}
-			clickOn(selectMyCarButton);
-		} 
-		
+
+		}
+
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
-				
+
 			clickOn(HeaderLoginButton);
 			waitForVisibilityOfElement(UserName);
-	        UserName.sendKeys(testDataMap.get("username").toString());
-	        waitForVisibilityOfElement(Password);
-	        Password.sendKeys(testDataMap.get("password").toString());
-	        threadSleep(TWO_SECONDS);
-	        clickUsingJS(LoginButton);
+			UserName.sendKeys(testDataMap.get("username").toString());
+			waitForVisibilityOfElement(Password);
+			Password.sendKeys(testDataMap.get("password").toString());
+			threadSleep(TWO_SECONDS);
+			clickUsingJS(LoginButton);
 		}
 
 	}
 
-	public void viewModify(Map testDataMap) {
+	public boolean isVehicleAvailable() throws InterruptedException {
+		boolean isVehiclePresent = false;
+		Thread.sleep(10000);
+		List<WebElement> errorMessage = driver.findElements(By.id("warning-msg-err"));
+		List<WebElement> selectCarTitle = driver.findElements(By.xpath("(//a[@class='modify-link']/span)[2]"));
+		
+		System.out.println(errorMessage.size());
+		System.out.println(selectCarTitle.size());
+		if(errorMessage.size()==0 && selectCarTitle.size()>0) {
+			isVehiclePresent = true;
+		}
+		return isVehiclePresent;
+
+	}
+
+	public void viewModify(Map<?, ?> testDataMap) {
 		clickOn(ReservationsTab);
 		clickOn(Reservation_ViewModifyCancelLink);
 	}
-
-
 
 	@Override
 	public void isOnPage() {
 		// TODO Auto-generated method stub
 
 	}
-
 
 }
