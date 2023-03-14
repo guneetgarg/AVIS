@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -321,6 +322,18 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 		clickOn(SubmitButton);
 		threadSleep(TEN_SECONDS);
 		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
+		
+		threadSleep(TEN_SECONDS);
+		List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
+		for(int i=0; i < s1.size(); i++){
+			if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
+				driver.switchTo().frame(s1.get(i).getAttribute("id"));	
+				List<WebElement> t = driver.findElements(By.tagName("iframe"));
+				driver.switchTo().frame(t.get(0).getAttribute("id"));
+				driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
+				break;
+			}				
+		}
 
 //		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
