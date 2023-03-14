@@ -98,6 +98,7 @@ public class PaylessHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//li[contains(@class,'welcome-menu')]/a[text()='Welcome, AUTOMATION ']")
 	private WebElement signinVerify;
+	
 
 	public void getRates(Map testDataMap) {
 		assertTrue(payLessBrandText.getText().toString().contains("Payless"));
@@ -137,13 +138,17 @@ public class PaylessHomePage extends AbstractBasePage {
 				fillText(CouponTextField,testDataMap.get(COUPON).toString() );
 			}
 			if (!testDataMap.get("PDN").toString().equalsIgnoreCase("NA")) {
-				if(CouponTextField.getText().equals(testDataMap.get(COUPON)))
-				{
-					clickOn(CouponCheckBox);
-				}
 				clickOn(CouponCheckBox);
 				clickOn(pdnTextField);
 				fillText(pdnTextField,testDataMap.get("PDN").toString() );
+
+			}
+			if (!testDataMap.get("CouponPDN").toString().equalsIgnoreCase("NA")) {
+				clickOn(CouponCheckBox);
+				fillText(CouponTextField,testDataMap.get("Coupon1").toString() );
+				clickOn(pdnTextField);
+				fillText(pdnTextField,testDataMap.get("PDN1").toString());
+				
 			}
 			if (!testDataMap.get("AGE1").toString().equalsIgnoreCase("NA")) {
 				clickOn(getRatesButton);

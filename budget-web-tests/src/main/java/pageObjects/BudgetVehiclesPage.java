@@ -7,6 +7,8 @@ import java.util.Map;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.avis.qa.core.AbstractBasePage;
 
@@ -20,7 +22,9 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 	@FindBy(css = "li[title='Select a Car']")
 	private WebElement selectACarText;
 
-	@FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[4] | (//a[contains(text(),'Pay Later')])[4]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
+//	@FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[4] | (//a[contains(text(),'Pay Later')])[4]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
+//	private WebElement PayLater;
+	@FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[2] | (//a[contains(text(),'Pay Later')])[4]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
 	private WebElement PayLater;
 
 	@FindBy(xpath = "(//a[@id='res-vehicles-pay-now'])[1] | (//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]")
@@ -45,6 +49,8 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 	private WebElement ReturnDateTime;
 
 	public void chooseVehicles(Map testDataMap) {
+		WebDriverWait wait= new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOf(selectACarText));
 		assertTrue(selectACarText.getText().toString().contains("Select a Car"));
 		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
