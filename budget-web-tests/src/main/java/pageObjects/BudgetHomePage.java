@@ -178,14 +178,15 @@ public class BudgetHomePage extends AbstractBasePage {
 			wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 			String pickupLocations[] = testDataMap.get("PickUpLocation").toString().split(",");
 
-			for (int i = 0; i < pickupLocations.length; i++) {
-				if(i>0) {
-					pickUpLocation.click();
-					pickUpLocation.clear();
-				}
+//			for (int i = 0; i < pickupLocations.length; i++) {
+//				if(i>0) {
+//					pickUpLocation.click();
+//					pickUpLocation.clear();
+//				}
 				clickOn(pickUpLocation);
-				String randomNumber = CommonUtils.getRandomNumber(0, 6);
-				fillText(pickUpLocation, pickupLocations[Integer.valueOf(randomNumber)]);
+//				String randomNumber = CommonUtils.getRandomNumber(0, 6);
+//				fillText(pickUpLocation, pickupLocations[Integer.valueOf(randomNumber)]);
+				fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
 				clickOn(suggestionLocation);
 				if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 					fillText(dropOffLocation, testDataMap.get("DropOffLocation").toString());
@@ -195,13 +196,17 @@ public class BudgetHomePage extends AbstractBasePage {
 					pickUpDate.clear();
 					fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
 				}
+				if (!testDataMap.get("PickUpTime").toString().equalsIgnoreCase("NA")) {
 				fillText(pickUpTime, testDataMap.get("PickUpTime").toString());
+				}
 				if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
 					clickOn(returnDatePath);
 					returnDatePath.clear();
 					fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
 				}
+				if (!testDataMap.get("DropOffTime").toString().equalsIgnoreCase("NA")) {
 				fillText(dropOffTime, testDataMap.get("DropOffTime").toString());
+				}
 				if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 					fillText(enterReturnLocation, testDataMap.get("DropOffLocation").toString());
 					clickOn(dropOffSuggestion);
@@ -245,11 +250,11 @@ public class BudgetHomePage extends AbstractBasePage {
 				}
 				clickOn(selectMyCarButton);
 
-				if (isVehicleAvailable()) {
-					break;
-				}
+//				if (isVehicleAvailable()) {
+//					break;
+//				}
 
-			}
+//			}
 
 		}
 
@@ -257,9 +262,9 @@ public class BudgetHomePage extends AbstractBasePage {
 
 			clickOn(HeaderLoginButton);
 			waitForVisibilityOfElement(UserName);
-			UserName.sendKeys(testDataMap.get("username").toString());
+			UserName.sendKeys(testDataMap.get("Username").toString());
 			waitForVisibilityOfElement(Password);
-			Password.sendKeys(testDataMap.get("password").toString());
+			Password.sendKeys(testDataMap.get("Password").toString());
 			threadSleep(TWO_SECONDS);
 			clickUsingJS(LoginButton);
 		}
