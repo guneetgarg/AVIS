@@ -15,9 +15,8 @@
           <module>avis-web-framework</module>
            <module>${test-module}</module>
           
-        <!-- <module>avis-web-tests</module>
+         <!--<module>avis-web-tests</module>
           <module>budget-web-tests</module>
-         <module>paylesscar-web-tests</module>
           <module>payless-web-tests</module>-->
     </modules>
 

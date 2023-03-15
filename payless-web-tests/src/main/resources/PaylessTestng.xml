@@ -5,6 +5,7 @@
 		<classes>
 			<class name="testCases.PaylessAnonymousTestCases" />
 			<class name="testCases.PaylessAuthenticatedTestCases" />
+			<class name="testCases.PaylessProfileTestCases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
