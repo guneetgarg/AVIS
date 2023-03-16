@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.SendKeys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -96,7 +97,7 @@ public class PaylessHomePage extends AbstractBasePage {
 	@FindBy(id = "//select[@id='residency']")
 	private WebElement Residency;
 
-	@FindBy(xpath = "//li[contains(@class,'welcome-menu')]/a[text()='Welcome, AUTOMATION ']")
+	@FindBy(xpath = "//li[contains(@class,'welcome-menu')]/a[text()='Welcome, TEST ']")
 	private WebElement signinVerify;
 	
 
@@ -164,6 +165,8 @@ public class PaylessHomePage extends AbstractBasePage {
 			threadSleep(TEN_SECONDS);
 			clickOn(UserName);
 			fillText(UserName,testDataMap.get("Username").toString());
+			clickOn(Password);
+			fillText(Password,testDataMap.get("Password").toString());
 			fillText(Password,testDataMap.get("Password").toString());
 			clickOn(LoginButton);
 			threadSleep(TEN_SECONDS);
@@ -223,3 +226,4 @@ public class PaylessHomePage extends AbstractBasePage {
 
 
 }
+
