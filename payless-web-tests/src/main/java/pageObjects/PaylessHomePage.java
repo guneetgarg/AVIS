@@ -166,8 +166,10 @@ public class PaylessHomePage extends AbstractBasePage {
 			clickOn(UserName);
 			fillText(UserName,testDataMap.get("Username").toString());
 			clickOn(Password);
-			fillText(Password,testDataMap.get("Password").toString());
-			fillText(Password,testDataMap.get("Password").toString());
+			Password.click();
+			Password.sendKeys(testDataMap.get("Password").toString());	
+//			fillText(Password,testDataMap.get("Password").toString());
+//			fillText(Password,testDataMap.get("Password").toString());
 			clickOn(LoginButton);
 			threadSleep(TEN_SECONDS);
 			assertTrue(signinVerify.getText().toString().contains("Welcome"));	
