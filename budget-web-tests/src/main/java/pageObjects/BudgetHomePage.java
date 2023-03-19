@@ -160,13 +160,6 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	public void selectYourCar(Map testDataMap) throws InterruptedException {
 
-//		try {
-//			clickOn(AdOverLayDiv);
-//		} catch (TimeoutException e) {
-//			clickOn(AdOverLayCloseButton);
-//
-//			return;
-//		}
 		clickOn(AdOverLayCloseButton);
 
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
@@ -188,9 +181,6 @@ public class BudgetHomePage extends AbstractBasePage {
 //				fillText(pickUpLocation, pickupLocations[Integer.valueOf(randomNumber)]);
 				fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
 				clickOn(suggestionLocation);
-				if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
-					fillText(dropOffLocation, testDataMap.get("DropOffLocation").toString());
-				}
 				if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 					clickOn(pickUpDate);
 					pickUpDate.clear();
