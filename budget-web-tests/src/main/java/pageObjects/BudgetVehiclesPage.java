@@ -49,15 +49,9 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 	private WebElement ReturnDateTime;
 
 	public void chooseVehicles(Map testDataMap) {
-		WebDriverWait wait= new WebDriverWait(driver, 60);
+		WebDriverWait wait= new WebDriverWait(driver, 90);
 		wait.until(ExpectedConditions.visibilityOf(selectACarText));
 		assertTrue(selectACarText.getText().toString().contains("Select a Car"));
-		
-//		String location = pickUpLocationVerify.getText();
-//		String [] locationValue = pickUpLocationVerify.getText().split("");
-//		String locations = locationValue[1].replaceAll("", "");
-		
-//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 //		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 			assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));

@@ -167,7 +167,7 @@ public class BudgetHomePage extends AbstractBasePage {
 			clickOn(reservation);
 			clickOn(makeaReservation);
 
-			WebDriverWait wait = new WebDriverWait(driver, 60);
+			WebDriverWait wait = new WebDriverWait(driver, 90);
 			wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 			String pickupLocations[] = testDataMap.get("PickUpLocation").toString().split(",");
 

@@ -14,6 +14,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.avis.qa.core.AbstractBasePage;
 
@@ -215,7 +217,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	public void reviewReserve(Map testDataMap) {
 
-		//		assertTrue(YourInformation.getText().contains("Your Information"));
 		String location = pickUpLocationVerify.getText();
 		String [] locationValue = pickUpLocationVerify.getText().split("");
 		String locations = locationValue[1].replaceAll("", "");
@@ -320,10 +321,10 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 		clickOn(termsCheck);
 		clickOn(SubmitButton);
-		threadSleep(TEN_SECONDS);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
+		System.out.println(reservationConfirmation.getText());
 		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-		
-		threadSleep(TEN_SECONDS);
 		try {
 		List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
 		for(int i=0; i < s1.size(); i++){
@@ -339,7 +340,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			System.out.println("Popup not visible");
 		}
 		threadSleep(TEN_SECONDS);
-//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
 			assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
 		}
