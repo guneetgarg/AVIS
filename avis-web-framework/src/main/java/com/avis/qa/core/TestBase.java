@@ -127,6 +127,7 @@ public class TestBase {
 				readWriteIntoFile(reportContent, true);
 
 			} else if (result.getStatus() == 2) {
+				System.out.println("failed");
 				TakesScreenshot ss = ((TakesScreenshot) getDriver());
 				File file = ss.getScreenshotAs(OutputType.FILE);
 				File desti = new File("./testdata/" + result.getMethod().getMethodName().toString() + ".png");
