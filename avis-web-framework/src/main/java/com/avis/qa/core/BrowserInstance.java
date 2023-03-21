@@ -68,8 +68,8 @@ public class BrowserInstance {
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.setAcceptInsecureCerts(true);
 		chromeOptions.addArguments("--no-sandbox");
-//        chromeOptions.addArguments("--headless");
-//		chromeOptions.addArguments("--incognito");
+        chromeOptions.addArguments("--headless");
+		chromeOptions.addArguments("--incognito");
 		chromeOptions.addArguments("--disable-dev-shm-usage");
 		chromeOptions.addArguments("--proxy-server='direct://'");
 		chromeOptions.addArguments("--proxy-bypass-list=*");
