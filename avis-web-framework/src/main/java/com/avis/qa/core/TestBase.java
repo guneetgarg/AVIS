@@ -53,6 +53,19 @@ public class TestBase {
 	private ThreadLocal<String> testName = new ThreadLocal<>();
 	private String testCaseName = "";
 	private final ThreadLocal<BrowserInstance> appInstance = new ThreadLocal<>();
+	
+	private void readWriteIntoFile(String reportContent, boolean isFileWritable) throws IOException {
+		File myObj = new File(System.getProperty("user.dir") + TEST_RESULT_XML);
+		if (myObj.createNewFile()) {
+			System.out.println("File created: " + myObj.getName());
+		} else {
+		}
+		FileWriter fr = new FileWriter(myObj, isFileWritable);
+		BufferedWriter f_writer = new BufferedWriter(fr);
+		f_writer.write(reportContent);
+		f_writer.newLine();
+		f_writer.close();
+	}
 
 	@BeforeSuite(alwaysRun = true)
 	public void beforeGroupsTest(XmlTest xmlTest) {
@@ -66,20 +79,6 @@ public class TestBase {
 				+ reportContent + "\n</testsuite>";
 		reportContent = reportContent.replace(reportContent, modifyContent);
 		readWriteIntoFile(reportContent, false);
-	}
-
-	private void readWriteIntoFile(String reportContent, boolean isFileWritable) throws IOException {
-		File myObj = new File(System.getProperty("user.dir") + TEST_RESULT_XML);
-		if (myObj.createNewFile()) {
-			System.out.println("File created: " + myObj.getName());
-		} else {
-		}
-		FileWriter fr = new FileWriter(myObj, isFileWritable);
-		BufferedWriter f_writer = new BufferedWriter(fr);
-		f_writer.write(reportContent);
-		f_writer.newLine();
-		f_writer.close();
-
 	}
 
 	@BeforeTest(alwaysRun = true)
@@ -132,8 +131,10 @@ public class TestBase {
 				File file = ss.getScreenshotAs(OutputType.FILE);
 				File desti = new File("./testdata/" + result.getMethod().getMethodName().toString() + ".png");
 				FileUtils.copyFile(file, desti);
+				
 				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\""
 						+ result.getTestClass() + "\">";
+				
 				if (reportContent.contains("[TestClass name=class")) {
 					reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
 				}
@@ -144,6 +145,7 @@ public class TestBase {
 							+ result.getThrowable().toString().split("Exception:")[1].split(":")[0] + "\">\n<![CDATA["
 							+ result.getThrowable().toString().split("Exception:")[1].split(":")[1]
 									+ result.getThrowable().getMessage() + "]]>\n</failure>\n</testcase>";
+					
 				} else if (result.getThrowable().toString().contains("Error:")) {
 					reportContent = reportContent + "\n<failure type=\""
 							+ result.getThrowable().toString().split("Error:")[0] + "Exception\" message=\""

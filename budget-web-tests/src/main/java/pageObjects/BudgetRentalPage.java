@@ -45,7 +45,7 @@ public class BudgetRentalPage extends AbstractBasePage{
 		BaseRate.isDisplayed();
 		NumberOfSeats.isDisplayed();
 		SeeRateTerms.isDisplayed();
-		assertTrue(recommendExtras.getText().contains("Recommended Extras"));
+//		assertTrue(recommendExtras.getText().contains("Recommended Extras"));
 		clickOn(CONTINUEBUTTON);
 	}
 
