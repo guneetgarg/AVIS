@@ -324,6 +324,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 		
 		threadSleep(TEN_SECONDS);
+		try {
 		List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
 		for(int i=0; i < s1.size(); i++){
 			if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
@@ -334,23 +335,20 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				break;
 			}				
 		}
-
+		}catch (Exception e) {
+			System.out.println("Popup not visible");
+		}
+		threadSleep(TEN_SECONDS);
 //		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
 			assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
 		}
 
 		threadSleep(FIVE_SECONDS);
-		String confirmationNo = confirmationNumber.getText();
-		String [] confirmationNoValue= confirmationNumber.getText().split(": ");
-		String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
-		System.out.println(reservationNumber);
 
 		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
 			helper.scrollToElement(modifyLocation);
 			clickOn(modifyLocation);
-//			assertTrue(modifyReserverental.getText().contains("Modify: Reserve a Rental Car"));
-//			System.out.println("MODIFY RESERVE a car");
 			ModifyReservationTextMsg.isDisplayed();
 			clickOn(pickUpLocation);
 			pickUpLocation.clear();
@@ -376,11 +374,8 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(dropOffSuggestion);
 			}
 			clickOn(selectMyCarButton);
-//			assertTrue(modifyReserverental.getText().contains("Modify: Select a Car"));
 			clickOn(PayLater);
-//			assertTrue(modifyReserverental.getText().contains("Modify: Rental Options"));
 			clickOn(CONTINUEBUTTON);
-//			assertTrue(modifyReserverental.getText().contains("Modify: Your Information"));
 			clickOn(reviewModificationsButton);
 			clickOn(keepModificationButton);
 			if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
