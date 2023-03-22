@@ -21,7 +21,7 @@ public class BudgetAnonymousTestCases extends TestBase{
 		
 		BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
 		budgetHomePage.selectYourCar(testDataMap);
-		
+	
 		BudgetVehiclesPage budgetVehiclesPage=new BudgetVehiclesPage(getDriver());
 		budgetVehiclesPage.chooseVehicles(testDataMap);
 		

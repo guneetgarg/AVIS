@@ -215,7 +215,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
     private WebElement Airline;
 	
 
-	public void reviewReserve(Map testDataMap) {
+	public void reviewReserve(Map testDataMap) throws InterruptedException {
 
 		String location = pickUpLocationVerify.getText();
 		String [] locationValue = pickUpLocationVerify.getText().split("");

@@ -7,6 +7,8 @@ import java.util.Map;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.avis.qa.core.AbstractBasePage;
 
@@ -42,6 +44,8 @@ public class BudgetRentalPage extends AbstractBasePage{
 
 	public void rentalPage(Map testDataMap) {
 //		assertTrue(upliftDetails.getText().contains("or  as low as"));
+		WebDriverWait wait = new WebDriverWait(driver, 90);
+		wait.until(ExpectedConditions.visibilityOf(BaseRate));
 		BaseRate.isDisplayed();
 		NumberOfSeats.isDisplayed();
 		SeeRateTerms.isDisplayed();

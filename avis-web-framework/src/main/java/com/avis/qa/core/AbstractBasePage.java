@@ -33,11 +33,11 @@ public abstract class AbstractBasePage{
         helper = new ElementHelper(driver);
         PageFactory.initElements(driver, this);
         isOnPage();
-        findAndKillPopup();
+//        findAndKillPopup();
     }
 
     protected void clickOn(WebElement webElement) {   
-    	new WebDriverWait(driver, 5)           
+    	new WebDriverWait(driver, 60)           
     	.until(driver -> webElement);   
     	try{       
     		wait.until(ExpectedConditions.elementToBeClickable(webElement));  
@@ -52,9 +52,9 @@ public abstract class AbstractBasePage{
     			}        
     		catch (Exception JsE){    
     			try{               
-    				Actions action = new Actions(driver);    
-    				action.click(webElement);          
-    				action.build().perform();         
+//    				Actions action = new Actions(driver);    
+//    				action.click(webElement);          
+//    				action.build().perform();         
     				}            
     			catch (Exception actionE){     
     				log.info("WebDriver Couldn't locate the element" + actionE.getStackTrace());  

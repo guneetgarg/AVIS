@@ -19,7 +19,7 @@ public class CommonUtils {
 	public static final long FIVE_SECONDS = 5000;
 	public static final long SIXTY_SECONDS = 60000;
 
-	public static final long TEN_SECONDS = 20000;
+	public static final long TEN_SECONDS = 10000;
 
 	/**
 	 * Returns the random number between the min and max number

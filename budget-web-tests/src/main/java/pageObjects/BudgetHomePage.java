@@ -25,7 +25,7 @@ import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoverySt
 
 public class BudgetHomePage extends AbstractBasePage {
 
-	public BudgetHomePage(WebDriver driver) {
+	public BudgetHomePage(WebDriver driver) throws InterruptedException {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}
@@ -159,23 +159,29 @@ public class BudgetHomePage extends AbstractBasePage {
 	private WebElement selectCarTitle;
 
 	public void selectYourCar(Map testDataMap) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 90);
+		Thread.sleep(TEN_SECONDS);
+        List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
 
-		clickOn(AdOverLayCloseButton);
+        if(ele.size()>0) {
+        	driver.findElement(By.xpath("//button[@data-click='close']")).click();
+        	
+        }
+		
+//		wait.until(ExpectedConditions.visibilityOf(AdOverLayCloseButton));
+//		clickOn(AdOverLayCloseButton);
+		
+//		Thread.sleep(FIVE_SECONDS);
 
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
-
+			System.out.println("TEST");
+			Thread.sleep(FIVE_SECONDS);
+			wait.until(ExpectedConditions.visibilityOf(reservation));
+			System.out.println("TEST2");
 			clickOn(reservation);
 			clickOn(makeaReservation);
-
-			WebDriverWait wait = new WebDriverWait(driver, 90);
 			wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
-			String pickupLocations[] = testDataMap.get("PickUpLocation").toString().split(",");
 
-//			for (int i = 0; i < pickupLocations.length; i++) {
-//				if(i>0) {
-//					pickUpLocation.click();
-//					pickUpLocation.clear();
-//				}
 				clickOn(pickUpLocation);
 //				String randomNumber = CommonUtils.getRandomNumber(0, 6);
 //				fillText(pickUpLocation, pickupLocations[Integer.valueOf(randomNumber)]);
