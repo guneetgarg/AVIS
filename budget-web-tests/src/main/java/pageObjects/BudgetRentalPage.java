@@ -1,6 +1,5 @@
 package pageObjects;
 
-import static org.testng.Assert.assertTrue;
 
 import java.util.Map;
 
@@ -42,7 +41,7 @@ public class BudgetRentalPage extends AbstractBasePage{
     private WebElement SeeRateTerms;
 
 
-	public void rentalPage(Map testDataMap) {
+	public void rentalPage(Map<?, ?> testDataMap) {
 //		assertTrue(upliftDetails.getText().contains("or  as low as"));
 		WebDriverWait wait = new WebDriverWait(driver, 90);
 		wait.until(ExpectedConditions.visibilityOf(BaseRate));

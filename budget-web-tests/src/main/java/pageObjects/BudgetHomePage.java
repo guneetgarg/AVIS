@@ -11,23 +11,17 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.avis.qa.core.AbstractBasePage;
-import com.avis.qa.utilities.CommonUtils;
-
-import net.bytebuddy.agent.builder.AgentBuilder.RedefinitionStrategy.DiscoveryStrategy.Explicit;
 
 public class BudgetHomePage extends AbstractBasePage {
 
 	public BudgetHomePage(WebDriver driver) throws InterruptedException {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 
 	private static final String COUPON = "Coupon";
@@ -38,10 +32,7 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "//div[@class='bx-wrap']")
 	private WebElement AdOverLayDiv;
 
-	@FindBy(xpath = "//div[@class='bx-wrap']//button[@data-click='close']")
-	private WebElement AdOverLayCloseButton;
-
-	@FindBy(xpath = "//li[@class='dropdown']")
+	@FindBy(xpath = "//a[contains(text(),'Reservations')]")
 	private WebElement reservation;
 
 	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
@@ -158,7 +149,7 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "(//span[@class='step-title'])[2]")
 	private WebElement selectCarTitle;
 
-	public void selectYourCar(Map testDataMap) throws InterruptedException {
+	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
 		Thread.sleep(TEN_SECONDS);
         List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
@@ -167,11 +158,6 @@ public class BudgetHomePage extends AbstractBasePage {
         	driver.findElement(By.xpath("//button[@data-click='close']")).click();
         	
         }
-		
-//		wait.until(ExpectedConditions.visibilityOf(AdOverLayCloseButton));
-//		clickOn(AdOverLayCloseButton);
-		
-//		Thread.sleep(FIVE_SECONDS);
 
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 			System.out.println("TEST");
@@ -289,7 +275,6 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@Override
 	public void isOnPage() {
-		// TODO Auto-generated method stub
 
 	}
 

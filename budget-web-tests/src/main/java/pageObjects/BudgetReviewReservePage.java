@@ -23,7 +23,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	public BudgetReviewReservePage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -215,9 +214,10 @@ public class BudgetReviewReservePage extends AbstractBasePage{
     private WebElement Airline;
 	
 
-	public void reviewReserve(Map testDataMap) throws InterruptedException {
+	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
 		String location = pickUpLocationVerify.getText();
+		System.out.println(location);
 		String [] locationValue = pickUpLocationVerify.getText().split("");
 		String locations = locationValue[1].replaceAll("", "");
 		
