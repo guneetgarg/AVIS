@@ -209,14 +209,18 @@ public class BudgetHomePage extends AbstractBasePage {
 				}
 
 				if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
+					wait.until(ExpectedConditions.visibilityOf(offerCodes));
 					clickOn(offerCodes);
 					clickOn(addCustomerID);
+					wait.until(ExpectedConditions.visibilityOf(enterCustomerID));
 					clickOn(enterCustomerID);
 					fillText(enterCustomerID, testDataMap.get("CustomerID").toString());
 					fillText(enterLastName, testDataMap.get("LastName1").toString());
 				}
 				if (!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
+					wait.until(ExpectedConditions.visibilityOf(offerCodes));
 					clickOn(offerCodes);
+					wait.until(ExpectedConditions.visibilityOf(AWDOrBCDOrPDN_TextField));
 					clickOn(AWDOrBCDOrPDN_TextField);
 					AWDOrBCDOrPDN_TextField.clear();
 					AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
@@ -230,6 +234,7 @@ public class BudgetHomePage extends AbstractBasePage {
 						}
 					}
 				}
+				wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
 				clickOn(selectMyCarButton);
 
 //				if (isVehicleAvailable()) {
