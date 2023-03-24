@@ -336,7 +336,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
 			System.out.println(reservationConfirmation.getText());
 			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-			Thread.sleep(1000000);
 			try {
 				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
 				for(int i=0; i < s1.size(); i++){
