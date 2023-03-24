@@ -86,10 +86,17 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath="//input[@name='address3']")
 	private WebElement Address3;
 
-	@FindBy(xpath = "//div[@data-funding-source='paypal'] | //span[@class='c-icon paypal-logo']")
+	//	@FindBy(xpath = "//div[@data-funding-source='paypal'] | //span[@class='c-icon paypal-logo']")
+	//	private WebElement PaypalButton;
+	//label[@for='payPal']
+
+	@FindBy(xpath = "//span[@class='c-icon paypal-logo']")
 	private WebElement PaypalButton;
 
-	@FindBy(xpath = "//div[@class='paypal-button-label-container']")
+	//	@FindBy(xpath = "//div[@class='paypal-button-label-container']")
+	//	private WebElement Budget_PaypalRadioButton;
+
+	@FindBy(xpath = "//img[@class='paypal-button-logo paypal-button-logo-paypal paypal-button-logo-gold']")
 	private WebElement Budget_PaypalRadioButton;
 
 	@FindBy(xpath = "//input[@id='email']")
@@ -119,7 +126,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(xpath = "//a[@ng-click='vm.modifyVehicle()']")
 	private WebElement modifyVehicle;
-	
+
 	@FindBy(xpath = "//a[@ng-click='vm.modifyTimePlace()']")
 	private WebElement modifyLocation;
 
@@ -173,7 +180,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(xpath = "//strong[text()='Modify Your Reservation']")
 	private WebElement ModifyReservationTextMsg;
-	
+
 	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
 	private WebElement pickUpLocation;
 
@@ -200,191 +207,196 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(xpath = "(//div[@class='angucomplete-description'])[1]")
 	private WebElement dropOffSuggestion;
-	
+
 	@FindBy(xpath = "(//*[contains(@ng-click,'getVehicles.submit')])[1]")
 	private WebElement selectMyCarButton;
-	
+
 	@FindBy(xpath = "//span[@class='step-title']")
 	private WebElement modifyReserverental;
 
 	@FindBy(xpath = "//*[contains(@name,'flightnumberMob')]")
-    private WebElement flightNumber;
+	private WebElement flightNumber;
 
-    @FindBy(xpath = "//*[contains(@name,'airlineobj')]")
-    private WebElement Airline;
-	
+	@FindBy(xpath = "//*[contains(@name,'airlineobj')]")
+	private WebElement Airline;
+
 
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
-		String location = pickUpLocationVerify.getText();
-		System.out.println(location);
-		String [] locationValue = pickUpLocationVerify.getText().split("");
-		String locations = locationValue[1].replaceAll("", "");
-		
-		assertTrue(pickUpLocationVerify.getText().toString().contains(locations));
-//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
-			assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
-		}
-		if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
-			fillText(firstName,testDataMap.get("FirstName").toString());
-		}
-		if(!testDataMap.get("LastName").toString().equalsIgnoreCase("NA")) {
-			fillText(lastName,testDataMap.get("LastName").toString() );
-		}
-		if(!testDataMap.get("Email").toString().equalsIgnoreCase("NA")) {
-			fillText(emailField,testDataMap.get("Email").toString() );
-		}
-		if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
-			fillText(phoneField, testDataMap.get("PhoneNumber").toString());
-		}
+		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
+			String location = pickUpLocationVerify.getText();
+			System.out.println(location);
+			String [] locationValue = pickUpLocationVerify.getText().split("");
+			String locations = locationValue[1].replaceAll("", "");
+			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
+				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			}
+			//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+				assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
+			}
+			if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
+				fillText(firstName,testDataMap.get("FirstName").toString());
+			}
+			if(!testDataMap.get("LastName").toString().equalsIgnoreCase("NA")) {
+				fillText(lastName,testDataMap.get("LastName").toString() );
+			}
+			if(!testDataMap.get("Email").toString().equalsIgnoreCase("NA")) {
+				fillText(emailField,testDataMap.get("Email").toString() );
+			}
+			if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
+				fillText(phoneField, testDataMap.get("PhoneNumber").toString());
+			}
 
-		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
-			clickOn(creditCardCheckBox);
-			fillText(cardNumber,"379381331688207");
-		}
-		if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
-			fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
-			fillText(step4_CVV,testDataMap.get("CVV").toString());
-			fillText(address1,testDataMap.get("Address").toString());
-		}
-		if(!testDataMap.get("Address3").toString().equalsIgnoreCase("NA")) {
-			fillText(Address3,testDataMap.get("Address3").toString() );
-		}
-		if(!testDataMap.get("City").toString().equalsIgnoreCase("NA")) {
-			fillText(city,testDataMap.get("City").toString());
-		}
-		if(!testDataMap.get("State").toString().equalsIgnoreCase("NA")) {
-			clickOn(state);
-			fillText(state,testDataMap.get("State").toString());
-		}
-		if(!testDataMap.get("ZipCode").toString().equalsIgnoreCase("NA")) {
-			fillText(zip,testDataMap.get("ZipCode").toString());
-		}
-		if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
-			clickOn(PaypalButton);
-			clickOn(Budget_PaypalRadioButton);
-			String mainWindowHandle = driver.getWindowHandle();
-			System.out.println("windowhandle :"+mainWindowHandle);
-			Set<String> allWindowHandles = driver.getWindowHandles();
-			System.out.println("windowhandle :"+allWindowHandles);
-			Iterator<String> iterator = allWindowHandles.iterator();
+			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+				clickOn(creditCardCheckBox);
+				fillText(cardNumber,"379381331688207");
+			}
+			if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
+				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
+				fillText(step4_CVV,testDataMap.get("CVV").toString());
+				fillText(address1,testDataMap.get("Address").toString());
+			}
+			if(!testDataMap.get("Address3").toString().equalsIgnoreCase("NA")) {
+				fillText(Address3,testDataMap.get("Address3").toString() );
+			}
+			if(!testDataMap.get("City").toString().equalsIgnoreCase("NA")) {
+				fillText(city,testDataMap.get("City").toString());
+			}
+			if(!testDataMap.get("State").toString().equalsIgnoreCase("NA")) {
+				clickOn(state);
+				fillText(state,testDataMap.get("State").toString());
+			}
+			if(!testDataMap.get("ZipCode").toString().equalsIgnoreCase("NA")) {
+				fillText(zip,testDataMap.get("ZipCode").toString());
+			}
+			if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
+				clickOn(PaypalButton);
+				System.out.println("Paypal button clicked");
+				clickOn(Budget_PaypalRadioButton);
+				System.out.println("Paypal site");
+				String mainWindowHandle = driver.getWindowHandle();
+				System.out.println("windowhandle :"+mainWindowHandle);
+				Set<String> allWindowHandles = driver.getWindowHandles();
+				System.out.println("windowhandle :"+allWindowHandles);
+				Iterator<String> iterator = allWindowHandles.iterator();
+				System.out.println("Paypal site handle");
+				// Here we will check if child window is present and then switch to child window
+				while (iterator.hasNext()) {
+					String ChildWindow = iterator.next();
+					if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+						driver.switchTo().window(ChildWindow);
 
-			// Here we will check if child window is present and then switch to child window
-			while (iterator.hasNext()) {
-				String ChildWindow = iterator.next();
-				if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
-					driver.switchTo().window(ChildWindow);
+						emailTextField.click();
+						emailTextField.sendKeys(testDataMap.get("PaypalEmail").toString());
+						clickOn(NextButton);
+						clickOn(passwordTextField);
+						passwordTextField.sendKeys(testDataMap.get("PaypalPassword").toString());
+						clickOn(LoginButton);
+						clickOn(AgreeAndContinueButton);
+					}
+				}
 
-					emailTextField.click();
-					emailTextField.sendKeys(testDataMap.get("PaypalEmail").toString());
-					clickOn(NextButton);
-					clickOn(passwordTextField);
-					passwordTextField.sendKeys(testDataMap.get("PaypalPassword").toString());
-					clickOn(LoginButton);
-					clickOn(AgreeAndContinueButton);
+			}
+			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
+				fillText(IataTextFiled,testDataMap.get("IATA").toString());
+			}
+			if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
+
+				clickOn(Airline);
+				fillText(Airline,testDataMap.get("Airline").toString());
+				fillText(flightNumber,testDataMap.get("FlightNumber").toString());
+
+			}
+			if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
+				clickOn(userYourCreditCardCheckbox);
+				clickOn(creditCardCheckBox);
+				fillText(cardNumber, "347651479687420");
+				//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate1").toString());
+				fillText(step4_CVV,testDataMap.get("CVV1").toString());
+				fillText(address1,testDataMap.get("Address1").toString());
+				if(!testDataMap.get("City1").toString().equalsIgnoreCase("NA")) {
+					fillText(city,testDataMap.get("City1").toString());
+				}
+				if(!testDataMap.get("State1").toString().equalsIgnoreCase("NA")) {
+					clickOn(state);
+					fillText(state,testDataMap.get("State1").toString());
+				}
+				if(!testDataMap.get("ZipCode1").toString().equalsIgnoreCase("NA")) {
+					fillText(zip,testDataMap.get("ZipCode1").toString());
+				}
+
+			}
+
+
+			clickOn(termsCheck);
+			clickOn(SubmitButton);
+			WebDriverWait wait = new WebDriverWait(driver, 60);
+			wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
+			System.out.println(reservationConfirmation.getText());
+			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
+			Thread.sleep(1000000);
+			try {
+				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
+				for(int i=0; i < s1.size(); i++){
+					if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
+						driver.switchTo().frame(s1.get(i).getAttribute("id"));	
+						List<WebElement> t = driver.findElements(By.tagName("iframe"));
+						driver.switchTo().frame(t.get(0).getAttribute("id"));
+						driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
+						break;
+					}				
+				}
+			}catch (Exception e) {
+				System.out.println("Popup not visible");
+			}
+			threadSleep(TEN_SECONDS);
+			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
+				assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
+			}
+
+			threadSleep(FIVE_SECONDS);
+
+			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
+				helper.scrollToElement(modifyLocation);
+				clickOn(modifyLocation);
+				ModifyReservationTextMsg.isDisplayed();
+				clickOn(pickUpLocation);
+				pickUpLocation.clear();
+				fillText(pickUpLocation, testDataMap.get("ModifyPickUpLoc").toString());
+				clickOn(suggestionLocation);
+				if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
+					fillText(dropOffLocation, testDataMap.get("ModifyDropOffLocation").toString());
+				}
+				if (!testDataMap.get("ModifyPickUpDate").toString().equalsIgnoreCase("NA")) {
+					clickOn(pickUpDate);
+					pickUpDate.clear();
+					fillText(pickUpDate,testDataMap.get("ModifyPickUpDate").toString());
+				}
+				fillText(pickUpTime,testDataMap.get("ModifyPickUpTime").toString());
+				if (!testDataMap.get("ModifyDropOffDate").toString().equalsIgnoreCase("NA")) {
+					clickOn(returnDatePath);
+					returnDatePath.clear();
+					fillText(returnDatePath,testDataMap.get("ModifyDropOffDate").toString());
+				}
+				fillText(dropOffTime,testDataMap.get("ModifyDropOffTime").toString());
+				if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
+					fillText(enterReturnLocation,testDataMap.get("ModifyDropOffLocation").toString() );
+					clickOn(dropOffSuggestion);
+				}
+				clickOn(selectMyCarButton);
+				clickOn(PayLater);
+				clickOn(CONTINUEBUTTON);
+				clickOn(reviewModificationsButton);
+				clickOn(keepModificationButton);
+				if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
+					BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
+					budgetHomePage.viewModify(testDataMap);
+
 				}
 			}
-
-		}
-		if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
-			fillText(IataTextFiled,testDataMap.get("IATA").toString());
-		}
-		if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
-			
-			clickOn(Airline);
-			fillText(Airline,testDataMap.get("Airline").toString());
-			fillText(flightNumber,testDataMap.get("FlightNumber").toString());
-			
-		}
-		if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
-			clickOn(userYourCreditCardCheckbox);
-			clickOn(creditCardCheckBox);
-			fillText(cardNumber, "347651479687420");
-			//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
-			fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate1").toString());
-			fillText(step4_CVV,testDataMap.get("CVV1").toString());
-			fillText(address1,testDataMap.get("Address1").toString());
-			if(!testDataMap.get("City1").toString().equalsIgnoreCase("NA")) {
-				fillText(city,testDataMap.get("City1").toString());
-			}
-			if(!testDataMap.get("State1").toString().equalsIgnoreCase("NA")) {
-				clickOn(state);
-				fillText(state,testDataMap.get("State1").toString());
-			}
-			if(!testDataMap.get("ZipCode1").toString().equalsIgnoreCase("NA")) {
-				fillText(zip,testDataMap.get("ZipCode1").toString());
-			}
-
-		}
-
-
-		clickOn(termsCheck);
-		clickOn(SubmitButton);
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
-		System.out.println(reservationConfirmation.getText());
-		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-		try {
-		List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
-		for(int i=0; i < s1.size(); i++){
-			if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
-				driver.switchTo().frame(s1.get(i).getAttribute("id"));	
-				List<WebElement> t = driver.findElements(By.tagName("iframe"));
-				driver.switchTo().frame(t.get(0).getAttribute("id"));
-				driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
-				break;
-			}				
-		}
-		}catch (Exception e) {
-			System.out.println("Popup not visible");
-		}
-		threadSleep(TEN_SECONDS);
-		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
-			assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
-		}
-
-		threadSleep(FIVE_SECONDS);
-
-		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
-			helper.scrollToElement(modifyLocation);
-			clickOn(modifyLocation);
-			ModifyReservationTextMsg.isDisplayed();
-			clickOn(pickUpLocation);
-			pickUpLocation.clear();
-			fillText(pickUpLocation, testDataMap.get("ModifyPickUpLoc").toString());
-			clickOn(suggestionLocation);
-			if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
-				fillText(dropOffLocation, testDataMap.get("ModifyDropOffLocation").toString());
-			}
-			if (!testDataMap.get("ModifyPickUpDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(pickUpDate);
-				pickUpDate.clear();
-				fillText(pickUpDate,testDataMap.get("ModifyPickUpDate").toString());
-			}
-			fillText(pickUpTime,testDataMap.get("ModifyPickUpTime").toString());
-			if (!testDataMap.get("ModifyDropOffDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(returnDatePath);
-				returnDatePath.clear();
-				fillText(returnDatePath,testDataMap.get("ModifyDropOffDate").toString());
-			}
-			fillText(dropOffTime,testDataMap.get("ModifyDropOffTime").toString());
-			if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
-				fillText(enterReturnLocation,testDataMap.get("ModifyDropOffLocation").toString() );
-				clickOn(dropOffSuggestion);
-			}
-			clickOn(selectMyCarButton);
-			clickOn(PayLater);
-			clickOn(CONTINUEBUTTON);
-			clickOn(reviewModificationsButton);
-			clickOn(keepModificationButton);
-			if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
-				BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
-				budgetHomePage.viewModify(testDataMap);
-
-			}
-		}
 			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
 				threadSleep(TEN_SECONDS);
 				clickOn(cancelReservationButton);
@@ -396,18 +408,19 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 			}
 
-		
+
+		}
 	}
 
-	private WebDriver getDriver() {
-		// TODO Auto-generated method stub
-		return null;
+		private WebDriver getDriver() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void isOnPage() {
+			// TODO Auto-generated method stub
+
+		}
+
 	}
-
-	@Override
-	public void isOnPage() {
-		// TODO Auto-generated method stub
-
-	}
-
-}
