@@ -1,6 +1,8 @@
 package pageObjects;
 
 
+import static org.testng.Assert.assertTrue;
+
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
@@ -48,7 +50,8 @@ public class BudgetRentalPage extends AbstractBasePage{
 		BaseRate.isDisplayed();
 		NumberOfSeats.isDisplayed();
 		SeeRateTerms.isDisplayed();
-//		assertTrue(recommendExtras.getText().contains("Recommended Extras"));
+		wait.until(ExpectedConditions.visibilityOf(recommendExtras));
+		assertTrue(recommendExtras.getText().contains("Recommended Extras"));
 		clickOn(CONTINUEBUTTON);
 	}
 

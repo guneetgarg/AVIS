@@ -152,96 +152,90 @@ public class BudgetHomePage extends AbstractBasePage {
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
 		Thread.sleep(TEN_SECONDS);
-        List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
-
-        if(ele.size()>0) {
-        	driver.findElement(By.xpath("//button[@data-click='close']")).click();
-        	
-        }
+		List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
+		if(ele.size()>0) {
+			driver.findElement(By.xpath("//button[@data-click='close']")).click();
+		}
 
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
-			System.out.println("TEST");
-			Thread.sleep(FIVE_SECONDS);
 			wait.until(ExpectedConditions.visibilityOf(reservation));
-			System.out.println("TEST2");
 			clickOn(reservation);
+			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
 			clickOn(makeaReservation);
 			wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
-
-				clickOn(pickUpLocation);
-//				String randomNumber = CommonUtils.getRandomNumber(0, 6);
-//				fillText(pickUpLocation, pickupLocations[Integer.valueOf(randomNumber)]);
-				fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
-				clickOn(suggestionLocation);
-				if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
-					clickOn(pickUpDate);
-					pickUpDate.clear();
-					fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
-				}
-				if (!testDataMap.get("PickUpTime").toString().equalsIgnoreCase("NA")) {
+			clickOn(pickUpLocation);
+			fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
+			wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+			clickOn(suggestionLocation);
+			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(pickUpDate);
+				pickUpDate.clear();
+				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
+			}
+			if (!testDataMap.get("PickUpTime").toString().equalsIgnoreCase("NA")) {
 				fillText(pickUpTime, testDataMap.get("PickUpTime").toString());
-				}
-				if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
-					clickOn(returnDatePath);
-					returnDatePath.clear();
-					fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
-				}
-				if (!testDataMap.get("DropOffTime").toString().equalsIgnoreCase("NA")) {
+			}
+			if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(returnDatePath);
+				returnDatePath.clear();
+				fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
+			}
+			if (!testDataMap.get("DropOffTime").toString().equalsIgnoreCase("NA")) {
 				fillText(dropOffTime, testDataMap.get("DropOffTime").toString());
-				}
-				if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
-					fillText(enterReturnLocation, testDataMap.get("DropOffLocation").toString());
-					clickOn(dropOffSuggestion);
-				}
-				if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
-					clickOn(ageDropDown);
-					fillText(ageDropDown, testDataMap.get("Age").toString());
-				}
-				if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
-					clickOn(selectCountry);
-					fillText(selectCountry, testDataMap.get("Country").toString());
-					clickOn(selectCountry);
-				}
-				if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
-					clickOn(offerCodes);
-					clickOn(CouponCheckBox);
-					fillText(CouponTextField, testDataMap.get(COUPON).toString());
-				}
+			}
+			if (!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+				fillText(enterReturnLocation, testDataMap.get("DropOffLocation").toString());
+				clickOn(dropOffSuggestion);
+			}
+			if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
+				clickOn(ageDropDown);
+				fillText(ageDropDown, testDataMap.get("Age").toString());
+			}
+			if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
+				clickOn(selectCountry);
+				fillText(selectCountry, testDataMap.get("Country").toString());
+				clickOn(selectCountry);
+			}
+			if (!testDataMap.get(COUPON).toString().equalsIgnoreCase("NA")) {
+				clickOn(offerCodes);
+				clickOn(CouponCheckBox);
+				fillText(CouponTextField, testDataMap.get(COUPON).toString());
+			}
 
-				if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
-					wait.until(ExpectedConditions.visibilityOf(offerCodes));
-					clickOn(offerCodes);
-					clickOn(addCustomerID);
-					wait.until(ExpectedConditions.visibilityOf(enterCustomerID));
-					clickOn(enterCustomerID);
-					fillText(enterCustomerID, testDataMap.get("CustomerID").toString());
-					fillText(enterLastName, testDataMap.get("LastName1").toString());
-				}
-				if (!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
-					wait.until(ExpectedConditions.visibilityOf(offerCodes));
-					clickOn(offerCodes);
-					wait.until(ExpectedConditions.visibilityOf(AWDOrBCDOrPDN_TextField));
-					clickOn(AWDOrBCDOrPDN_TextField);
-					AWDOrBCDOrPDN_TextField.clear();
-					AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
-					if (!testDataMap.get("CorporateEmailID").toString().equalsIgnoreCase("NA")) {
-						fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
+			if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(offerCodes));
+				clickOn(offerCodes);
+				clickOn(addCustomerID);
+				wait.until(ExpectedConditions.visibilityOf(enterCustomerID));
+				clickOn(enterCustomerID);
+				fillText(enterCustomerID, testDataMap.get("CustomerID").toString());
+				fillText(enterLastName, testDataMap.get("LastName1").toString());
+			}
+			if (!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(offerCodes));
+				clickOn(offerCodes);
+				wait.until(ExpectedConditions.visibilityOf(AWDOrBCDOrPDN_TextField));
+				clickOn(AWDOrBCDOrPDN_TextField);
+				AWDOrBCDOrPDN_TextField.clear();
+				AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
+				if (!testDataMap.get("CorporateEmailID").toString().equalsIgnoreCase("NA")) {
+					fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
+				} else {
+					if (testDataMap.get("BCD").toString().contains("W8")) {
+						fillText(membershipTextField, "112000000000");
 					} else {
-						if (testDataMap.get("BCD").toString().contains("W8")) {
-							fillText(membershipTextField, "112000000000");
-						} else {
-							fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
-						}
+						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
 					}
 				}
-				wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
-				clickOn(selectMyCarButton);
+			}
+			wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
+			clickOn(selectMyCarButton);
 
-//				if (isVehicleAvailable()) {
-//					break;
-//				}
+			//				if (isVehicleAvailable()) {
+			//					break;
+			//				}
 
-//			}
+			//			}
 
 		}
 
@@ -263,7 +257,7 @@ public class BudgetHomePage extends AbstractBasePage {
 		Thread.sleep(10000);
 		List<WebElement> errorMessage = driver.findElements(By.id("warning-msg-err"));
 		List<WebElement> selectCarTitle = driver.findElements(By.xpath("(//a[@class='modify-link']/span)[2]"));
-		
+
 		System.out.println(errorMessage.size());
 		System.out.println(selectCarTitle.size());
 		if(errorMessage.size()==0 && selectCarTitle.size()>0) {

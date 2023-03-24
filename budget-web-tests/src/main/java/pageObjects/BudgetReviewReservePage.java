@@ -219,36 +219,48 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(xpath = "//*[contains(@name,'airlineobj')]")
 	private WebElement Airline;
+	
+	@FindBy(xpath = "//button[@aria-label='Close']")
+	private WebElement close;
+	
 
 
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
 		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
+			WebDriverWait wait = new WebDriverWait(driver, 90);
 			String location = pickUpLocationVerify.getText();
 			System.out.println(location);
 			String [] locationValue = pickUpLocationVerify.getText().split("");
 			String locations = locationValue[1].replaceAll("", "");
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(pickUpLocationVerify));
 				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			}
 			//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(ReturnLocValue));
 				assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
 			}
 			if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(firstName));
 				fillText(firstName,testDataMap.get("FirstName").toString());
 			}
 			if(!testDataMap.get("LastName").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(lastName));
 				fillText(lastName,testDataMap.get("LastName").toString() );
 			}
 			if(!testDataMap.get("Email").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(emailField));
 				fillText(emailField,testDataMap.get("Email").toString() );
 			}
 			if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(phoneField));
 				fillText(phoneField, testDataMap.get("PhoneNumber").toString());
 			}
 
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+				wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
 				clickOn(creditCardCheckBox);
 				fillText(cardNumber,"379381331688207");
 			}
@@ -271,16 +283,14 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				fillText(zip,testDataMap.get("ZipCode").toString());
 			}
 			if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(PaypalButton));
 				clickOn(PaypalButton);
-				System.out.println("Paypal button clicked");
 				clickOn(Budget_PaypalRadioButton);
-				System.out.println("Paypal site");
 				String mainWindowHandle = driver.getWindowHandle();
 				System.out.println("windowhandle :"+mainWindowHandle);
 				Set<String> allWindowHandles = driver.getWindowHandles();
 				System.out.println("windowhandle :"+allWindowHandles);
 				Iterator<String> iterator = allWindowHandles.iterator();
-				System.out.println("Paypal site handle");
 				// Here we will check if child window is present and then switch to child window
 				while (iterator.hasNext()) {
 					String ChildWindow = iterator.next();
@@ -302,13 +312,13 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				fillText(IataTextFiled,testDataMap.get("IATA").toString());
 			}
 			if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
-
 				clickOn(Airline);
 				fillText(Airline,testDataMap.get("Airline").toString());
 				fillText(flightNumber,testDataMap.get("FlightNumber").toString());
 
 			}
 			if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
+				wait.until(ExpectedConditions.visibilityOf(userYourCreditCardCheckbox));
 				clickOn(userYourCreditCardCheckbox);
 				clickOn(creditCardCheckBox);
 				fillText(cardNumber, "347651479687420");
@@ -332,7 +342,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 			clickOn(termsCheck);
 			clickOn(SubmitButton);
-			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
 			System.out.println(reservationConfirmation.getText());
 			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
@@ -343,7 +352,8 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 						driver.switchTo().frame(s1.get(i).getAttribute("id"));	
 						List<WebElement> t = driver.findElements(By.tagName("iframe"));
 						driver.switchTo().frame(t.get(0).getAttribute("id"));
-						driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
+						wait.until(ExpectedConditions.visibilityOf(close));
+						clickOn(close);
 						break;
 					}				
 				}
@@ -353,12 +363,14 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			threadSleep(TEN_SECONDS);
 			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
+				wait.until(ExpectedConditions.visibilityOf(couponVerify));
 				assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
 			}
 
 			threadSleep(FIVE_SECONDS);
 
 			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
+				wait.until(ExpectedConditions.visibilityOf(modifyLocation));
 				helper.scrollToElement(modifyLocation);
 				clickOn(modifyLocation);
 				ModifyReservationTextMsg.isDisplayed();
@@ -397,12 +409,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				}
 			}
 			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
-				threadSleep(TEN_SECONDS);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
 				clickOn(cancelReservationButton);
 				clickOn(confirmCancelReservationButton);
 				clickOn(cancelTerms);
 				clickOn(cancelReservation);
-				threadSleep(FIVE_SECONDS);
+				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
 				assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
 
 			}
