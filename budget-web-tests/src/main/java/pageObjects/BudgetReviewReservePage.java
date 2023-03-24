@@ -346,14 +346,22 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			System.out.println(reservationConfirmation.getText());
 			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
 			try {
+				System.out.println("try");
 				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
 				for(int i=0; i < s1.size(); i++){
+					System.out.println("1");
 					if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
-						driver.switchTo().frame(s1.get(i).getAttribute("id"));	
+						System.out.println("2");
+						driver.switchTo().frame(s1.get(i).getAttribute("id"));
+						System.out.println("3");
 						List<WebElement> t = driver.findElements(By.tagName("iframe"));
+						System.out.println("4");
 						driver.switchTo().frame(t.get(0).getAttribute("id"));
+						System.out.println("5");
 						wait.until(ExpectedConditions.visibilityOf(close));
+						System.out.println("6");
 						clickOn(close);
+						System.out.println("7");
 						break;
 					}				
 				}
@@ -411,8 +419,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
 				clickOn(cancelReservationButton);
+				wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
 				clickOn(confirmCancelReservationButton);
+				wait.until(ExpectedConditions.visibilityOf(cancelTerms));
 				clickOn(cancelTerms);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
 				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
 				assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));

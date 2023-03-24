@@ -149,10 +149,12 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 		}
 
 		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("Paylater")) {
+			wait.until(ExpectedConditions.visibilityOf(PayLater));
 			helper.scrollToElement(PayLater);
 			clickOn(PayLater);
 		}
 		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+			wait.until(ExpectedConditions.visibilityOf(PayNow));
 			clickOn(PayNow);
 		}
 	}
