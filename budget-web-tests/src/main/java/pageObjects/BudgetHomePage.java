@@ -17,6 +17,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 
 public class BudgetHomePage extends AbstractBasePage {
 
@@ -37,7 +38,7 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
 	private WebElement makeaReservation;
-
+	
 	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
 	private WebElement pickUpLocation;
 
@@ -148,6 +149,7 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "(//span[@class='step-title'])[2]")
 	private WebElement selectCarTitle;
+	
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
@@ -170,7 +172,13 @@ public class BudgetHomePage extends AbstractBasePage {
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 				clickOn(pickUpDate);
 				pickUpDate.clear();
+				if(Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
+					nextMonth.click();
+					nextMonth.click();
+					nextMonth.click();
+				}
 				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
+				
 			}
 			if (!testDataMap.get("PickUpTime").toString().equalsIgnoreCase("NA")) {
 				fillText(pickUpTime, testDataMap.get("PickUpTime").toString());

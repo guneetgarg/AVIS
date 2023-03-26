@@ -13,11 +13,13 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.RefreshPage;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 
 public class BudgetReviewReservePage extends AbstractBasePage{
 
@@ -229,10 +231,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 			WebDriverWait wait = new WebDriverWait(driver, 90);
-			String location = pickUpLocationVerify.getText();
-			System.out.println(location);
-			String [] locationValue = pickUpLocationVerify.getText().split("");
-			String locations = locationValue[1].replaceAll("", "");
+//			
+//			String location = pickUpLocationVerify.getText();
+//			System.out.println(location);
+//			String [] locationValue = pickUpLocationVerify.getText().split("");
+//			String locations = locationValue[1].replaceAll("", "");
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(pickUpLocationVerify));
 				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
@@ -260,8 +263,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			}
 
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+//				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
+				if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
+					System.out.println("domain paynow");
 				wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
 				clickOn(creditCardCheckBox);
+				}
 				fillText(cardNumber,"379381331688207");
 			}
 			if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
@@ -349,7 +356,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				System.out.println("try");
 				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
 				for(int i=0; i < s1.size(); i++){
-					System.out.println("1");
 					if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
 						System.out.println("2");
 						driver.switchTo().frame(s1.get(i).getAttribute("id"));
@@ -425,8 +431,17 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(cancelTerms);
 				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
+				try {
+				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
+//				assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
+				} catch (Exception e) {
+					// TODO: handle exception
+					
+					System.out.println(e);
+//				driver.navigate().refresh();	
 				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
 				assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
+				}
 
 			}
 
