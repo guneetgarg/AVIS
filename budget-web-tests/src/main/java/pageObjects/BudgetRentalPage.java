@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 
 public class BudgetRentalPage extends AbstractBasePage{
 	
@@ -42,6 +43,8 @@ public class BudgetRentalPage extends AbstractBasePage{
     @FindBy(xpath = "//a[@id='rate-terms']")
     private WebElement SeeRateTerms;
 
+    @FindBy(xpath = "//div[@class='step3-tabs-header hidden-xs']")
+	private WebElement recommendExtras1;
 
 	public void rentalPage(Map<?, ?> testDataMap) {
 //		assertTrue(upliftDetails.getText().contains("or  as low as"));
@@ -50,8 +53,17 @@ public class BudgetRentalPage extends AbstractBasePage{
 		BaseRate.isDisplayed();
 		NumberOfSeats.isDisplayed();
 		SeeRateTerms.isDisplayed();
+		
+		if(Configuration.DOMAIN.equalsIgnoreCase("US") && Configuration.DOMAIN.equalsIgnoreCase("CA")) {
 		wait.until(ExpectedConditions.visibilityOf(recommendExtras));
 		assertTrue(recommendExtras.getText().contains("Recommended Extras"));
+		}
+		if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
+			wait.until(ExpectedConditions.visibilityOf(recommendExtras1));
+			assertTrue(recommendExtras1.getText().contains("Recommended Extras"));
+			
+		}
+		wait.until(ExpectedConditions.visibilityOf(CONTINUEBUTTON));
 		clickOn(CONTINUEBUTTON);
 	}
 

@@ -5,6 +5,7 @@ import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.FIVE_SECONDS;
 
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Map;
@@ -27,8 +28,8 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	private static final String COUPON = "Coupon";
 
-	@FindBy(id = "avis-logo")
-	private WebElement payLessBrandText;
+	@FindBy(xpath = "//a[@class='navbar-brand']")
+	private WebElement budgetBrandText;
 
 	@FindBy(xpath = "//div[@class='bx-wrap']")
 	private WebElement AdOverLayDiv;
@@ -36,7 +37,9 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "//a[contains(text(),'Reservations')]")
 	private WebElement reservation;
 
-	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
+//	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
+//	private WebElement makeaReservation;
+	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
 	private WebElement makeaReservation;
 	
 	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
@@ -158,25 +161,22 @@ public class BudgetHomePage extends AbstractBasePage {
 		if(ele.size()>0) {
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
-
-		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
+		budgetBrandText.isDisplayed();
+		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {		
 			wait.until(ExpectedConditions.visibilityOf(reservation));
 			clickOn(reservation);
 			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
 			clickOn(makeaReservation);
+			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 			wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 			clickOn(pickUpLocation);
 			fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
 			wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
 			clickOn(suggestionLocation);
+			}
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 				clickOn(pickUpDate);
 				pickUpDate.clear();
-				if(Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
-					nextMonth.click();
-					nextMonth.click();
-					nextMonth.click();
-				}
 				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
 				
 			}

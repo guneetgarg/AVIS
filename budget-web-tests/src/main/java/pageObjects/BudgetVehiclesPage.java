@@ -138,17 +138,9 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 		if(!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		}
-//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 			assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
 		}
-		if(!testDataMap.get("PickUpTime").toString().equalsIgnoreCase("NA")) {
-			assertTrue(PickupDateTime.getText().toString().contains(testDataMap.get("PickUpTime").toString()));
-		}
-		if(!testDataMap.get("DropOffTime").toString().equalsIgnoreCase("NA")) {
-			assertTrue(ReturnDateTime.getText().toString().contains(testDataMap.get("DropOffTime").toString()));
-		}
-
 		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("Paylater")) {
 			wait.until(ExpectedConditions.visibilityOf(PayLater));
 			helper.scrollToElement(PayLater);

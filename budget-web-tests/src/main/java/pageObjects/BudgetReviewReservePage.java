@@ -286,6 +286,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(state);
 				fillText(state,testDataMap.get("State").toString());
 			}
+			
 			if(!testDataMap.get("ZipCode").toString().equalsIgnoreCase("NA")) {
 				fillText(zip,testDataMap.get("ZipCode").toString());
 			}
@@ -433,12 +434,10 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(cancelReservation);
 				try {
 				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
-//				assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
 				} catch (Exception e) {
 					// TODO: handle exception
 					
 					System.out.println(e);
-//				driver.navigate().refresh();	
 				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
 				assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
 				}
