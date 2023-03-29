@@ -37,10 +37,10 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "//a[contains(text(),'Reservations')]")
 	private WebElement reservation;
 
-//	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
-//	private WebElement makeaReservation;
-	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
+	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
 	private WebElement makeaReservation;
+//	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
+//	private WebElement makeaReservation;
 	
 	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
 	private WebElement pickUpLocation;
