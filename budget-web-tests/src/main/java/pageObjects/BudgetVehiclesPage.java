@@ -126,16 +126,22 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 
 	@FindBy(xpath = "(//div[@class='day-time-info'])[2]")
 	private WebElement ReturnDateTime;
+	
+	@FindBy(xpath = "//div[@class='info-key-drop-text']")
+	private WebElement verifyKeydropmessage;
+	
+	
 
 	public void chooseVehicles(Map testDataMap) {
 		WebDriverWait wait= new WebDriverWait(driver, 60);
+		if(!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 		wait.until(ExpectedConditions.visibilityOf(selectACarText));
 		assertTrue(selectACarText.getText().toString().contains("Select a Car"));
 		
 		String location = pickUpLocationVerify.getText();
 		String [] locationValue = pickUpLocationVerify.getText().split("");
 		String locations = locationValue[1].replaceAll("", "");
-		if(!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
+//		if(!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		}
 		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
@@ -150,7 +156,11 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 			wait.until(ExpectedConditions.visibilityOf(PayNow));
 			clickOn(PayNow);
 		}
+		if(testDataMap.get("VerifyKeyDropMessage").toString().equalsIgnoreCase("Yes")) {
+			verifyKeydropmessage.isDisplayed();
+		}
 	}
+	
 	@Override
 	public void isOnPage() {
 		// TODO Auto-generated method stub

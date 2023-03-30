@@ -346,8 +346,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				}
 
 			}
-
-
+			if(!testDataMap.get("ReserveButton").toString().equalsIgnoreCase("NA")) {
 			clickOn(termsCheck);
 			clickOn(SubmitButton);
 			wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
@@ -381,7 +380,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				wait.until(ExpectedConditions.visibilityOf(couponVerify));
 				assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
 			}
-
+			}
 			threadSleep(FIVE_SECONDS);
 
 			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {

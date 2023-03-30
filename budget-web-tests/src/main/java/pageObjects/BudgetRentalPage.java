@@ -49,6 +49,7 @@ public class BudgetRentalPage extends AbstractBasePage{
 	public void rentalPage(Map<?, ?> testDataMap) {
 //		assertTrue(upliftDetails.getText().contains("or  as low as"));
 		WebDriverWait wait = new WebDriverWait(driver, 90);
+		if(testDataMap.get("Continue").toString().equalsIgnoreCase("Yes")) {
 		wait.until(ExpectedConditions.visibilityOf(BaseRate));
 		BaseRate.isDisplayed();
 		NumberOfSeats.isDisplayed();
@@ -65,6 +66,7 @@ public class BudgetRentalPage extends AbstractBasePage{
 		}
 		wait.until(ExpectedConditions.visibilityOf(CONTINUEBUTTON));
 		clickOn(CONTINUEBUTTON);
+		}
 	}
 
 	@Override

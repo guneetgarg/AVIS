@@ -161,18 +161,19 @@ public class BudgetHomePage extends AbstractBasePage {
 		if(ele.size()>0) {
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
-		budgetBrandText.isDisplayed();
-		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {		
+//		budgetBrandText.isDisplayed();
+		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {	
+			budgetBrandText.isDisplayed();
 			wait.until(ExpectedConditions.visibilityOf(reservation));
 			clickOn(reservation);
 			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
 			clickOn(makeaReservation);
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
-			wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
-			clickOn(pickUpLocation);
-			fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
-			wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
-			clickOn(suggestionLocation);
+				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
+				clickOn(pickUpLocation);
+				fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
+				wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+				clickOn(suggestionLocation);
 			}
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 				clickOn(pickUpDate);
@@ -226,18 +227,29 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(AWDOrBCDOrPDN_TextField);
 				AWDOrBCDOrPDN_TextField.clear();
 				AWDOrBCDOrPDN_TextField.sendKeys(testDataMap.get("BCD").toString(), Keys.TAB);
+				if(Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
+					wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
+					clickOn(selectMyCarButton);
+				}
 				if (!testDataMap.get("CorporateEmailID").toString().equalsIgnoreCase("NA")) {
+					corporateEmailId.sendKeys(Keys.TAB);
 					fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
-				} else {
+				} 
+				else {
 					if (testDataMap.get("BCD").toString().contains("W8")) {
-						fillText(membershipTextField, "112000000000");
-					} else {
+						membershipTextField.sendKeys(Keys.TAB);
+						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
+					} 
+					if (!testDataMap.get("MemberNumber").toString().equalsIgnoreCase("NA")) {
+						membershipTextField.sendKeys(Keys.TAB);
 						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
 					}
 				}
 			}
+			if(testDataMap.get("SelectMyCar").toString().equalsIgnoreCase("Yes")) {
 			wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
 			clickOn(selectMyCarButton);
+			}
 
 			//				if (isVehicleAvailable()) {
 			//					break;
@@ -248,7 +260,7 @@ public class BudgetHomePage extends AbstractBasePage {
 		}
 
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
-
+			budgetBrandText.isDisplayed();
 			clickOn(HeaderLoginButton);
 			waitForVisibilityOfElement(UserName);
 			UserName.sendKeys(testDataMap.get("Username").toString());
