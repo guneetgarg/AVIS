@@ -39,8 +39,9 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
 	private WebElement makeaReservation;
-//	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
-//	private WebElement makeaReservation;
+	
+	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
+	private WebElement makeaReservation1;
 	
 	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
 	private WebElement pickUpLocation;
@@ -166,8 +167,18 @@ public class BudgetHomePage extends AbstractBasePage {
 			budgetBrandText.isDisplayed();
 			wait.until(ExpectedConditions.visibilityOf(reservation));
 			clickOn(reservation);
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("QA")){
+				wait.until(ExpectedConditions.visibilityOf(makeaReservation1));
+				clickOn(makeaReservation1);		
+			}
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("UAT")){
+				wait.until(ExpectedConditions.visibilityOf(makeaReservation1));
+				clickOn(makeaReservation1);	
+			}
+			else {
 			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
 			clickOn(makeaReservation);
+			}
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 				clickOn(pickUpLocation);
