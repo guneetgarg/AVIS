@@ -48,7 +48,7 @@ public class TestBase {
     public static final String BUDGET = "Budget";
     public static final String TEST_DATA = "testData";
 
-	private static final String TEST_RESULT_XML = "/testResult.xml";
+    private static final String TEST_RESULT_XML = "/"+Configuration.getValue("domain")+"_testResult.xml";
 	protected ElementHelper helper;
 	private ThreadLocal<String> testName = new ThreadLocal<>();
 	private String testCaseName = "";
