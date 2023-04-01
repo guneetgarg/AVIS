@@ -1,10 +1,12 @@
 package pageObjects;
 
+import static com.avis.qa.core.Configuration.URL;
 import static com.avis.qa.utilities.CommonUtils.FIVE_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.TEN_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 import static org.testng.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -189,8 +191,10 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "((//div[@class='angucomplete-results'])[1]//div[@class='angucomplete-description'])[1] | ((//div[@id='PicLoc_dropdown'])[1]//div[@class='angucomplete-row'])[1]")
 	private WebElement suggestionLocation;
 
-	@FindBy(xpath = "//input[@ng-model='vm.reservationModel.pickUpDateDisplay']")
+	@FindBy(xpath = "//div[@class='col-xs-3 res-inputFld dateImg']//input[@ng-model='vm.reservationModel.pickUpDateDisplay']")
 	private WebElement pickUpDate;
+	
+	//div[@class='col-xs-3 res-inputFld dateImg']//input[@ng-model='vm.reservationModel.pickUpDateDisplay']
 
 	@FindBy(xpath = "//*[contains(@name,'reservationModel.pickUpTime')]")
 	private WebElement pickUpTime;
@@ -225,13 +229,80 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//button[@aria-label='Close']")
 	private WebElement close;
 	
+	@FindBy(xpath = "//span[text()='Base Rate']")
+    private WebElement BaseRate;
+	
+	@FindBy(xpath = "//span[@class='four-seats-feat']")
+    private WebElement NumberOfSeats;
+	
+    @FindBy(xpath = "//a[@id='rate-terms']")
+    private WebElement SeeRateTerms;
 
+    @FindBy(xpath = "//span[@ng-if=\"vm.currencySymbol!='$ CA'\"]//span[@ng-bind-html='vm.prod.reservationSummary.rateSummary.currencySymbol']")
+	private WebElement VerifySymbol;
+    
+    @FindBy(xpath = "//div[@class='taxes-fees']")
+    private WebElement feesTaxes;
+
+    @FindBy(xpath = "//div[@class='estimate mobile-hide']")
+    private WebElement estimatedTotal;
+
+    @FindBy(xpath = "//div[@ng-show='showTerms']")
+    private WebElement verifyRateTerms;
+    
+    @FindBy(id = "res-conf-makeNewRes")
+    private WebElement makeaNewReservation;
+    
+    @FindBy(id = "res-view-lastName")
+    private WebElement viewmodifylastName;
+    
+    @FindBy(id = "res-view-confirmationNumber")
+    private WebElement viewmodifyConfirmationNumber;
+    
+    @FindBy(xpath = " //button[@ng-click='vm.CNValidation.submit(VMCForm);']")
+    private WebElement findReservation;
+    
+    @FindBy(xpath = "//span[contains(text(),'Modify: Reserve a Rental Car')]")
+    private WebElement modifyReserveaCar;
+  
+    @FindBy(xpath = "//span[contains(text(),'Modify: Select a Car')]")
+    private WebElement modifySelectACar;
+    
+    @FindBy(xpath = "//div[@class='col-sm-6 col-md-4 source']//div[@class='day-time-info']")
+    private WebElement verifyPickupDateandTime;
+    
+    @FindBy(xpath = "//div[@class='col-sm-6 col-md-4 destination hidden-xs']//div[@class='day-time-info']")
+    private WebElement verifyDropoffDateandTime;
+    
+    @FindBy(xpath = "//span[contains(text(),'Modify: Rental Options')]")
+    private WebElement modifyRentalOptions;
+   
+    @FindBy(xpath = "//div[@class='col-sm-6 source']//div[@class='day-time-info']")
+    private WebElement modifyRentalPickDate;
+    
+    @FindBy(xpath = "//div[@class='col-sm-6 destination']//div[@class='day-time-info']")
+    private WebElement modifyRentalDropDate;
+    
+    @FindBy(xpath = "//div[@class='estimate mobile-hide text-size-1_5x']")
+    private WebElement EstimatedTotal;
+            
 
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
 		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 			WebDriverWait wait = new WebDriverWait(driver, 90);
-//			
+			wait.until(ExpectedConditions.visibilityOf(BaseRate));
+			BaseRate.isDisplayed();
+			VerifySymbol.isDisplayed();
+			feesTaxes.isDisplayed();
+			if(Configuration.DOMAIN.equalsIgnoreCase("US") && Configuration.DOMAIN.equalsIgnoreCase("CA")) {
+				estimatedTotal.isDisplayed();
+				}
+				if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
+					EstimatedTotal.isDisplayed();
+				}
+			NumberOfSeats.isDisplayed();
+			SeeRateTerms.isDisplayed();			
 //			String location = pickUpLocationVerify.getText();
 //			System.out.println(location);
 //			String [] locationValue = pickUpLocationVerify.getText().split("");
@@ -382,11 +453,32 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			}
 			}
 			threadSleep(FIVE_SECONDS);
-
+			String confirmationNo = confirmationNumber.getText();
+			System.out.println(confirmationNo);
+			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
+			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
+			System.out.println(reservationNumber);
+			
+			
+			if(testDataMap.get("ViewModifyCancel").toString().equalsIgnoreCase("Yes")) {
+				viewmodifylastName.click();
+				fillText(viewmodifylastName,testDataMap.get("LastName").toString());
+				fillText(viewmodifyConfirmationNumber,confirmationNo );
+				findReservation.click();
+				
+			}
 			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
 				wait.until(ExpectedConditions.visibilityOf(modifyLocation));
 				helper.scrollToElement(modifyLocation);
 				clickOn(modifyLocation);
+				modifyReserveaCar.isDisplayed();
+				pickUpLocation.isDisplayed();
+				dropOffLocation.isDisplayed();
+				pickUpTime.isDisplayed();
+				returnDatePath.isDisplayed();
+				dropOffTime.isDisplayed();
+				enterReturnLocation.isDisplayed();
+				selectMyCarButton.isDisplayed();
 				ModifyReservationTextMsg.isDisplayed();
 				clickOn(pickUpLocation);
 				pickUpLocation.clear();
@@ -412,7 +504,22 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 					clickOn(dropOffSuggestion);
 				}
 				clickOn(selectMyCarButton);
+				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("ModifyPickUpLoc").toString()));
+				ReturnLocValue.isDisplayed();
+				verifyPickupDateandTime.isDisplayed();
+				verifyDropoffDateandTime.isDisplayed();
 				clickOn(PayLater);
+				modifyRentalOptions.isDisplayed();
+				modifyRentalPickDate.isDisplayed();
+				modifyRentalDropDate.isDisplayed();
+				BaseRate.isDisplayed();
+				VerifySymbol.isDisplayed();
+				feesTaxes.isDisplayed();
+				estimatedTotal.isDisplayed();
+				NumberOfSeats.isDisplayed();
+				SeeRateTerms.isDisplayed();
+				SeeRateTerms.click();
+				verifyRateTerms.isDisplayed();
 				clickOn(CONTINUEBUTTON);
 				clickOn(reviewModificationsButton);
 				clickOn(keepModificationButton);
@@ -446,6 +553,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 		}
 	}
+
+
+		private Object getBrowserInstance() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 		private WebDriver getDriver() {
 			// TODO Auto-generated method stub

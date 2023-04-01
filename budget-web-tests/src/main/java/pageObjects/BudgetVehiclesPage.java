@@ -90,6 +90,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 
 public class BudgetVehiclesPage extends AbstractBasePage {
 
@@ -130,14 +131,20 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 	@FindBy(xpath = "//div[@class='info-key-drop-text']")
 	private WebElement verifyKeydropmessage;
 	
+//	@FindBy(xpath = "//div[@class='payatcntr col-xs-6']//span[@ng-bind-html='car.payLaterRate.currencySymbol']")
+	@FindBy(xpath = "//span[@ng-bind-html='car.payLaterRate.currencySymbol']")
+	private WebElement verifySymbol;
 	
+	//div[@class="payatcntr col-xs-6"]//span[@ng-bind-html='car.payLaterRate.currencySymbol']
 
 	public void chooseVehicles(Map testDataMap) {
 		WebDriverWait wait= new WebDriverWait(driver, 60);
 		if(!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 		wait.until(ExpectedConditions.visibilityOf(selectACarText));
 		assertTrue(selectACarText.getText().toString().contains("Select a Car"));
-		
+		if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
+		verifySymbol.isDisplayed();
+		}
 		String location = pickUpLocationVerify.getText();
 		String [] locationValue = pickUpLocationVerify.getText().split("");
 		String locations = locationValue[1].replaceAll("", "");

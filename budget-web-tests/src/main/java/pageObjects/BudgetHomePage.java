@@ -2,6 +2,7 @@ package pageObjects;
 
 import static com.avis.qa.utilities.CommonUtils.TEN_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.TWO_SECONDS;
+import static com.avis.qa.core.Configuration.URL;
 import static com.avis.qa.utilities.CommonUtils.FIVE_SECONDS;
 
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
@@ -154,12 +155,16 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "(//span[@class='step-title'])[2]")
 	private WebElement selectCarTitle;
 	
+	@FindBy(xpath = "//div[@class='col-lg-12 res-PageError']//span[@class='mainErrorText info-error-msg-text'][1]")
+	private WebElement errorMessage90days;
+	
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
 		Thread.sleep(TEN_SECONDS);
 		List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
 		if(ele.size()>0) {
+			threadSleep(FIVE_SECONDS);
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
 //		budgetBrandText.isDisplayed();
@@ -167,15 +172,15 @@ public class BudgetHomePage extends AbstractBasePage {
 			budgetBrandText.isDisplayed();
 			wait.until(ExpectedConditions.visibilityOf(reservation));
 			clickOn(reservation);
-			if(Configuration.ENVIRONMENT.equalsIgnoreCase("QA")){
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("qa")){
 				wait.until(ExpectedConditions.visibilityOf(makeaReservation1));
 				clickOn(makeaReservation1);		
 			}
-			if(Configuration.ENVIRONMENT.equalsIgnoreCase("UAT")){
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("uat")){
 				wait.until(ExpectedConditions.visibilityOf(makeaReservation1));
 				clickOn(makeaReservation1);	
 			}
-			else {
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("ci11")){
 			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
 			clickOn(makeaReservation);
 			}
@@ -280,6 +285,44 @@ public class BudgetHomePage extends AbstractBasePage {
 			threadSleep(TWO_SECONDS);
 			clickUsingJS(LoginButton);
 		}
+		
+		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Verify")) {
+			budgetBrandText.isDisplayed();
+			wait.until(ExpectedConditions.visibilityOf(reservation));
+			clickOn(reservation);
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("qa")){
+				wait.until(ExpectedConditions.visibilityOf(makeaReservation1));
+				clickOn(makeaReservation1);		
+			}
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("uat")){
+				wait.until(ExpectedConditions.visibilityOf(makeaReservation1));
+				clickOn(makeaReservation1);	
+			}
+			if(Configuration.ENVIRONMENT.equalsIgnoreCase("ci11")){
+			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
+			clickOn(makeaReservation);
+			}
+			fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+			clickOn(suggestionLocation);
+			
+			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(pickUpDate);
+				pickUpDate.clear();
+				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
+			}
+			if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(returnDatePath);
+				returnDatePath.clear();
+				fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
+			}
+			if (testDataMap.get("ErrorMessage90").toString().equalsIgnoreCase("Yes")) {
+				clickOn(selectMyCarButton);
+				threadSleep(FIVE_SECONDS);
+				System.out.println("wait till error 90 days");
+				assertTrue(errorMessage90days.isDisplayed());
+				System.out.println("verified 90 days");
+			}
+		}
 
 	}
 
@@ -301,6 +344,15 @@ public class BudgetHomePage extends AbstractBasePage {
 	public void viewModify(Map<?, ?> testDataMap) {
 		clickOn(ReservationsTab);
 		clickOn(Reservation_ViewModifyCancelLink);
+	}
+
+	public void launchUrl(String uRL) {
+		launchUrl(Configuration.URL);
+	}
+
+	private Object getBrowserInstance() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
