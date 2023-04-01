@@ -16,7 +16,7 @@ import pageObjects.PaylessVehiclesPage;
 public class PaylessAuthenticatedTestCases extends TestBase {
 
 	@Test(groups = {REGRESSION, SANITY, PAYLESSCAR}, dataProvider = "dataAsMap", dataProviderClass = ExcelDataProvider.class)
-	public void AuthenticatedUserTestCases(Map<?, ?> testDataMap) {		
+	public void AuthenticatedUserTestCases(Map testDataMap) throws InterruptedException {		
 		launchUrl();
 		
 		PaylessHomePage paylessHomepage = new PaylessHomePage(getDriver());

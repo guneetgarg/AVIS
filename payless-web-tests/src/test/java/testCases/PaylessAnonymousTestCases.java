@@ -5,7 +5,6 @@ import java.util.Map;
 import org.testng.annotations.Test;
 
 import com.avis.qa.core.TestBase;
-import com.avis.qa.utilities.CSVFileReader;
 import com.avis.qa.utilities.ExcelDataProvider;
 
 import pageObjects.PaylessHomePage;
@@ -17,7 +16,7 @@ import pageObjects.PaylessVehiclesPage;
 public class PaylessAnonymousTestCases extends TestBase {
 
 	@Test(groups = {REGRESSION, SANITY, PAYLESSCAR}, dataProvider = "dataAsMap", dataProviderClass = ExcelDataProvider.class)
-	public void AnonymousUserTestCases(Map<?, ?> testDataMap) {		
+	public void AnonymousUserTestCases(Map<?, ?> testDataMap) throws InterruptedException {		
 		launchUrl();
 		
 		PaylessHomePage paylessHomepage = new PaylessHomePage(getDriver());

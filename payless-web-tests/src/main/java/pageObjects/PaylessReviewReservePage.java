@@ -5,13 +5,10 @@ import static com.avis.qa.utilities.CommonUtils.TEN_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
 import static org.testng.Assert.assertTrue;
 
-import java.awt.RenderingHints.Key;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -104,6 +101,10 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 	@FindBy(xpath = "//h1[@ng-if=\"(vm.pageName == carRentalConstant.confirmationPage || (vm.pageName == '/display-confirmationPage')) && !vm.disableModifyCancel\"]")
 	private WebElement reservationConfirmation;
 
+	@FindBy(xpath = "//h1[@ng-if=\"(vm.pageName == carRentalConstant.confirmationPage || (vm.pageName == '/display-confirmationPage')) && !vm.disableModifyCancel\"]")
+	private WebElement reservationConfirmation1;
+
+
 	@FindBy(xpath = "(//div[@class='location-info'])[1] | (//div[@class='summary-location'])[1]")
 	private WebElement pickUpLocationVerify;
 
@@ -112,7 +113,7 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 
 	@FindBy(xpath = "(//div[contains(div/text(),'Your Information')]//child::p)")
 	private List<WebElement> userInfoList;
-	
+
 	@FindBy(xpath = "//div[contains(div/text(),'Your Information')]")
 	private List<WebElement> yourInformation;
 
@@ -166,14 +167,14 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 
 
 	public PaylessReviewReservePage(WebDriver driver) {
-		super(driver);
-		// TODO Auto-generated constructor stub
+		super(driver);	
 	}
 
-	public void reviewPage(Map testDataMap) {
+	public void reviewPage(Map<?, ?> testDataMap) {
 
-		assertTrue(MakeMyReservation.getText().contains("Make My Reservation"));
-		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {			
+		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {	
+			assertTrue(MakeMyReservation.getText().contains("Make My Reservation"));
+
 			if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
 				fillText(firstName,testDataMap.get("FirstName").toString());
 			}
@@ -189,14 +190,14 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 				fillText(IataTextFiled,testDataMap.get("IATA").toString() );
 			}
-//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
-//
-//				
-//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+			//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+			//
+			//				
+			//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
 				fillText(cardNumber,"379381331688207");
-		}
-		if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
+			}
+			if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
 				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
 				fillText(step4_CVV,testDataMap.get("CVV").toString());
 				fillText(address1,testDataMap.get("Address").toString());
@@ -220,12 +221,13 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 					break;
 				}				
 			}
-
+			threadSleep(FIVE_SECONDS);
 			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			assertTrue(pickUpLocationVerify.getText().toString().contains((PaylessHomePage.location).toString()));
 			assertTrue(userInfoList.get(0).getText().contains(testDataMap.get("Email").toString()));
 			threadSleep(FIVE_SECONDS);
 			String confirmationNo = confirmationNumber.getText();
+			System.out.println(confirmationNo);
 			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
 			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
 
@@ -247,84 +249,77 @@ public class PaylessReviewReservePage extends AbstractBasePage {
 					confirmCancelReservationButton.click();
 				}
 			}
+			System.out.println("Passed reviewReservationPage");
 		}
-	
+
 		else {
-			if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
-				fillText(phoneField, testDataMap.get("PhoneNumber").toString());
-			}
-			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
-				fillText(IataTextFiled,testDataMap.get("IATA").toString() );
-			}
-			//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+			if(testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
+				if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
+					fillText(phoneField, testDataMap.get("PhoneNumber").toString());
+				}
+				if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
+					fillText(IataTextFiled,testDataMap.get("IATA").toString() );
+				}
+				//			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
 
-			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow"))
-				fillText(cardNumber,"343248952280825");
-		
-		if(!testDataMap.get("ExpiryMonth").toString().equalsIgnoreCase("NA")) {
-			clickOn(expiryMonthDropDown);
-			fillText(expiryMonthDropDown,testDataMap.get("ExpiryMonth").toString());
-			clickOn(expiryYearDropDown);
-			fillText(expiryYearDropDown, testDataMap.get("ExpiryYear").toString());
-			fillText(step4_CVV,testDataMap.get("CVV").toString());
+				if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow"))
+					fillText(cardNumber,"343248952280825");
 
-
-		}
-		clickOn(termsCheck);
-		clickOn(SubmitButton);
-
-		threadSleep(TEN_SECONDS);
-		List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
-		for(int i=0; i < s1.size(); i++){
-			if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
-				driver.switchTo().frame(s1.get(i).getAttribute("id"));	
-				List<WebElement> t = driver.findElements(By.tagName("iframe"));
-				driver.switchTo().frame(t.get(0).getAttribute("id"));
-				driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
-				break;
-			}				
-		}
-		
-		threadSleep(TEN_SECONDS);
-		assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-		String confirmationNo1 = confirmationNumber.getText();
-		String [] confirmationNoValue1= confirmationNumber.getText().split(": ");
-		String reservationNumber1 = confirmationNoValue1[1].replaceAll(":", "");
-
-		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
-			clickOn(editLink);
-			//			assertTrue(mofifyChooseCarVerify.getText().contains("Modify: Choose a Car"));
-			clickOn(PayLater);
-			clickOn(CONTINUEBUTTON);
-			clickOn(reviewModificationsButton);
-			clickOn(keepModificationButton);
-			clickOn(makeNewReservationButton);
-		}
-			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
-				clickOn(viewOrModifyReservationButton);
-				fillText(lastNameTextField, testDataMap.get("LastName").toString());
-				confirmationNumberTextField.sendKeys(reservationNumber1);
-				clickOn(submitButton);
+				if(!testDataMap.get("ExpiryMonth").toString().equalsIgnoreCase("NA")) {
+					clickOn(expiryMonthDropDown);
+					fillText(expiryMonthDropDown,testDataMap.get("ExpiryMonth").toString());
+					clickOn(expiryYearDropDown);
+					fillText(expiryYearDropDown, testDataMap.get("ExpiryYear").toString());
+					fillText(step4_CVV,testDataMap.get("CVV").toString());
+				}
+				clickOn(termsCheck);
+				clickOn(SubmitButton);
 				threadSleep(TEN_SECONDS);
-				clickOn(cancelReservationButton);
-				clickOn(confirmCancelReservationButton);
-				clickOn(cancelTerms);
-				clickOn(cancelReservation);
+				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
+				for(int i=0; i < s1.size(); i++){
+					if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
+						driver.switchTo().frame(s1.get(i).getAttribute("id"));	
+						List<WebElement> t = driver.findElements(By.tagName("iframe"));
+						driver.switchTo().frame(t.get(0).getAttribute("id"));
+						driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
+						break;
+					}				
+				}
+
+				threadSleep(TEN_SECONDS);
+				assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
+				assertTrue(pickUpLocationVerify.getText().toString().contains((PaylessHomePage.location).toString()));
+				String confirmationNo1 = confirmationNumber.getText();
+				System.out.println(confirmationNo1);
+				String [] confirmationNoValue1= confirmationNumber.getText().split(": ");
+				String reservationNumber1 = confirmationNoValue1[1].replaceAll(":", "");
+
+				if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
+					clickOn(editLink);
+					//			assertTrue(mofifyChooseCarVerify.getText().contains("Modify: Choose a Car"));
+					clickOn(PayLater);
+					clickOn(CONTINUEBUTTON);
+					clickOn(reviewModificationsButton);
+					clickOn(keepModificationButton);
+					clickOn(makeNewReservationButton);
+				}
+				if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
+					clickOn(viewOrModifyReservationButton);
+					fillText(lastNameTextField, testDataMap.get("LastName").toString());
+					confirmationNumberTextField.sendKeys(reservationNumber1);
+					clickOn(submitButton);
+					threadSleep(TEN_SECONDS);
+					clickOn(cancelReservationButton);
+					clickOn(confirmCancelReservationButton);
+					clickOn(cancelTerms);
+					clickOn(cancelReservation);
+				}
 			}
 		}
-		}
+	}
 
 
-
-private Object getDriver() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public void isOnPage() {
-	// TODO Auto-generated method stub
-
-}
+	@Override
+	public void isOnPage() {
+	}
 }

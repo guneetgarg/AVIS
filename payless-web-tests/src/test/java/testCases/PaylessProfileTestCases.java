@@ -4,7 +4,9 @@ import java.util.Map;
 import org.testng.annotations.Test;
 import com.avis.qa.core.TestBase;
 import com.avis.qa.utilities.ExcelDataProvider;
-import pageObjects.PaylessSignUp;
+
+import pageObjects.PaylessPofileDashboardPage;
+import pageObjects.PaylessSignUpPage;
 
 
 	public class PaylessProfileTestCases extends TestBase {
@@ -13,8 +15,12 @@ import pageObjects.PaylessSignUp;
 		public void ProfileTestCases(Map<?,  ?> testDataMap) {		
 			launchUrl();
 			
-			PaylessSignUp paylessSignUp = new PaylessSignUp(getDriver());
-			paylessSignUp.signup(testDataMap);
+			PaylessSignUpPage paylessSignUpPage = new PaylessSignUpPage(getDriver());
+			paylessSignUpPage.signup(testDataMap);
+			
+			PaylessPofileDashboardPage paylessPofileDashboardPage = new PaylessPofileDashboardPage(getDriver());
+			paylessPofileDashboardPage.modify(testDataMap);
+			
 
 		}
 	}
