@@ -167,7 +167,6 @@ public class BudgetHomePage extends AbstractBasePage {
 			threadSleep(FIVE_SECONDS);
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
-//		budgetBrandText.isDisplayed();
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {	
 			budgetBrandText.isDisplayed();
 			wait.until(ExpectedConditions.visibilityOf(reservation));
