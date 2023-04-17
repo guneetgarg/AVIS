@@ -80,6 +80,9 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//input[@id='CDWchk']")
     private WebElement LDWCheckbox;
 
+    @FindBy(xpath = "//input[@id='PAIchk']")
+    private WebElement PAICheckbox;
+
     @FindBy(xpath = "(//div[@class='location-info'])[1]")
     private WebElement PickUpLocValue;
 
@@ -103,6 +106,10 @@ public class Extras extends AbstractBasePage {
 
     public Extras(WebDriver driver) {
         super(driver);
+    }
+    {
+        if (Configuration.DOMAIN.equals("CA"))
+        LDWCheckbox=PAICheckbox;
     }
 
     public ReviewAndBook Step3Submit() {

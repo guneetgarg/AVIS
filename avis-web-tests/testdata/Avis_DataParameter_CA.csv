@@ -1,0 +1,46 @@
+###################################_RESERVATION_##################################
+Avis_Reservation_ErrorMessage_PayNow_CA,YYT,Tester,M,test,9838234567,4539770399469980,576
+Avis_RES_FlightInfo_DigitalWallet_PayPal_PayNow_CA,YYT,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
+Avis_RES_G_typeCoupon_LocMandate_FlightInfo_SMSCheckbox_IATA_PayLater_CA,YQM,GUZZ008,Abhishek,J,test,8658066321,Aer Lingus,1234,0123141G,GUZZ008 - Free Tank of Gas w/ Rental of CSS/Paperless
+Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_CA,YYT,Canada,P469100,Abhishek,J,test,8980765645,1234
+Avis_Reservation_OutboundAndMultiCurrency_Paylater_CA,LAS,Canada,Hrishi,K,AbgEcom,8980765645,1234,CAD
+Avis_Location_Search_MnemonicCodeRes_CA,YYT,Hrishi,K,ABG_Location,9897867898
+Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_CA,LDY,3
+Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_CA,YYT,22
+Avis_Reservation_USAA_PayLater_CA,YYZ,A177201,14518727,Tester,M,test,8980765645
+Avis_Misc1_OffersPage_Reservation_CA,YYT,YQM,Ishita,Garg,test,8658066321
+Avis_Location_Browse_Category_CA,test
+Avis_Reservation_OneWay_PayLater_CA,YYT,YQM,Ishita,Garg,test,8658066321
+Avis_Reservation_TierBundle_PayLater_CA,YYT,Dhanapriya,K,test,9600685486,4263982640269299,73
+Avis_Reservation_Outbound_PayNow_CA,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
+Avis_Misc_CarGuide_Res_CA,YYZ,Ishita,Garg,test,8658066321
+Avis_Misc_OffersPage_Reservation_CA,SFO,Ishita,Garg,test,8658066321
+Avis_Misc_OffersPage_SignUp_CA,sharanya.g@mindtree.com,Ishita,Garg,test
+Avis_Misc_OneClick_VanityURL_CA,/aarporg,AARP
+Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_CA,YYZ,10/01/22,11:00 AM,YQM,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
+Avis_Reservation_CCOLocation_PayLater_CA,YYZ,hrishi,K,ABGCCO,8788989786,343710684134463
+Avis_Reservation_Costco_PayLater_CA,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
+Avis_Reservation_EMEA90Days_ErrorMessage_CA,LDY,5
+Avis_Reservation_EMEA330Days_ErrorMessage_CA,CPT,14
+Avis_Reservation_OneClick_Step3_CA,/en/reservation#/oneclick?PICKUP_YEAR=2019&PICKUP_MONTH=7&PICKUP_DAY=23&PICKUP_HOUR=9&PICKUP_MINUTE=0&PICKUP_AM_PM=AM&RETURN_YEAR=2019&RETURN_MONTH=7&RETURN_DAY=30&RETURN_HOUR=9&RETURN_MINUTE=0&RETURN_AM_PM=AM&PICKUP_LOCATION_CODE=SFO&RETURN_LOCATION_CODE=SFO&RENTAL_ONEWAY=false&RATE_CODE=76&COUNTRY_OF_RESIDENCE_CODE=US&CAR_GROUP_CODE=W&STEP_CODE=4
+Avis_Reservation_GEBUser_PayLater_CA,YYZ,EV300W,GEB,Corpo,test,8658066321
+Avis_Reservation_GtypeCouponProcessing_PayLater_CA,YYZ,GUZZ002,Ishita,Garg,test,8658066321
+Avis_Reservation_UtypeCouponProcessing_PayLater_CA,YYT,UUZZ007,Ishita,Garg,test,8658066321
+Avis_Reservation_MtypeCouponProcessing_PayLater_CA,YYT,MUZZ012,Ishita,Garg,test,8658066321
+Avis_Reservation_Inbound_PayLater_CA,YYZ,U S A,Hrishi,K,AbgEcom,8980765645
+Avis_Reservation_Inbound_PayNow_CA,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,343710684134463,123
+Avis_Reservation_SnowChain_PayLater_CA,MXP,Hrishi,K,ABGSnowChain,8622443583
+Avis_Reservation_Recognised_Paylater_CA,YYZ,8TL47W,G,YYZ
+Avis_Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater_CA,YYZ,21,Tester,M,test,9838234567
+Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_CA,YYZ,3:00 AM,A363800,Tester,M,test,8622443583,0123141G,YYZ
+Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_CA,YYZ,Dhanapriya,K,test,9600685486,123,YGK,TUZZ005
+Avis_Reservation_TtypeCoupon_PayLater_CA,YYZ,TUZZ008,Abhishek,J,test,8658066321,TUZZ008 - Reward Day Plus 500 Bonus Miles/Paperless Cpn
+Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_CA,YYZ,3:00 AM,MUYY001,Abhishek,J,test,9600685486
+Avis_RES_OneWay_USAA_PayLater_CA,R5O,YQM,A108301,111789732130,Abhishek,J,test,9600685486
+Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_CA,YYZ,U S A,Abhishek,K,test,8980765645,1234,C$,CAD
+Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_CA,YYZ,A6666000,A6666000@ACCBUSINESS.COM,Abhishek,K,test,8980765645,4929723679720422,5447144508353949
+Avis_RES_UtypeCoupon_Tierbundle_PayLater_CA,YYZ,11:00 AM,2:30 PM,UUZZ003,Abhishek,J,test,8658066321,UUZZ003 - Single Upgrade w/ Rental of GPS/Paperless Cpn
+Avis_RES_Costco_DigitalWallet_PayPal_PayLater_CA,YYZ,A108301,111789732130,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321
+Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_CA,YYZ,U S A,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
+Avis_RES_Modify_flow_Step1_to_step4_CA,YYZ,Abhishek,J,test,9600685486,4929723679720422,123,Canada,YQM
+Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_CA,SFO,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,USD,CAD

@@ -169,9 +169,12 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "(//button[@type='reset'])[1]")
     private WebElement AdPopup;
 
+    @FindBy(xpath = "//button[text()='Confirm My Choices']")
+    private WebElement ChoicesPopup;
 
     public Vehicles(WebDriver driver) {
         super(driver);
+        //clickOn(ChoicesPopup);
     }
 
     int sizeAllVehicle;
@@ -224,7 +227,7 @@ public class Vehicles extends AbstractBasePage {
     public Extras step2SubmitPayNow() {
         threadSleep(TWO_SECONDS);
         helper.scrollToElement(step2PayNowSubmitButton);
-        clickUsingJS(step2PayNowSubmitButton);
+        clickOn(step2PayNowSubmitButton);
         return new Extras(driver);
     }
 

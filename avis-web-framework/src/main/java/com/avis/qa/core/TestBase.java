@@ -168,7 +168,7 @@ public class TestBase {
 			System.out.println(e);
 		}
 
-//		getDriver().quit();
+		getDriver().quit();
 	}
 
 	public void deleteFile() {

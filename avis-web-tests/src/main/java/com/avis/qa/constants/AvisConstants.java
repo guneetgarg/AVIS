@@ -26,6 +26,8 @@ public class AvisConstants {
 
     public static final String PICK_UP_TIME = "9:00 AM";
     public static final String DROP_UP_TIME = "9:00 AM";
+
+    public static final String TEST = "Test";
     public static String getAvisUrl(String path) {
         return Configuration.URL.replace("/en/home", path);
     }

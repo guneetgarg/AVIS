@@ -1,4 +1,4 @@
-####################################_RESERVATION_##################################
+###################################_RESERVATION_##################################
 Avis_Reservation_OutboundAndMultiCurrency_Paylater_US,YYZ,U S A,Hrishi,K,AbgEcom,8980765645,1234,USD
 Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_US,LAS,Canada,Abhishek,K,test,8980765645,1234,C$,USD
 Avis_RES_DigitalWallet_AmazonPay_Paynow_US,EWR,Abhishek,K,test,8980765645,abhishek.jn@statusneo.com,Aj527@321
@@ -32,9 +32,9 @@ Reservation_Outbound_PayNow,YYZ,ishan,K,AbgEcom,8980765645,343710684134463,123
 Avis_Reservation_Inbound_PayNow_US,YYZ,Canada,Hrishi,K,AbgEcom,8980765645,343710684134463,123
 Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_US,SFO,Canada,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_Reservation_USAA_PayLater_US,XB4,A177201,14518727,Tester,M,test,8980765645
-Avis_RES_OneWay_USAA_PayLater_US,EWR,JFK,A177201,38298026,Abhishek,J,test,9600685486
+Avis_RES_OneWay_USAA_PayLater_US,EWR,SFO,A177201,38298026,Abhishek,J,test,9600685486
 Avis_Reservation_Costco_PayLater_US,XB4,A108301,111789732130,Ishita,Garg,test,8658066321
-Avis_Reservation_OneWay_PayLater_US,LAS,JFK,Ishita,Garg,test,8658066321
+Avis_Reservation_OneWay_PayLater_US,LAS,SFO,Ishita,Garg,test,8658066321
 Avis_Reservation_MtypeCouponProcessing_PayLater_US,LAS,MUZZ012,Ishita,Garg,test,8658066321
 Avis_Reservation_UtypeCouponProcessing_PayLater_US,LAS,UUZZ003,Ishita,Garg,test,8658066321
 Avis_Reservation_GtypeCouponProcessing_PayLater_US,YYZ,GUZZ002,Ishita,Garg,test,8658066321
@@ -60,7 +60,7 @@ Avis_Location_Browse_Category_US,test
 #Avis_Rental_Ereceipt_LookUp_US,U S A,K,709050274,American Advantage,1K56E60
 
 ###############################_PROFILE_#################################
-#Avis_Profile_Enrollment_Create_US,U S A,firstName,lastName,testUserEamil,Password@789,908 N Dodge St,address 2,52245,Iowa City,IA 
+#Avis_Profile_Enrollment_Create_US,U S A,firstName,lastName,testUserEamil,Password@789,908 N Dodge St,address 2,52245,Iowa City,IA
 #Avis_Profile_Management_Update_US,6CU87V,1234567890Aa@,Testing@123,A,Abg001,Hogwart University,8978976786,123
 #Avis_Profile_Lookup_UserName_US,Harbor,Kate,amazonqa@givmail.com,36017
 #Avis_Profile_Lookup_Password_US,Harbor,Kate,amazonqa@givmail.com,36017
@@ -104,7 +104,7 @@ Budget_RES_Profile_Modify_flow_Step1_to_step4_US,DYANI@YOPMAIL.COM,Dyani@1234,SF
 Budget_RES_Profile_FlightInfo_DigitalWallet_PayPal_PayNow_US,abhishekjain527@gmail.com,Aj527@321,SFO,Abhishek,J,test,9600685486,abhishekjain527@gmail.com,Aj527@321,Aer Lingus,1234
 
 ####################################_MISC_######################################
-Avis_Misc_SmallBizz_Enrollment_US,,,Hrishi,K,ABGnetworkSmall,8970987867,Hrishikesh129,calicut university,College Station,Texas,77845 
+Avis_Misc_SmallBizz_Enrollment_US,,,Hrishi,K,ABGnetworkSmall,8970987867,Hrishikesh129,calicut university,College Station,Texas,77845
 Avis_Misc_CBPDirect_EnrollmentAndReservation_US,U S A ,hrishi,k,ABGEcom,ABGEcomA@789,701 Ocean ave,address 2,08701,lakewood,NJ,LAS
 Avis_Misc_OffersPage_Reservation_US,YYZ,Ishita,Garg,test,8658066321
 Avis_Misc_OffersPage_SignUp_US,sharanya.g@mindtree.com,Ishita,Garg,test
@@ -120,9 +120,9 @@ Avis_Misc_OneClick_VanityURL_US,/terms,Avis Preferred Terms
 Avis_Misc_OneClick_VanityURL_US,/usaa,USAA
 BRG,/en/products-and-services/services/best-rate-guarantee/best-rate-claim-form
 Avis_RES_Misc_Verify_Underage_onStep1_FleetFliter_VehicleType_Seats_Mileage_Price_onStep2_US,SFO,22
-Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,LDY,3
+Avis_RES_EMEA90Days_ErrorMessage_Step1_Res_widget_US,SFO,12
 Avis_RES_Misc_Step1AndStep4_ErrorMsg_Validation_US,SFO,10/01/22,11:00 AM,EWR,12/01/22,11:30 AM,A12345,j,A6666000,A6666000@ACCBUSINESS.COM,ratecode,UUZZ003,3333444455556666
-Avis_Misc1_OffersPage_Reservation_US,LAS,JFK,Ishita,Garg,test,8658066321
+Avis_Misc1_OffersPage_Reservation_US,LAS,SFO,Ishita,Garg,test,8658066321
 
 #################################_GENERIC_#####################################
 Concur_AuthCredentials,8TN00U,Password123

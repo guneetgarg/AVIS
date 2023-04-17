@@ -3,6 +3,7 @@ package com.avis.qa.pages;
 
 import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.utilities.CommonUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -31,14 +32,23 @@ public class Locations extends AbstractBasePage {
     @FindBy(xpath = "(//button[contains(text(),'USA')])[2] | //button[contains(text(),'United States')]")
     WebElement USACategory;
 
+    @FindBy(xpath = "//button[normalize-space()='Canada']")
+    WebElement CanadaCareogary;
+
     @FindBy(xpath = "//button[contains(text(),'United States')]")
     WebElement UnitedStatesCategory;
 
     @FindBy(xpath = "//button[contains(text(),'Newark')]")
     WebElement NewarkCategory;
 
+    @FindBy(xpath="//button[normalize-space()='Burnaby']")
+    WebElement CanadaState;
+
     @FindBy(xpath = "//button[contains(text(),'New Jersey')]")
     WebElement NewJersyCategory;
+
+    @FindBy(xpath = "//button[normalize-space()='British Columbia']")
+    WebElement CanadaLocation;
 
     @FindBy(xpath = "(//*[contains(text(),'Newark')])[4]")
     WebElement NewarkAirportCategory;
@@ -55,11 +65,23 @@ public class Locations extends AbstractBasePage {
     @FindBy(xpath = "(//a[@title='Newark Liberty Intl Airport 1 car rental'])[2]")
     WebElement makeAReservationButtonWidget;
 
+    @FindBy(xpath="//li[@id='BrowsepushPin_1']//a[@title='Burnaby MetroPointe car rental'][normalize-space()='Make a Reservation']")
+    WebElement makeAReservationButtonWidget_CA;
     @FindBy(xpath = "(//a[@title=\"Newark Liberty Intl Airport car rental\"])[2]")
     WebElement makeAReservationButtonBudgetWidget;
 
     public Locations(WebDriver driver) {
         super(driver);
+    }
+
+    // This block for Setting up Webelement object for Canada Site
+    {
+        if (Configuration.DOMAIN.equals("CA")) {
+            USACategory = CanadaCareogary;
+            NewJersyCategory = CanadaLocation;
+            NewarkCategory = CanadaState;
+            makeAReservationButtonWidget = makeAReservationButtonWidget_CA;
+        }
     }
 
     public Locations searchLocation(String pickUpLocation) {

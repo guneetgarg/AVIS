@@ -2,6 +2,7 @@ package com.avis.qa.pages;
 
 import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -84,12 +85,19 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//span[contains(@ng-if,'product.code != carRentalConstant.equipmentCodeCSSG')]")
     private WebElement rentalOptionsRSN;
 
-    @FindBy(xpath = "(//h3)[1]")
+//    @FindBy(xpath = "(//h3)[1]")
+//    private WebElement NameDetails;
+
+    @FindBy(xpath = "//div[@class='rate-benefit yrinfosec confirmation-key clearfix']/h3")
     private WebElement NameDetails;
 
-    @FindBy(xpath = "((//div[@class='col-lg-4 col-sm-6 col-xs-12 pad-zero'])[1]//p)[1]")
+//    @FindBy(xpath = "((//div[@class='col-lg-4 col-sm-6 col-xs-12 pad-zero'])[1]//p)[1]")
+//    private WebElement EmailConfirmationPage;
+
+        @FindBy(xpath = " //strong[contains(text(),'Email')]/parent::p")
     private WebElement EmailConfirmationPage;
 
+    //p//strong[contains(text(),'Email')]
     @FindBy(xpath = "//div[contains(@class,'info-key-drop-text')]/p")
     private WebElement keyDropInfo;
 
@@ -124,8 +132,17 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "(//span[contains(text(),'Cover Roadside Issues (RSN)')])[1]")
     private WebElement RSNCoverageText;
 
+    @FindBy(xpath = "//div[@ng-repeat='product in vm.confirmation.reservationSummary.rateSummary.selectedProducts']//span[contains(text(),'Extended Roadside Assistance (RSN)')]")
+    private WebElement CARSNCoverageText;
+
+
     @FindBy(xpath = "(//span[contains(text(),'Hands-Free Navigation (GPS)')])[1]")
     private WebElement GPSCoverageText;
+
+    @FindBy(xpath = "//div[@ng-repeat='product in vm.confirmation.reservationSummary.rateSummary.selectedProducts']//span[contains(text(),'GPS Navigation (GPS)')]")
+    private WebElement CAGPSCoverageText;
+
+
 
     @FindBy(xpath = "(//span[@class='additional-text discount-summary-section'])[2]")
     private WebElement AWDCouponValue;
@@ -168,6 +185,13 @@ public class Confirmation extends AbstractBasePage {
 
     public Confirmation(WebDriver driver) {
         super(driver);
+    }
+
+    {
+        if (Configuration.DOMAIN.equals("CA")) {
+            GPSCoverageText = CAGPSCoverageText;
+            RSNCoverageText= CARSNCoverageText;
+        }
     }
 
     public boolean isConfirmationNumberDisplayed() {
@@ -232,7 +256,7 @@ public class Confirmation extends AbstractBasePage {
         helper.scrollToElement(cancelResCTA);
         clickUsingJS(cancelResCTA);
         threadSleep(ONE_SECOND);
-        cancelReservationPopup.click();
+        clickOn(cancelReservationPopup);
         return this;
     }
 
@@ -357,14 +381,15 @@ public class Confirmation extends AbstractBasePage {
         return GPSCoverageText.isDisplayed();
     }
 
-    public boolean verifyRentalOptionsText() {
+    public boolean verifyRentalOptionsText(String msg) {
         waitForVisibilityOfElement(rentalOptionsRSN);
-        return rentalOptionsRSN.getText().contains("Cover Roadside Issues (RSN)");
+        return rentalOptionsRSN.getText().contains(msg);
     }
 
     public boolean verifypersonalInfo(String firstName, String email) {
         helper.scrollToElement(NameDetails);
         threadSleep(TWO_SECONDS);
+        System.out.println("Confirm EMAIL---->"+EmailConfirmationPage.getText());
         boolean verifyFirstName = NameDetails.getText().contains(firstName);
         boolean verifyEmail = EmailConfirmationPage.getText().contains(email);
         return verifyEmail && verifyFirstName;

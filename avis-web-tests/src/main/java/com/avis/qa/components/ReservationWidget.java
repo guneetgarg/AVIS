@@ -171,8 +171,12 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//span[text()='Based on your age selection, there are no cars available at this location-'] | //span[@class='mainErrorText info-error-msg-text' and @ng-bind-html='error.message | htmlFilter']")
     private WebElement AgeSelectionNocarsErrorMsg;
 
+    @FindBy(xpath = "//button[text()='Confirm My Choices']")
+    private WebElement ChoicesPopup;
+
     public ReservationWidget(WebDriver driver) {
         super(driver);
+        //clickOn(ChoicesPopup);
     }
 
     /**
@@ -242,7 +246,7 @@ public class ReservationWidget extends AbstractBasePage {
         pickupDate.click();
         pickupDate.clear();
         dropOffLocation.click();
-        returnDate.click();
+        clickOn(returnDate);
         returnDate.clear();
         dropOffLocation.click();
         pickupDate.click();
@@ -395,7 +399,8 @@ public class ReservationWidget extends AbstractBasePage {
 
     public ReservationWidget expandDiscountCode() {
         waitForVisibilityOfElement(Discount_Codes);
-        Discount_Codes.click();
+        //Discount_Codes.click();
+        clickOn(Discount_Codes);
         return this;
     }
 

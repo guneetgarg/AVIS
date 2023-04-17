@@ -341,7 +341,7 @@ public class ReservationTests extends TestBase {
         Confirmation confirmation = reservationHelper.Reservation_TierBundle_PayLater(pickUpLocation, firstName, lastName, email, phoneNo, ccNo,
                 cvv);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.verifyRentalOptionsText(), "Rental Options Text is incorrect");
+        assertTrue(confirmation.verifyRentalOptionsText("Cover Roadside Issues (RSN)"), "Rental Options Text is incorrect");
         confirmation.cancelReservation();
     }
 

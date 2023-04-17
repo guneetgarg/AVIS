@@ -155,6 +155,8 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//strong[text()='Primary']")
     private WebElement PrimaryCardText;
 
+    @FindBy(xpath = "//strong[text()='Principal']")
+    private WebElement PrincipalCardText;
     @FindBy(xpath = "//strong[text()='Secondary']")
     private WebElement SecondaryCardText;
 
@@ -247,8 +249,13 @@ public class ReviewAndBook extends AbstractBasePage {
     private String selectedCountryText;
 
 
-    public ReviewAndBook(WebDriver driver) {
+    public ReviewAndBook(WebDriver driver)
+    {
         super(driver);
+    }
+    {
+        if(Configuration.DOMAIN.equals("CA"))
+       PrimaryCardText= PrincipalCardText;
     }
 
 
