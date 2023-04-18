@@ -30,7 +30,6 @@ public class SplitBill extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        log.info("Verify Split Bill Component");
         waitForVisibilityOfElement(SplitOption);
     }
 }

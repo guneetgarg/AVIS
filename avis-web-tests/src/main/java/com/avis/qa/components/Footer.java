@@ -30,7 +30,6 @@ public class Footer extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        log.info("Verify Footer Component");
         waitForVisibilityOfElement(BRG);
     }
 }

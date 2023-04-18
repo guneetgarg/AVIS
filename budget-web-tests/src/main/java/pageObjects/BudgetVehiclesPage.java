@@ -102,8 +102,6 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 	@FindBy(css = "li[title='Select a Car']")
 	private WebElement selectACarText;
 
-//	@FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[4] | (//a[contains(text(),'Pay Later')])[4]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
-//	private WebElement PayLater;
 	@FindBy(xpath = "(//a[contains(text(),'Select')])[4]|(//a[contains(text(),'Select')])[3]|(//a[@id='res-vehicles-pay-later'])[2] | (//a[contains(text(),'Pay Later')])[4]|(//a[contains(text(),'Pay at Counter')])[1]|(//a[contains(text(),'Paiement au comptoir')])[1]|(//a[contains(text(),'Pagar en el mostrador')])[1]")
 	private WebElement PayLater;
 
@@ -135,8 +133,6 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 	@FindBy(xpath = "//span[@ng-bind-html='car.payLaterRate.currencySymbol']")
 	private WebElement verifySymbol;
 	
-	//div[@class="payatcntr col-xs-6"]//span[@ng-bind-html='car.payLaterRate.currencySymbol']
-
 	public void chooseVehicles(Map testDataMap) {
 		WebDriverWait wait= new WebDriverWait(driver, 60);
 		if(!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {

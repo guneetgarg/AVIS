@@ -32,8 +32,6 @@ public class ManageReservationPage extends AbstractBasePage {
         super(driver);
     }
 
-
-
     public ManageReservationPage ClickRateAndBenefitInfoModifyButton() {
         helper.scrollToElement(RateAndBenefitInfoModifyButton);
         clickUsingJS(waitForVisibilityOfElement(RateAndBenefitInfoModifyButton));

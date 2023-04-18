@@ -69,7 +69,5 @@ public class Confirmation extends AbstractBasePage {
     }
 //    @Override
     public void isOnPage() {
-//        log.info("Verify Confirmation Page");
-//        waitForVisibilityOfElement(confirmationNumber);
     }
 }

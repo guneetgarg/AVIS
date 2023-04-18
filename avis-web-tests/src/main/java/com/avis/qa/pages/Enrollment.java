@@ -138,7 +138,6 @@ public class Enrollment extends AbstractBasePage {
     }
 
     public Enrollment clickUseEmailAsUsernameCheckbox() {
-        //helper.scrollToElement(termsCheckInput);
         waitForVisibilityOfElement(UseEmailAsUsernameCheckbox);
         UseEmailAsUsernameCheckbox.click();
         threadSleep(ONE_SECOND);

@@ -21,10 +21,8 @@ public class PopUpHandler {
     public boolean isDisplayed(){
         WebDriverWait wait = new WebDriverWait(driver, 2);
         try {
-            log.info("Waiting for PopUp");
            return wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@data-click='close']"))).isDisplayed();
         }catch (Exception e){
-            log.info("PopUp is not present");
             return false;
         }
     }

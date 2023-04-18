@@ -35,7 +35,6 @@ public class ReservationHelper extends AbstractBasePage {
         log.info("Is on Reservationhelper");
     }
 
-
     public void Reservation_DomesticOrOutbound_PayNow(String pickUpLocation, String firstName, String lastName,
 
                                                       String email, String phoneNumber, String ccNumber, String cvv) {
@@ -230,15 +229,6 @@ public class ReservationHelper extends AbstractBasePage {
                 .lastname(lname)
                 .email(email)
                 .phone(phoneNo);
-//        if(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("US"))
-//        {
-//            reviewAndBook
-//                    .step4_CreditCardCheckBox()
-//                    .enterCardNumber(CreditCardNumber)
-//                    .EnterExpiryDateAndYear()
-//                    .enterSecurityCode(CVV)
-//                    .enterAddressInboundSpecific(ResidentLoc);
-//        }
         reviewAndBook
                 .SelectflightInfo(FLIGHT_NAME)
                 .enterflightNumber(FLIGHT_NUMBER)

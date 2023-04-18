@@ -26,8 +26,6 @@ public class ExcelDataProvider {
     private static String[][] excelData;
     public static String Domain =Configuration.getValue("domain");
     public static String Brand =Configuration.getValue("brand");
-//    public static final String EXCEL_PATH = ENVIRONMENT +"_testmethod";
-//    public static final String EXCEL_PATH = "Anonymous";
     public static final String EXCEL_PATH = Brand+"_Anonymous_"+Domain;
     
 

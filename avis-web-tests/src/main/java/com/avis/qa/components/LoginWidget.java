@@ -35,7 +35,6 @@ public class LoginWidget extends AbstractBasePage {
     @FindBy(id = "password")
     private WebElement Password;
 
-
     @FindBy(id = "res-login-profile")
     private WebElement LoginButton;
 
@@ -72,13 +71,9 @@ public class LoginWidget extends AbstractBasePage {
         UserName.sendKeys(emailNew);
         waitForVisibilityOfElement(Password);
         Password.sendKeys(passwordNew);
-        //threadSleep(ONE_SECOND);
-        // waitForVisibilityOfElement(LoginButton);
         threadSleep(TWO_SECONDS);
         threadSleep(TWO_SECONDS);
         clickUsingJS(LoginButton);
-        // threadSleep(TWO_SECONDS);
-        //  threadSleep(TWO_SECONDS);
         return this;
     }
 
@@ -97,21 +92,11 @@ public class LoginWidget extends AbstractBasePage {
     }
 
     public static String getOtp(String baseUrl, String endPoint) throws InterruptedException {
-
-
-
         baseUrl = "https://www.receivesms.co/";
-
         endPoint = "us-phone-number/3411/";
-
         Response response = RestAssured.get(baseUrl + endPoint);
         threadSleep(3000);
-
-
         String otp =response.asString().split("Your AVIS verification code is")[1].split("data-clipboard-text=\"")[1].split("\"><b>")[0];
-
-        System.out.println(otp);
-
         return otp;
 
     }
@@ -119,7 +104,6 @@ public class LoginWidget extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        log.info("Verify Login Widget");
         if (driver.getCurrentUrl().contains("avis")){
         waitForVisibilityOfElement(HeaderLoginButton);}
         else {

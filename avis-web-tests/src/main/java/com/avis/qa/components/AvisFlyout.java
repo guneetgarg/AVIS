@@ -57,11 +57,8 @@ public class AvisFlyout extends AbstractBasePage {
         companyName = companyName + new Random().nextInt();
         smallBusinessName.sendKeys(companyName);
         smallBusinessAddress1.sendKeys(address1);
-
         smallBusinessCity.sendKeys(city);
         helper.implicitWait();
-
-        //smallBusinessState.sendKeys(province);
         helper.selectValueFromDropDown(smallBusinessState, province);
         smallBusinessZipCode.sendKeys(zipcode);
         smallBusinessSubmit.click();

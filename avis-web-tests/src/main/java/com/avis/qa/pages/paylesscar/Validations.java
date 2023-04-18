@@ -20,9 +20,6 @@ public class Validations extends AbstractBasePage {
 	@FindBy(xpath = "(//div[@class='location-info'])[1] | (//div[@class='summary-location'])[1]")
 	private WebElement pickUpLocation;
 
-	//    @FindBy(xpath = "//input[@name='anguPicLoc']/parent::div")
-	//	private WebElement pickUpLocation;
-
 	@FindBy(xpath = "(//div[@class='location-info'])[2]")
 	private WebElement dropOffLocation;
 
@@ -79,14 +76,8 @@ public class Validations extends AbstractBasePage {
 	}
 
 	public Validations verifyPickUpDate(){
-		System.out.println("pickupdate");
 		String expectedDate = getDate(1);
-		System.out.println("verify pickupdate");
 		String actualDate = dateFormatter(pickUpDate.getText());
-		System.out.println("verified");
-
-		//        assertTrue(expectedDate.contains(actualDate));
-		//        System.out.println("pickupdate");
 		return this;
 
 	}
@@ -150,9 +141,6 @@ public class Validations extends AbstractBasePage {
 	}
 
 	public void verifyCurrencyLogo() {
-		System.out.println("currency logo verify");
-		System.out.println(currencyLogo);
 		assertTrue(currencyLogo.get(1).getText().contains("฿"));
-		System.out.println("verify logo for vehicles");
 	}
 }

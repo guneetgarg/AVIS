@@ -148,7 +148,6 @@ public class ReviewAndBook extends AbstractBasePage {
      * To check T&C check box
      */
     public ReviewAndBook checkTermsAndConditions() {
-        //helper.scrollToElement(termsCheckInput);
         clickUsingJS(termsCheck);
         return this;
     }
@@ -160,7 +159,6 @@ public class ReviewAndBook extends AbstractBasePage {
         helper.scrollToElement(cardNumber);
         cardNumber.sendKeys(cardNo, Keys.TAB);
         return this;
-        //CF.tabOut("cardNumber");
     }
 
     /**
@@ -168,8 +166,6 @@ public class ReviewAndBook extends AbstractBasePage {
      */
     public ReviewAndBook selectExpiryDate() {
         creditCardExpiryDateField.sendKeys("1129");
-        //helper.selectValueFromDropDown(month,5);
-        //helper.selectValueFromDropDown(year,5);
         return this;
     }
 

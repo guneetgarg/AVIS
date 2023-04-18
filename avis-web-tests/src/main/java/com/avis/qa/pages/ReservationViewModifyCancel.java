@@ -62,17 +62,4 @@ public class ReservationViewModifyCancel extends AbstractBasePage {
     public void isOnPage() {
         waitForVisibilityOfElement(findReservationButton);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

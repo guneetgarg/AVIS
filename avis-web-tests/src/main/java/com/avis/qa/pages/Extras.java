@@ -34,13 +34,11 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//label[@for='Protection & Safety PackagepaiChk']")
     private WebElement ProtectionSafetyTireBundle;
 
-
     @FindBy(id = "Step3-Services")
     private WebElement Step3ServicesTab;
 
     @FindBy(xpath = "//a[text()='Discount Packages']")
     private WebElement Step3DiscountPackages;
-
 
     @FindBy(xpath = "//span[text()='Discount Code Savings'] | //span[text()='Coupon savings applied ']")
     private WebElement DiscountCodeSaving;
@@ -57,7 +55,6 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//span[contains(text(),'Your provided AWD number includes or discounts certain extras, and may include')] ")
     private WebElement AWDIncludedCoveragesText;
 
-
     @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
     private WebElement ProtectionAndCoveragesTab;
 
@@ -72,10 +69,6 @@ public class Extras extends AbstractBasePage {
 
     @FindBy(xpath = "(//span[@class='c-icon uplift-logo'])[2]")
     private WebElement Budget_UpliftLogo;
-
-
-
-
 
     @FindBy(xpath = "//input[@id='CDWchk']")
     private WebElement LDWCheckbox;

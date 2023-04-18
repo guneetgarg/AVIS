@@ -37,7 +37,6 @@ public class PayLessCarHelper {
 		validate.verifyPickUpDate();
 		validate.verifyVehicleName();
 		// validate.verifyCurrencyLogo();
-		System.out.println("currency logo");
 		ReviewAndBook reviewAndBook = extras.Step3Submit();
 		validate.verifyPickUpLocation(testDataMap.get("PickUpLocation").toString()).verifyPickUpDate()
 				.verifyVehicleName();
@@ -111,20 +110,14 @@ public class PayLessCarHelper {
 		payLessCar.dropOffTime(testDataMap.get("DropOffTime").toString());
 		payLessCar.dropOffLocation(testDataMap.get("DropOffLocation").toString());
 		payLessCar.selectAge(testDataMap.get("Age").toString());
-		payLessCar.getRates();
-		System.out.println("pickup");
-		
+		payLessCar.getRates();		
 		assertTrue(payLessCar.isNoCarsAvailableMessageDisplayed(), TextComparison.NO_CARS_AVAILABLE_MESSAGE);
-		System.out.println("error");
 		payLessCar.selectAge("25+").getRates();
 		Validations validate = new Validations(driver);
-		System.out.println("validations");
 		validate.verifyPickUpLocation(testDataMap.get("PickUpLocation").toString());
 		validate.verifyPickUpDate();
 //		.verifyPickUpDate();
-		System.out.println("pickupvalidate");
 //		assertTrue(payLessCar.isUnderAgeSubChargeMessageDisplayed(), TextComparison.UNDER_SUB_AGE_MESSAGE);
-//		System.out.println("subcharge msg");
 //		assertTrue(payLessCar.isLocationClosedMessageDisplayed(), TextComparison.LOCATION_CLOSED_MESSAGE);
 
 		Vehicles vehicles = new Vehicles(driver);
@@ -237,7 +230,6 @@ public class PayLessCarHelper {
 		String phoneNumber = testDataMap.get("PhoneNumber").toString();
 		String cvv = testDataMap.get("CVV").toString();
 		String country = testDataMap.get("Country").toString();
-//		String ccNumber = testDataMap.get("CCNUmber").toString();
 
 		payLessCar.pickUpLocation(pickUpLocation).pickUpTime(pickUpTime).getRates();
 		Validations validate = new Validations(driver);
@@ -260,8 +252,6 @@ public class PayLessCarHelper {
 		String pickUpLocation = testDataMap.get("PickUpLocation").toString();
 		String pickUpTime = testDataMap.get("PickUpTime").toString();
 		String cvv = testDataMap.get("CVV").toString();
-//		String ccNumber = testDataMap.get("CCNUmber").toString();
-
 		payLessCar.pickUpLocation(pickUpLocation).pickUpTime(pickUpTime).getRates();
 		Validations validate = new Validations(driver);
 		validate.verifyPickUpLocation(pickUpLocation).verifyPickUpDate();

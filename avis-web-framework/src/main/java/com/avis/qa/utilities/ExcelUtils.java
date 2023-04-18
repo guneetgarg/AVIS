@@ -195,10 +195,7 @@ public class ExcelUtils {
     // Get the sheet data in 2 dimensional array from a sheet
     // Pass file path as argument and sheet Name from which data need to be retrieved.
     public String[][] getSheetData(String fileName,String sheetName){
-
         setExcelWBook(fileName);
-
-
         ExcelWSheet = ExcelWBook.getSheet(sheetName);
         DataFormatter df = new DataFormatter();
         int rownum = ExcelWSheet.getPhysicalNumberOfRows();
@@ -206,13 +203,9 @@ public class ExcelUtils {
         String[][] sheetDataObject = new String[rownum][colnum];
         for(int i=0 ;i<rownum;i++){
             for (int j=0;j<colnum;j++){
-
-                //System.out.println("row: "+rownum + "col: "+colnum);
                 //GET CELL
                 XSSFCell cell1 = ExcelWSheet.getRow(i).getCell(j);
-                //String value = df.formatCellValue(cell1);
                 sheetDataObject[i][j]= df.formatCellValue(cell1);
-               // System.out.println("Values: rownum: "+rownum + " col: "+colnum + " value: "+sheetDataObject[i][j]);
             }
         }
         return sheetDataObject;
@@ -228,15 +221,8 @@ public class ExcelUtils {
         String[][] sheetDataObject = new String[rownum][colnum];
         for(int i=0 ;i<rownum;i++){
             for (int j=0;j<colnum;j++){
-
-//                System.out.println("row: "+rownum + ", col: "+colnum+", "+i+" "+j);
-                //GET CELL
                 XSSFCell cell1 = ExcelWSheet.getRow(i).getCell(j);
-                
-//                System.out.println(df.formatCellValue(cell1));
-                //String value = df.formatCellValue(cell1);
                 sheetDataObject[i][j]= df.formatCellValue(cell1);
-                // System.out.println("Values: rownum: "+rownum + " col: "+colnum + " value: "+sheetDataObject[i][j]);
             }
         }
         return sheetDataObject;

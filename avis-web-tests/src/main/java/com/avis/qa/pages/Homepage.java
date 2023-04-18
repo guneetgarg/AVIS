@@ -138,7 +138,6 @@ public class Homepage extends AbstractBasePage {
     public void isOnPage() {
         log.info("Verify Home Page");
         waitForVisibilityOfElement(avisLogo);
-       //
         // waitForVisibilityOfElement(FindYourBestCarRentalWithAvisText);
     }
 }

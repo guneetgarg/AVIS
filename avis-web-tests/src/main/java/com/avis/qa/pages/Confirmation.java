@@ -85,19 +85,12 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//span[contains(@ng-if,'product.code != carRentalConstant.equipmentCodeCSSG')]")
     private WebElement rentalOptionsRSN;
 
-//    @FindBy(xpath = "(//h3)[1]")
-//    private WebElement NameDetails;
-
     @FindBy(xpath = "//div[@class='rate-benefit yrinfosec confirmation-key clearfix']/h3")
     private WebElement NameDetails;
 
-//    @FindBy(xpath = "((//div[@class='col-lg-4 col-sm-6 col-xs-12 pad-zero'])[1]//p)[1]")
-//    private WebElement EmailConfirmationPage;
-
-        @FindBy(xpath = " //strong[contains(text(),'Email')]/parent::p")
+    @FindBy(xpath = " //strong[contains(text(),'Email')]/parent::p")
     private WebElement EmailConfirmationPage;
 
-    //p//strong[contains(text(),'Email')]
     @FindBy(xpath = "//div[contains(@class,'info-key-drop-text')]/p")
     private WebElement keyDropInfo;
 
@@ -135,14 +128,11 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//div[@ng-repeat='product in vm.confirmation.reservationSummary.rateSummary.selectedProducts']//span[contains(text(),'Extended Roadside Assistance (RSN)')]")
     private WebElement CARSNCoverageText;
 
-
     @FindBy(xpath = "(//span[contains(text(),'Hands-Free Navigation (GPS)')])[1]")
     private WebElement GPSCoverageText;
 
     @FindBy(xpath = "//div[@ng-repeat='product in vm.confirmation.reservationSummary.rateSummary.selectedProducts']//span[contains(text(),'GPS Navigation (GPS)')]")
     private WebElement CAGPSCoverageText;
-
-
 
     @FindBy(xpath = "(//span[@class='additional-text discount-summary-section'])[2]")
     private WebElement AWDCouponValue;
@@ -153,17 +143,11 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//p[@class='cancel-restxt-pad']")
     private WebElement ModifiedTextMsg;
 
-    //Thank you Abhishek, your reservation has been modified and your car is reserved.
-
     @FindBy(xpath = "//div[@class='confirmation-info-holder-text']")
     private WebElement EmailSentMsg;
 
-    //A confirmation email has been sent to abhi@gmail.com
-
     @FindBy(xpath = "//div[@class='info-msg-text']")
     private WebElement AWDMessageText;
-
-    //Your provided AWD number includes or discounts certain extras, and may include
 
     @FindBy(xpath = "(//div[@class='summary-location'])[1]")
     private WebElement PickUpLocValue;

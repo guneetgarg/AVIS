@@ -39,12 +39,6 @@ public class EnrollmentCreditCardPage extends AbstractBasePage {
     @FindBy(xpath = "//button[text()='Save']")
     private WebElement SaveButton;
 
-    //card details
-    //MASTERCARD, 5430289291007399, 11/2025, 408
-    //VISA, 4556382670259383, 8/2027, 694
-    //AMEX, 371777335245621, 7/2023, 868
-
-
     public EnrollmentCreditCardPage selectCardType() {
         CreditCardTypeDropdown.click();
         helper.selectValueFromDropDown(CreditCardTypeDropdown,1);
@@ -56,7 +50,6 @@ public class EnrollmentCreditCardPage extends AbstractBasePage {
         CreditCardNumberTextBox.click();
         CreditCardNumberTextBox.sendKeys(cardNo);
         return this;
-        //CF.tabOut("cardNumber");
     }
 
     public EnrollmentCreditCardPage(WebDriver driver) {

@@ -42,8 +42,6 @@ public class EnrollmentDrivingLicencePage extends AbstractBasePage {
     @FindBy(xpath = "//input[@name='phone']")
     private WebElement MobileNumberTextBox;
 
-
-
     @FindBy(xpath = "//button[text()='Save']")
     private WebElement SaveButton;
 

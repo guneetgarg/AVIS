@@ -87,7 +87,6 @@ public class Header extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        log.info("Verify Header Component");
         waitForVisibilityOfElement(OfferHeader);
     }
 }

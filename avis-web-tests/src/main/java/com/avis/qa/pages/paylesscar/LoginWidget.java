@@ -41,11 +41,8 @@ public class LoginWidget extends AbstractBasePage {
 		String passwordNew = testDataMap.get("Password").toString();
 
 		waitForVisibilityOfElement(UserName);
-        System.out.println("###################### PASS 2   #########################################");
 		UserName.clear();
-		System.out.println("###################### PASS 3   #########################################");
 		UserName.sendKeys(emailNew);
-		System.out.println("###################### PASS 4   #########################################");
 		System.out.println(emailNew);
 		waitForVisibilityOfElement(Password);
 		Password.clear();

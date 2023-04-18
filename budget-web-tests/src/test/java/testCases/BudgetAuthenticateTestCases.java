@@ -13,7 +13,6 @@ public class BudgetAuthenticateTestCases extends TestBase{
 	@Test(groups = {REGRESSION, SANITY, PAYLESSCAR}, dataProvider = "dataAsMap", dataProviderClass = ExcelDataProvider.class)
 	public void AuthenticateUserTestCases(Map<?, ?> testDataMap) {	
 		System.out.println(testDataMap);
-//		System.out.println("Anonymoyus test cases");
 		launchUrl();
 	}
 }

@@ -33,7 +33,6 @@ public abstract class AbstractBasePage{
         helper = new ElementHelper(driver);
         PageFactory.initElements(driver, this);
         isOnPage();
-//        findAndKillPopup();
     }
 
     protected void clickOn(WebElement webElement) {   

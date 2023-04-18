@@ -19,16 +19,7 @@ import org.testng.annotations.DataProvider;
  */
 public class CSVUtils {
 	public static String method = null;
-//	static Object[][] obj1;
-//	static Object[][] obj2;
-//	static Object[][] obj3;
-//	static Object[][] obj4;
-//	static Object[][] obj5;
-//	static Object[][] obj6;
-//	static Object[][] obj7;
-//	static Object[][] obj8;
-//	static Object[][] obj9;
-//	static Object[][] obj10;
+
 	static String filepath = null;
 	private static String cellValue;
 

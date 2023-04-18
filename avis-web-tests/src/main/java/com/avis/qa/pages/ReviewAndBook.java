@@ -59,12 +59,12 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//input[@name='expirydate']")
     private WebElement expiryDate;
 
-
     @FindBy(xpath = "//*[contains(@name,'selectedExpYear')]")
     private WebElement year;
 
     @FindBy(xpath = "//div[@class='cardNumber icon-padding']//input[@id='cardnumber'] | //div[@class='icon-padding']//input[@id='cardnumber']")
     private WebElement cardNumber;
+    
     @FindBy(xpath = "(//input[@id='cardnumber'])[2]")
     private WebElement splitPageCardNumber;
 
@@ -76,11 +76,7 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//*[contains(@for,'creditcard')] | //*[contains(@for,'ccCard')]")
     private WebElement creditCardCheckBox;
-
-//    @FindBy(xpath = "label[for='cccard']")
-//    private WebElement Budget_CreditCardRadioButton;
-
-
+    
     @FindBy(xpath = "//*[contains(@id,'address1')]")
     private WebElement address1;
 
@@ -172,7 +168,6 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//label[@for='payPal']")
     private WebElement Budget_PaypalRadioButton;
 
-
     @FindBy(xpath = "//img[@id='OffAmazonPaymentsWidgets0'] | //span[@class='c-icon amazonpay-logo']")
     private WebElement AmazonpayButton;
 
@@ -184,7 +179,6 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//iFrame[@title='PayPal']")
     private WebElement iFramePayPal;
-
 
     @FindBy(xpath = "//span[text()='Estimated Total']/following-sibling::span/child::span/child::span[2]")
     private WebElement EstimatedTotalText;
@@ -240,14 +234,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//span[text()=' cannot contain special characters. Please remove and try again.']")
     private WebElement LastNamenvalidErrorMsg;
 
-
-
-
-
-
-
     private String selectedCountryText;
-
 
     public ReviewAndBook(WebDriver driver)
     {
@@ -486,12 +473,6 @@ public class ReviewAndBook extends AbstractBasePage {
 //        if(Configuration.BRAND.equalsIgnoreCase("Avis"))
             if (helper.isElementDisplayed(creditCardCheckBox))
                 creditCardCheckBox.click();
-
-//        if(Configuration.BRAND.equalsIgnoreCase("Budget"))
-//            if (helper.isElementDisplayed(Budget_CreditCardRadioButton));
-////            helper.waitUntilClickabilityOfElement(Budget_CreditCardRadioButton);
-//        helper.clickIfElementIsDisplayed(Budget_CreditCardRadioButton);
-//        Budget_CreditCardRadioButton.click();
         return this;
     }
 
@@ -656,13 +637,10 @@ public class ReviewAndBook extends AbstractBasePage {
     public AmazonPayPage clickAmazonPayButton() {
         zip.click();
         waitForVisibilityOfElement(iFramePayPal);
-        // driver.switchTo().frame(0);
-        //  System.out.println("IFramePaypal switched");
         threadSleep(TWO_SECONDS);
         helper.waitUntilClickabilityOfElement(AmazonpayButton);
         clickUsingJS(AmazonpayButton);
         threadSleep(TWO_SECONDS);
-        //driver.switchTo().defaultContent();
         return new AmazonPayPage(driver);
     }
 
@@ -684,12 +662,7 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public boolean isNativeCurrencyMsgtextDisplayed() {
-//        if(!(Configuration.BRAND.equalsIgnoreCase("Budget") && Configuration.DOMAIN.equalsIgnoreCase("NZ"))) {
-//            return NativeCurrencyPayInfoMsg.isDisplayed();
-//        }
-//        else {
             return NativeCurrencyPayTextMsg.isDisplayed();
-//        }
     }
 
     public boolean isPrimaryCardtextDisplayed() { return PrimaryCardText.isDisplayed(); }
@@ -738,8 +711,6 @@ public class ReviewAndBook extends AbstractBasePage {
         return LastNamenvalidErrorMsg.isDisplayed();
     }
 
-
-
     public boolean validatePickupAndReturnLocValue(String pickupLoc, String DropLoc) {
         if(PickUpLocValue.getText().contains(pickupLoc) && ReturnLocValue.getText().contains(DropLoc));
         return true;
@@ -761,7 +732,6 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        log.info("Verify Review And Book Page");
         waitForVisibilityOfElement(firstName);
     }
 }

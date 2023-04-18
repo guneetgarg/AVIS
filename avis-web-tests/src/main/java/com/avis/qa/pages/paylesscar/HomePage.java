@@ -30,24 +30,18 @@ public class HomePage extends AbstractBasePage {
 
     public void clickLoginLink(){
         waitForVisibilityOfElement(LoginLink);
-        
-        System.out.println("###############################################################");
         clickUsingJS(LoginLink);
-        System.out.println("###################### PASS Login link   #########################################");
     }
 
     public void clickMakeReservation(){
         waitForVisibilityOfElement(reservationTab);
         threadSleep(TWO_SECONDS);
-        System.out.println("###################### PASS 5   #########################################");
         reservationTab.click();
-        System.out.println("###################### PASS 6   #########################################");
         makeReservation.click();
     }
 
     @Override
     public void isOnPage() {
-        log.info("Verify Home Page");
         waitForVisibilityOfElement(payLessLog);
     }
 }

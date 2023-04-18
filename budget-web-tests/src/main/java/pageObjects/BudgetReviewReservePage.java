@@ -303,10 +303,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				}
 			NumberOfSeats.isDisplayed();
 			SeeRateTerms.isDisplayed();			
-//			String location = pickUpLocationVerify.getText();
-//			System.out.println(location);
-//			String [] locationValue = pickUpLocationVerify.getText().split("");
-//			String locations = locationValue[1].replaceAll("", "");
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(pickUpLocationVerify));
 				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));

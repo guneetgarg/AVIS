@@ -101,7 +101,6 @@ public class Login extends AbstractBasePage{
 
     @Override
     public void isOnPage() {
-        log.info("Verify Home Page");
         waitForVisibilityOfElement(avisLogo);
     }
 

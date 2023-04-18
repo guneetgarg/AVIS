@@ -67,6 +67,7 @@ public class Locations extends AbstractBasePage {
 
     @FindBy(xpath="//li[@id='BrowsepushPin_1']//a[@title='Burnaby MetroPointe car rental'][normalize-space()='Make a Reservation']")
     WebElement makeAReservationButtonWidget_CA;
+    
     @FindBy(xpath = "(//a[@title=\"Newark Liberty Intl Airport car rental\"])[2]")
     WebElement makeAReservationButtonBudgetWidget;
 
@@ -87,8 +88,6 @@ public class Locations extends AbstractBasePage {
     public Locations searchLocation(String pickUpLocation) {
         ReservationWidget reservationWidget = new ReservationWidget(driver);
         reservationWidget.pickUpLocation(pickUpLocation);
-        //SearchField.sendKeys(pickUpLocation);
-        //predefinedEvents.clickonElement("SearchFieldSuggestion");
         return this;
     }
 
@@ -118,11 +117,6 @@ public class Locations extends AbstractBasePage {
         return new ReservationWidget(driver);
     }
 
-//
-//	public void locationLinkSelection() {
-//		predefinedEvents.clickonElement("LocationLink_Paylesscar");
-//	}
-
     public void browserLocation() {
 
         threadSleep(CommonUtils.TWO_SECONDS);
@@ -147,7 +141,6 @@ public class Locations extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        log.info("Verify Locations Page");
         waitForVisibilityOfElement(SearchField);
     }
 }

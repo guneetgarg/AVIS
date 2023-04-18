@@ -25,6 +25,7 @@ import static com.avis.qa.utilities.CommonUtils.*;
 public class ReservationWidget extends AbstractBasePage {
 
     public static WebElement PopupBudget;
+    
     @FindBy(xpath = "//*[contains(@id,'DropLoc_value')]")
     private WebElement dropOffLocation;
 
@@ -109,7 +110,6 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "(//span[text()='Whoops! Your return time has already passed. Please select a new time.'])[1] | (//span[contains(text(),'Return Date cannot be prior to the Pick-Up Date')])[1]")
     private WebElement ReturnTimeErrorMsg;
 
-
     @FindBy(xpath = "(//span[text()='Enter your Wizard Number'])[2]")
     private WebElement AWDBlankErrorMsg;
 
@@ -118,7 +118,6 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "(//button[@type='reset'])[1]")
     private WebElement AdPopup;
-
 
     @FindBy(xpath = "(//div[contains(@class,'row res-inputFldPrt res-inputFldBack')]/div[4]/div[4]/div[3]/div)|(//div[contains(@class,'res-wizardFld form-controlD')])")
     private WebElement AvisWizardNumberLink;
@@ -194,7 +193,6 @@ public class ReservationWidget extends AbstractBasePage {
         }
         return this;
     }
-
 
     /**
      * Method to verify dropOff location
@@ -302,40 +300,7 @@ public class ReservationWidget extends AbstractBasePage {
      *
      * @return
      **/
-/*
-    public ReservationWidget selectMyCar()
-        waitForVisibilityOfElement(selectMyCarButton);
-        selectMyCarButton.click();
-        return this;
-    }
-*/
-/*
-    public ReservationWidget selectMyCar() {
-        waitForVisibilityOfElement(selectMyCarButton);
-        try {
-            selectMyCarButton.click();
-            waitForVisibilityOfElement(LocationSoldOutErrorText);
-            for(int i=2;i<=4;i++)
-            {
-                if(LocationSoldOutErrorText.isDisplayed())
-                {
-                    calendarSelection(i);
-                    selectMyCarButton.click();
-                }
-                else
-                {
-                    break;
-                }
-            }
-            return this;
-        }
-        catch(Exception e)
-        {
-            return this;
-        }
 
-    }
-*/
     public ReservationWidget selectMyCar() {
         waitForVisibilityOfElement(selectMyCarButton);
         try {

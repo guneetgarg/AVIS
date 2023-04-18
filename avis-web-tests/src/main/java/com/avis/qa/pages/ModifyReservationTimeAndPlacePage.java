@@ -70,7 +70,6 @@ public class ModifyReservationTimeAndPlacePage extends AbstractBasePage {
     @FindBy(xpath = "(//table[contains(@class,'datepicker-calendar')]//a[contains(text(),25)])")
     private WebElement returnDateSelection_new4;
 
-
     @FindBy(xpath = "(//*[@id='reservationModel.personalInfoRQ.residency'])[1]")
     private WebElement selectCountry;
 
@@ -95,12 +94,9 @@ public class ModifyReservationTimeAndPlacePage extends AbstractBasePage {
     @FindBy(xpath = "(//span[contains(text(),'The location you have selected is Sold Out during the dates requested.')])")
     private WebElement LocationSoldOutErrorText;
 
-
     public ModifyReservationTimeAndPlacePage(WebDriver driver) {
         super(driver);
     }
-
-
 
     public ModifyReservationTimeAndPlacePage pickUpLocation(String pickUpLocationValue) {
         enterLocation(pickUpLocationValue, pickUpLocation);
@@ -201,13 +197,6 @@ public class ModifyReservationTimeAndPlacePage extends AbstractBasePage {
      *
      * @return
      **/
-/*
-    public ModifyReservationTimeAndPlacePage selectMyCar()
-        waitForVisibilityOfElement(selectMyCarButton);
-        selectMyCarButton.click();
-        return this;
-    }
-*/
 
     public ModifyReservationTimeAndPlacePage selectMyCar() {
         waitForVisibilityOfElement(selectMyCarButton);
@@ -244,17 +233,5 @@ public class ModifyReservationTimeAndPlacePage extends AbstractBasePage {
     public void isOnPage() {
         waitForVisibilityOfElement(pickUpLocation);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

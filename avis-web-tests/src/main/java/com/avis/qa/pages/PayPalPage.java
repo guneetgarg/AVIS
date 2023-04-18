@@ -49,7 +49,6 @@ public class PayPalPage extends AbstractBasePage {
     public PayPalPage enterPassword(String pwd) {
         waitForVisibilityOfElement(passwordTextField);
         passwordTextField.click();
-
         passwordTextField.sendKeys(pwd);
         return this;
     }
@@ -63,7 +62,6 @@ public class PayPalPage extends AbstractBasePage {
         waitForVisibilityOfElement(AgreeAndContinueButton);
         helper.scrollToElement(AgreeAndContinueButton);
         clickUsingJS(AgreeAndContinueButton);
-      //  AgreeAndContinueButton.click();
         return this;
     }
 
@@ -72,17 +70,4 @@ public class PayPalPage extends AbstractBasePage {
     public void isOnPage() {
         waitForVisibilityOfElement(emailTextField);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -25,7 +25,6 @@ public class CSVFileReader {
 	public static void loadDataParameter() {
 
 		if (BRAND != null && DOMAIN != null) {
-//			filepath = "./testdata/" + BRAND + "_DataParameter" + "_" + DOMAIN + ".csv";
 			filepath = "./testdata/" + "US/" + BRAND + "/Anonymous"+ ".csv";
 		} else {
 			System.exit(0);
@@ -38,7 +37,6 @@ public class CSVFileReader {
 		loadDataParameter();
 
 		BufferedReader filereader = new BufferedReader(new FileReader(filepath));
-		// file reader as a parameter
 		CSVReader csvReader = new CSVReader(filereader);
 
 		List<String[]> nextRecord = csvReader.readAll();

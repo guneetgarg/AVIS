@@ -24,9 +24,6 @@ public class PayLessCar extends AbstractBasePage{
 	@FindBy(xpath = "//input[@ng-model='vm.reservationModel.dropDateDisplay']")
 	private WebElement returnDatePath;
 
-	//    @FindBy(xpath = "//*[contains(@id,'DropLoc_value')]")
-	//    private WebElement dropOffLocation;
-
 	@FindBy(id = "diffLoc")
 	private WebElement returnLocationCheckbox;
 	
@@ -127,7 +124,6 @@ public class PayLessCar extends AbstractBasePage{
 	public PayLessCar pickUpLocation(String pickUpLocationValue) {
 		threadSleep(TWO_SECONDS);
 		waitForVisibilityOfElement(pickUpLocation);
-//		clickOnReturnDiffLocation(pickUpLocation);
 		enterPickupLocation(pickUpLocationValue,pickUpLocation);
 		if (helper.isElementDisplayed(suggestionLocation))
 			clickUsingJS(suggestionLocation);
@@ -149,7 +145,7 @@ public class PayLessCar extends AbstractBasePage{
 		enterDropOffLocation(dropOffLocationValue,enterReturnLocation);
 		if (helper.isElementDisplayed(dropOffSuggestion))
 			clickUsingJS(dropOffSuggestion);
-		else {// clearTextUsingJS(pickUpLocation);
+		else {
 			enterDropOffLocation(dropOffLocationValue, enterReturnLocation);
 			if (helper.isElementDisplayed(dropOffSuggestion))
 				clickUsingJS(dropOffSuggestion);
