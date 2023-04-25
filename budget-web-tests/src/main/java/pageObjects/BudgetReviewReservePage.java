@@ -305,6 +305,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			SeeRateTerms.isDisplayed();			
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(pickUpLocationVerify));
+				System.out.println("Stale element displayed");
 				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			}
 			//		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
