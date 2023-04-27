@@ -1,10 +1,10 @@
 package pageObjects;
 
 import static com.avis.qa.core.Configuration.URL;
-import static org.testng.Assert.assertEquals;
 import static com.avis.qa.utilities.CommonUtils.FIVE_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.TEN_SECONDS;
 import static com.avis.qa.utilities.CommonUtils.threadSleep;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
@@ -129,6 +129,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//h1[@class='confirmation-msg']")
 	private WebElement reservationConfirmation;
 
+
 	@FindBy(xpath = "//a[@ng-click='vm.modifyVehicle()']")
 	private WebElement modifyVehicle;
 
@@ -194,7 +195,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(xpath = "//div[@class='col-xs-3 res-inputFld dateImg']//input[@ng-model='vm.reservationModel.pickUpDateDisplay']")
 	private WebElement pickUpDate;
-
+	
 	//div[@class='col-xs-3 res-inputFld dateImg']//input[@ng-model='vm.reservationModel.pickUpDateDisplay']
 
 	@FindBy(xpath = "//*[contains(@name,'reservationModel.pickUpTime')]")
@@ -226,114 +227,107 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(xpath = "//*[contains(@name,'airlineobj')]")
 	private WebElement Airline;
-
+	
 	@FindBy(xpath = "//button[@aria-label='Close']")
 	private WebElement close;
-
+	
 	@FindBy(xpath = "//span[text()='Base Rate']")
-	private WebElement BaseRate;
-
+    private WebElement BaseRate;
+	
 	@FindBy(xpath = "//span[@class='four-seats-feat']")
-	private WebElement NumberOfSeats;
+    private WebElement NumberOfSeats;
+	
+    @FindBy(xpath = "//a[@id='rate-terms']")
+    private WebElement SeeRateTerms;
 
-	@FindBy(xpath = "//a[@id='rate-terms']")
-	private WebElement SeeRateTerms;
-
-	@FindBy(xpath = "//span[@ng-if=\"vm.currencySymbol!='$ CA'\"]//span[@ng-bind-html='vm.prod.reservationSummary.rateSummary.currencySymbol']")
+    @FindBy(xpath = "//span[@ng-if=\"vm.currencySymbol!='$ CA'\"]//span[@ng-bind-html='vm.prod.reservationSummary.rateSummary.currencySymbol']")
 	private WebElement VerifySymbol;
+    
+    @FindBy(xpath = "//div[@class='taxes-fees']")
+    private WebElement feesTaxes;
 
-	@FindBy(xpath = "//div[@class='taxes-fees']")
-	private WebElement feesTaxes;
+    @FindBy(xpath = "//div[@class='estimate mobile-hide']")
+    private WebElement estimatedTotal;
 
-	@FindBy(xpath = "//div[@class='estimate mobile-hide']")
-	private WebElement estimatedTotal;
-
-	@FindBy(xpath = "//div[@ng-show='showTerms']")
-	private WebElement verifyRateTerms;
-
-	@FindBy(id = "res-conf-makeNewRes")
-	private WebElement makeaNewReservation;
-
-	@FindBy(id = "res-view-lastName")
-	private WebElement viewmodifylastName;
-
-	@FindBy(id = "res-view-confirmationNumber")
-	private WebElement viewmodifyConfirmationNumber;
-
-	@FindBy(xpath = " //button[@ng-click='vm.CNValidation.submit(VMCForm);']")
-	private WebElement findReservation;
-
-	@FindBy(xpath = "//span[contains(text(),'Modify: Reserve a Rental Car')]")
-	private WebElement modifyReserveaCar;
-
-	@FindBy(xpath = "//span[contains(text(),'Modify: Select a Car')]")
-	private WebElement modifySelectACar;
-
-	@FindBy(xpath = "//div[@class='col-sm-6 col-md-4 source']//div[@class='day-time-info']")
-	private WebElement verifyPickupDateandTime;
-
-	@FindBy(xpath = "//div[@class='col-sm-6 col-md-4 destination hidden-xs']//div[@class='day-time-info']")
-	private WebElement verifyDropoffDateandTime;
-
-	@FindBy(xpath = "//span[contains(text(),'Modify: Rental Options')]")
-	private WebElement modifyRentalOptions;
-
-	@FindBy(xpath = "//div[@class='col-sm-6 source']//div[@class='day-time-info']")
-	private WebElement modifyRentalPickDate;
-
-	@FindBy(xpath = "//div[@class='col-sm-6 destination']//div[@class='day-time-info']")
-	private WebElement modifyRentalDropDate;
-
-	@FindBy(xpath = "//div[@class='estimate mobile-hide text-size-1_5x']")
-	private WebElement EstimatedTotal;
-
-	@FindBy(xpath = "//p[@ng-if=\"vm.confirmation.reservationSummary.awdNumber != '' && vm.confirmation.reservationSummary.awdNumber != undefined\"]")
-	private WebElement verifyBCD;
-
-	@FindBy(xpath = "//span[@class='total-amount pull-right']//span[text()='NZ$']")
-	private WebElement NZCurrency;
-
-	@FindBy(xpath = "//div[@ng-repeat='error in messageList']//span[@class='mainErrorText info-error-msg-text']")
-	private WebElement FlightErrorMsg;
-
-	@FindBy(xpath = "//span[@ng-if='deviceType === carRentalConstant.deviceTypeDesktop']")
-	private WebElement FrequentTraveller;
-
-	@FindBy(xpath = "//div[@class='col-xs-4 col-sm-2 header noPad']//a[@ng-click='vm.modifyExtras()']")
-	private WebElement RentalOptionModify;
-
-	@FindBy(xpath = "//span[@class='pull-right base-rate']//span[text()='₹']")
-	private WebElement INRCurrency;
-
-	@FindBy(xpath = "//button[text()='Continue']")
-	private WebElement RentalPageContinueBtn;
-
-	@FindBy(id = "up-label")
+    @FindBy(xpath = "//div[@ng-show='showTerms']")
+    private WebElement verifyRateTerms;
+    
+    @FindBy(id = "res-conf-makeNewRes")
+    private WebElement makeaNewReservation;
+    
+    @FindBy(id = "res-view-lastName")
+    private WebElement viewmodifylastName;
+    
+    @FindBy(id = "res-view-confirmationNumber")
+    private WebElement viewmodifyConfirmationNumber;
+    
+    @FindBy(xpath = " //button[@ng-click='vm.CNValidation.submit(VMCForm);']")
+    private WebElement findReservation;
+    
+    @FindBy(xpath = "//span[contains(text(),'Modify: Reserve a Rental Car')]")
+    private WebElement modifyReserveaCar;
+  
+    @FindBy(xpath = "//span[contains(text(),'Modify: Select a Car')]")
+    private WebElement modifySelectACar;
+    
+    @FindBy(xpath = "//div[@class='col-sm-6 col-md-4 source']//div[@class='day-time-info']")
+    private WebElement verifyPickupDateandTime;
+    
+    @FindBy(xpath = "//div[@class='col-sm-6 col-md-4 destination hidden-xs']//div[@class='day-time-info']")
+    private WebElement verifyDropoffDateandTime;
+    
+    @FindBy(xpath = "//span[contains(text(),'Modify: Rental Options')]")
+    private WebElement modifyRentalOptions;
+   
+    @FindBy(xpath = "//div[@class='col-sm-6 source']//div[@class='day-time-info']")
+    private WebElement modifyRentalPickDate;
+    
+    @FindBy(xpath = "//div[@class='col-sm-6 destination']//div[@class='day-time-info']")
+    private WebElement modifyRentalDropDate;
+    
+    @FindBy(xpath = "//div[@class='estimate mobile-hide text-size-1_5x']")
+    private WebElement EstimatedTotal;
+    
+    @FindBy(xpath = "//p[@ng-if=\"vm.confirmation.reservationSummary.awdNumber != '' && vm.confirmation.reservationSummary.awdNumber != undefined\"]")
+    private WebElement verifyBCD;
+    
+    @FindBy(xpath = "//span[@class='pull-right base-rate']//span[text()='₹']")
+    private WebElement INRCurrency;
+    
+    @FindBy(xpath = "//span[@class='total-amount pull-right']//span[text()='NZ$']")
+    private WebElement NZCurrency;
+    
+    @FindBy(xpath = "//div[@ng-repeat='error in messageList']//span[@class='mainErrorText info-error-msg-text']")
+    private WebElement FlightErrorMsg;
+    
+    @FindBy(xpath = "//span[@ng-if='deviceType === carRentalConstant.deviceTypeDesktop']")
+    private WebElement FrequentTraveller;
+    
+    @FindBy(xpath = "//div[@class='col-xs-4 col-sm-2 header noPad']//a[@ng-click='vm.modifyExtras()']")
+    private WebElement RentalOptionModify;
+    
+    @FindBy(xpath = "//button[text()='Continue']")
+    private WebElement RentalPageContinueBtn;
+ 
+    @FindBy(id = "up-label")
 	private WebElement upliftCheckbox;
-
 
 	@FindBy(xpath = "//input[@name='mobile']")
 	private WebElement upliftMobile;
+	
 	@FindBy(xpath = "//input[@name='birthdate']")
 	private WebElement upliftBirthdate;
+	
 	@FindBy(id = "let's-get-started")
 	private WebElement letGetStarted;
+	
 	@FindBy(xpath = "//input[@name='mobile-verification-code']")
 	private WebElement mobileVerificationCode;
-	//    @FindBy(xpath = "")
-	//    private WebElement ;
-	//    @FindBy(xpath = "")
-	//    private WebElement ;
-	//    @FindBy(xpath = "")
-	//    private WebElement ;
-
-
-
+    
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
 		if(testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 			WebDriverWait wait = new WebDriverWait(driver, 90);
-			wait.until(ExpectedConditions.visibilityOf(BaseRate));
 			try {
 				wait.until(ExpectedConditions.visibilityOf(BaseRate));
 				BaseRate.isDisplayed();
@@ -342,78 +336,77 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println("Verified");
+
 			}
 			if(Configuration.DOMAIN.equalsIgnoreCase("US") && Configuration.DOMAIN.equalsIgnoreCase("CA")) {
 				estimatedTotal.isDisplayed();
-			}
-			if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
-				EstimatedTotal.isDisplayed();
-			}
-
-			if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
-				EstimatedTotal.isDisplayed();
-			}
-			try {
-				NumberOfSeats.isDisplayed();
-				SeeRateTerms.isDisplayed();
+				}
+				if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
+					EstimatedTotal.isDisplayed();
+				}
+				try {
+					NumberOfSeats.isDisplayed();
+					SeeRateTerms.isDisplayed();
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println("Verified");
-			}		
-		if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
-			try {
-				wait.until(ExpectedConditions.visibilityOf(pickUpLocationVerify));
-				System.out.println("Stale element displayed");
-				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-			} catch (Exception e) {
-				// TODO: handle exception
 			}
-		}
-		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
-			wait.until(ExpectedConditions.visibilityOf(ReturnLocValue));
-			assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
-		}
-		
-//      Validate INR Currency
-      if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
-              wait.until(ExpectedConditions.visibilityOf(INRCurrency));
-              INRCurrency.isDisplayed();
-      }
-      
-		if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
-			wait.until(ExpectedConditions.visibilityOf(firstName));
-			fillText(firstName,testDataMap.get("FirstName").toString());
-		}
-		if(!testDataMap.get("LastName").toString().equalsIgnoreCase("NA")) {
-			wait.until(ExpectedConditions.visibilityOf(lastName));
-			fillText(lastName,testDataMap.get("LastName").toString() );
-		}
-		if(!testDataMap.get("Email").toString().equalsIgnoreCase("NA")) {
-			wait.until(ExpectedConditions.visibilityOf(emailField));
-			fillText(emailField,testDataMap.get("Email").toString() );
-		}
-		if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
-			wait.until(ExpectedConditions.visibilityOf(phoneField));
-			fillText(phoneField, testDataMap.get("PhoneNumber").toString());
-		}
+				
+			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
+				try {
+					wait.until(ExpectedConditions.visibilityOf(pickUpLocationVerify));
+					assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 
-		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
-			//				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {					
-			//				if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-			//					System.out.println("domain paynow");
-			//					wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
-			//					clickOn(creditCardCheckBox);
-			//				}
-			if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
-				if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-					System.out.println("domain paynow");
-					wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
-					clickOn(creditCardCheckBox);
-				}
-				else {
-					fillText(cardNumber,testDataMap.get("CCNumber").toString());
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
 			}
+			if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(ReturnLocValue));
+				assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
+			}
+			
+//			Validate INR Currency
+			if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(INRCurrency));
+				INRCurrency.isDisplayed();
+			}
+			
+			if(!testDataMap.get("FirstName").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(firstName));
+				fillText(firstName,testDataMap.get("FirstName").toString());
+			}
+			if(!testDataMap.get("LastName").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(lastName));
+				fillText(lastName,testDataMap.get("LastName").toString() );
+			}
+			if(!testDataMap.get("Email").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(emailField));
+				fillText(emailField,testDataMap.get("Email").toString() );
+			}
+			if(!testDataMap.get("PhoneNumber").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(phoneField));
+				fillText(phoneField, testDataMap.get("PhoneNumber").toString());
+			}
+			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+//				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
+//				if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
+//					System.out.println("domain paynow");
+//				wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
+//				clickOn(creditCardCheckBox);
+//				}
+//				fillText(cardNumber,"379381331688207");
+//			}
+				if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+					if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
+						System.out.println("domain paynow");
+						wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
+						clickOn(creditCardCheckBox);
+					}
+					else {
+						fillText(cardNumber,testDataMap.get("CCNumber").toString());
+					}
+				}
 			if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
 				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
 				fillText(step4_CVV,testDataMap.get("CVV").toString());
@@ -429,7 +422,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(state);
 				fillText(state,testDataMap.get("State").toString());
 			}
-
+			
 			if(!testDataMap.get("ZipCode").toString().equalsIgnoreCase("NA")) {
 				fillText(zip,testDataMap.get("ZipCode").toString());
 			}
@@ -489,6 +482,13 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				}
 
 			}
+			
+//			Frequent Travel partner Verify
+			if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
+				FrequentTraveller.isDisplayed();
+			}
+			
+			
 			if(testDataMap.get("UpliftInfo").toString().equalsIgnoreCase("YES")) {
 				System.out.println("uplift ");
 				upliftCheckbox.click();
@@ -515,9 +515,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 					e.printStackTrace();
 
 				}
-
-
-
 				upliftMobile.sendKeys(testDataMap.get("UpliftMobile").toString());
 				System.out.println("UpliftMobile");
 				upliftBirthdate.click();
@@ -526,60 +523,84 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 
 			}
-
-
-
-
-
+			
+			}
 			if(!testDataMap.get("ReserveButton").toString().equalsIgnoreCase("NA")) {
-				clickOn(termsCheck);
-				clickOn(SubmitButton);
-				wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
-				System.out.println(reservationConfirmation.getText());
-				assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-				try {
-					System.out.println("try");
-					List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
-					for(int i=0; i < s1.size(); i++){
-						if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
-							System.out.println("2");
-							driver.switchTo().frame(s1.get(i).getAttribute("id"));
-							System.out.println("3");
-							List<WebElement> t = driver.findElements(By.tagName("iframe"));
-							System.out.println("4");
-							driver.switchTo().frame(t.get(0).getAttribute("id"));
-							System.out.println("5");
-							wait.until(ExpectedConditions.visibilityOf(close));
-							System.out.println("6");
-							clickOn(close);
-							System.out.println("7");
-							break;
-						}				
-					}
-				}catch (Exception e) {
-					System.out.println("Popup not visible");
+			clickOn(termsCheck);
+			clickOn(SubmitButton);
+			}
+//			Flight error msg verify
+			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
+				wait.until(ExpectedConditions.visibilityOf(FlightErrorMsg));
+				FlightErrorMsg.isDisplayed();
+			}
+			if(testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("NA")) {
+			wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
+			System.out.println(reservationConfirmation.getText());
+			assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
+			try {
+				System.out.println("try");
+				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
+				for(int i=0; i < s1.size(); i++){
+					if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
+						driver.switchTo().frame(s1.get(i).getAttribute("id"));
+						List<WebElement> t = driver.findElements(By.tagName("iframe"));
+						System.out.println("4");
+						driver.switchTo().frame(t.get(0).getAttribute("id"));
+						System.out.println("5");
+						wait.until(ExpectedConditions.visibilityOf(close));
+						System.out.println("6");
+						clickOn(close);
+						System.out.println("7");
+						break;
+					}				
 				}
-				threadSleep(TEN_SECONDS);
-				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
-				if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
-					wait.until(ExpectedConditions.visibilityOf(couponVerify));
-					assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
+			}catch (Exception e) {
+				System.out.println("Popup not visible");
+			}
+			threadSleep(TEN_SECONDS);
+			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			}
+			if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
+				wait.until(ExpectedConditions.visibilityOf(couponVerify));
+				assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
+			}
+			
+//			Validate NZCurrency
+			if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(NZCurrency));
+				NZCurrency.isDisplayed();
+			}
+			
+			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+
+				if(!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
+
+					String BCDNo = verifyBCD.getText();
+					System.out.println(BCDNo);
+					String [] BCDValue= verifyBCD.getText().replace(" ", "").split(":");
+					String BCDNumber = BCDValue[1];
+					System.out.println(BCDNumber);
+					assertEquals(BCDNumber,testDataMap.get("BCD").toString() );
 				}
 			}
+			
+			if(testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("NA")) {
 			threadSleep(FIVE_SECONDS);
 			String confirmationNo = confirmationNumber.getText();
 			System.out.println(confirmationNo);
 			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
 			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
 			System.out.println(reservationNumber);
-
-
+			
+			
+			
 			if(testDataMap.get("ViewModifyCancel").toString().equalsIgnoreCase("Yes")) {
 				viewmodifylastName.click();
 				fillText(viewmodifylastName,testDataMap.get("LastName").toString());
 				fillText(viewmodifyConfirmationNumber,confirmationNo );
 				findReservation.click();
-
+				
 			}
 			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
 				wait.until(ExpectedConditions.visibilityOf(modifyLocation));
@@ -643,46 +664,58 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 				}
 			}
+			
+//			Modify Frequent travel partner
+			if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
+				clickOn(RentalOptionModify);
+				wait.until(ExpectedConditions.visibilityOf(RentalPageContinueBtn));
+				clickOn(RentalPageContinueBtn);
+				wait.until(ExpectedConditions.visibilityOf(FrequentTraveller));
+				FrequentTraveller.isDisplayed();
+			}
+			
 			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
 				clickOn(cancelReservationButton);
 				wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
 				clickOn(confirmCancelReservationButton);
+				if(!Configuration.DOMAIN.equalsIgnoreCase("AU")) {
 				wait.until(ExpectedConditions.visibilityOf(cancelTerms));
 				clickOn(cancelTerms);
 				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
+				}
 				try {
-					wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
+				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
 				} catch (Exception e) {
 					// TODO: handle exception
-
+					
 					System.out.println(e);
-					wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
-					assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
+				wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
+				assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
 				}
 
 			}
+				}
+			}
+		}
+	
+
+
+		private Object getBrowserInstance() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		private WebDriver getDriver() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void isOnPage() {
+			// TODO Auto-generated method stub
 
 		}
+
 	}
-}
-
-
-private Object getBrowserInstance() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-private WebDriver getDriver() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public void isOnPage() {
-	// TODO Auto-generated method stub
-
-}
-
-}
