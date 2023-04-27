@@ -12,11 +12,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -43,17 +45,17 @@ public class TestBase {
 	public static final String REGRESSION = "regression";
 	public static final String SANITY = "sanity";
 	public static final String SMOKE = "smoke";
-    public static final String PAYLESSCAR = "Paylesscar";
-    public static final String AVIS = "Avis";
-    public static final String BUDGET = "Budget";
-    public static final String TEST_DATA = "testData";
+	public static final String PAYLESSCAR = "Paylesscar";
+	public static final String AVIS = "Avis";
+	public static final String BUDGET = "Budget";
+	public static final String TEST_DATA = "testData";
 
-    private static final String TEST_RESULT_XML = "/"+Configuration.getValue("domain")+"_testResult.xml";
+	private static final String TEST_RESULT_XML = "/" + Configuration.getValue("domain") + "_testResult.xml";
 	protected ElementHelper helper;
 	private ThreadLocal<String> testName = new ThreadLocal<>();
 	private String testCaseName = "";
 	private final ThreadLocal<BrowserInstance> appInstance = new ThreadLocal<>();
-	
+
 	private void readWriteIntoFile(String reportContent, boolean isFileWritable) throws IOException {
 		File myObj = new File(System.getProperty("user.dir") + TEST_RESULT_XML);
 		if (myObj.createNewFile()) {
@@ -93,12 +95,11 @@ public class TestBase {
 	public void beforeMethodTestBase(Method method, Object[] testData) {
 		ArrayList<String> testSheetData = new ArrayList<>();
 		String testCaseValue = "";
-		if(method.getName().contains("Avis")) {
+		if (method.getName().contains("Avis")) {
 			testCaseValue = method.getName();
 		} else {
-			testCaseValue= testData[0].toString();
+			testCaseValue = testData[0].toString();
 		}
-
 
 		if (testCaseValue.contains(",") && testCaseValue.contains("=")) {
 			testCaseName = testCaseValue.split("TestCaseName")[1].split(",")[0].split("=")[1];
@@ -122,7 +123,7 @@ public class TestBase {
 			if (result.getStatus() == 1) {
 				System.out.println("passed");
 				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\"" + result.getTestClass()
-				+ "\"/>";
+						+ "\"/>";
 				reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
 				readWriteIntoFile(reportContent, true);
 
@@ -132,10 +133,10 @@ public class TestBase {
 				File file = ss.getScreenshotAs(OutputType.FILE);
 				File desti = new File("./testdata/" + result.getMethod().getMethodName().toString() + ".png");
 				FileUtils.copyFile(file, desti);
-				
-				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\""
-						+ result.getTestClass() + "\">";
-				
+
+				String reportContent = "<testcase name=\"" + testCaseName + "\"  classname=\"" + result.getTestClass()
+						+ "\">";
+
 				if (reportContent.contains("[TestClass name=class")) {
 					reportContent = reportContent.replace("[TestClass name=class", "").replace("]", "");
 				}
@@ -145,8 +146,8 @@ public class TestBase {
 							+ result.getThrowable().toString().split("Exception:")[0] + "Exception\" message=\""
 							+ result.getThrowable().toString().split("Exception:")[1].split(":")[0] + "\">\n<![CDATA["
 							+ result.getThrowable().toString().split("Exception:")[1].split(":")[1]
-									+ result.getThrowable().getMessage() + "]]>\n</failure>\n</testcase>";
-					
+							+ result.getThrowable().getMessage() + "]]>\n</failure>\n</testcase>";
+
 				} else if (result.getThrowable().toString().contains("Error:")) {
 					reportContent = reportContent + "\n<failure type=\""
 							+ result.getThrowable().toString().split("Error:")[0] + "Exception\" message=\""
@@ -213,4 +214,5 @@ public class TestBase {
 	public WebDriver getDriver() {
 		return getBrowserInstance().getDriver();
 	}
+
 }

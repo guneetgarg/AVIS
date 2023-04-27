@@ -158,6 +158,10 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "//div[@class='col-lg-12 res-PageError']//span[@class='mainErrorText info-error-msg-text'][1]")
 	private WebElement errorMessage90days;
 	
+//  @FindBy(xpath = "//span[@ng-bind-html='vm.pageContent.resFormPageError']")
+  @FindBy(xpath = "//div[@ng-show='vm.getVehicles.validated']//span[@class='mainErrorText info-error-msg-text']")
+  private WebElement errorMessageverify;
+	
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
@@ -321,7 +325,18 @@ public class BudgetHomePage extends AbstractBasePage {
 				assertTrue(errorMessage90days.isDisplayed());
 				System.out.println("verified 90 days");
 			}
-		}
+			 if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
+                 clickOn(selectMyCarButton);
+                 assertTrue(errorMessageverify.isDisplayed());
+                 
+         }
+         
+ }
+// if (!testDataMap.get("PickUplocation1").toString().equalsIgnoreCase("NA")) {
+//         fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+//         clickOn(suggestionLocation);
+//         }
+
 
 	}
 
