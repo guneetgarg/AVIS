@@ -389,23 +389,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				fillText(phoneField, testDataMap.get("PhoneNumber").toString());
 			}
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
-//				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
-//				if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-//					System.out.println("domain paynow");
-//				wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
-//				clickOn(creditCardCheckBox);
-//				}
-//				fillText(cardNumber,"379381331688207");
-//			}
-				if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
+				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
 					if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-						System.out.println("domain paynow");
-						wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
-						clickOn(creditCardCheckBox);
+					wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
+					clickOn(creditCardCheckBox);
 					}
-					else {
-						fillText(cardNumber,testDataMap.get("CCNumber").toString());
-					}
+					fillText(cardNumber,testDataMap.get("CCNumber").toString());
 				}
 			if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
 				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
@@ -455,12 +444,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 				fillText(IataTextFiled,testDataMap.get("IATA").toString());
 			}
-			if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
-				clickOn(Airline);
-				fillText(Airline,testDataMap.get("Airline").toString());
-				fillText(flightNumber,testDataMap.get("FlightNumber").toString());
-
-			}
+//			if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
+//				clickOn(Airline);
+//				fillText(Airline,testDataMap.get("Airline").toString());
+//				fillText(flightNumber,testDataMap.get("FlightNumber").toString());
+//
+//			}
 			if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
 				wait.until(ExpectedConditions.visibilityOf(userYourCreditCardCheckbox));
 				clickOn(userYourCreditCardCheckbox);
@@ -524,6 +513,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 			}
 			
+			}
+			if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
+				clickOn(Airline);
+				fillText(Airline,testDataMap.get("Airline").toString());
+				fillText(flightNumber,testDataMap.get("FlightNumber").toString());
+
 			}
 			if(!testDataMap.get("ReserveButton").toString().equalsIgnoreCase("NA")) {
 			clickOn(termsCheck);

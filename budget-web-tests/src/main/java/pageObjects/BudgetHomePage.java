@@ -168,7 +168,7 @@ public class BudgetHomePage extends AbstractBasePage {
 		Thread.sleep(TEN_SECONDS);
 		List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
 		if(ele.size()>0) {
-			threadSleep(FIVE_SECONDS);
+			threadSleep(TEN_SECONDS);
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {	
