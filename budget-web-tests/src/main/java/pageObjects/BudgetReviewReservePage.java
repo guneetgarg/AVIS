@@ -538,23 +538,10 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 					}
 					upliftMobile.click();
-
-					new Actions(driver)
-					.sendKeys(testDataMap.get("UpliftMobile").toString())
-					.perform();
-
-					System.out.println("UpliftMobile");
+					new Actions(driver).sendKeys(testDataMap.get("UpliftMobile").toString()).perform();
 					upliftBirthdate.click();
-					
-					new Actions(driver)
-					.sendKeys(testDataMap.get("UpliftBirthDate").toString())
-					.perform();
-					System.out.println("update birthdate");
-
-
-					letGetStarted.click();
-					System.out.println("lets get started");
-					
+					new Actions(driver).sendKeys(testDataMap.get("UpliftBirthDate").toString()).perform();
+					letGetStarted.click();					
 					try {
 						mobileVerificationCode.click();
 					} catch (Exception e){
@@ -563,55 +550,31 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 					}
 					Thread.sleep(TEN_SECONDS);
 					mobileVerificationCode.click();
-//					mobileVerificationCode.sendKeys();
-					System.out.println("mobile verification");
-					new Actions(driver)
-					.sendKeys("111111")
-					.perform();
-					System.out.println("mobile verification code");
-
+					new Actions(driver).sendKeys("111111").perform();
 					verifyButton.click();
 					wait.until(ExpectedConditions.visibilityOf(firstnameUplift));
 					firstnameUplift.click();
 					firstnameUplift.clear();
-					new Actions(driver)
-					.sendKeys("Davis")
-					.perform();
+					new Actions(driver).sendKeys("Davis").perform();
 					lastNameUplift.click();
 					lastNameUplift.clear();
-					new Actions(driver)
-					.sendKeys("Davis")
-					.perform();
+					new Actions(driver).sendKeys("Davis").perform();
 					homeaddressuplift.click();
-					new Actions(driver)
-					.sendKeys("1013 Weda Cir")
-					.perform();
+					new Actions(driver).sendKeys("1013 Weda Cir").perform();
 					homecityUplift.click();
-					new Actions(driver)
-					.sendKeys("Mayfield")
-					.perform();
+					new Actions(driver).sendKeys("Mayfield").perform();
 					regionUplift.click();
-					new Actions(driver)
-					.sendKeys("Kentucky")
-					.perform();
+					new Actions(driver).sendKeys("Kentucky").perform();
 					postalcodeUplift.click();
-					new Actions(driver)
-					.sendKeys("999999")
-					.perform();
+					new Actions(driver).sendKeys("999999").perform();
 					emailUplift.click();
-					new Actions(driver)
-					.sendKeys("arthur@uplift.com")
-					.perform();
+					new Actions(driver).sendKeys("arthur@uplift.com").perform();
 					yearlyincomeUplift.click();
-					new Actions(driver)
-					.sendKeys("8,000,000")
-					.perform();
+					new Actions(driver).sendKeys("8,000,000").perform();
 					passwordUplift.click();
-					new Actions(driver)
-					.sendKeys("3507")
-					.perform();
+					new Actions(driver).sendKeys("3507").perform();
 					continueUplift.click();
-//					wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
+					wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
 					ccnumberUplift.click();
 					ccnumberUplift.sendKeys("4111 1111 1111 1111");
 					ccexpirationUplift.click();
