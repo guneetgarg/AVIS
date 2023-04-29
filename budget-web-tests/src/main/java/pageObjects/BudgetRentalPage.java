@@ -86,8 +86,7 @@ public class BudgetRentalPage extends AbstractBasePage {
 //  @FindBy(xpath = "//div[@ng-show='showTerms']//strong[text()='BCD:']")
     @FindBy(xpath = "//div[@ng-show='showTerms']//strong[text()='BCD:']/parent::span")
     private WebElement verifyBCD;
-
-	// div[@class='uplift-step3-text hidden-xs']//span[@class='c-icon uplift-logo']
+    
 	public void rentalPage(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
 		if (testDataMap.get("Continue").toString().equalsIgnoreCase("Yes")) {
@@ -100,8 +99,12 @@ public class BudgetRentalPage extends AbstractBasePage {
 			}
 			if (Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
 				EstimatedTotal.isDisplayed();
-			}
-            if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+			}     
+			NumberOfSeats.isDisplayed();
+			SeeRateTerms.isDisplayed();
+			SeeRateTerms.click();
+			verifyRateTerms.isDisplayed();
+			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
             	if(!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
                     String BCDNo = verifyBCD.getText();
                     System.out.println(BCDNo);
@@ -112,11 +115,7 @@ public class BudgetRentalPage extends AbstractBasePage {
                     
             	}
             	
-            }        
-			NumberOfSeats.isDisplayed();
-			SeeRateTerms.isDisplayed();
-			SeeRateTerms.click();
-			verifyRateTerms.isDisplayed();
+            }   
 			if (testDataMap.get("UpliftInfo").toString().equalsIgnoreCase("Yes")) {
 				wait.until(ExpectedConditions.visibilityOf(upliftLogo));
 				Boolean c = true;
@@ -141,6 +140,7 @@ public class BudgetRentalPage extends AbstractBasePage {
 					System.out.println("IN while Loop : " + c);
 				}
 				upliftpopupDisplayed.isDisplayed();
+				wait.until(ExpectedConditions.visibilityOf(faqclicked));
 				faqclicked.click();
 				frequentlyques.isDisplayed();
 				frequentlyquesback.click();
