@@ -40,10 +40,10 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation.html']")
 	private WebElement makeaReservation;
-	
+
 	@FindBy(xpath = "//a[@href='/en/reservation/make-reservation']")
 	private WebElement makeaReservation1;
-	
+
 	@FindBy(xpath = "(//input[@id='PicLoc_value'])[1]")
 	private WebElement pickUpLocation;
 
@@ -154,17 +154,20 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "(//span[@class='step-title'])[2]")
 	private WebElement selectCarTitle;
-	
+
 	@FindBy(xpath = "//div[@class='col-lg-12 res-PageError']//span[@class='mainErrorText info-error-msg-text'][1]")
 	private WebElement errorMessage90days;
-	
+
+	@FindBy(xpath = "//div[@ng-show='vm.getVehicles.validated']//span[@class='mainErrorText info-error-msg-text']")
+	private WebElement errorMessageverify;
+
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
 		Thread.sleep(TEN_SECONDS);
 		List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
 		if(ele.size()>0) {
-			threadSleep(FIVE_SECONDS);
+			threadSleep(TEN_SECONDS);
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {	
@@ -180,8 +183,8 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(makeaReservation1);	
 			}
 			if(Configuration.ENVIRONMENT.equalsIgnoreCase("ci11")){
-			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
-			clickOn(makeaReservation);
+				wait.until(ExpectedConditions.visibilityOf(makeaReservation));
+				clickOn(makeaReservation);
 			}
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
@@ -194,7 +197,7 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(pickUpDate);
 				pickUpDate.clear();
 				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
-				
+
 			}
 			if (!testDataMap.get("PickUpTime").toString().equalsIgnoreCase("NA")) {
 				fillText(pickUpTime, testDataMap.get("PickUpTime").toString());
@@ -262,16 +265,9 @@ public class BudgetHomePage extends AbstractBasePage {
 				}
 			}
 			if(testDataMap.get("SelectMyCar").toString().equalsIgnoreCase("Yes")) {
-			wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
-			clickOn(selectMyCarButton);
+				wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
+				clickOn(selectMyCarButton);
 			}
-
-			//				if (isVehicleAvailable()) {
-			//					break;
-			//				}
-
-			//			}
-
 		}
 
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
@@ -284,7 +280,7 @@ public class BudgetHomePage extends AbstractBasePage {
 			threadSleep(TWO_SECONDS);
 			clickUsingJS(LoginButton);
 		}
-		
+
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Verify")) {
 			budgetBrandText.isDisplayed();
 			wait.until(ExpectedConditions.visibilityOf(reservation));
@@ -298,12 +294,12 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(makeaReservation1);	
 			}
 			if(Configuration.ENVIRONMENT.equalsIgnoreCase("ci11")){
-			wait.until(ExpectedConditions.visibilityOf(makeaReservation));
-			clickOn(makeaReservation);
+				wait.until(ExpectedConditions.visibilityOf(makeaReservation));
+				clickOn(makeaReservation);
 			}
 			fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
 			clickOn(suggestionLocation);
-			
+
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 				clickOn(pickUpDate);
 				pickUpDate.clear();
@@ -321,8 +317,13 @@ public class BudgetHomePage extends AbstractBasePage {
 				assertTrue(errorMessage90days.isDisplayed());
 				System.out.println("verified 90 days");
 			}
-		}
-
+			if(!Configuration.DOMAIN.equalsIgnoreCase("US") && !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
+			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
+				clickOn(selectMyCarButton);
+				assertTrue(errorMessageverify.isDisplayed());
+			}
+			}
+			}
 	}
 
 	public boolean isVehicleAvailable() throws InterruptedException {
