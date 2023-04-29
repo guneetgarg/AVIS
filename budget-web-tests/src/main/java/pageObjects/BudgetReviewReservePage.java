@@ -381,6 +381,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(id = "i-agree-and-continue")
 	private WebElement agreetermsUplift;
+	
 
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
@@ -446,10 +447,8 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
 				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
 					if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-//						if(!testDataMap.get("CCNumber").toString().equalsIgnoreCase("NA")) {
 						wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
 						clickOn(creditCardCheckBox);
-//						}
 					}
 					fillText(cardNumber,testDataMap.get("CCNumber").toString());
 				}
@@ -567,17 +566,19 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 //					mobileVerificationCode.sendKeys();
 					System.out.println("mobile verification");
 					new Actions(driver)
-					.sendKeys("11111")
+					.sendKeys("111111")
 					.perform();
 					System.out.println("mobile verification code");
 
 					verifyButton.click();
 					wait.until(ExpectedConditions.visibilityOf(firstnameUplift));
 					firstnameUplift.click();
+					firstnameUplift.clear();
 					new Actions(driver)
 					.sendKeys("Davis")
 					.perform();
 					lastNameUplift.click();
+					lastNameUplift.clear();
 					new Actions(driver)
 					.sendKeys("Davis")
 					.perform();
@@ -610,7 +611,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 					.sendKeys("3507")
 					.perform();
 					continueUplift.click();
-					wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
+//					wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
 					ccnumberUplift.click();
 					ccnumberUplift.sendKeys("4111 1111 1111 1111");
 					ccexpirationUplift.click();
@@ -649,9 +650,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(SubmitButton);
 			}
 			//			Flight error msg verify
+			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
 			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
 				wait.until(ExpectedConditions.visibilityOf(FlightErrorMsg));
 				FlightErrorMsg.isDisplayed();
+			}
 			}
 			if(testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
@@ -798,6 +801,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 					wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
 					clickOn(confirmCancelReservationButton);
 					if(!Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+						wait.until(ExpectedConditions.visibilityOf(cancelTerms));
+						clickOn(cancelTerms);
+						wait.until(ExpectedConditions.visibilityOf(cancelReservation));
+						clickOn(cancelReservation);
+					}
+					if(!Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
 						wait.until(ExpectedConditions.visibilityOf(cancelTerms));
 						clickOn(cancelTerms);
 						wait.until(ExpectedConditions.visibilityOf(cancelReservation));

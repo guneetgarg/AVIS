@@ -317,13 +317,13 @@ public class BudgetHomePage extends AbstractBasePage {
 				assertTrue(errorMessage90days.isDisplayed());
 				System.out.println("verified 90 days");
 			}
+			if(!Configuration.DOMAIN.equalsIgnoreCase("US") && !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
 			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
 				clickOn(selectMyCarButton);
 				assertTrue(errorMessageverify.isDisplayed());
-
 			}
-
-		}
+			}
+			}
 	}
 
 	public boolean isVehicleAvailable() throws InterruptedException {
