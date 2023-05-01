@@ -160,6 +160,9 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//div[@ng-show='vm.getVehicles.validated']//span[@class='mainErrorText info-error-msg-text']")
 	private WebElement errorMessageverify;
+	
+	@FindBy(xpath = "//div[@class='info-key-drop-text']")
+	private WebElement verifyKeydropmessage;
 
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
@@ -319,6 +322,9 @@ public class BudgetHomePage extends AbstractBasePage {
 				returnDatePath.clear();
 				fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
 			}
+			if (!testDataMap.get("DropOffTime").toString().equalsIgnoreCase("NA")) {
+				fillText(dropOffTime, testDataMap.get("DropOffTime").toString());
+			}
 			if (testDataMap.get("ErrorMessage90").toString().equalsIgnoreCase("Yes")) {
 				clickOn(selectMyCarButton);
 				threadSleep(FIVE_SECONDS);
@@ -331,6 +337,11 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(selectMyCarButton);
 				assertTrue(errorMessageverify.isDisplayed());
 			}
+			}
+			if(testDataMap.get("VerifyKeyDropMessage").toString().equalsIgnoreCase("Yes")) {
+				clickOn(selectMyCarButton);
+				threadSleep(FIVE_SECONDS);
+				verifyKeydropmessage.isDisplayed();
 			}
 			}
 	}

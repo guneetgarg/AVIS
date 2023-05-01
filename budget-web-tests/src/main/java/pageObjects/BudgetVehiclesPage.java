@@ -60,7 +60,8 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 	@FindBy(xpath = "//li[@ng-repeat='option in vm.uniqueCurrencylist'][2]")
 	private WebElement CurrencyList;
 
-
+	@FindBy(xpath = "//a[@class='custon-drop-off-btn']")
+	private WebElement errorMsgLocation;
 
 	public void chooseVehicles(Map testDataMap) {
 		WebDriverWait wait= new WebDriverWait(driver, 60);

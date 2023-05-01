@@ -683,7 +683,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			System.out.println(reservationNumber);
 
 
-		
+
 			if(testDataMap.get("ViewModifyCancel").toString().equalsIgnoreCase("Yes")) {
 				viewmodifylastName.click();
 				fillText(viewmodifylastName,testDataMap.get("LastName").toString());
@@ -692,122 +692,134 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 			}
 		}
-			if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
-				wait.until(ExpectedConditions.visibilityOf(modifyLocation));
-				helper.scrollToElement(modifyLocation);
-				clickOn(modifyLocation);
-				modifyReserveaCar.isDisplayed();
-				pickUpLocation.isDisplayed();
-				dropOffLocation.isDisplayed();
-				pickUpTime.isDisplayed();
-				returnDatePath.isDisplayed();
-				dropOffTime.isDisplayed();
-				enterReturnLocation.isDisplayed();
-				selectMyCarButton.isDisplayed();
-				ModifyReservationTextMsg.isDisplayed();
-				if (!testDataMap.get("ModifyPickUpLoc").toString().equalsIgnoreCase("NA")) {
-					clickOn(pickUpLocation);
-					pickUpLocation.clear();
-					fillText(pickUpLocation, testDataMap.get("ModifyPickUpLoc").toString());
-					clickOn(suggestionLocation);
-				}
-				if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
-					fillText(dropOffLocation, testDataMap.get("ModifyDropOffLocation").toString());
-				}
-				if (!testDataMap.get("ModifyPickUpDate").toString().equalsIgnoreCase("NA")) {
-					clickOn(pickUpDate);
-					pickUpDate.clear();
-					fillText(pickUpDate,testDataMap.get("ModifyPickUpDate").toString());
-				}
-				fillText(pickUpTime,testDataMap.get("ModifyPickUpTime").toString());
-				if (!testDataMap.get("ModifyDropOffDate").toString().equalsIgnoreCase("NA")) {
-					clickOn(returnDatePath);
-					returnDatePath.clear();
-					fillText(returnDatePath,testDataMap.get("ModifyDropOffDate").toString());
-				}
-				fillText(dropOffTime,testDataMap.get("ModifyDropOffTime").toString());
-				if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
-					fillText(enterReturnLocation,testDataMap.get("ModifyDropOffLocation").toString() );
-					clickOn(dropOffSuggestion);
-				}
-				clickOn(selectMyCarButton);
-				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("ModifyPickUpLoc").toString()));
-				ReturnLocValue.isDisplayed();
-				verifyPickupDateandTime.isDisplayed();
-				verifyDropoffDateandTime.isDisplayed();
-				clickOn(PayLater);
-				modifyRentalOptions.isDisplayed();
-				modifyRentalPickDate.isDisplayed();
-				modifyRentalDropDate.isDisplayed();
-				BaseRate.isDisplayed();
-				VerifySymbol.isDisplayed();
-				feesTaxes.isDisplayed();
-				estimatedTotal.isDisplayed();
-				NumberOfSeats.isDisplayed();
-				SeeRateTerms.isDisplayed();
-				SeeRateTerms.click();
-				verifyRateTerms.isDisplayed();
-				clickOn(CONTINUEBUTTON);
-				clickOn(reviewModificationsButton);
-				clickOn(keepModificationButton);
-				if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
-					BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
-					budgetHomePage.viewModify(testDataMap);
-
-				}
+		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
+			wait.until(ExpectedConditions.visibilityOf(modifyLocation));
+			helper.scrollToElement(modifyLocation);
+			clickOn(modifyLocation);
+			modifyReserveaCar.isDisplayed();
+			pickUpLocation.isDisplayed();
+			dropOffLocation.isDisplayed();
+			pickUpTime.isDisplayed();
+			returnDatePath.isDisplayed();
+			dropOffTime.isDisplayed();
+			enterReturnLocation.isDisplayed();
+			selectMyCarButton.isDisplayed();
+			ModifyReservationTextMsg.isDisplayed();
+			if (!testDataMap.get("ModifyPickUpLoc").toString().equalsIgnoreCase("NA")) {
+				clickOn(pickUpLocation);
+				pickUpLocation.clear();
+				fillText(pickUpLocation, testDataMap.get("ModifyPickUpLoc").toString());
+				clickOn(suggestionLocation);
 			}
-
-			//			Modify Frequent travel partner
-			if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
-				clickOn(RentalOptionModify);
-				wait.until(ExpectedConditions.visibilityOf(RentalPageContinueBtn));
-				clickOn(RentalPageContinueBtn);
-				wait.until(ExpectedConditions.visibilityOf(FrequentTraveller));
-				FrequentTraveller.isDisplayed();
+			if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
+				fillText(dropOffLocation, testDataMap.get("ModifyDropOffLocation").toString());
 			}
+			if (!testDataMap.get("ModifyPickUpDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(pickUpDate);
+				pickUpDate.clear();
+				fillText(pickUpDate,testDataMap.get("ModifyPickUpDate").toString());
+			}
+			fillText(pickUpTime,testDataMap.get("ModifyPickUpTime").toString());
+			if (!testDataMap.get("ModifyDropOffDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(returnDatePath);
+				returnDatePath.clear();
+				fillText(returnDatePath,testDataMap.get("ModifyDropOffDate").toString());
+			}
+			fillText(dropOffTime,testDataMap.get("ModifyDropOffTime").toString());
+			if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
+				fillText(enterReturnLocation,testDataMap.get("ModifyDropOffLocation").toString() );
+				clickOn(dropOffSuggestion);
+			}
+			clickOn(selectMyCarButton);
+			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("ModifyPickUpLoc").toString()));
+			ReturnLocValue.isDisplayed();
+			verifyPickupDateandTime.isDisplayed();
+			verifyDropoffDateandTime.isDisplayed();
+			clickOn(PayLater);
+			modifyRentalOptions.isDisplayed();
+			modifyRentalPickDate.isDisplayed();
+			modifyRentalDropDate.isDisplayed();
+			BaseRate.isDisplayed();
+			VerifySymbol.isDisplayed();
+			feesTaxes.isDisplayed();
+			estimatedTotal.isDisplayed();
+			NumberOfSeats.isDisplayed();
+			SeeRateTerms.isDisplayed();
+			SeeRateTerms.click();
+			verifyRateTerms.isDisplayed();
+			clickOn(CONTINUEBUTTON);
+			clickOn(reviewModificationsButton);
+			clickOn(keepModificationButton);
+			if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
+				BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
+				budgetHomePage.viewModify(testDataMap);
 
-			if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
-				if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
-					if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
-						wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
-						clickOn(cancelReservationButton);
-						wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
-						clickOn(cancelTermscheckbox);
-						wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
-						clickOn(confirmCancelReservationButton);
-					}
-				
-								if(!Configuration.DOMAIN.equalsIgnoreCase("AU")) {
-									wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
-									clickOn(cancelTermscheckbox);
-									wait.until(ExpectedConditions.visibilityOf(cancelReservation));
-									clickOn(cancelReservation);
-								}
-								if(!Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
-									wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
-									clickOn(cancelTermscheckbox);
-									wait.until(ExpectedConditions.visibilityOf(cancelReservation));
-									clickOn(cancelReservation);
-								}
-				}
 			}
 		}
 
+		//			Modify Frequent travel partner
+		if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
+			clickOn(RentalOptionModify);
+			wait.until(ExpectedConditions.visibilityOf(RentalPageContinueBtn));
+			clickOn(RentalPageContinueBtn);
+			wait.until(ExpectedConditions.visibilityOf(FrequentTraveller));
+			FrequentTraveller.isDisplayed();
+		}
 
-	private Object getBrowserInstance() {
-		// TODO Auto-generated method stub
-		return null;
+		if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
+			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+				if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
+					wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+					clickOn(cancelReservationButton);
+					wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+					clickOn(cancelTermscheckbox);
+					wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
+					clickOn(confirmCancelReservationButton);
+				}
+			}
+			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+				clickOn(cancelReservationButton);
+//				wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+//				clickOn(cancelTermscheckbox);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
+				clickOn(cancelReservation);
+			}
+			if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
+				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+				clickOn(cancelReservationButton);
+				wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+				clickOn(cancelTermscheckbox);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
+				clickOn(cancelReservation);
+			}
+			if(Configuration.DOMAIN.equalsIgnoreCase("CA")) {
+				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+				clickOn(cancelReservationButton);
+				wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+				clickOn(cancelTermscheckbox);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
+				clickOn(cancelReservation);
+			}
+		
 	}
+}
 
-	private WebDriver getDriver() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void isOnPage() {
-		// TODO Auto-generated method stub
+private Object getBrowserInstance() {
+	// TODO Auto-generated method stub
+	return null;
+}
 
-	}
+private WebDriver getDriver() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public void isOnPage() {
+	// TODO Auto-generated method stub
+
+}
 
 }
