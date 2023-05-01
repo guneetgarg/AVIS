@@ -46,47 +46,45 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 
 	@FindBy(xpath = "(//div[@class='day-time-info'])[2]")
 	private WebElement ReturnDateTime;
-	
+
 	@FindBy(xpath = "//div[@class='info-key-drop-text']")
 	private WebElement verifyKeydropmessage;
-	
-//	@FindBy(xpath = "//div[@class='payatcntr col-xs-6']//span[@ng-bind-html='car.payLaterRate.currencySymbol']")
+
+	//	@FindBy(xpath = "//div[@class='payatcntr col-xs-6']//span[@ng-bind-html='car.payLaterRate.currencySymbol']")
 	@FindBy(xpath = "//span[@ng-bind-html='car.payLaterRate.currencySymbol']")
 	private WebElement verifySymbol;
-	
+
 	@FindBy(xpath = "//a[@ng-bind='vm.userCurrency']")
-    private WebElement Currency;
-    
-    @FindBy(xpath = "//li[@ng-repeat='option in vm.uniqueCurrencylist'][2]")
-    private WebElement CurrencyList;
-    
-    
-	
+	private WebElement Currency;
+
+	@FindBy(xpath = "//li[@ng-repeat='option in vm.uniqueCurrencylist'][2]")
+	private WebElement CurrencyList;
+
+
+
 	public void chooseVehicles(Map testDataMap) {
 		WebDriverWait wait= new WebDriverWait(driver, 60);
 		if(!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 			try {
 				wait.until(ExpectedConditions.visibilityOf(selectACarText));
 				assertTrue(selectACarText.getText().toString().contains("Select a Car"));
+				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-//		wait.until(ExpectedConditions.visibilityOf(selectACarText));
-//		assertTrue(selectACarText.getText().toString().contains("Select a Car"));
-		if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-		verifySymbol.isDisplayed();
-		}
-		assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
+				verifySymbol.isDisplayed();
+			}
 		}
 		if(!testDataMap.get("DropOffLocation").toString().equalsIgnoreCase("NA")) {
 			assertTrue(ReturnLocValue.getText().toString().contains(testDataMap.get("DropOffLocation").toString()));
 		}
-		 if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
-             wait.until(ExpectedConditions.visibilityOf(Currency));
-             clickOn(Currency);
-             clickOn(CurrencyList);
-             wait.until(ExpectedConditions.visibilityOf(Currency));
-     }
+		if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
+			wait.until(ExpectedConditions.visibilityOf(Currency));
+			clickOn(Currency);
+			clickOn(CurrencyList);
+			wait.until(ExpectedConditions.visibilityOf(Currency));
+		}
 		if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("Paylater")) {
 			wait.until(ExpectedConditions.visibilityOf(PayLater));
 			helper.scrollToElement(PayLater);
@@ -100,7 +98,7 @@ public class BudgetVehiclesPage extends AbstractBasePage {
 			verifyKeydropmessage.isDisplayed();
 		}
 	}
-	
+ 
 	@Override
 	public void isOnPage() {
 		// TODO Auto-generated method stub

@@ -187,11 +187,20 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(makeaReservation);
 			}
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
-				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
-				clickOn(pickUpLocation);
-				fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
-				wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
-				clickOn(suggestionLocation);
+				try {
+					wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
+					clickOn(pickUpLocation);
+					fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
+					wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+					clickOn(suggestionLocation);
+				} catch (Exception e) {
+					// TODO: handle exception
+					wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
+					clickOn(pickUpLocation);
+					fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
+					wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+					clickOn(suggestionLocation);
+				}
 			}
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 				clickOn(pickUpDate);
