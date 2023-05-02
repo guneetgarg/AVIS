@@ -445,12 +445,14 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				fillText(phoneField, testDataMap.get("PhoneNumber").toString());
 			}
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
-				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
-					if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-						wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
-						clickOn(creditCardCheckBox);
+				if(testDataMap.get("UpliftInfo").toString().equalsIgnoreCase("NA")) {
+					if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
+						if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
+							wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
+							clickOn(creditCardCheckBox);
+						}
+						fillText(cardNumber,testDataMap.get("CCNumber").toString());
 					}
-					fillText(cardNumber,testDataMap.get("CCNumber").toString());
 				}
 			}
 			if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
@@ -538,8 +540,10 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 				}
 				upliftMobile.click();
+				threadSleep(TEN_SECONDS);
 				new Actions(driver).sendKeys(testDataMap.get("UpliftMobile").toString()).perform();
 				upliftBirthdate.click();
+				threadSleep(TEN_SECONDS);
 				new Actions(driver).sendKeys(testDataMap.get("UpliftBirthDate").toString()).perform();
 				letGetStarted.click();					
 				try {
@@ -550,6 +554,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				}
 				Thread.sleep(TEN_SECONDS);
 				mobileVerificationCode.click();
+				threadSleep(TEN_SECONDS);
 				new Actions(driver).sendKeys("111111").perform();
 				verifyButton.click();
 				wait.until(ExpectedConditions.visibilityOf(firstnameUplift));
@@ -574,12 +579,14 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				passwordUplift.click();
 				new Actions(driver).sendKeys("3507").perform();
 				continueUplift.click();
-				wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
+				threadSleep(TEN_SECONDS);
+//				wait.until(ExpectedConditions.visibilityOf(ccnumberUplift));
+				helper.scrollToElement(ccnumberUplift);
 				ccnumberUplift.click();
 				ccnumberUplift.sendKeys("4111 1111 1111 1111");
 				ccexpirationUplift.click();
 				ccexpirationUplift.sendKeys("12/23");
-				ccccvUplift.click();
+				ccccvUplift.click();  
 				ccccvUplift.sendKeys("123");
 				cczipUplift.click();
 				cczipUplift.sendKeys("55555");
@@ -647,8 +654,16 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			}catch (Exception e) {
 				System.out.println("Popup not visible");
 			}
-			threadSleep(TEN_SECONDS);
-			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			try {
+				threadSleep(TEN_SECONDS);
+				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			} catch (Exception e) {
+				// TODO: handle exception
+				threadSleep(TEN_SECONDS);
+				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			}
+			//			threadSleep(TEN_SECONDS);
+			//			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		}
 		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
 			wait.until(ExpectedConditions.visibilityOf(couponVerify));
@@ -771,6 +786,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
 					wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
 					clickOn(cancelReservationButton);
+					threadSleep(TEN_SECONDS);
 					wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
 					clickOn(cancelTermscheckbox);
 					wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
@@ -780,8 +796,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
 				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
 				clickOn(cancelReservationButton);
-//				wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
-//				clickOn(cancelTermscheckbox);
 				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
 			}
@@ -801,25 +815,25 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
 			}
-		
+
+		}
 	}
-}
 
 
-private Object getBrowserInstance() {
-	// TODO Auto-generated method stub
-	return null;
-}
+	private Object getBrowserInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-private WebDriver getDriver() {
-	// TODO Auto-generated method stub
-	return null;
-}
+	private WebDriver getDriver() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-@Override
-public void isOnPage() {
-	// TODO Auto-generated method stub
+	@Override
+	public void isOnPage() {
+		// TODO Auto-generated method stub
 
-}
+	}
 
 }

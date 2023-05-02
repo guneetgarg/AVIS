@@ -159,7 +159,7 @@ public class BudgetRentalPage extends AbstractBasePage {
 			wait.until(ExpectedConditions.visibilityOf(CONTINUEBUTTON));
 			clickOn(CONTINUEBUTTON);
 		}
-	}
+	}   
 
 	@Override
 	public void isOnPage() {

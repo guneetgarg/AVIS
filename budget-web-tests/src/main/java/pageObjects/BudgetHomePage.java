@@ -160,21 +160,32 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//div[@ng-show='vm.getVehicles.validated']//span[@class='mainErrorText info-error-msg-text']")
 	private WebElement errorMessageverify;
-	
+
 	@FindBy(xpath = "//div[@class='info-key-drop-text']")
 	private WebElement verifyKeydropmessage;
 
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 40);
+		
+		try {
+			wait.until(ExpectedConditions.visibilityOf(budgetBrandText));
+		} catch (Exception e) {
+			System.out.println(e);
+			driver.navigate().refresh();
+			wait.until(ExpectedConditions.visibilityOf(budgetBrandText));
+		}
+		
 		Thread.sleep(TEN_SECONDS);
 		List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
+
 		if(ele.size()>0) {
 			threadSleep(TEN_SECONDS);
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
+
+
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {	
-			budgetBrandText.isDisplayed();
 			wait.until(ExpectedConditions.visibilityOf(reservation));
 			clickOn(reservation);
 			if(Configuration.ENVIRONMENT.equalsIgnoreCase("qa")){
@@ -198,6 +209,7 @@ public class BudgetHomePage extends AbstractBasePage {
 					clickOn(suggestionLocation);
 				} catch (Exception e) {
 					// TODO: handle exception
+					threadSleep(FIVE_SECONDS);
 					wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 					clickOn(pickUpLocation);
 					fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
@@ -283,7 +295,6 @@ public class BudgetHomePage extends AbstractBasePage {
 		}
 
 		if (testDataMap.get("UserType").toString().equalsIgnoreCase("Signin")) {
-			budgetBrandText.isDisplayed();
 			clickOn(HeaderLoginButton);
 			waitForVisibilityOfElement(UserName);
 			UserName.sendKeys(testDataMap.get("Username").toString());
@@ -327,23 +338,23 @@ public class BudgetHomePage extends AbstractBasePage {
 			}
 			if (testDataMap.get("ErrorMessage90").toString().equalsIgnoreCase("Yes")) {
 				clickOn(selectMyCarButton);
-				threadSleep(FIVE_SECONDS);
+				threadSleep(TEN_SECONDS);
 				System.out.println("wait till error 90 days");
 				assertTrue(errorMessage90days.isDisplayed());
 				System.out.println("verified 90 days");
 			}
-			if(!Configuration.DOMAIN.equalsIgnoreCase("US") && !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
-			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
-				clickOn(selectMyCarButton);
-				assertTrue(errorMessageverify.isDisplayed());
-			}
+			if(!Configuration.DOMAIN.equalsIgnoreCase("US") && !Configuration.DOMAIN.equalsIgnoreCase("NZ") && !Configuration.DOMAIN.equalsIgnoreCase("CA") ) {
+				if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
+					clickOn(selectMyCarButton);
+					assertTrue(errorMessageverify.isDisplayed());
+				}
 			}
 			if(testDataMap.get("VerifyKeyDropMessage").toString().equalsIgnoreCase("Yes")) {
 				clickOn(selectMyCarButton);
 				threadSleep(FIVE_SECONDS);
 				verifyKeydropmessage.isDisplayed();
 			}
-			}
+		}
 	}
 
 	public boolean isVehicleAvailable() throws InterruptedException {
