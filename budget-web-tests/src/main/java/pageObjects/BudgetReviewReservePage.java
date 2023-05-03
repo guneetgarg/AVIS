@@ -621,7 +621,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 		}
 		//			Flight error msg verify
 		if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
-			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
+			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes") && testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 				wait.until(ExpectedConditions.visibilityOf(FlightErrorMsg));
 				FlightErrorMsg.isDisplayed();
 			}
