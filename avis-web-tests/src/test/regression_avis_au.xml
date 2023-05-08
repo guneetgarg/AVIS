@@ -6,13 +6,13 @@
     </listeners>
 
     <parameter name="brand" value="Avis"/> <!-- <Possible values: Avis/Budget/Paylesscar -->
-    <parameter name="domain" value="CA"/>    <!-- <Possible values: US/CA/AU/NZ> -->
+    <parameter name="domain" value="AU"/>    <!-- <Possible values: US/CA/AU/NZ> -->
     <parameter name="environment" value="${environment}"/>    <!-- < Possible values : qa/uat1/qa2/www/load balancer ip> -->
     <parameter name="browser" value="chrome"/>
     <!-- <Possible values: chrome/firefox/safari/edge/pixel/iphone/ipad> -->
     <parameter name="docker" value="${docker}"/>
 
-    <test name="AVIS CA Regression Tests on Chrome">
+    <test name="AVIS AU Regression Tests on Chrome">
 
         <groups>
             <run>
@@ -21,7 +21,7 @@
         </groups>
 
         <classes>
-            <class name="com.abg.avis.AvisCAAnonymousUser" />
+            <class name="com.abg.avis.AvisAUAnonymousUser" />
         </classes>
     </test>
 
