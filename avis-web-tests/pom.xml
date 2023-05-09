@@ -23,6 +23,7 @@
         <version>${maven-surefire-plugin}</version>
         <environment>${environment}</environment>
         <domain>${domain}</domain>
+        <docker>${docker}</docker>
     </properties>
 
     <build>
