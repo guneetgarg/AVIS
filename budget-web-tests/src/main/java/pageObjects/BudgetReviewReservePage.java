@@ -173,8 +173,8 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(id = "res-cancelreservation-popUp")
 	private WebElement confirmCancelReservationButton;
 
-	@FindBy(xpath = "//label[@class='step4-checkbox-custom-label']")
-	private WebElement cancelTerms;
+	@FindBy(xpath = "//label[@for='termsCheck']")
+	private WebElement cancelTermscheckbox;
 
 	@FindBy(xpath = "//button[@ng-click='vm.cancelReservation.submit(cancelform)']")
 	private WebElement cancelReservation;
@@ -381,7 +381,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 	@FindBy(id = "i-agree-and-continue")
 	private WebElement agreetermsUplift;
-	
+
 
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
@@ -445,388 +445,379 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				fillText(phoneField, testDataMap.get("PhoneNumber").toString());
 			}
 			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
-				if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
-					if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-						wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
-						clickOn(creditCardCheckBox);
-					}
-					fillText(cardNumber,testDataMap.get("CCNumber").toString());
-				}
-			}
-				if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
-					fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
-					fillText(step4_CVV,testDataMap.get("CVV").toString());
-					fillText(address1,testDataMap.get("Address").toString());
-				}
-				if(!testDataMap.get("Address3").toString().equalsIgnoreCase("NA")) {
-					fillText(Address3,testDataMap.get("Address3").toString() );
-				}
-				if(!testDataMap.get("City").toString().equalsIgnoreCase("NA")) {
-					fillText(city,testDataMap.get("City").toString());
-				}
-				if(!testDataMap.get("State").toString().equalsIgnoreCase("NA")) {
-					clickOn(state);
-					fillText(state,testDataMap.get("State").toString());
-				}
-
-				if(!testDataMap.get("ZipCode").toString().equalsIgnoreCase("NA")) {
-					fillText(zip,testDataMap.get("ZipCode").toString());
-				}
-				if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
-					wait.until(ExpectedConditions.visibilityOf(PaypalButton));
-					clickOn(PaypalButton);
-					clickOn(Budget_PaypalRadioButton);
-					String mainWindowHandle = driver.getWindowHandle();
-					System.out.println("windowhandle :"+mainWindowHandle);
-					Set<String> allWindowHandles = driver.getWindowHandles();
-					System.out.println("windowhandle :"+allWindowHandles);
-					Iterator<String> iterator = allWindowHandles.iterator();
-					// Here we will check if child window is present and then switch to child window
-					while (iterator.hasNext()) {
-						String ChildWindow = iterator.next();
-						if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
-							driver.switchTo().window(ChildWindow);
-
-							emailTextField.click();
-							emailTextField.sendKeys(testDataMap.get("PaypalEmail").toString());
-							clickOn(NextButton);
-							clickOn(passwordTextField);
-							passwordTextField.sendKeys(testDataMap.get("PaypalPassword").toString());
-							clickOn(LoginButton);
-							clickOn(AgreeAndContinueButton);
+				if(testDataMap.get("UpliftInfo").toString().equalsIgnoreCase("NA")) {
+					if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
+						if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
+							wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
+							clickOn(creditCardCheckBox);
 						}
+						fillText(cardNumber,testDataMap.get("CCNumber").toString());
 					}
+				}
+			}
+			if(!testDataMap.get("ExpirationDate").toString().equalsIgnoreCase("NA")) {
+				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate").toString());
+				fillText(step4_CVV,testDataMap.get("CVV").toString());
+				fillText(address1,testDataMap.get("Address").toString());
+			}
+			if(!testDataMap.get("Address3").toString().equalsIgnoreCase("NA")) {
+				fillText(Address3,testDataMap.get("Address3").toString() );
+			}
+			if(!testDataMap.get("City").toString().equalsIgnoreCase("NA")) {
+				fillText(city,testDataMap.get("City").toString());
+			}
+			if(!testDataMap.get("State").toString().equalsIgnoreCase("NA")) {
+				clickOn(state);
+				fillText(state,testDataMap.get("State").toString());
+			}
 
+			if(!testDataMap.get("ZipCode").toString().equalsIgnoreCase("NA")) {
+				fillText(zip,testDataMap.get("ZipCode").toString());
+			}
+			if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
+				wait.until(ExpectedConditions.visibilityOf(PaypalButton));
+				clickOn(PaypalButton);
+				clickOn(Budget_PaypalRadioButton);
+				String mainWindowHandle = driver.getWindowHandle();
+				System.out.println("windowhandle :"+mainWindowHandle);
+				Set<String> allWindowHandles = driver.getWindowHandles();
+				System.out.println("windowhandle :"+allWindowHandles);
+				Iterator<String> iterator = allWindowHandles.iterator();
+				// Here we will check if child window is present and then switch to child window
+				while (iterator.hasNext()) {
+					String ChildWindow = iterator.next();
+					if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+						driver.switchTo().window(ChildWindow);
+
+						emailTextField.click();
+						emailTextField.sendKeys(testDataMap.get("PaypalEmail").toString());
+						clickOn(NextButton);
+						clickOn(passwordTextField);
+						passwordTextField.sendKeys(testDataMap.get("PaypalPassword").toString());
+						clickOn(LoginButton);
+						clickOn(AgreeAndContinueButton);
+					}
 				}
 
-				if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
-					wait.until(ExpectedConditions.visibilityOf(userYourCreditCardCheckbox));
-					clickOn(userYourCreditCardCheckbox);
-					clickOn(creditCardCheckBox);
-					fillText(cardNumber, "347651479687420");
-					//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
-					fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate1").toString());
-					fillText(step4_CVV,testDataMap.get("CVV1").toString());
-					fillText(address1,testDataMap.get("Address1").toString());
-					if(!testDataMap.get("City1").toString().equalsIgnoreCase("NA")) {
-						fillText(city,testDataMap.get("City1").toString());
-					}
-					if(!testDataMap.get("State1").toString().equalsIgnoreCase("NA")) {
-						clickOn(state);
-						fillText(state,testDataMap.get("State1").toString());
-					}
-					if(!testDataMap.get("ZipCode1").toString().equalsIgnoreCase("NA")) {
-						fillText(zip,testDataMap.get("ZipCode1").toString());
-					}
+			}
 
+			if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
+				wait.until(ExpectedConditions.visibilityOf(userYourCreditCardCheckbox));
+				clickOn(userYourCreditCardCheckbox);
+				clickOn(creditCardCheckBox);
+				fillText(cardNumber, "347651479687420");
+				//				fillText(cardNumber,testDataMap.get("CCNumber").toString());
+				fillText(creditCardExpiryDateField,testDataMap.get("ExpirationDate1").toString());
+				fillText(step4_CVV,testDataMap.get("CVV1").toString());
+				fillText(address1,testDataMap.get("Address1").toString());
+				if(!testDataMap.get("City1").toString().equalsIgnoreCase("NA")) {
+					fillText(city,testDataMap.get("City1").toString());
+				}
+				if(!testDataMap.get("State1").toString().equalsIgnoreCase("NA")) {
+					clickOn(state);
+					fillText(state,testDataMap.get("State1").toString());
+				}
+				if(!testDataMap.get("ZipCode1").toString().equalsIgnoreCase("NA")) {
+					fillText(zip,testDataMap.get("ZipCode1").toString());
 				}
 
-				if(testDataMap.get("UpliftInfo").toString().equalsIgnoreCase("YES")) {
-					System.out.println("uplift ");
-					upliftCheckbox.click();
-					threadSleep(TEN_SECONDS);
-					try {
-						Thread.sleep(5000);
-						driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='Pay Monthly']")));
-						System.out.println("uplift iframe");
-						Boolean b = driver.findElement(By.id("mobile")).isDisplayed();
-						System.out.println("uplift iframe mobile id");
+			}
 
-						System.out.println(b);
-					} catch (NoSuchElementException e) {
-						e.printStackTrace();
+			if(testDataMap.get("UpliftInfo").toString().equalsIgnoreCase("YES")) {
+				System.out.println("uplift ");
+				upliftCheckbox.click();
+				threadSleep(TEN_SECONDS);
+				try {
+					Thread.sleep(5000);
+					driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='Pay Monthly']")));
+					System.out.println("uplift iframe");
+					Boolean b = driver.findElement(By.id("mobile")).isDisplayed();
+					System.out.println("uplift iframe mobile id");
 
-					}
-					upliftMobile.click();
+					System.out.println(b);
+				} catch (NoSuchElementException e) {
+					e.printStackTrace();
 
-					new Actions(driver)
-					.sendKeys(testDataMap.get("UpliftMobile").toString())
-					.perform();
-
-					System.out.println("UpliftMobile");
-					upliftBirthdate.click();
-					
-					new Actions(driver)
-					.sendKeys(testDataMap.get("UpliftBirthDate").toString())
-					.perform();
-					System.out.println("update birthdate");
-
-
-					letGetStarted.click();
-					System.out.println("lets get started");
-					
-					try {
-						mobileVerificationCode.click();
-					} catch (Exception e){
-						letGetStarted.click();
-
-					}
-					Thread.sleep(TEN_SECONDS);
+				}
+				upliftMobile.click();
+				threadSleep(TEN_SECONDS);
+				new Actions(driver).sendKeys(testDataMap.get("UpliftMobile").toString()).perform();
+				upliftBirthdate.click();
+				threadSleep(TEN_SECONDS);
+				new Actions(driver).sendKeys(testDataMap.get("UpliftBirthDate").toString()).perform();
+				letGetStarted.click();					
+				try {
 					mobileVerificationCode.click();
-//					mobileVerificationCode.sendKeys();
-					System.out.println("mobile verification");
-					new Actions(driver)
-					.sendKeys("111111")
-					.perform();
-					System.out.println("mobile verification code");
+				} catch (Exception e){
+					letGetStarted.click();
 
-					verifyButton.click();
-					wait.until(ExpectedConditions.visibilityOf(firstnameUplift));
-					firstnameUplift.click();
-					firstnameUplift.clear();
-					new Actions(driver)
-					.sendKeys("Davis")
-					.perform();
-					lastNameUplift.click();
-					lastNameUplift.clear();
-					new Actions(driver)
-					.sendKeys("Davis")
-					.perform();
-					homeaddressuplift.click();
-					new Actions(driver)
-					.sendKeys("1013 Weda Cir")
-					.perform();
-					homecityUplift.click();
-					new Actions(driver)
-					.sendKeys("Mayfield")
-					.perform();
-					regionUplift.click();
-					new Actions(driver)
-					.sendKeys("Kentucky")
-					.perform();
-					postalcodeUplift.click();
-					new Actions(driver)
-					.sendKeys("999999")
-					.perform();
-					emailUplift.click();
-					new Actions(driver)
-					.sendKeys("arthur@uplift.com")
-					.perform();
-					yearlyincomeUplift.click();
-					new Actions(driver)
-					.sendKeys("8,000,000")
-					.perform();
-					passwordUplift.click();
-					new Actions(driver)
-					.sendKeys("3507")
-					.perform();
-					continueUplift.click();
-//					wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
-					ccnumberUplift.click();
-					ccnumberUplift.sendKeys("4111 1111 1111 1111");
-					ccexpirationUplift.click();
-					ccexpirationUplift.sendKeys("12/23");
-					ccccvUplift.click();
-					ccccvUplift.sendKeys("123");
-					cczipUplift.click();
-					cczipUplift.sendKeys("55555");
-					securitynumberUplift.click();
-					securitynumberUplift.sendKeys("666-58-3507");
-					continueCreditUplift.click();
-					wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
-					agreetermsUplift.click();
-					clickOn(termsCheck);
-					clickOn(SubmitButton);
 				}
-
-			}
-			if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
-				clickOn(Airline);
-				fillText(Airline,testDataMap.get("Airline").toString());
-				fillText(flightNumber,testDataMap.get("FlightNumber").toString());
-
-			}
-			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
-				fillText(IataTextFiled,testDataMap.get("IATA").toString());
-			}
-
-			//			Frequent Travel partner Verify
-			if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
-				FrequentTraveller.isDisplayed();
-			}
-
-			if(!testDataMap.get("ReserveButton").toString().equalsIgnoreCase("NA")) {
+				Thread.sleep(TEN_SECONDS);
+				mobileVerificationCode.click();
+				threadSleep(TEN_SECONDS);
+				new Actions(driver).sendKeys("111111").perform();
+				verifyButton.click();
+				wait.until(ExpectedConditions.visibilityOf(firstnameUplift));
+				firstnameUplift.click();
+				firstnameUplift.clear();
+				new Actions(driver).sendKeys("Davis").perform();
+				lastNameUplift.click();
+				lastNameUplift.clear();
+				new Actions(driver).sendKeys("Davis").perform();
+				homeaddressuplift.click();
+				new Actions(driver).sendKeys("1013 Weda Cir").perform();
+				homecityUplift.click();
+				new Actions(driver).sendKeys("Mayfield").perform();
+				regionUplift.click();
+				new Actions(driver).sendKeys("Kentucky").perform();
+				postalcodeUplift.click();
+				new Actions(driver).sendKeys("999999").perform();
+				emailUplift.click();
+				new Actions(driver).sendKeys("arthur@uplift.com").perform();
+				yearlyincomeUplift.click();
+				new Actions(driver).sendKeys("8,000,000").perform();
+				passwordUplift.click();
+				new Actions(driver).sendKeys("3507").perform();
+				continueUplift.click();
+				threadSleep(TEN_SECONDS);
+//				wait.until(ExpectedConditions.visibilityOf(ccnumberUplift));
+				helper.scrollToElement(ccnumberUplift);
+				ccnumberUplift.click();
+				ccnumberUplift.sendKeys("4111 1111 1111 1111");
+				ccexpirationUplift.click();
+				ccexpirationUplift.sendKeys("12/23");
+				ccccvUplift.click();  
+				ccccvUplift.sendKeys("123");
+				cczipUplift.click();
+				cczipUplift.sendKeys("55555");
+				securitynumberUplift.click();
+				securitynumberUplift.sendKeys("666-58-3507");
+				continueCreditUplift.click();
+				wait.until(ExpectedConditions.visibilityOf(agreetermsUplift));
+				agreetermsUplift.click();
 				clickOn(termsCheck);
 				clickOn(SubmitButton);
 			}
-			//			Flight error msg verify
-			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
-			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes")) {
+
+		}
+		if(!testDataMap.get("Airline").toString().equalsIgnoreCase("NA")) {
+			clickOn(Airline);
+			fillText(Airline,testDataMap.get("Airline").toString());
+			fillText(flightNumber,testDataMap.get("FlightNumber").toString());
+
+		}
+		if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
+			fillText(IataTextFiled,testDataMap.get("IATA").toString());
+		}
+
+		//			Frequent Travel partner Verify
+		if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
+			FrequentTraveller.isDisplayed();
+		}
+
+		if(!testDataMap.get("ReserveButton").toString().equalsIgnoreCase("NA")) {
+			clickOn(termsCheck);
+			clickOn(SubmitButton);
+		}
+		//			Flight error msg verify
+		if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes") && testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
 				wait.until(ExpectedConditions.visibilityOf(FlightErrorMsg));
 				FlightErrorMsg.isDisplayed();
 			}
-			}
-			if(testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("NA")) {
+		}
+		if(testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("NA")) {
+			try {
 				wait.until(ExpectedConditions.visibilityOf(reservationConfirmation));
 				System.out.println(reservationConfirmation.getText());
 				assertTrue(reservationConfirmation.getText().contains("Your car is reserved."));
-				try {
-					System.out.println("try");
-					List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
-					for(int i=0; i < s1.size(); i++){
-						if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
-							driver.switchTo().frame(s1.get(i).getAttribute("id"));
-							List<WebElement> t = driver.findElements(By.tagName("iframe"));
-							driver.switchTo().frame(t.get(0).getAttribute("id"));
-							System.out.println("5");
-							wait.until(ExpectedConditions.visibilityOf(close));
-							System.out.println("6");
-							clickOn(close);
-							System.out.println("7");
-							break;
-						}				
-					}
-				}catch (Exception e) {
-					System.out.println("Popup not visible");
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("Reservation Confirmation");
+			}
+			try {
+				System.out.println("try");
+				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
+				for(int i=0; i < s1.size(); i++){
+					if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
+						driver.switchTo().frame(s1.get(i).getAttribute("id"));
+						List<WebElement> t = driver.findElements(By.tagName("iframe"));
+						driver.switchTo().frame(t.get(0).getAttribute("id"));
+						System.out.println("5");
+						wait.until(ExpectedConditions.visibilityOf(close));
+						System.out.println("6");
+						clickOn(close);
+						System.out.println("7");
+						break;
+					}				
 				}
+			}catch (Exception e) {
+				System.out.println("Popup not visible");
+			}
+			try {
+				threadSleep(TEN_SECONDS);
+				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+			} catch (Exception e) {
+				// TODO: handle exception
 				threadSleep(TEN_SECONDS);
 				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			}
-			if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
-				wait.until(ExpectedConditions.visibilityOf(couponVerify));
-				assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
-			}
+			//			threadSleep(TEN_SECONDS);
+			//			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
+		}
+		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
+			wait.until(ExpectedConditions.visibilityOf(couponVerify));
+			assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
+		}
 
-			//			Validate NZCurrency
-			if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
-				wait.until(ExpectedConditions.visibilityOf(SYDCurrency));
-				SYDCurrency.isDisplayed();
-			}
+		//			Validate NZCurrency
+		if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
+			wait.until(ExpectedConditions.visibilityOf(SYDCurrency));
+			SYDCurrency.isDisplayed();
+		}
 
-			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+		if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
 
-				if(!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
+			if(!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
 
-					String BCDNo = verifyBCD.getText();
-					System.out.println(BCDNo);
-					String [] BCDValue= verifyBCD.getText().replace(" ", "").split(":");
-					String BCDNumber = BCDValue[1];
-					System.out.println(BCDNumber);
-					assertEquals(BCDNumber,testDataMap.get("BCD").toString() );
-				}
-			}
-
-			if(testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("NA")) {
-				threadSleep(FIVE_SECONDS);
-				String confirmationNo = confirmationNumber.getText();
-				System.out.println(confirmationNo);
-				String [] confirmationNoValue= confirmationNumber.getText().split(": ");
-				String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
-				System.out.println(reservationNumber);
-
-
-
-				if(testDataMap.get("ViewModifyCancel").toString().equalsIgnoreCase("Yes")) {
-					viewmodifylastName.click();
-					fillText(viewmodifylastName,testDataMap.get("LastName").toString());
-					fillText(viewmodifyConfirmationNumber,confirmationNo );
-					findReservation.click();
-
-				}
-				if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
-					wait.until(ExpectedConditions.visibilityOf(modifyLocation));
-					helper.scrollToElement(modifyLocation);
-					clickOn(modifyLocation);
-					modifyReserveaCar.isDisplayed();
-					pickUpLocation.isDisplayed();
-					dropOffLocation.isDisplayed();
-					pickUpTime.isDisplayed();
-					returnDatePath.isDisplayed();
-					dropOffTime.isDisplayed();
-					enterReturnLocation.isDisplayed();
-					selectMyCarButton.isDisplayed();
-					ModifyReservationTextMsg.isDisplayed();
-					clickOn(pickUpLocation);
-					pickUpLocation.clear();
-					fillText(pickUpLocation, testDataMap.get("ModifyPickUpLoc").toString());
-					clickOn(suggestionLocation);
-					if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
-						fillText(dropOffLocation, testDataMap.get("ModifyDropOffLocation").toString());
-					}
-					if (!testDataMap.get("ModifyPickUpDate").toString().equalsIgnoreCase("NA")) {
-						clickOn(pickUpDate);
-						pickUpDate.clear();
-						fillText(pickUpDate,testDataMap.get("ModifyPickUpDate").toString());
-					}
-					fillText(pickUpTime,testDataMap.get("ModifyPickUpTime").toString());
-					if (!testDataMap.get("ModifyDropOffDate").toString().equalsIgnoreCase("NA")) {
-						clickOn(returnDatePath);
-						returnDatePath.clear();
-						fillText(returnDatePath,testDataMap.get("ModifyDropOffDate").toString());
-					}
-					fillText(dropOffTime,testDataMap.get("ModifyDropOffTime").toString());
-					if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
-						fillText(enterReturnLocation,testDataMap.get("ModifyDropOffLocation").toString() );
-						clickOn(dropOffSuggestion);
-					}
-					clickOn(selectMyCarButton);
-					assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("ModifyPickUpLoc").toString()));
-					ReturnLocValue.isDisplayed();
-					verifyPickupDateandTime.isDisplayed();
-					verifyDropoffDateandTime.isDisplayed();
-					clickOn(PayLater);
-					modifyRentalOptions.isDisplayed();
-					modifyRentalPickDate.isDisplayed();
-					modifyRentalDropDate.isDisplayed();
-					BaseRate.isDisplayed();
-					VerifySymbol.isDisplayed();
-					feesTaxes.isDisplayed();
-					estimatedTotal.isDisplayed();
-					NumberOfSeats.isDisplayed();
-					SeeRateTerms.isDisplayed();
-					SeeRateTerms.click();
-					verifyRateTerms.isDisplayed();
-					clickOn(CONTINUEBUTTON);
-					clickOn(reviewModificationsButton);
-					clickOn(keepModificationButton);
-					if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
-						BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
-						budgetHomePage.viewModify(testDataMap);
-
-					}
-				}
-
-				//			Modify Frequent travel partner
-				if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
-					clickOn(RentalOptionModify);
-					wait.until(ExpectedConditions.visibilityOf(RentalPageContinueBtn));
-					clickOn(RentalPageContinueBtn);
-					wait.until(ExpectedConditions.visibilityOf(FrequentTraveller));
-					FrequentTraveller.isDisplayed();
-				}
-
-				if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
-					wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
-					clickOn(cancelReservationButton);
-					wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
-					clickOn(confirmCancelReservationButton);
-					if(!Configuration.DOMAIN.equalsIgnoreCase("AU")) {
-						wait.until(ExpectedConditions.visibilityOf(cancelTerms));
-						clickOn(cancelTerms);
-						wait.until(ExpectedConditions.visibilityOf(cancelReservation));
-						clickOn(cancelReservation);
-					}
-					if(!Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
-						wait.until(ExpectedConditions.visibilityOf(cancelTerms));
-						clickOn(cancelTerms);
-						wait.until(ExpectedConditions.visibilityOf(cancelReservation));
-						clickOn(cancelReservation);
-					}
-					try {
-						wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
-					} catch (Exception e) {
-						// TODO: handle exception
-
-						System.out.println(e);
-						wait.until(ExpectedConditions.visibilityOf(cancelledReservationConfirm));
-						assertTrue(cancelledReservationConfirm.getText().toString().contains("Your prepaid reservation is cancelled."));
-					}
-
-				}
+				String BCDNo = verifyBCD.getText();
+				System.out.println(BCDNo);
+				String [] BCDValue= verifyBCD.getText().replace(" ", "").split(":");
+				String BCDNumber = BCDValue[1];
+				System.out.println(BCDNumber);
+				assertEquals(BCDNumber,testDataMap.get("BCD").toString() );
 			}
 		}
-//	}
 
+		if(testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("NA")) {
+			threadSleep(FIVE_SECONDS);
+			String confirmationNo = confirmationNumber.getText();
+			System.out.println(confirmationNo);
+			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
+			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
+			System.out.println(reservationNumber);
+
+
+
+			if(testDataMap.get("ViewModifyCancel").toString().equalsIgnoreCase("Yes")) {
+				viewmodifylastName.click();
+				fillText(viewmodifylastName,testDataMap.get("LastName").toString());
+				fillText(viewmodifyConfirmationNumber,confirmationNo );
+				findReservation.click();
+
+			}
+		}
+		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
+			wait.until(ExpectedConditions.visibilityOf(modifyLocation));
+			helper.scrollToElement(modifyLocation);
+			clickOn(modifyLocation);
+			modifyReserveaCar.isDisplayed();
+			pickUpLocation.isDisplayed();
+			dropOffLocation.isDisplayed();
+			pickUpTime.isDisplayed();
+			returnDatePath.isDisplayed();
+			dropOffTime.isDisplayed();
+			enterReturnLocation.isDisplayed();
+			selectMyCarButton.isDisplayed();
+			ModifyReservationTextMsg.isDisplayed();
+			if (!testDataMap.get("ModifyPickUpLoc").toString().equalsIgnoreCase("NA")) {
+				clickOn(pickUpLocation);
+				pickUpLocation.clear();
+				fillText(pickUpLocation, testDataMap.get("ModifyPickUpLoc").toString());
+				clickOn(suggestionLocation);
+			}
+			if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
+				fillText(dropOffLocation, testDataMap.get("ModifyDropOffLocation").toString());
+			}
+			if (!testDataMap.get("ModifyPickUpDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(pickUpDate);
+				pickUpDate.clear();
+				fillText(pickUpDate,testDataMap.get("ModifyPickUpDate").toString());
+			}
+			fillText(pickUpTime,testDataMap.get("ModifyPickUpTime").toString());
+			if (!testDataMap.get("ModifyDropOffDate").toString().equalsIgnoreCase("NA")) {
+				clickOn(returnDatePath);
+				returnDatePath.clear();
+				fillText(returnDatePath,testDataMap.get("ModifyDropOffDate").toString());
+			}
+			fillText(dropOffTime,testDataMap.get("ModifyDropOffTime").toString());
+			if (!testDataMap.get("ModifyDropOffLocation").toString().equalsIgnoreCase("NA")) {
+				fillText(enterReturnLocation,testDataMap.get("ModifyDropOffLocation").toString() );
+				clickOn(dropOffSuggestion);
+			}
+			clickOn(selectMyCarButton);
+			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("ModifyPickUpLoc").toString()));
+			ReturnLocValue.isDisplayed();
+			verifyPickupDateandTime.isDisplayed();
+			verifyDropoffDateandTime.isDisplayed();
+			clickOn(PayLater);
+			modifyRentalOptions.isDisplayed();
+			modifyRentalPickDate.isDisplayed();
+			modifyRentalDropDate.isDisplayed();
+			BaseRate.isDisplayed();
+			VerifySymbol.isDisplayed();
+			feesTaxes.isDisplayed();
+			estimatedTotal.isDisplayed();
+			NumberOfSeats.isDisplayed();
+			SeeRateTerms.isDisplayed();
+			SeeRateTerms.click();
+			verifyRateTerms.isDisplayed();
+			clickOn(CONTINUEBUTTON);
+			clickOn(reviewModificationsButton);
+			clickOn(keepModificationButton);
+			if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
+				BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
+				budgetHomePage.viewModify(testDataMap);
+
+			}
+		}
+
+		//			Modify Frequent travel partner
+		if(testDataMap.get("FrequentTravellerProgram").toString().equalsIgnoreCase("Yes")) {
+			clickOn(RentalOptionModify);
+			wait.until(ExpectedConditions.visibilityOf(RentalPageContinueBtn));
+			clickOn(RentalPageContinueBtn);
+			wait.until(ExpectedConditions.visibilityOf(FrequentTraveller));
+			FrequentTraveller.isDisplayed();
+		}
+
+		if(!testDataMap.get("CancelReservation").toString().equalsIgnoreCase("NA")) {
+			if(testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("PayNow")) {
+				if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
+					wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+					clickOn(cancelReservationButton);
+					threadSleep(TEN_SECONDS);
+					wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+					clickOn(cancelTermscheckbox);
+					wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
+					clickOn(confirmCancelReservationButton);
+				}
+			}
+			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
+				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+				clickOn(cancelReservationButton);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
+				clickOn(cancelReservation);
+			}
+			if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
+				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+				clickOn(cancelReservationButton);
+				wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+				clickOn(cancelTermscheckbox);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
+				clickOn(cancelReservation);
+			}
+			if(Configuration.DOMAIN.equalsIgnoreCase("CA")) {
+				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
+				clickOn(cancelReservationButton);
+				wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+				clickOn(cancelTermscheckbox);
+				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
+				clickOn(cancelReservation);
+			}
+
+		}
+	}
 
 
 	private Object getBrowserInstance() {
