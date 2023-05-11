@@ -5,6 +5,7 @@ import com.avis.qa.components.Footer;
 import com.avis.qa.components.Header;
 import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.pages.*;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -19,12 +20,22 @@ public class MiscHelper extends AbstractBasePage {
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
     private final Homepage homepage;
+    private String country="Canada";
 
     public MiscHelper(WebDriver driver) {
         super(driver);
         this.driver = driver;
         this.reservationWidget = new ReservationWidget(driver);
         this.homepage = new Homepage(driver);
+    }
+    {
+        if (Configuration.DOMAIN.equals("CA")) {
+            country = "Canada";
+        }
+        else if (Configuration.DOMAIN.equals("US")) {
+            country="U S A" ;
+
+        }
     }
 
     @Override
@@ -394,7 +405,7 @@ public class MiscHelper extends AbstractBasePage {
                 .enterCardNumber(creditcardNumber)
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode("12")
-                .enterAddressInboundSpecific("U S A")
+                .enterAddressInboundSpecific(country)
                 .step4Submit()
                 .isCVVInvalidErrorMsgDisplayed();
 
@@ -404,7 +415,9 @@ public class MiscHelper extends AbstractBasePage {
 
         reviewAndBook.isEmailInvalidErrorMsgDisplayed();
         reviewAndBook.isPhonenumInvalidErrorMsgDisplayed();
-        reviewAndBook.isTncErrorMsgtextDisplayed();
+        //Amazon and Paypal not applicable for CA ,adding same condition
+        if(!Configuration.DOMAIN.equals("CA"))
+            reviewAndBook.isTncErrorMsgtextDisplayed();
 
 
 

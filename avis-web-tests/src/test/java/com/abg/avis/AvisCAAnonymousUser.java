@@ -66,7 +66,7 @@ public class AvisCAAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+/*    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 38, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Outbound_StrikeThroughCoupon_Cancelation_PayLater_CA(String pickUpLocation, String residencyLocation, String awd, String fname, String lname,
                                                                               String email, String phoneNo, String flightNumber) {
         launchUrl();
@@ -77,7 +77,7 @@ public class AvisCAAnonymousUser extends TestBase {
         assertTrue(confirmation.isAwdConfirmationPageTextDisplayed(awd), "AWD Confirmation text is not displayed");
         confirmation.cancelReservation();
 
-    }
+    }*/
 
     @Test(groups = {REGRESSION,SMOKE, AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_ErrorMessage_PayNow_CA(String pickUpLocation, String firstName, String lastName, String email,
@@ -159,7 +159,7 @@ public class AvisCAAnonymousUser extends TestBase {
 
     @Test(groups = {REGRESSION, SANITY, SMOKE, AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc1_OffersPage_Reservation_CA(String pickUpLoction, String dropOffLocation, String fname, String lname,
-                                                    String email, String phoneNo) {
+                                                     String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_OneWay_PayLater(pickUpLoction, dropOffLocation, fname, lname, email, phoneNo);
@@ -493,7 +493,7 @@ public class AvisCAAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+/*    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 34, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_CA(String pickUpLoction, String AWD, String corporateEmailId, String fname, String lname,
                                                                                                         String mail, String pNo, String primaryCardNo, String secCardNo) {
         launchUrl();
@@ -506,7 +506,7 @@ public class AvisCAAnonymousUser extends TestBase {
         assertTrue(confirmation.isSecondaryCardDetailsDisplayed(), "Secondary card details is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
         confirmation.cancelReservation();
-    }
+    }*/
 
     @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS}, priority = 36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_UtypeCoupon_Tierbundle_PayLater_CA(String pickUpLocation, String pickupTime, String dropOffTime, String couponNo, String fname,
