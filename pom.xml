@@ -5,19 +5,41 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.avis</groupId>
-    <artifactId>avis-us-web</artifactId>
+    <artifactId>avis-web-tests</artifactId>
     <version>1.0.1</version>
-    <packaging>pom</packaging>
 
-    <modules>
-        <!-- The repository module must be first in order to ensure
-             that the local repository is populated -->
-          <module>avis-web-framework</module>
-           <module>${test-module}</module>
-          
-        <!-- <module>avis-web-tests</module>
-          <module>budget-web-tests</module>
-          <module>payless-web-tests</module>-->
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>com.avis</groupId>
+            <artifactId>avis-web-framework</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven-surefire-plugin>3.0.0-M5</maven-surefire-plugin>
+        <version>${maven-surefire-plugin}</version>
+        <environment>${environment}</environment>
+        <domain>${domain}</domain>
+        <docker>${docker}</docker>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
