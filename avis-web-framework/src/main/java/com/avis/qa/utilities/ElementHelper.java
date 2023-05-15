@@ -59,15 +59,7 @@ public class ElementHelper {
 
 	public void clickIfElementIsDisplayed(WebElement element) {
 		if (isElementDisplayed(element)) {
-			try {
-				element.click();
-			}
-			catch(Exception e)
-			{
-				log.info("Click using javascript");
-				JavascriptExecutor js = (JavascriptExecutor) driver;
-				js.executeScript("arguments[0].click();", element);
-			}
+			element.click();
 		}
 	}
 
