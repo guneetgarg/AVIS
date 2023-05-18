@@ -36,7 +36,7 @@ Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_CA,YYZ
 Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_CA,YYZ,Dhanapriya,K,test,9600685486,123,YGK,TUZZ005
 Avis_Reservation_TtypeCoupon_PayLater_CA,YYZ,TUZZ008,Abhishek,J,test,8658066321,TUZZ008 - Reward Day Plus 500 Bonus Miles/Paperless Cpn
 Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_CA,YYZ,3:00 AM,MUYY001,Abhishek,J,test,9600685486
-Avis_RES_OneWay_USAA_PayLater_CA,R5O,YQM,A108301,111789732130,Abhishek,J,test,9600685486
+Avis_RES_OneWay_USAA_PayLater_CA,LAS,LAX,A177201,38298026,Abhishek,J,test,9600685486
 Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_CA,YYZ,U S A,Abhishek,K,test,8980765645,1234,C$,CAD
 Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_CA,YYZ,A6666000,A6666000@ACCBUSINESS.COM,Abhishek,K,test,8980765645,4929723679720422,5447144508353949
 Avis_RES_UtypeCoupon_Tierbundle_PayLater_CA,YYZ,11:00 AM,2:30 PM,UUZZ003,Abhishek,J,test,8658066321,UUZZ003 - Single Upgrade w/ Rental of GPS/Paperless Cpn

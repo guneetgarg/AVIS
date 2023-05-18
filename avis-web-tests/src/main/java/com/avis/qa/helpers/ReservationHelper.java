@@ -23,11 +23,21 @@ public class ReservationHelper extends AbstractBasePage {
 
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
+    private String contory;
 
     public ReservationHelper(WebDriver driver) {
         super(driver);
         this.driver = driver;
         this.reservationWidget = new ReservationWidget(driver);
+    }
+    {
+        if (Configuration.DOMAIN.equals("CA")) {
+            contory = "Canada";
+        }
+        else if (Configuration.DOMAIN.equals("US")) {
+            contory="U S A" ;
+
+        }
     }
 
     @Override
@@ -1850,7 +1860,7 @@ public class ReservationHelper extends AbstractBasePage {
                 .enterCardNumber(ccNo)
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
-                .enterAddressInboundSpecific("U S A");
+                .enterAddressInboundSpecific(contory);
         reviewAndBook
                 .checkTermsAndConditions()
                 .step4Submit();

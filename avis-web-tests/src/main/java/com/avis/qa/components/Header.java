@@ -30,6 +30,9 @@ public class Header extends AbstractBasePage {
     @FindBy(xpath = "//*[contains(text(),'US Offers')]")
     private WebElement USOffers;
 
+    @FindBy(xpath="//a[text()='Canada Deals']")
+    private WebElement canadaDeals;
+
     @FindBy(xpath = "(//a[contains(text(),'Cars & Services')])[1]|//a[contains(text(),'Cars')]")
     private WebElement CarsandServices;
 
@@ -57,6 +60,9 @@ public class Header extends AbstractBasePage {
         waitForVisibilityOfElement(OfferHeader).click();
         if(Configuration.DOMAIN.equalsIgnoreCase("US")) {
             USOffers.click();
+        } else if (Configuration.DOMAIN.equalsIgnoreCase("CA")) {
+            canadaDeals.click();
+
         }
         return this;
     }
