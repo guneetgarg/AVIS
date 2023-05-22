@@ -74,7 +74,7 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "(//*[contains(@ng-click,'getVehicles.submit')])[1]")
 	private WebElement selectMyCarButton;
 
-	@FindBy(id = "age")
+	@FindBy(id = "reservationModel.personalInfoRQ.age")
 	private WebElement ageDropDown;
 
 	@FindBy(xpath = "(//*[@id='reservationModel.personalInfoRQ.residency'])[1]")
@@ -163,7 +163,12 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//div[@class='info-key-drop-text']")
 	private WebElement verifyKeydropmessage;
-
+	
+	@FindBy(xpath = "//div[@class='row res-inputFldPrt res-inputFldBack']")
+	private WebElement ReservationWidget;
+	
+	@FindBy(xpath = "//span[contains(text(),'Sorry!, You are Younger than the minimum AGE required for Renting at this location.')]")
+	private WebElement minimumAgeError;
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 40);
@@ -180,7 +185,7 @@ public class BudgetHomePage extends AbstractBasePage {
 		List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
 
 		if(ele.size()>0) {
-			threadSleep(TEN_SECONDS);
+			threadSleep(TEN_SECONDS); 
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
 
@@ -202,6 +207,9 @@ public class BudgetHomePage extends AbstractBasePage {
 			}
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 				try {
+					//Validation of Reservation Widget
+					wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+					ReservationWidget.isDisplayed();
 					wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 					clickOn(pickUpLocation);
 					fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
@@ -210,6 +218,9 @@ public class BudgetHomePage extends AbstractBasePage {
 				} catch (Exception e) {
 					// TODO: handle exception
 					threadSleep(FIVE_SECONDS);
+					//Validation of Reservation Widget
+					wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+					ReservationWidget.isDisplayed();
 					wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 					clickOn(pickUpLocation);
 					fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
@@ -241,6 +252,9 @@ public class BudgetHomePage extends AbstractBasePage {
 			if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
 				clickOn(ageDropDown);
 				fillText(ageDropDown, testDataMap.get("Age").toString());
+//				if(!testDataMap.get("Age1").toString().equalsIgnoreCase("NA")) {
+//					minimumAgeError.isDisplayed();		
+//				}
 			}
 			if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
 				clickOn(selectCountry);
@@ -252,7 +266,7 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(CouponCheckBox);
 				fillText(CouponTextField, testDataMap.get(COUPON).toString());
 			}
-
+				
 			if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(offerCodes));
 				clickOn(offerCodes);
@@ -278,14 +292,18 @@ public class BudgetHomePage extends AbstractBasePage {
 					fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
 				} 
 				else {
-					if (testDataMap.get("BCD").toString().contains("W8")) {
-						membershipTextField.sendKeys(Keys.TAB);
-						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
-					} 
 					if (!testDataMap.get("MemberNumber").toString().equalsIgnoreCase("NA")) {
 						membershipTextField.sendKeys(Keys.TAB);
 						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
 					}
+//					if (testDataMap.get("BCD").toString().contains("W8")) {
+//						membershipTextField.sendKeys(Keys.TAB);
+//						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
+//					} 
+//					if (!testDataMap.get("MemberNumber").toString().equalsIgnoreCase("NA")) {
+//						membershipTextField.sendKeys(Keys.TAB);
+//						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
+//					}
 				}
 			}
 			if(testDataMap.get("SelectMyCar").toString().equalsIgnoreCase("Yes")) {
@@ -320,8 +338,30 @@ public class BudgetHomePage extends AbstractBasePage {
 				wait.until(ExpectedConditions.visibilityOf(makeaReservation));
 				clickOn(makeaReservation);
 			}
-			fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
-			clickOn(suggestionLocation);
+			
+			try {
+				//Validation of Reservation Widget
+				wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+				ReservationWidget.isDisplayed();
+				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
+				clickOn(pickUpLocation);
+				fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+				wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+				clickOn(suggestionLocation);
+			} catch (Exception e) {
+				// TODO: handle exception
+				threadSleep(FIVE_SECONDS);
+				//Validation of Reservation Widget
+				wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+				ReservationWidget.isDisplayed();
+				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
+				clickOn(pickUpLocation);
+				fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+				wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+				clickOn(suggestionLocation);
+			}
+//			fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+//			clickOn(suggestionLocation);
 
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
 				clickOn(pickUpDate);
@@ -353,6 +393,21 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(selectMyCarButton);
 				threadSleep(FIVE_SECONDS);
 				verifyKeydropmessage.isDisplayed();
+			}
+			if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
+				clickOn(ageDropDown);
+				fillText(ageDropDown, testDataMap.get("Age").toString());
+//				if(!testDataMap.get("Age1").toString().equalsIgnoreCase("NA")) {
+//					minimumAgeError.isDisplayed();		
+//				}
+			}
+			if(!testDataMap.get("Age1").toString().equalsIgnoreCase("NA")) {
+				clickOn(selectMyCarButton);
+				wait.until(ExpectedConditions.visibilityOf(minimumAgeError));
+				minimumAgeError.isDisplayed();
+				clickOn(ageDropDown);
+				fillText(ageDropDown, testDataMap.get("Age1").toString());
+				clickOn(selectMyCarButton);
 			}
 		}
 	}
