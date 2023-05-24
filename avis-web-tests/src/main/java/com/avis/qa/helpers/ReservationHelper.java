@@ -23,7 +23,7 @@ public class ReservationHelper extends AbstractBasePage {
 
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
-    private String countory;
+    private String country;
 
     public ReservationHelper(WebDriver driver) {
         super(driver);
@@ -32,10 +32,10 @@ public class ReservationHelper extends AbstractBasePage {
     }
     {
         if (Configuration.DOMAIN.equals("CA")) {
-            countory = "Canada";
+            country = "Canada";
         }
         else if (Configuration.DOMAIN.equals("US")) {
-            countory="U S A" ;
+            country="U S A" ;
 
         }
     }
@@ -1677,7 +1677,8 @@ public class ReservationHelper extends AbstractBasePage {
         assertTrue(reviewAndBook.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
         assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
         reviewAndBook.isFlightInfoDisplayed();
-        reviewAndBook.isPayPalAndAmazonPayDisplayed();
+        if (Configuration.DOMAIN.equals("US"))
+            reviewAndBook.isPayPalAndAmazonPayDisplayed();
 
         reviewAndBook
                 .firstname(firstName)
@@ -1689,7 +1690,7 @@ public class ReservationHelper extends AbstractBasePage {
                 // .selectExpiryDateAndYear()
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
-                .enterAddressInboundSpecific("U S A");
+                .enterAddressInboundSpecific(country);
         reviewAndBook
                 .checkTermsAndConditions()
                 .step4Submit();
@@ -1860,7 +1861,7 @@ public class ReservationHelper extends AbstractBasePage {
                 .enterCardNumber(ccNo)
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
-                .enterAddressInboundSpecific(countory);
+                .enterAddressInboundSpecific(country);
         reviewAndBook
                 .checkTermsAndConditions()
                 .step4Submit();
