@@ -23,11 +23,21 @@ public class ReservationHelper extends AbstractBasePage {
 
     private final WebDriver driver;
     private final ReservationWidget reservationWidget;
+    private String country;
 
     public ReservationHelper(WebDriver driver) {
         super(driver);
         this.driver = driver;
         this.reservationWidget = new ReservationWidget(driver);
+    }
+    {
+        if (Configuration.DOMAIN.equals("CA")) {
+            country = "Canada";
+        }
+        else if (Configuration.DOMAIN.equals("US")) {
+            country="U S A" ;
+
+        }
     }
 
     @Override
@@ -1667,7 +1677,8 @@ public class ReservationHelper extends AbstractBasePage {
         assertTrue(reviewAndBook.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
         assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
         reviewAndBook.isFlightInfoDisplayed();
-        reviewAndBook.isPayPalAndAmazonPayDisplayed();
+        if (Configuration.DOMAIN.equals("US"))
+            reviewAndBook.isPayPalAndAmazonPayDisplayed();
 
         reviewAndBook
                 .firstname(firstName)
@@ -1679,7 +1690,7 @@ public class ReservationHelper extends AbstractBasePage {
                 // .selectExpiryDateAndYear()
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
-                .enterAddressInboundSpecific("U S A");
+                .enterAddressInboundSpecific(country);
         reviewAndBook
                 .checkTermsAndConditions()
                 .step4Submit();
@@ -1850,7 +1861,7 @@ public class ReservationHelper extends AbstractBasePage {
                 .enterCardNumber(ccNo)
                 .EnterExpiryDateAndYear()
                 .enterSecurityCode(cvv)
-                .enterAddressInboundSpecific("U S A");
+                .enterAddressInboundSpecific(country);
         reviewAndBook
                 .checkTermsAndConditions()
                 .step4Submit();
