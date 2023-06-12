@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.core.Configuration;
 import com.avis.qa.core.TestBase;
+import com.avis.qa.utilities.HelperFunctions;
 
 public class BudgetRentalPage extends AbstractBasePage {
 	TestBase test = new TestBase();
@@ -106,29 +108,24 @@ public class BudgetRentalPage extends AbstractBasePage {
 
 	@FindBy(xpath = "//div[@class='modal-dialog modal-popup reservation-modal renter-summary-detail']")
 	private WebElement modifyRentalDetailsPopup;
+	
+//	@FindBy(xpath = "//div[@class='estimate mobile-hide']/span[@class='pull-right']/span/span[last()]")
+//	private WebElement estimatedTotalAmount;
+	@FindBy(xpath = "//div[@class='estimate mobile-hide']/span[@class='pull-right']/span")
+	private WebElement estimatedTotalAmount;
+	
+//	String estimatedTotalAmount="//div[@class='estimate mobile-hide']/span[@class='pull-right']/span/span[last()]";
 
-	//	@FindBy(xpath = "")
-	//	private WebElement ;
-	//	
-	//	@FindBy(xpath = "")
-	//	private WebElement ;
-	//	
-	//	@FindBy(xpath = "")
-	//	private WebElement ;
-	//	
-	//	@FindBy(xpath = "")
-	//	private WebElement ;
-	//	
-	//	@FindBy(xpath = "")
-	//	private WebElement ;
-	//	
-	//	@FindBy(xpath = "")
-	//	private WebElement ;
-	//	
-	//	@FindBy(xpath = "")
-	//	private WebElement ;
-	//	
-
+	String protectionsCoverages="//div[contains(@class,'extra-package-lists')]//p[@class='f_head' and contains(text(),'Cover Myself (PAE)')]/../parent::div/following-sibling::div[@class='col-lg-4 col-md-2 col-sm-3 col-xs-12']//div[@class='customChk']";
+	
+	String equipmentServices="//div[contains(@class,'extra-package-lists')]//p[@class='f_head' and contains(text(),'Curbside Drop-Off')]/../parent::div/following-sibling::div[@class='col-lg-4 col-md-2 col-sm-3 col-xs-12 pull-right']//div[@class='customChk']";
+	
+	static String TotalEstimatedAmount;
+	
+	static int TotalDays;
+	
+	static String SELECTPRICE;
+	
 	public void rentalPage(Map<?, ?> testDataMap) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 90);
 		if (testDataMap.get("Continue").toString().equalsIgnoreCase("Yes")) {
@@ -149,6 +146,7 @@ public class BudgetRentalPage extends AbstractBasePage {
 			SeeRateTerms.isDisplayed(); 
 			SeeRateTerms.click();
 			verifyRateTerms.isDisplayed();
+			
 			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
 				if(!testDataMap.get("BCD").toString().equalsIgnoreCase("NA")) {
 					String BCDNo = verifyBCD.getText();
@@ -202,6 +200,20 @@ public class BudgetRentalPage extends AbstractBasePage {
 				assertTrue(recommendExtras1.getText().contains("Recommended Extras"));
 
 			}
+			if(!testDataMap.get("ProtectionCoverages").toString().equalsIgnoreCase("NA")) {
+				WebElement protectionsCoverage = driver.findElement(By.xpath(HelperFunctions.createDynamicLocator(protectionsCoverages,testDataMap.get("ProtectionCoverages").toString())));
+				Actions actions = new Actions(driver);
+				actions.moveToElement(protectionsCoverage);
+				actions.perform();
+				clickOn(protectionsCoverage);
+			}
+			if(!testDataMap.get("EquipmentServices").toString().equalsIgnoreCase("NA")) {
+				WebElement equipsServices = driver.findElement(By.xpath(HelperFunctions.createDynamicLocator(equipmentServices,testDataMap.get("EquipmentServices").toString())));
+				Actions actions = new Actions(driver);
+				actions.moveToElement(equipsServices);
+				actions.perform();
+				clickOn(equipsServices);
+			}
 			if(testDataMap.get("ModifyRentalDetails").toString().equalsIgnoreCase("Yes")) {
 				modifyLink.click();
 				modifyRentalDetails.isDisplayed();
@@ -220,6 +232,18 @@ public class BudgetRentalPage extends AbstractBasePage {
 //				budgetVehicle.extras(testDataMap);
 			}
 
+			TotalDays=BudgetHomePage.TotalDays;
+			SELECTPRICE=BudgetVehiclesPage.SELECTPRICE;
+//			WebElement estTtl=driver.findElement(By.xpath(HelperFunctions.createDynamicLocator(protectionsCoverages,testDataMap.get("ProtectionCoverages").toString())));
+			wait.until(ExpectedConditions.visibilityOf(estimatedTotalAmount));
+			String totalAmount=estimatedTotalAmount.getText();
+			
+			if (SELECTPRICE.equals(estimatedTotalAmount)) {
+				System.out.println("Strings are equal");
+			} else {
+				System.out.println("Strings are NOT equal");
+			}
+//			Double TotalEstimatedAmount=((Integer.valueOf(totalAmount)>(Double.valueOf(SELECTPRICE))));
 			wait.until(ExpectedConditions.visibilityOf(CONTINUEBUTTON));
 			clickOn(CONTINUEBUTTON);
 		}

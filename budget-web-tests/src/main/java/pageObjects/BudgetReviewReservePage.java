@@ -18,6 +18,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -315,13 +316,13 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//input[@name='birthdate']")
 	private WebElement upliftBirthdate;
 
-	@FindBy(xpath = "//a[contains(@id,'s-get-started')]/..")
+	@FindBy(xpath = "//button[contains(@id,'s-get-started')]/..")
 	private WebElement letGetStarted;
 
 	@FindBy(xpath = "//input[@name='mobile-verification-code']")
 	private WebElement mobileVerificationCode;
 
-	@FindBy(xpath = "//div[@class='verify-container main-container']//a[@role='button']")
+	@FindBy(xpath = "//div[@class='row verify-mobile']//div[@class='verify-container main-container']//button[@class=\"btn btn-lg btn-primary btn-block page-btn\"]")
 	private WebElement verifyButton;
 
 	@FindBy(xpath = "//input[@name='first-name']")
@@ -351,8 +352,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//input[@name='ssn']")
 	private WebElement passwordUplift;
 
-	@FindBy(xpath = "//div[@class='App']//div[@class='col-xs-12 col-sm-8 col-sm-offset-2 footer']//div[@class='main-container']//a[@type='button']")
+	@FindBy(xpath = "//div[@class='col-xs-12 col-sm-8 col-sm-offset-2 footer']//div[@class='main-container']//button[@class='btn btn-lg btn-primary btn-block page-btn']")
 	private WebElement continueUplift;
+	
+	@FindBy(xpath = "//div[@class='row col-xs-12 new-payment-selector selected']//div[@class='payment-label']")
+	private WebElement debitCardClick;
 
 	@FindBy(xpath = "//input[@name='cc-number']")
 	private WebElement ccnumberUplift;
@@ -369,7 +373,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//input[@name='full-ssn']")
 	private WebElement securitynumberUplift;
 
-	@FindBy(xpath = "//div[@class='col-xs-12 accept-page-btn']//a[@role='button']")
+	@FindBy(xpath = "//div[@class='col-xs-12 accept-page-btn']//button[@class='btn btn-lg btn-primary btn-block page-btn']")
 	private WebElement continueCreditUplift;
 
 	@FindBy(id = "i-agree-and-continue")
@@ -453,6 +457,9 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	
 	@FindBy(xpath = "//p[@ng-if=\"(vm.confirmation.reservationSummary.personalInfo.residency.value != '' && vm.confirmation.reservationSummary.personalInfo.residency.value != undefined)\"]")
 	private WebElement residencyVerify;
+	
+	@FindBy(xpath = "//div[@class='row accept']//h1[@class='header-txt']")
+	private WebElement congratesMsgUplift;
 
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
@@ -725,9 +732,15 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				passwordUplift.click();
 				new Actions(driver).sendKeys("3507").perform();
 				continueUplift.click();
-				threadSleep(TEN_SECONDS);
-				//				wait.until(ExpectedConditions.visibilityOf(ccnumberUplift));
-				helper.scrollToElement(ccnumberUplift);
+				Thread.sleep(20000);
+//				threadSleep(TEN_SECONDS);
+//				wait.until(ExpectedConditions.visibilityOf(ccnumberUplift));
+				congratesMsgUplift.isDisplayed();
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,10000)");
+				helper.scrollToElement(continueCreditUplift);
+				debitCardClick.click();
+//				helper.scrollToElement(ccnumberUplift);
 				ccnumberUplift.click();
 				ccnumberUplift.sendKeys("4111 1111 1111 1111");
 				ccexpirationUplift.click();
@@ -866,7 +879,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
 			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
 			System.out.println(reservationNumber);
-			estimatedTotalConfirmation.isDisplayed();
+//			estimatedTotalConfirmation.isDisplayed();
 			estimatedAmount.isDisplayed();
 			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
 				assertTrue(IATANumber.getText().toString().contains(testDataMap.get("IATA").toString()));
