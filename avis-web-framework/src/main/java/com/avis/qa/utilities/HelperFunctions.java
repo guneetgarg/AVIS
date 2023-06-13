@@ -31,4 +31,12 @@ public class HelperFunctions {
 
 		return r.toString();
 	}
+
+
+	public static String createDynamicLocator(String locator, String dynamicValue) {
+		if (locator.contains("$DNM")) {
+			locator = locator.replace("$DNM", dynamicValue);
+		}
+		return locator;
+	}
 }

@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.avis.qa.core.AbstractBasePage;
 import com.avis.qa.core.Configuration;
+import com.avis.qa.utilities.HelperFunctions;
 
 public class BudgetHomePage extends AbstractBasePage {
 
@@ -50,14 +51,16 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "((//div[@class='angucomplete-results'])[1]//div[@class='angucomplete-description'])[1] | ((//div[@id='PicLoc_dropdown'])[1]//div[@class='angucomplete-row'])[1]")
 	private WebElement suggestionLocation;
 
-	@FindBy(xpath = "//input[@ng-model='vm.reservationModel.pickUpDateDisplay']")
-	private WebElement pickUpDate;
+//	@FindBy(xpath = "//div[@class='col-lg-12 res-inputFldFst']//div[@class='col-xs-3 res-inputFld dateImg']//input[@type='text']")
+//	private WebElement pickUpDate;
+	String pickUpDate="//div[@class='col-lg-12 res-inputFldFst']//div[@class='col-xs-3 res-inputFld dateImg']//input[@type='text']";
 
+	String selectDate = "//td[@data-handler='selectDay']//a[contains(text(),'$DNM')]";
+	
 	@FindBy(xpath = "//*[contains(@name,'reservationModel.pickUpTime')]")
 	private WebElement pickUpTime;
-
-	@FindBy(xpath = "//input[@ng-model='vm.reservationModel.dropDateDisplay']")
-	private WebElement returnDatePath;
+	
+	String returnDatePath="//input[@ng-model='vm.reservationModel.dropDateDisplay']";
 
 	@FindBy(xpath = "//*[contains(@name,'reservationModel.dropTime')]")
 	private WebElement dropOffTime;
@@ -74,7 +77,7 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "(//*[contains(@ng-click,'getVehicles.submit')])[1]")
 	private WebElement selectMyCarButton;
 
-	@FindBy(id = "age")
+	@FindBy(id = "reservationModel.personalInfoRQ.age")
 	private WebElement ageDropDown;
 
 	@FindBy(xpath = "(//*[@id='reservationModel.personalInfoRQ.residency'])[1]")
@@ -113,7 +116,7 @@ public class BudgetHomePage extends AbstractBasePage {
 	@FindBy(xpath = "//a[text()='View / Modify / Cancel']")
 	private WebElement Reservation_ViewModifyCancelLink;
 
-	@FindBy(xpath = "//a[@class='ui-datepicker-next ui-corner-all']")
+	@FindBy(xpath = "//a[@title='Next']")
 	private WebElement nextMonth;
 
 	@FindBy(xpath = "//input[@aria-label='corporate email address']")
@@ -163,11 +166,20 @@ public class BudgetHomePage extends AbstractBasePage {
 
 	@FindBy(xpath = "//div[@class='info-key-drop-text']")
 	private WebElement verifyKeydropmessage;
-
+	
+	@FindBy(xpath = "//div[@class='row res-inputFldPrt res-inputFldBack']")
+	private WebElement ReservationWidget;
+	
+	@FindBy(xpath = "//span[contains(text(),'Sorry!, You are Younger than the minimum AGE required for Renting at this location.')]")
+	private WebElement minimumAgeError;
+	
+	static int TotalDays;
 
 	public void selectYourCar(Map<?, ?> testDataMap) throws InterruptedException {
+		driver.findElement(By.xpath("//button[@aria-label='Close']")).click();
 		WebDriverWait wait = new WebDriverWait(driver, 40);
-		
+		String dropOffdate1=testDataMap.get("DropOffDate").toString();
+		String pickUpDate1=testDataMap.get("PickUpDate").toString();
 		try {
 			wait.until(ExpectedConditions.visibilityOf(budgetBrandText));
 		} catch (Exception e) {
@@ -180,7 +192,7 @@ public class BudgetHomePage extends AbstractBasePage {
 		List<WebElement> ele = driver.findElements(By.xpath("//button[@data-click='close']"));
 
 		if(ele.size()>0) {
-			threadSleep(TEN_SECONDS);
+			threadSleep(TEN_SECONDS); 
 			driver.findElement(By.xpath("//button[@data-click='close']")).click();
 		}
 
@@ -202,6 +214,9 @@ public class BudgetHomePage extends AbstractBasePage {
 			}
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
 				try {
+					//Validation of Reservation Widget
+					wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+					ReservationWidget.isDisplayed();
 					wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 					clickOn(pickUpLocation);
 					fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
@@ -210,6 +225,9 @@ public class BudgetHomePage extends AbstractBasePage {
 				} catch (Exception e) {
 					// TODO: handle exception
 					threadSleep(FIVE_SECONDS);
+					//Validation of Reservation Widget
+					wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+					ReservationWidget.isDisplayed();
 					wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
 					clickOn(pickUpLocation);
 					fillText(pickUpLocation, testDataMap.get("PickUpLocation").toString());
@@ -218,18 +236,21 @@ public class BudgetHomePage extends AbstractBasePage {
 				}
 			}
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(pickUpDate);
-				pickUpDate.clear();
-				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
-
+				driver.findElement(By.xpath(pickUpDate)).click();
+				nextMonth.click();
+				nextMonth.click();
+				nextMonth.click();
+				nextMonth.click();
+				driver.findElement(By.xpath(pickUpDate)).clear();
+				driver.findElement(By.xpath(HelperFunctions.createDynamicLocator(selectDate,testDataMap.get("PickUpDate").toString()))).click();
 			}
 			if (!testDataMap.get("PickUpTime").toString().equalsIgnoreCase("NA")) {
 				fillText(pickUpTime, testDataMap.get("PickUpTime").toString());
 			}
 			if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(returnDatePath);
-				returnDatePath.clear();
-				fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
+				driver.findElement(By.xpath(returnDatePath)).click();
+				driver.findElement(By.xpath(returnDatePath)).clear();
+				driver.findElement(By.xpath(HelperFunctions.createDynamicLocator(selectDate,testDataMap.get("DropOffDate").toString()))).click();
 			}
 			if (!testDataMap.get("DropOffTime").toString().equalsIgnoreCase("NA")) {
 				fillText(dropOffTime, testDataMap.get("DropOffTime").toString());
@@ -241,6 +262,9 @@ public class BudgetHomePage extends AbstractBasePage {
 			if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
 				clickOn(ageDropDown);
 				fillText(ageDropDown, testDataMap.get("Age").toString());
+//				if(!testDataMap.get("Age1").toString().equalsIgnoreCase("NA")) {
+//					minimumAgeError.isDisplayed();		
+//				}
 			}
 			if (!testDataMap.get("Country").toString().equalsIgnoreCase("NA")) {
 				clickOn(selectCountry);
@@ -252,7 +276,7 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(CouponCheckBox);
 				fillText(CouponTextField, testDataMap.get(COUPON).toString());
 			}
-
+				
 			if (!testDataMap.get("CustomerID").toString().equalsIgnoreCase("NA")) {
 				wait.until(ExpectedConditions.visibilityOf(offerCodes));
 				clickOn(offerCodes);
@@ -278,17 +302,30 @@ public class BudgetHomePage extends AbstractBasePage {
 					fillText(corporateEmailId, testDataMap.get("CorporateEmailID").toString());
 				} 
 				else {
-					if (testDataMap.get("BCD").toString().contains("W8")) {
-						membershipTextField.sendKeys(Keys.TAB);
-						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
-					} 
 					if (!testDataMap.get("MemberNumber").toString().equalsIgnoreCase("NA")) {
 						membershipTextField.sendKeys(Keys.TAB);
 						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
 					}
+//					if (testDataMap.get("BCD").toString().contains("W8")) {
+//						membershipTextField.sendKeys(Keys.TAB);
+//						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
+//					} 
+//					if (!testDataMap.get("MemberNumber").toString().equalsIgnoreCase("NA")) {
+//						membershipTextField.sendKeys(Keys.TAB);
+//						fillText(membershipTextField, testDataMap.get("MemberNumber").toString());
+//					}
 				}
 			}
+			System.out.println();
+			System.out.println(dropOffdate1+ '-'+ pickUpDate1);
+			int pickupDate=Integer.parseInt(pickUpDate1);
+			int dropoffDate=Integer.parseInt(dropOffdate1);
+			TotalDays=dropoffDate-pickupDate;
+			System.out.println(TotalDays);
 			if(testDataMap.get("SelectMyCar").toString().equalsIgnoreCase("Yes")) {
+				
+//				TotalDays =((Integer.valueOf(testDataMap.get("DropOffDate").toString())-(Integer.valueOf(testDataMap.get("PickUpDate").toString()))));
+//				System.out.println(TotalDays);
 				wait.until(ExpectedConditions.visibilityOf(selectMyCarButton));
 				clickOn(selectMyCarButton);
 			}
@@ -320,18 +357,49 @@ public class BudgetHomePage extends AbstractBasePage {
 				wait.until(ExpectedConditions.visibilityOf(makeaReservation));
 				clickOn(makeaReservation);
 			}
-			fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
-			clickOn(suggestionLocation);
+			
+			try {
+				//Validation of Reservation Widget
+				wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+				ReservationWidget.isDisplayed();
+				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
+				clickOn(pickUpLocation);
+				fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+				wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+				clickOn(suggestionLocation);
+			} catch (Exception e) {
+				// TODO: handle exception
+				threadSleep(FIVE_SECONDS);
+				//Validation of Reservation Widget
+				wait.until(ExpectedConditions.visibilityOf(ReservationWidget));
+				ReservationWidget.isDisplayed();
+				wait.until(ExpectedConditions.visibilityOf(pickUpLocation));
+				clickOn(pickUpLocation);
+				fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+				wait.until(ExpectedConditions.visibilityOf(suggestionLocation));
+				clickOn(suggestionLocation);
+			}
+//			fillText(pickUpLocation, testDataMap.get("PickUplocation1").toString());
+//			clickOn(suggestionLocation);
 
 			if (!testDataMap.get("PickUpDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(pickUpDate);
-				pickUpDate.clear();
-				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
+				driver.findElement(By.xpath(pickUpDate)).click();
+				driver.findElement(By.xpath(pickUpDate)).clear();
+				driver.findElement(By.xpath(HelperFunctions.createDynamicLocator(selectDate,testDataMap.get("PickUpDate").toString() ))).click();
+//				clickOn(pickUpDate);
+//				pickUpDate.clear();
+//				fillText(pickUpDate, testDataMap.get("PickUpDate").toString());
 			}
 			if (!testDataMap.get("DropOffDate").toString().equalsIgnoreCase("NA")) {
-				clickOn(returnDatePath);
-				returnDatePath.clear();
-				fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
+				driver.findElement(By.xpath(returnDatePath)).click();
+				nextMonth.click();
+				nextMonth.click();
+				nextMonth.click();
+				driver.findElement(By.xpath(returnDatePath)).clear();
+				driver.findElement(By.xpath(HelperFunctions.createDynamicLocator(selectDate,testDataMap.get("DropOffDate").toString() ))).click();
+//				clickOn(returnDatePath);
+//				returnDatePath.clear();
+//				fillText(returnDatePath, testDataMap.get("DropOffDate").toString());
 			}
 			if (!testDataMap.get("DropOffTime").toString().equalsIgnoreCase("NA")) {
 				fillText(dropOffTime, testDataMap.get("DropOffTime").toString());
@@ -353,6 +421,21 @@ public class BudgetHomePage extends AbstractBasePage {
 				clickOn(selectMyCarButton);
 				threadSleep(FIVE_SECONDS);
 				verifyKeydropmessage.isDisplayed();
+			}
+			if (!testDataMap.get("Age").toString().equalsIgnoreCase("NA")) {
+				clickOn(ageDropDown);
+				fillText(ageDropDown, testDataMap.get("Age").toString());
+//				if(!testDataMap.get("Age1").toString().equalsIgnoreCase("NA")) {
+//					minimumAgeError.isDisplayed();		
+//				}
+			}
+			if(!testDataMap.get("Age1").toString().equalsIgnoreCase("NA")) {
+				clickOn(selectMyCarButton);
+				wait.until(ExpectedConditions.visibilityOf(minimumAgeError));
+				minimumAgeError.isDisplayed();
+				clickOn(ageDropDown);
+				fillText(ageDropDown, testDataMap.get("Age1").toString());
+				clickOn(selectMyCarButton);
 			}
 		}
 	}

@@ -73,6 +73,7 @@ public class BrowserInstance {
 		chromeOptions.addArguments("--disable-dev-shm-usage");
 		chromeOptions.addArguments("--proxy-server='direct://'");
 		chromeOptions.addArguments("--proxy-bypass-list=*");
+		chromeOptions.addArguments("profile.cookie_controls_mode");		
 		webDriver = new ChromeDriver(chromeOptions);
 	}
 
