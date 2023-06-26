@@ -2,6 +2,7 @@ package com.avis.qa.components;
 
 import com.avis.qa.core.AbstractBasePage;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,6 +50,10 @@ public class ReservationWidget extends AbstractBasePage {
 
     @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[contains(text(),16)]")
     private WebElement pickupDateSelection;
+
+    @FindBy(xpath="//a[@class='ui-state-default']")
+    private List<WebElement> pickupDateSel;
+
 
     @FindBy(xpath = "//table[contains(@class,'ui-datepicker-calendar uitable ui-datepicker-table-first ')]//a[contains(text(),20)]")
     private WebElement returnDateSelection5daysGap;
@@ -173,6 +178,9 @@ public class ReservationWidget extends AbstractBasePage {
     @FindBy(xpath = "//button[text()='Confirm My Choices']")
     private WebElement ChoicesPopup;
 
+    @FindBy(xpath = "//button[text()='Accept All Cookies']")
+    private WebElement acceptCookies;
+
     public ReservationWidget(WebDriver driver) {
         super(driver);
         //clickOn(ChoicesPopup);
@@ -213,7 +221,8 @@ public class ReservationWidget extends AbstractBasePage {
 
     private void enterLocation(String location, WebElement element) {
         waitForVisibilityOfElement(element);
-        element.click();
+       // element.click();
+        clickUsingJS(element);
         element.clear();
         element.sendKeys(location);
         threadSleep(TWO_SECONDS);
@@ -232,9 +241,9 @@ public class ReservationWidget extends AbstractBasePage {
             nextMonthSelection.click();
         }
 
-        pickupDateSelection.click();
+       pickupDateSelection.click();
         threadSleep(THREE_SECONDS);
-        returnDateSelection.click();
+         returnDateSelection.click();
         return this;
     }
 
@@ -254,8 +263,35 @@ public class ReservationWidget extends AbstractBasePage {
             nextMonthSelection.click();
         }
         pickupDateSelection.click();
+
         threadSleep(THREE_SECONDS);
+
         returnDateSelection5daysGap.click();
+        return this;
+    }
+    public ReservationWidget calendarSelection(int month,String pickDate,String dropDate) {
+        helper.scrollBy("-600");
+        threadSleep(TWO_SECONDS);
+        pickupDate.click();
+        pickupDate.clear();
+        dropOffLocation.click();
+        clickOn(returnDate);
+        returnDate.clear();
+        dropOffLocation.click();
+        pickupDate.click();
+
+        for (int i = 0; i < month; i++) {
+            threadSleep(ONE_SECOND);
+            nextMonthSelection.click();
+        }
+        dateSelect(pickDate);
+        threadSleep(THREE_SECONDS);
+        dateSelect(dropDate);
+       // pickupDateSelection.click();
+
+
+
+      //  returnDateSelection5daysGap.click();
         return this;
     }
     /**
@@ -270,8 +306,10 @@ public class ReservationWidget extends AbstractBasePage {
 
         Select select = new Select(jumpMonthDropdown);
         select.selectByVisibleText("December " + year);
-        snowChainPickupDate.click();
-        snowChainReturnDate.click();
+       /* snowChainPickupDate.click();
+        snowChainReturnDate.click();*/
+      clickOn(snowChainPickupDate);
+        clickOn(snowChainReturnDate);
         return this;
     }
 
@@ -533,5 +571,32 @@ public class ReservationWidget extends AbstractBasePage {
     public void isOnPage() {
         log.info("Verify Reservation Widget");
         waitForVisibilityOfElement(pickUpLocation);
+    }
+
+    public void dateSelect(String day)
+    {
+        for(int i=0;i<pickupDateSel.size();i++)
+        {
+            if(pickupDateSel.get(i).getText().equals(day))
+            {
+                pickupDateSel.get(i).click();
+                break;
+            }
+        }
+    }
+
+    public ReservationWidget acceptCookies()
+    {
+        try {
+            waitForVisibilityOfElement(acceptCookies);
+           acceptCookies.click();
+
+            }
+        catch(Exception e)
+        {
+            clickUsingJS(acceptCookies);
+            log.info("Accept Cookies not clicked  ");
+        }
+        return this ;
     }
 }

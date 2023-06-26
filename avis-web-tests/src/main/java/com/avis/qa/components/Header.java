@@ -51,6 +51,9 @@ public class Header extends AbstractBasePage {
     @FindBy(xpath = "//div[contains(@class,'emailSuccessFiled')]/p/b")
     private WebElement Signup_confirmation;
 
+    @FindBy(xpath="//div[contains(text(),'Book the Avis cover inclusive bundle')]/following-sibling::button")
+    private WebElement inclusiveBundleCoupon;
+
 
     public Header(WebDriver driver) {
         super(driver);
@@ -80,7 +83,12 @@ public class Header extends AbstractBasePage {
     }
 
     public Header clickOnOffersCTA() {
-        waitForVisibilityOfElement(BookNow_DealsPage).click();
+      // waitForVisibilityOfElement(BookNow_DealsPage).click();
+        helper.scrollToElement(inclusiveBundleCoupon);
+        waitForVisibilityOfElement(inclusiveBundleCoupon);
+        clickUsingJS(inclusiveBundleCoupon);
+
+
         return this;
     }
 

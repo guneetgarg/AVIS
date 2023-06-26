@@ -7,13 +7,16 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.math.BigDecimal;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 import static com.avis.qa.constants.AvisConstants.CARDEXPIRATIONDATE;
+import static com.avis.qa.constants.AvisConstants.fareCharges;
 import static com.avis.qa.utilities.CommonUtils.*;
 import static org.testng.Assert.assertEquals;
 
@@ -85,7 +88,7 @@ public class ReviewAndBook extends AbstractBasePage {
 
     @FindBy(xpath = "//*[@name='address3']")
     private WebElement Suburb;
-    @FindBy(xpath = "(//*[contains(@id,'city')])|(//*[contains(@name,'city')])")
+    @FindBy(xpath = "(//*[contains(@id,'city')])|(//*[contains(@name,'city')])|(//input[@name='address3'])")
     private WebElement city;
 
     @FindBy(xpath = "//*[contains(@id,'zip')]")
@@ -236,6 +239,24 @@ public class ReviewAndBook extends AbstractBasePage {
 
     private String selectedCountryText;
 
+    @FindBy(xpath="//div[@class='step4-checkbox-email']/input")
+    private WebElement emailCheckBox;
+
+    @FindBy(xpath="//span[contains(text(),'split your payment')]")
+    private WebElement splitBillText;
+
+    @FindBy(xpath = "//span[text()='Base Rate']/parent::div//span[@class='pull-left']/following-sibling::span")
+    private WebElement baseRate;
+
+    @FindBy(xpath="//div[contains(text(),'Estimated Total')]//ancestor::div[@class='header']//span[@class='total-amount pull-right']")
+    private WebElement estimatedTotalAmount;
+
+    @FindBy(xpath="//span[contains(.,'Base Rate')]//following-sibling::div[@class='pull-right ']")
+    private WebElement baseRateAmount;
+
+
+
+
     public ReviewAndBook(WebDriver driver)
     {
         super(driver);
@@ -278,6 +299,7 @@ public class ReviewAndBook extends AbstractBasePage {
         if (emailID.contains("-")) {
             emailID = emailID.replace("-", "");
         }
+        clickUsingJS(emailField);
         emailField.sendKeys(emailID);
         return this;
     }
@@ -321,9 +343,11 @@ public class ReviewAndBook extends AbstractBasePage {
     }
 
     public ReviewAndBook smsOptInCheckbox() {
-        waitForVisibilityOfElement(phoneCheckbox);
-        if (!phoneCheckbox.isSelected())
-            clickUsingJS(phoneCheckbox);
+        if (Configuration.DOMAIN.equals("CA") || Configuration.DOMAIN.equals("US")) {
+            waitForVisibilityOfElement(phoneCheckbox);
+            if (!phoneCheckbox.isSelected())
+                clickUsingJS(phoneCheckbox);
+        }
         return this;
     }
 
@@ -515,6 +539,12 @@ public class ReviewAndBook extends AbstractBasePage {
             helper.selectValueFromDropDown(state, 47);
             zip.sendKeys("99022");
         }
+        if (country.equals("Australia")) {
+            address1.sendKeys(" 61 Gregory Way");
+            city.sendKeys("San Remo");
+            helper.selectValueFromDropDown(state, "Western Australia");
+            zip.sendKeys("6210");
+        }
         return this;
     }
 
@@ -596,7 +626,8 @@ public class ReviewAndBook extends AbstractBasePage {
         driver.switchTo().frame(0);
         System.out.println("IFramePaypal switched");
         threadSleep(TWO_SECONDS);
-        helper.waitUntilClickabilityOfElement(PaypalButton);
+     //   helper.waitUntilClickabilityOfElement(PaypalButton);
+        helper.scrollToElement(PaypalButton);
         clickUsingJS(PaypalButton);
         driver.switchTo().defaultContent();
         return new PayPalPage(driver);
@@ -734,4 +765,69 @@ public class ReviewAndBook extends AbstractBasePage {
     public void isOnPage() {
         waitForVisibilityOfElement(firstName);
     }
+
+    public boolean isFlyingOptionVisible(String option)
+    {
+        waitForVisibilityOfElement(step4_flightInfo);
+        threadSleep(ONE_SECOND);
+        boolean isOptionVisible=false;
+        Select flightSelect=new Select(step4_flightInfo);
+        List<WebElement> flightOptions=flightSelect.getOptions();
+        for(WebElement flightOption:flightOptions)
+        {
+
+            if(flightOption.getText().contains(option))
+            {
+                isOptionVisible=true;
+                log.info(option +" Option Visible ");
+                break;
+            }
+        }
+        return isOptionVisible;
+    }
+
+    public boolean isEmailCheckBoxSelected()
+    {
+        boolean isSelected=false;
+        try {
+            emailCheckBox.isDisplayed();
+            isSelected= emailCheckBox.isSelected();
+            log.info("Email CheckBox Selected ");
+
+        }
+        catch(Exception e)
+        {
+            isSelected=false;
+            log.error("Email Checkbox not Selected ");
+        }
+        return isSelected;
+
+    }
+
+    public boolean isSplitBillTextDisplayed()
+    {
+        boolean isDisplayed=false;
+        try {
+            isDisplayed=splitBillText.isDisplayed();
+            log.info("Spilt Bill Option Text Is Displayed ");
+        }
+        catch (Exception e)
+        {
+            log.error("Split Bill Option text is not Displayed ");
+            isDisplayed=false;
+        }
+        return isDisplayed;
+    }
+
+    public ReviewAndBook setBaseRateAndEstimatedTotal()
+    {
+        waitForVisibilityOfElement(baseRate);
+        fareCharges.put("Step-4-BaseRate",Double.parseDouble(baseRate.getText()));
+        waitForVisibilityOfElement(EstimatedTotalText);
+        fareCharges.put("Step-4-TotalEstimatedValue",Double.parseDouble(EstimatedTotalText.getText()));
+        return this;
+    }
+
+
+
 }

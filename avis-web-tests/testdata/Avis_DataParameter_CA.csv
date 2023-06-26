@@ -36,7 +36,7 @@ Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_CA,YYZ
 Avis_Reservation_MandateflightInfoAndTtypeCouponProcessingStrikeThrough_Paylater_CA,YYZ,Dhanapriya,K,test,9600685486,123,YGK,TUZZ005
 Avis_Reservation_TtypeCoupon_PayLater_CA,YYZ,TUZZ008,Abhishek,J,test,8658066321,TUZZ008 - Reward Day Plus 500 Bonus Miles/Paperless Cpn
 Avis_RES_KeyDropLocation_M_typeCoupon_PayLater_CA,YYZ,3:00 AM,MUYY001,Abhishek,J,test,9600685486
-Avis_RES_OneWay_USAA_PayLater_CA,LAS,LAX,A177201,38298026,Abhishek,J,test,9600685486
+Avis_RES_OneWay_USAA_PayLater_CA,BUR,FAT,A177201,38298026,Abhishek,J,test,9600685486
 Avis_RES_Inbound_Domestic_MultiCurrency_PayLater_CA,YYZ,U S A,Abhishek,K,test,8980765645,1234,C$,CAD
 Avis_RES_AWD_SplitBillItemized_CorpCust_insuranceCover_Validate_CorpBooking_Paylater_CA,YYZ,A6666000,A6666000@ACCBUSINESS.COM,Abhishek,K,test,8980765645,4929723679720422,5447144508353949
 Avis_RES_UtypeCoupon_Tierbundle_PayLater_CA,YYZ,11:00 AM,2:30 PM,UUZZ003,Abhishek,J,test,8658066321,UUZZ003 - Single Upgrade w/ Rental of GPS/Paperless Cpn
@@ -44,3 +44,4 @@ Avis_RES_Costco_DigitalWallet_PayPal_PayLater_CA,YYZ,A108301,111789732130,Abhish
 Avis_RES_Inbound_MultiCurrency_DCCPrePay_IATA_Cancellation_PayNow_CA,YYZ,U S A,A006400,test@munters.com,Abhishek,J,test,9600685486,0123141G,343710684134463,123,C$,USD
 Avis_RES_Modify_flow_Step1_to_step4_CA,YYZ,Abhishek,J,test,9600685486,4929723679720422,123,Canada,YQM
 Avis_RES_Outbound_CorpCust_insuranceCover_Validate_CorpBooking_Paynow_CA,SFO,11:00 AM,D674000,w@google.com,Abhishek,J,test,9600685486,343710684134463,123,C$,USD,CAD
+Avis_Reservation_OneWay_PayLater_CoperateDiscount_CA,YYT,12,noon,YQM,15,2:00 PM,2,Rohit,Kumar,test,12139156465,B771000,abg@microsoft.com

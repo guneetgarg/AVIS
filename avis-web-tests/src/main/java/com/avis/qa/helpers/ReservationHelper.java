@@ -9,6 +9,8 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -25,6 +27,8 @@ public class ReservationHelper extends AbstractBasePage {
     private final ReservationWidget reservationWidget;
     private String country;
 
+
+
     public ReservationHelper(WebDriver driver) {
         super(driver);
         this.driver = driver;
@@ -36,7 +40,9 @@ public class ReservationHelper extends AbstractBasePage {
         }
         else if (Configuration.DOMAIN.equals("US")) {
             country="U S A" ;
-
+        }
+        else if (Configuration.DOMAIN.equals("AU")) {
+            country="Australia" ;
         }
     }
 
@@ -498,6 +504,8 @@ public class ReservationHelper extends AbstractBasePage {
                 .enterflightNumber(FLIGHT_NUMBER)
                 .checkTermsAndConditions()
                 .step4Submit();
+
+
 
         return new Confirmation(driver);
     }
@@ -1646,6 +1654,12 @@ public class ReservationHelper extends AbstractBasePage {
 
     public Confirmation Reservation_Outbound_CorpCust_InsuranceCover_PayNow(String pickUpLocation, String pickupTime,String awd, String corporateEmailId, String firstName, String lastName,
                                                                             String email, String phoneNumber,String ccNo, String cvv, String PickUpLocCurrencySymbol,String PickupLocCurrencyCode, String USCurrencyCode) {
+        String dropTime="12:00 PM";
+        if (Configuration.DOMAIN.equals("AU"))
+        {
+            dropTime="9:00 AM";
+        }
+
         reservationWidget
                 .pickUpLocation(pickUpLocation)
                 .calendarSelection(3)
@@ -1660,13 +1674,13 @@ public class ReservationHelper extends AbstractBasePage {
         //vehicles.DiscountDropDownClick(awd);
         assertTrue(vehicles.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
         assertTrue(vehicles.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
-        assertTrue(vehicles.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(vehicles.isDropDateTimeDisplayed(dropTime),"Drop Time is not Displayed");
         vehicles.clickViewCloseVehicleInformation();
         assertTrue(vehicles.verifyCurrencySymbolDisplayed(PickUpLocCurrencySymbol), "Currency  value is not same as residence country");
         Extras extras = vehicles.step2Submit();
         assertTrue(extras.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
         assertTrue(extras.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
-        assertTrue(extras.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(extras.isDropDateTimeDisplayed(dropTime),"Drop Time is not Displayed");
         assertTrue(extras.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
         assertTrue(extras.isAWDIncludedInsuranceCoveragetextDisplayed(), "AWD Included Insurance Coverage text is not displayed");
         assertTrue(extras.verifyCurrencySymbolDisplayed(PickUpLocCurrencySymbol), "Currency  value is not same as residence country");
@@ -1674,7 +1688,7 @@ public class ReservationHelper extends AbstractBasePage {
 
         assertTrue(reviewAndBook.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
         assertTrue(reviewAndBook.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
-        assertTrue(reviewAndBook.isDropDateTimeDisplayed("12:00 PM"),"Drop Time is not Displayed");
+        assertTrue(reviewAndBook.isDropDateTimeDisplayed(dropTime),"Drop Time is not Displayed");
         assertTrue(reviewAndBook.isRateTermAndBaseRateAndNumberOfSeatsDisplayed(), "RateTerm/Base rate/NumberOfSeats not Displayed");
         reviewAndBook.isFlightInfoDisplayed();
         if (Configuration.DOMAIN.equals("US"))
@@ -2166,6 +2180,79 @@ public class ReservationHelper extends AbstractBasePage {
 
     public ReservationWidget getReservationWidget(){
         return this.reservationWidget;
+    }
+
+    public Confirmation Reservation_OneWay_PayLater_coperatediscount(String pickUpLoction,String pickDate,String pickupTime,String dropOffLocation,String dropDate,String dropTime,String month, String fname, String lname,
+                                                                     String email, String phoneNo,String awd, String corporateEmailId)
+    {
+        reservationWidget
+                .acceptCookies()
+                .pickUpLocation(pickUpLoction)
+                .calendarSelection(Integer.parseInt(month),pickDate,dropDate)
+                .pickUpTime(pickupTime)
+                .dropOffLocation(dropOffLocation)
+                .dropOffTime(dropTime)
+                .expandDiscountCode()
+                .enterAwd(awd)
+                .enterCorporateEmailId(corporateEmailId)
+                .selectMyCar();
+
+        Vehicles vehicles = new Vehicles(driver);
+        Assert.assertTrue(vehicles.isDiscountCodeDisplayUnderLowerRate(awd),"Discount code under Rates not Displayed");
+         vehicles.sortByDropDownClick();
+        Assert.assertTrue(vehicles.isPriceInSortedOrder(),"Vehicle rates not in Sorted Order ");
+        Assert.assertFalse(vehicles.isPayNowButtonDisplayed(),"Pay Now Button is not Suppressed");
+      //  Assert.assertTrue(vehicles.isStrikreThroughPriceIndicatorDisplayed(),"Strike Through Price not displayed ");
+        Extras extras = vehicles.step2Submit();
+        Assert.assertTrue(extras.isAwdMessageMatch(awd));
+        Assert.assertTrue(extras.isAWDIncluded(awd),"Required Included not Available ");
+        //Assert.assertTrue(extras.isUnlimitedKilometerDisplay(),"Unlimited Kilometer is not Checked");
+        Assert.assertTrue(extras.isDueTodayDisplay(),"Due Today is not Checked");
+        Assert.assertTrue(extras.isFreeCancellationDisplay(),"Free Cancellation is not Checked");
+        ReviewAndBook reviewAndBook = extras.Step3Submit();
+
+        Assert.assertTrue(reviewAndBook.isEmailCheckBoxSelected(),"Email Checkbox Not Selected");
+        Assert.assertTrue(reviewAndBook.isFlyingOptionVisible("Not Flying"),"Not Flying Option Not visible in Flight Info DropDown");
+        Assert.assertTrue(reviewAndBook.isFlyingOptionVisible("Not Listed"),"Not Listed Option Not visible in Flight Info DropDown");
+        Assert.assertTrue(reviewAndBook.isSplitBillTextDisplayed(),"Split Bill Option text is not displayed");
+
+        reviewAndBook
+                .clickContinueReservationButton()
+                .setBaseRateAndEstimatedTotal()
+                .firstname(fname)
+                .lastname(lname)
+                .email(email)
+                .phone(phoneNo)
+                .smsOptInCheckbox()
+                .SelectflightInfo(FLIGHT_NAME)
+                .enterflightNumber(FLIGHT_NUMBER)
+                .checkTermsAndConditions()
+                .step4Submit();
+
+        return new Confirmation(driver);
+    }
+
+    public ManageReservationPage Reservation_Modify_View_Cancel(Confirmation confirmation,String lastName,String country)
+    {
+
+        Homepage homePage=confirmation.clickOnAvisLogo();
+        ReservationViewModifyCancel reservationViewModifyCancel= homePage.goToViewModifyCancelPage();
+     //   reservationViewModifyCancel.
+        Assert.assertTrue(reservationViewModifyCancel.countrySelected(country),"Default Country Value not Matched");
+        reservationViewModifyCancel.isChatWindowOpen();
+        reservationViewModifyCancel.enterConfirmationNumber(confirmationNo);
+        reservationViewModifyCancel.enterLastname(lastName);
+        ManageReservationPage manageReservationPage=reservationViewModifyCancel.ClickFindReservationButton();
+        manageReservationPage.setBaseRateAndEstimatedTotal();
+       /* Assert.assertTrue(manageReservationPage.isPrintConfirmationButtonDisplay(),"Print Confirmation Button not Visible");
+        Assert.assertTrue(fareCharges.get("ReviewPreModification-BaseRate").equals(fareCharges.get("confirmation-BaseRate")));
+        Assert.assertTrue(fareCharges.get("ReviewPreModification-TotalEstimatedValue").equals(fareCharges.get("confirmation-TotalEstimatedValue")));
+        Assert.assertTrue(manageReservationPage.ismvcModifyIconVisible(),"Modify Icon is not Visible for MVC");
+        Assert.assertTrue(manageReservationPage.isModifyTimeAndPlaceIconVisible(),"Modify Icon us not visible for Time & Place");
+        Assert.assertTrue(manageReservationPage.isModifyRateIconVisible(),"Modify ICON is not Visible for Rate");
+        Assert.assertTrue(manageReservationPage.isModifyRentalIconVisible(),"Modify Icon is not visible for Rental");
+        Assert.assertTrue(manageReservationPage.isAWDMessageTextDisplayed(),"AWD included message not Visible");*/
+        return  manageReservationPage;
     }
 
 }

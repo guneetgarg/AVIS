@@ -8,9 +8,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static com.avis.qa.constants.AvisConstants.additionalCharges;
+import static com.avis.qa.constants.AvisConstants.fareCharges;
 import static com.avis.qa.constants.TextComparison.KEY_DROP_LOCATION_MESSAGE;
 import static com.avis.qa.utilities.CommonUtils.*;
 import static org.testng.Assert.assertEquals;
+import static com.avis.qa.constants.AvisConstants.*;
 import static org.testng.Assert.assertTrue;
 
 
@@ -158,7 +164,7 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "(//div[@class='summary-time'])[1]")
     private WebElement PickupDateTime;
 
-    @FindBy(xpath = "(//div[@class='summary-time'])[2]")
+    @FindBy(xpath = "(//div[@class='summary-time'])[2] || (//div[@class='day-time-info'])[2] || (//div[contains(text(),'Return')]/following-sibling::div[@class='summary-time'])")
     private WebElement ReturnDateTime;
 
     @FindBy(xpath = "//h1[text()='Your car is reserved.']")
@@ -167,9 +173,85 @@ public class Confirmation extends AbstractBasePage {
     @FindBy(xpath = "//div[@class='confirmation-info-holder-text']")
     private WebElement ConfirmationMessage;
 
+
+    @FindBy(xpath = "//div[text()='Cover The Car (LDW)']/following-sibling::div//span[contains(text(),'Included')]")
+    private WebElement ldwIncludedText;
+
+    @FindBy(xpath = "//div[text()='Third Party Liability']/following-sibling::div//span[contains(text(),'Included')]")
+    private WebElement thirdPartyIncludedText;
+
+    @FindBy(xpath="//button[normalize-space()=PreCheck]")
+    private WebElement preCheckButton;
+
+    @FindBy(xpath="//div[contains(text(),'Estimated Total')]//ancestor::div[@class='header']//span[@class='total-amount pull-right']")
+    private WebElement estimatedTotalAmount;
+
+    @FindBy(xpath="//span[contains(.,'Base Rate')]//following-sibling::div[@class='pull-right ']")
+    private WebElement baseRateAmount;
+
+    @FindBy(xpath="//div[contains(text(),'Your Time & Place')]//span[contains(text(),'Modify')]")
+    private WebElement modifyTime;
+
+    @FindBy(xpath="//div[contains(text(),'Rate & Benefit Information')]//span[contains(text(),'Modify')]")
+    private WebElement modifyRate;
+
+    @FindBy(xpath="//div[contains(text(),'Rental Options')]//following-sibling::div//span[contains(text(),'Modify')]")
+    private WebElement modifyRentalOption;
+
+
+    @FindBy(xpath=" //strong[contains(text(),'AWD')]/parent::p")
+    private WebElement awdCode;
+
+    @FindBy(xpath="//div[contains(text(),'Your Car')]//span[contains(text(),'Modify')]")
+    private  WebElement modifyCar;
+
+    @FindBy(xpath="//div[@class='confirmation-info-holder-text']")
+    private WebElement emailSentMessage;
+
+    @FindBy(xpath="//span[contains(text(),'Equipment & Services')]/parent::div/following-sibling::div/span[@class='sub-total make-bold pull-right']")
+    private WebElement equipmentServiceCharges;
+
+    @FindBy(xpath="//span[contains(text(),'Protections & Coverages')]/parent::div/following-sibling::div/span[@class='sub-total make-bold pull-right']")
+    private WebElement protectionCoverageCharges;
+
+   @FindBy(xpath = "(//a[@class='accordion-toggle']//span[contains(.,'Rental Options')])[1]")
+   private WebElement rentalOptionLink;
+
+   @FindBy(xpath="//form[@id='smallBizYourInfoform']//button[@id='smallbiz_step1']")
+   private WebElement smallBizFlyNextButton;
+
+   @FindBy(xpath="//input[@name='companyName']")
+   private WebElement smallBizFlyCompanyName;
+
+   @FindBy(xpath = "//input[@name='address1']")
+   private WebElement smallBizFlyAddress;
+
+   @FindBy(xpath="//input[@id='city']")
+   private  WebElement smallBizFlyCity;
+
+   @FindBy(xpath="//Select[@id='state']")
+   private WebElement smallBizFlyState;
+
+   @FindBy(xpath = "//input[@id='zip']")
+   private  WebElement smallBizFlyZip;
+
+   @FindBy(xpath="//button[@id='smallbiz_step2']")
+   private WebElement smallBizFlyEnrollButton;
+
+   @FindBy(xpath="(//p[contains(text(),'Your Avis Worldwide Discount (AWD) number is:')]//following-sibling::p)[1]")
+   private  WebElement smallBizFlyAwdNumber;
+
+   @FindBy(xpath="//a[@href='/en/home.html']")
+   private WebElement homePageLink;
+
+
+
     public Confirmation(WebDriver driver) {
         super(driver);
     }
+   /* {
+        setBaseRateAndEstimatedTotal();
+    }*/
 
     {
         if (Configuration.DOMAIN.equals("CA")) {
@@ -179,7 +261,9 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public boolean isConfirmationNumberDisplayed() {
-        System.out.println("Confirmation num :"+confirmationNumber.getText());
+        confirmationNo=confirmationNumber.getText();
+        confirmationNo=(confirmationNo.split(":"))[1].trim();
+        log.info("Confirmation num :"+confirmationNo);
         return confirmationNumber.isDisplayed();
     }
     public boolean isCarReservedTextDisplayed() {
@@ -417,4 +501,268 @@ public class Confirmation extends AbstractBasePage {
         log.info("Verify Confirmation Page");
         waitForVisibilityOfElement(confirmationNumber);
     }
+
+    public boolean isLdwIncluded()
+    {
+        boolean isIncluded=false;
+        try
+        {
+            helper.scrollToElement(ldwIncludedText);
+            isIncluded=ldwIncludedText.isDisplayed();
+            log.info("LDW is Included");
+        }
+        catch (Exception e)
+        {
+            isIncluded=false;
+            log.error("Included Message not displayed ");
+        }
+        return  isIncluded;
+    }
+    public boolean isthirdPartyIncluded()
+    {
+        boolean isIncluded=false;
+        try
+        {
+            helper.scrollToElement(thirdPartyIncludedText);
+            isIncluded=thirdPartyIncludedText.isDisplayed();
+            log.info("Third Party is Included");
+        }
+        catch (Exception e)
+        {
+            isIncluded=false;
+            log.error("Included Message not displayed ");
+        }
+        return  isIncluded;
+    }
+    public boolean isPreCheckButtonVisible()
+    {
+        boolean isVisible=false;
+        try
+        {
+            helper.scrollToElement(preCheckButton);
+            isVisible=preCheckButton.isDisplayed();
+            log.info("Pre check button is visible");
+        }
+        catch (Exception e)
+        {
+            isVisible=false;
+            log.error("Pre check button is not visible ");
+        }
+        return  isVisible;
+    }
+    public void setBaseRateAndEstimatedTotal()
+    {
+        waitForVisibilityOfElement(baseRateAmount);
+        fareCharges.put("confirmation-BaseRate",Double.parseDouble(baseRateAmount.getText().replace("$","").replace("US","")));
+        waitForVisibilityOfElement(estimatedTotalAmount);
+        fareCharges.put("confirmation-TotalEstimatedValue",Double.parseDouble(estimatedTotalAmount.getText().replace("$","")));
+    }
+    public boolean isModifyTimeOptionVisible()
+    {
+        boolean isVisible=false;
+        try
+        {
+            helper.scrollToElement(modifyTime);
+            isVisible=modifyTime.isDisplayed();
+            log.info("Modify option visible for Time And Place  Section ");
+        }
+        catch (Exception e)
+        {
+            isVisible=false;
+            log.error("Modify option not visible for Time And Place  Section ");
+        }
+        return  isVisible;
+    }
+    public boolean isModifyRateOptionVisible()
+    {
+        boolean isVisible=false;
+        try
+        {
+            helper.scrollToElement(modifyRate);
+            isVisible=modifyRate.isDisplayed();
+            log.info("Modify option visible for Rate Section ");
+        }
+        catch (Exception e)
+        {
+            isVisible=false;
+            log.error("Modify option not visible for Rental Section ");
+        }
+        return  isVisible;
+    }
+    public boolean isModifyRentalOptionVisible()
+    {
+        boolean isVisible=false;
+        try
+        {
+            helper.scrollToElement(modifyRentalOption);
+            isVisible=modifyRentalOption.isDisplayed();
+            log.info("Modify option visible for Rental Section ");
+        }
+        catch (Exception e)
+        {
+            isVisible=false;
+            log.error("Modify option not visible for  Rental");
+        }
+        return  isVisible;
+    }
+    public boolean isAWDCodVisibleUnderRateSection(String awdCodevVlue)
+    {
+        helper.scrollToElement(awdCode);
+        log.info("-------------->"+awdCode.getText());
+        if(awdCode.getText().contains(awdCodevVlue))
+        {
+            log.info("AWD Code Visible in Rate Section ");
+            return  true;
+        }
+        else
+        {
+            log.error("AWD Code not Visible in Rate Section ");
+            return  false;
+        }
+    }
+    public boolean isModifyMVCOptionVisible()
+    {
+        boolean isVisible=false;
+        try
+        {
+            helper.scrollToElement(modifyCar);
+            isVisible=modifyCar.isDisplayed();
+            log.info("Modify option visible for MVC ");
+        }
+        catch (Exception e)
+        {
+            isVisible=false;
+            log.error("Modify option not visible for  MVC");
+        }
+        return  isVisible;
+    }
+    public boolean isEmailSentMessageVisible()
+    {
+        boolean isVisible=false;
+        try
+        {
+            helper.scrollToElement(emailSentMessage);
+            isVisible=emailSentMessage.isDisplayed();
+            log.info("Email Sent Text is visible");
+        }
+        catch (Exception e)
+        {
+            isVisible=false;
+            log.error("Email Sent Text is not visible ");
+        }
+        return  isVisible;
+    }
+
+    public boolean isProtectionCoverageChargeMatch()
+    {
+        helper.scrollToElement(rentalOptionLink);
+        clickUsingJS(rentalOptionLink);
+       // rentalOptionLink.click();
+       // helper.scrollToElement(protectionCoverageCharges);
+        log.info("Discount Charges=================>"+protectionCoverageCharges.getText());
+        Double charges=Double.parseDouble(protectionCoverageCharges.getText().replace("$",""));
+        if(charges.equals(additionalCharges.get("ProtectionCoverageCharges")))
+        {
+            log.info("Protection charges match with protection Charges on Extra Page");
+            return  true;
+        }
+        else
+        {
+            log.error("Protection charges not match with protection Charges on Extra Page");
+            return  false;
+
+        }
+    }
+    public boolean isEquipmentServiceChargeMatch()
+    {
+       // helper.scrollToElement(equipmentServiceCharges);
+       // helper.scrollToElement(rentalOptionLink);
+       // clickUsingJS(rentalOptionLink);
+      //  rentalOptionLink.click();
+        log.info("Equipemnet Charges============>"+equipmentServiceCharges.getText().replace("$",""));
+        Double charges=Double.parseDouble(equipmentServiceCharges.getText().replace("$",""));
+        if(charges.equals(additionalCharges.get("ProtectionCoverageCharges")))
+        {
+            log.info("Equipment Service charges match with Charges on Extra Page");
+            return  true;
+        }
+        else
+        {
+            log.error("Equipment Service charges not match with Charges on Extra Page");
+            return  false;
+
+        }
+    }
+    public boolean smallBizFlyEnroll()
+    {
+        String companyName="";
+        try {
+            helper.scrollToElement(smallBizFlyNextButton);
+            threadSleep(THREE_SECONDS);
+            smallBizFlyNextButton.click();
+            companyName = "Test" + getUniqueName();
+            smallBizFlyCompanyName.sendKeys(companyName);
+            setBizFlyCompanyAddress();
+            threadSleep(THREE_SECONDS);
+            smallBizFlyEnrollButton.click();
+            log.info("SmallBiz Fly option form Submitted ");
+            return true;
+        }
+        catch(Exception e)
+        {
+            log.error("SmallBiz Fly option form not  Submitted");
+            return false;
+
+        }
+    }
+    public void  setBizFlyCompanyAddress()
+    {
+            smallBizFlyAddress.sendKeys("3156 Virgil Street");
+            smallBizFlyCity.sendKeys("Dallas");
+            helper.selectValueFromDropDown(smallBizFlyState, "Texas");
+            threadSleep(THREE_SECONDS);
+            smallBizFlyZip.sendKeys("75201");
+
+
+    }
+
+    public String getUniqueName()
+    {
+        String uniqueName="";
+        Date date= new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        uniqueName=dateFormat.format(date).replaceAll("-","").replaceAll("\\W","");
+        return uniqueName;
+
+    }
+    public boolean isSmallBizFlyAWDNumberVisible()
+    {
+        if(smallBizFlyEnroll())
+        {
+            threadSleep(FIVE_SECONDS);
+            waitForVisibilityOfElement(smallBizFlyAwdNumber);
+            if(smallBizFlyAwdNumber.isDisplayed())
+            {
+                log.info("Awd Number is generated=====>"+smallBizFlyAwdNumber.getText());
+                return  true;
+            }
+            else {
+                log.error("Awd Number is not generated=====>");
+                return  false;
+            }
+        }
+        else {
+            log.error("SmallBiz Form is not submitted");
+            return  false;
+        }
+    }
+
+    public Homepage clickOnAvisLogo()
+    {
+        helper.scrollToElement(homePageLink);
+        homePageLink.click();
+        return new Homepage(driver);
+    }
+
+
 }

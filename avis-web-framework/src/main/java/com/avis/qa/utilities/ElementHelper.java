@@ -150,5 +150,14 @@ public class ElementHelper {
 		new WebDriverWait(driver, Configuration.DEFAULT_EXPLICIT_TIMEOUT)
 				.until(ExpectedConditions.visibilityOf(webElement));
 	}
+	public String defaultSelectedvalue (WebElement webElement)
+	{
+		Select dropDown = new Select(webElement);
+		WebElement countrySelected=dropDown.getFirstSelectedOption();
+		log.info("Selected Value ====>"+countrySelected.getText());
+		return countrySelected.getText();
+
+	}
+
 
 }
