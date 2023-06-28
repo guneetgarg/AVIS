@@ -247,7 +247,7 @@ public class Vehicles extends AbstractBasePage {
     }
 
     public Extras payLater() {
-        payAtCounter2.click();
+        clickOn(payAtCounter2);
         return new Extras(driver);
     }
 
@@ -355,10 +355,10 @@ public class Vehicles extends AbstractBasePage {
     public Vehicles clickViewCloseVehicleInformation()
     {
         waitForVisibilityOfElement(ViewVehicleInformation);
-        ViewVehicleInformation.click();
+        clickOn(ViewVehicleInformation);
        // waitForVisibilityOfElement(NumberOfDoors);
         waitForVisibilityOfElement(CloseVehicleInformation);
-        CloseVehicleInformation.click();
+        clickOn(CloseVehicleInformation);
         return this;
     }
 

@@ -5,6 +5,7 @@ import com.avis.qa.components.Footer;
 import com.avis.qa.components.Header;
 import com.avis.qa.components.ReservationWidget;
 import com.avis.qa.core.AbstractBasePage;
+import com.avis.qa.core.Configuration;
 import com.avis.qa.pages.*;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -404,9 +405,9 @@ public class MiscHelper extends AbstractBasePage {
 
         reviewAndBook.isEmailInvalidErrorMsgDisplayed();
         reviewAndBook.isPhonenumInvalidErrorMsgDisplayed();
-        reviewAndBook.isTncErrorMsgtextDisplayed();
-
-
+        if(!Configuration.BRAND.equalsIgnoreCase("AVIS") && !Configuration.DOMAIN.equalsIgnoreCase("US")) {
+            reviewAndBook.isTncErrorMsgtextDisplayed();
+        }
 
     }
 

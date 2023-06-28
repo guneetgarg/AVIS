@@ -342,14 +342,14 @@ public class ReservationWidget extends AbstractBasePage {
     public ReservationWidget selectMyCar() {
         waitForVisibilityOfElement(selectMyCarButton);
         try {
-            selectMyCarButton.click();
+            clickOn(selectMyCarButton);
             LocationSoldOutErrorText.isDisplayed();
             for(int i=2;i<=4;i++)
             {
                 if(LocationSoldOutErrorText.isDisplayed())
                 {
                     calendarSelection(i);
-                    selectMyCarButton.click();
+                    clickOn(selectMyCarButton);
                 }
                 else
                 {

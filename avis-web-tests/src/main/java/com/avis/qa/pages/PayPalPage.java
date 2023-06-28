@@ -30,6 +30,9 @@ public class PayPalPage extends AbstractBasePage {
     @FindBy(xpath = "//button[@id='consentButton']")
     private WebElement AgreeAndContinueButton;
 
+    @FindBy(xpath = "//a[contains(@id, 'bx-close-inside')]")
+    private WebElement cancelPopup;
+
     public PayPalPage(WebDriver driver) {
         super(driver);
     }
@@ -68,6 +71,11 @@ public class PayPalPage extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
+        try{
+            clickOn(cancelPopup);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         waitForVisibilityOfElement(emailTextField);
     }
 }
