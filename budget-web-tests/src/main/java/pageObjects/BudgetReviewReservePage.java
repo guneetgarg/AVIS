@@ -18,6 +18,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -96,15 +97,8 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath="//input[@name='address3']")
 	private WebElement Address3;
 
-	//	@FindBy(xpath = "//div[@data-funding-source='paypal'] | //span[@class='c-icon paypal-logo']")
-	//	private WebElement PaypalButton;
-	//label[@for='payPal']
-
 	@FindBy(xpath = "//span[@class='c-icon paypal-logo']")
 	private WebElement PaypalButton;
-
-	//	@FindBy(xpath = "//div[@class='paypal-button-label-container']")
-	//	private WebElement Budget_PaypalRadioButton;
 
 	@FindBy(xpath = "//img[@class='paypal-button-logo paypal-button-logo-paypal paypal-button-logo-gold']")
 	private WebElement Budget_PaypalRadioButton;
@@ -265,7 +259,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(id = "res-view-confirmationNumber")
 	private WebElement viewmodifyConfirmationNumber;
 
-	@FindBy(xpath = " //button[@ng-click='vm.CNValidation.submit(VMCForm);']")
+	@FindBy(xpath = "//button[@ng-click='vm.CNValidation.submit(VMCForm);']")
 	private WebElement findReservation;
 
 	@FindBy(xpath = "//span[contains(text(),'Modify: Reserve a Rental Car')]")
@@ -322,13 +316,13 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//input[@name='birthdate']")
 	private WebElement upliftBirthdate;
 
-	@FindBy(xpath = "//a[contains(@id,'s-get-started')]/..")
+	@FindBy(xpath = "//button[contains(@id,'s-get-started')]/..")
 	private WebElement letGetStarted;
 
 	@FindBy(xpath = "//input[@name='mobile-verification-code']")
 	private WebElement mobileVerificationCode;
 
-	@FindBy(xpath = "//div[@class='verify-container main-container']//a[@role='button']")
+	@FindBy(xpath = "//div[@class='row verify-mobile']//div[@class='verify-container main-container']//button[@class=\"btn btn-lg btn-primary btn-block page-btn\"]")
 	private WebElement verifyButton;
 
 	@FindBy(xpath = "//input[@name='first-name']")
@@ -358,8 +352,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//input[@name='ssn']")
 	private WebElement passwordUplift;
 
-	@FindBy(xpath = "//div[@class='App']//div[@class='col-xs-12 col-sm-8 col-sm-offset-2 footer']//div[@class='main-container']//a[@type='button']")
+	@FindBy(xpath = "//div[@class='col-xs-12 col-sm-8 col-sm-offset-2 footer']//div[@class='main-container']//button[@class='btn btn-lg btn-primary btn-block page-btn']")
 	private WebElement continueUplift;
+	
+	@FindBy(xpath = "//div[@class='row col-xs-12 new-payment-selector selected']//div[@class='payment-label']")
+	private WebElement debitCardClick;
 
 	@FindBy(xpath = "//input[@name='cc-number']")
 	private WebElement ccnumberUplift;
@@ -376,12 +373,93 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 	@FindBy(xpath = "//input[@name='full-ssn']")
 	private WebElement securitynumberUplift;
 
-	@FindBy(xpath = "//div[@class='col-xs-12 accept-page-btn']//a[@role='button']")
+	@FindBy(xpath = "//div[@class='col-xs-12 accept-page-btn']//button[@class='btn btn-lg btn-primary btn-block page-btn']")
 	private WebElement continueCreditUplift;
 
 	@FindBy(id = "i-agree-and-continue")
 	private WebElement agreetermsUplift;
 
+	@FindBy(id = "//h2[@class='grayFont']")
+	private WebElement yourInfo;
+
+	@FindBy(xpath = "//span[@class='c-icon amazonpay-logo']")
+	private WebElement amazonPay;
+
+	@FindBy(xpath = "//label[@for='payPal']")
+	private WebElement payPal;
+
+	@FindBy(xpath = "//label[@for='Flight Info']")
+	private WebElement flightInfo;
+
+	@FindBy(xpath = "//span[@class='step4-checkbox-custom-other-label']")
+	private WebElement sendEmailPromotion;
+
+	@FindBy(xpath = "//label[@class='checkbox-custom-label checkbox-border']")
+	private WebElement receiveTxtMsgChckbox;
+
+	@FindBy(xpath = "//div[@class='header']//div[@ng-if=\"!vm.confirmation.reservationSummary.rateSummary.estimatedCreditDue\"]")
+	private WebElement estimatedTotalConfirmation;
+
+	@FindBy(xpath = "//span[@class='total-amount pull-right']")
+	private WebElement estimatedAmount;
+
+	@FindBy(xpath = "//p[@ng-if='vm.checkIATA()']")
+	private WebElement IATANumber;
+
+	@FindBy(xpath = "//a[@class='navbar-brand']")
+	private WebElement budgetBrandText;
+
+
+	@FindBy(xpath = "//a[@href='/en/reservation/view-modify-cancel.html']")
+	private WebElement viewModifyCancel;
+
+	@FindBy(xpath = "//div[@class='col-sm-5 ']//input[@type='text']")
+	private WebElement emailCancel;
+
+	@FindBy(xpath = "//a[@href='/en/reservation/view-modify-cancel']")
+	private WebElement viewModifyCancel1;
+
+	@FindBy(xpath = "//a[contains(text(),'Reservations')]")
+	private WebElement reservation;
+
+	@FindBy(xpath = "//div[@class='VMC-content full-bleed-width']")
+	private WebElement viewModifyCancelPage;
+
+	@FindBy(xpath = "//span[contains(text(),'Modify: Your Information')]")
+	private WebElement modifyYourInfo;
+
+	@FindBy(xpath = "//div[@class='col-sm-6 source']//div[@class='day-time-info']")
+	private WebElement modifyReservePickDate;
+
+	@FindBy(xpath = "//div[@class='col-sm-6 destination']//div[@class='day-time-info']")
+	private WebElement modifyReserveDropDate;
+
+	@FindBy(xpath = "//h1[contains(text(),'Modify Reservation - Review & Confirm')]")
+	private WebElement modifyReservationReviewConfirm;
+
+	@FindBy(xpath = "//strong[contains(text(),'ORIGINAL')]")
+	private WebElement originalDetails;
+
+	@FindBy(xpath = "//strong[contains(text(),'MODIFIED')]")
+	private WebElement modifiedDetails;
+
+	@FindBy(xpath = "//button[contains(text(),'Cancel Modifications')]")
+	private WebElement cancelModification;
+
+	@FindBy(xpath = "//p[@class='cancel-restxt-pad']")
+	private WebElement modifyMessageDisplayed;
+
+	@FindBy(xpath = "//span[@ng-if=\"vm.confirmation.reservationSummary.walletType=='PAYPAL'\"]")
+	private WebElement paypalVerify;
+
+	@FindBy(xpath = "//strong[@ng-if=\"vm.confirmation.reservationSummary.walletType=='PAYPAL'\"]")
+	private WebElement paymentRecievedPaylpal;
+	
+	@FindBy(xpath = "//p[@ng-if=\"(vm.confirmation.reservationSummary.personalInfo.residency.value != '' && vm.confirmation.reservationSummary.personalInfo.residency.value != undefined)\"]")
+	private WebElement residencyVerify;
+	
+	@FindBy(xpath = "//div[@class='row accept']//h1[@class='header-txt']")
+	private WebElement congratesMsgUplift;
 
 	public void reviewReserve(Map<?, ?> testDataMap) throws InterruptedException {
 
@@ -392,6 +470,12 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				BaseRate.isDisplayed();
 				VerifySymbol.isDisplayed();
 				feesTaxes.isDisplayed();
+				NumberOfSeats.isDisplayed();
+				SeeRateTerms.isDisplayed(); 
+				assertTrue(yourInfo.getText().contains("Your Information"));
+				sendEmailPromotion.isDisplayed();
+				receiveTxtMsgChckbox.isDisplayed();
+
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -400,12 +484,6 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			}
 			if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
 				EstimatedTotal.isDisplayed();
-			}
-			try {
-				NumberOfSeats.isDisplayed();
-				SeeRateTerms.isDisplayed();
-			} catch (Exception e) {
-				// TODO: handle exception
 			}
 
 			if (!testDataMap.get("PickUpLocation").toString().equalsIgnoreCase("NA")) {
@@ -448,10 +526,19 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				if(testDataMap.get("UpliftInfo").toString().equalsIgnoreCase("NA")) {
 					if(!Configuration.DOMAIN.equalsIgnoreCase("CA") || !Configuration.DOMAIN.equalsIgnoreCase("NZ") ) {
 						if(Configuration.DOMAIN.equalsIgnoreCase("US") ) {
-							wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
-							clickOn(creditCardCheckBox);
+							if (!testDataMap.get("BCD").toString().contains("Y1")) {
+								wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
+								creditCardCheckBox.isDisplayed();
+								helper.scrollToElement(amazonPay);
+								wait.until(ExpectedConditions.visibilityOf(amazonPay));
+								amazonPay.isDisplayed();
+								payPal.isDisplayed();
+								flightInfo.isDisplayed();
+								clickOn(creditCardCheckBox);
+							}
 						}
-						fillText(cardNumber,testDataMap.get("CCNumber").toString());
+							fillText(cardNumber,testDataMap.get("CCNumber").toString());
+						
 					}
 				}
 			}
@@ -475,30 +562,96 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				fillText(zip,testDataMap.get("ZipCode").toString());
 			}
 			if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")) {
-				wait.until(ExpectedConditions.visibilityOf(PaypalButton));
-				clickOn(PaypalButton);
-				clickOn(Budget_PaypalRadioButton);
-				String mainWindowHandle = driver.getWindowHandle();
-				System.out.println("windowhandle :"+mainWindowHandle);
-				Set<String> allWindowHandles = driver.getWindowHandles();
-				System.out.println("windowhandle :"+allWindowHandles);
-				Iterator<String> iterator = allWindowHandles.iterator();
-				// Here we will check if child window is present and then switch to child window
-				while (iterator.hasNext()) {
-					String ChildWindow = iterator.next();
-					if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
-						driver.switchTo().window(ChildWindow);
+				if(!testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("Paylater")) {
+					wait.until(ExpectedConditions.visibilityOf(PaypalButton));
+					clickOn(PaypalButton); 
+					try {
+						Thread.sleep(5000);
+						driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='zoid-component-frame zoid-visible']")));
+						System.out.println("paypal iframe");
+						Boolean b = driver.findElement(By.id("paypal-animation-content")).isDisplayed();
+						System.out.println("payypal iframe mobile id");
 
-						emailTextField.click();
-						emailTextField.sendKeys(testDataMap.get("PaypalEmail").toString());
-						clickOn(NextButton);
-						clickOn(passwordTextField);
-						passwordTextField.sendKeys(testDataMap.get("PaypalPassword").toString());
-						clickOn(LoginButton);
-						clickOn(AgreeAndContinueButton);
+						System.out.println(b);
+					} catch (NoSuchElementException e) {
+						e.printStackTrace();
+
 					}
-				}
+					clickOn(Budget_PaypalRadioButton);
+					String mainWindowHandle = driver.getWindowHandle();
+					System.out.println("windowhandle :"+mainWindowHandle);
+					Set<String> allWindowHandles = driver.getWindowHandles();
+					System.out.println("windowhandle :"+allWindowHandles);
+					Iterator<String> iterator = allWindowHandles.iterator();
+					// Here we will check if child window is present and then switch to child window
+					while (iterator.hasNext()) {
+						String winHandleBefore = driver.getWindowHandle();
+						String ChildWindow = iterator.next();
+						if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+							driver.switchTo().window(ChildWindow);
+							Thread.sleep(10000);
+							emailTextField.click();
+							emailTextField.sendKeys(testDataMap.get("PaypalEmail").toString());
+							clickOn(NextButton);
+							clickOn(passwordTextField);
+							passwordTextField.sendKeys(testDataMap.get("PaypalPassword").toString());
+							clickOn(LoginButton);
+							clickOn(AgreeAndContinueButton);
+							Thread.sleep(10000);
 
+						}
+						driver.switchTo().window(winHandleBefore);
+						//				break;
+					}
+					clickOn(termsCheck);
+					clickOn(SubmitButton);
+				}
+				else {
+					wait.until(ExpectedConditions.visibilityOf(creditCardCheckBox));
+					clickOn(creditCardCheckBox);
+					wait.until(ExpectedConditions.visibilityOf(PaypalButton));
+					clickOn(PaypalButton); 
+					try {
+						Thread.sleep(5000);
+						driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='zoid-component-frame zoid-visible']")));
+						System.out.println("paypal iframe");
+						Boolean b = driver.findElement(By.id("paypal-animation-content")).isDisplayed();
+						System.out.println("payypal iframe mobile id");
+
+						System.out.println(b);
+					} catch (NoSuchElementException e) {
+						e.printStackTrace();
+
+					}
+					clickOn(Budget_PaypalRadioButton);
+					String mainWindowHandle = driver.getWindowHandle();
+					System.out.println("windowhandle :"+mainWindowHandle);
+					Set<String> allWindowHandles = driver.getWindowHandles();
+					System.out.println("windowhandle :"+allWindowHandles);
+					Iterator<String> iterator = allWindowHandles.iterator();
+					// Here we will check if child window is present and then switch to child window
+					while (iterator.hasNext()) {
+						String winHandleBefore = driver.getWindowHandle();
+						String ChildWindow = iterator.next();
+						if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)) {
+							driver.switchTo().window(ChildWindow);
+							Thread.sleep(10000);
+							emailTextField.click();
+							emailTextField.sendKeys(testDataMap.get("PaypalEmail").toString());
+							clickOn(NextButton);
+							clickOn(passwordTextField);
+							passwordTextField.sendKeys(testDataMap.get("PaypalPassword").toString());
+							clickOn(LoginButton);
+							clickOn(AgreeAndContinueButton);
+							Thread.sleep(10000);
+
+						}
+						driver.switchTo().window(winHandleBefore);
+						//					break;
+					}
+					clickOn(termsCheck);
+					clickOn(SubmitButton);
+				}
 			}
 
 			if(testDataMap.get("PayLaterCreditcard").toString().equalsIgnoreCase("YES")) {
@@ -579,9 +732,15 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				passwordUplift.click();
 				new Actions(driver).sendKeys("3507").perform();
 				continueUplift.click();
-				threadSleep(TEN_SECONDS);
+				Thread.sleep(20000);
+//				threadSleep(TEN_SECONDS);
 //				wait.until(ExpectedConditions.visibilityOf(ccnumberUplift));
-				helper.scrollToElement(ccnumberUplift);
+				congratesMsgUplift.isDisplayed();
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,10000)");
+				helper.scrollToElement(continueCreditUplift);
+				debitCardClick.click();
+//				helper.scrollToElement(ccnumberUplift);
 				ccnumberUplift.click();
 				ccnumberUplift.sendKeys("4111 1111 1111 1111");
 				ccexpirationUplift.click();
@@ -607,6 +766,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 
 		}
 		if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
+			IataTextFiled.isDisplayed();
 			fillText(IataTextFiled,testDataMap.get("IATA").toString());
 		}
 
@@ -616,9 +776,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 		}
 
 		if(!testDataMap.get("ReserveButton").toString().equalsIgnoreCase("NA")) {
+			termsCheck.isDisplayed();
 			clickOn(termsCheck);
 			clickOn(SubmitButton);
 		}
+
 		//			Flight error msg verify
 		if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
 			if (testDataMap.get("ErrorMessageVerify").toString().equalsIgnoreCase("Yes") && testDataMap.get("UserType").toString().equalsIgnoreCase("Guest")) {
@@ -636,9 +798,11 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				System.out.println("Reservation Confirmation");
 			}
 			try {
+//				if(Configuration.DOMAIN.equalsIgnoreCase("US"))
 				System.out.println("try");
 				List<WebElement> s1 = driver.findElements(By.tagName("iframe"));
 				for(int i=0; i < s1.size(); i++){
+					if(!Configuration.DOMAIN.equalsIgnoreCase("CA")) {
 					if(s1.get(i).getAttribute("id").contains("rokt-placement")) {
 						driver.switchTo().frame(s1.get(i).getAttribute("id"));
 						List<WebElement> t = driver.findElements(By.tagName("iframe"));
@@ -650,8 +814,19 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 						System.out.println("7");
 						break;
 					}				
+				}else {
+					if(s1.get(i).getAttribute("id").contains("rokt-placements-frame-2876502643832127489")) {
+						driver.switchTo().frame(s1.get(i).getAttribute("id"));
+						List<WebElement> t = driver.findElements(By.tagName("iframe"));
+						driver.switchTo().frame(t.get(0).getAttribute("id"));
+						System.out.println("5");
+						wait.until(ExpectedConditions.visibilityOf(close));
+						System.out.println("6");
+						clickOn(close);
+						System.out.println("7");
+						break;
 				}
-			}catch (Exception e) {
+			}}}catch (Exception e) {
 				System.out.println("Popup not visible");
 			}
 			try {
@@ -662,13 +837,21 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				threadSleep(TEN_SECONDS);
 				assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 			}
-			//			threadSleep(TEN_SECONDS);
-			//			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("PickUpLocation").toString()));
 		}
 		if(!testDataMap.get("Coupon").toString().equalsIgnoreCase("NA")){
 			wait.until(ExpectedConditions.visibilityOf(couponVerify));
 			assertTrue(couponVerify.getText().toString().contains(testDataMap.get("Coupon").toString()));
 		}
+
+		if(!testDataMap.get("PayPal").toString().equalsIgnoreCase("NA")){
+			if(!testDataMap.get("Paylater&Paynow").toString().equalsIgnoreCase("Paylater")) {
+				paymentRecievedPaylpal.isDisplayed();
+			}
+			else {
+				wait.until(ExpectedConditions.visibilityOf(paypalVerify));
+				paypalVerify.isDisplayed();
+			}
+		}	
 
 		//			Validate NZCurrency
 		if(!testDataMap.get("Currency").toString().equalsIgnoreCase("NA")) {
@@ -696,16 +879,30 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			String [] confirmationNoValue= confirmationNumber.getText().split(": ");
 			String reservationNumber = confirmationNoValue[1].replaceAll(":", "");
 			System.out.println(reservationNumber);
-
-
-
-			if(testDataMap.get("ViewModifyCancel").toString().equalsIgnoreCase("Yes")) {
-				viewmodifylastName.click();
-				fillText(viewmodifylastName,testDataMap.get("LastName").toString());
-				fillText(viewmodifyConfirmationNumber,confirmationNo );
+//			estimatedTotalConfirmation.isDisplayed();
+			estimatedAmount.isDisplayed();
+			if(!testDataMap.get("IATA").toString().equalsIgnoreCase("NA")) {
+				assertTrue(IATANumber.getText().toString().contains(testDataMap.get("IATA").toString()));
+			}
+			if(!testDataMap.get("ViewModifyCancel").toString().equalsIgnoreCase("NA")) {
+				budgetBrandText.click();
+				clickOn(reservation);
+				if(Configuration.ENVIRONMENT.equalsIgnoreCase("uat")){
+					wait.until(ExpectedConditions.visibilityOf(viewModifyCancel1));
+					clickOn(viewModifyCancel1);	
+				}
+				if(Configuration.ENVIRONMENT.equalsIgnoreCase("ci11")){
+					wait.until(ExpectedConditions.visibilityOf(viewModifyCancel));
+					clickOn(viewModifyCancel);
+				}
+				viewModifyCancelPage.isDisplayed();
+				clickOn(viewmodifylastName);
+				fillText(viewmodifylastName,testDataMap.get("LastName").toString() );
+				clickOn(viewmodifyConfirmationNumber);
+				viewmodifyConfirmationNumber.sendKeys(reservationNumber);
 				findReservation.click();
 
-			}
+			}	
 		}
 		if(testDataMap.get("ModifyReservation").toString().equalsIgnoreCase("YES")) {
 			wait.until(ExpectedConditions.visibilityOf(modifyLocation));
@@ -746,6 +943,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(dropOffSuggestion);
 			}
 			clickOn(selectMyCarButton);
+			threadSleep(TEN_SECONDS);
 			assertTrue(pickUpLocationVerify.getText().toString().contains(testDataMap.get("ModifyPickUpLoc").toString()));
 			ReturnLocValue.isDisplayed();
 			verifyPickupDateandTime.isDisplayed();
@@ -763,8 +961,28 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 			SeeRateTerms.click();
 			verifyRateTerms.isDisplayed();
 			clickOn(CONTINUEBUTTON);
+			modifyYourInfo.isDisplayed();
+			BaseRate.isDisplayed();
+			VerifySymbol.isDisplayed();
+			feesTaxes.isDisplayed();
+			estimatedTotal.isDisplayed();
+			NumberOfSeats.isDisplayed();
+			//			SeeRateTerms.isDisplayed();
+			//			SeeRateTerms.click();
+			modifyReservePickDate.isDisplayed();
+			modifyReserveDropDate.isDisplayed();
 			clickOn(reviewModificationsButton);
+			modifyReservationReviewConfirm.isDisplayed();
+			originalDetails.isDisplayed();
+			modifiedDetails.isDisplayed();
+			cancelModification.isDisplayed();
+			keepModificationButton.isDisplayed();
+			threadSleep(TEN_SECONDS);
+			keepModificationButton.click();
+			confirmationNumber.isDisplayed();
+			modifyMessageDisplayed.isDisplayed();
 			clickOn(keepModificationButton);
+			//			clickOn(keepModificationButton);
 			if(!testDataMap.get("TrackReservation").toString().equalsIgnoreCase("NA")) {
 				BudgetHomePage budgetHomePage= new BudgetHomePage(getDriver());
 				budgetHomePage.viewModify(testDataMap);
@@ -787,10 +1005,13 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 					wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
 					clickOn(cancelReservationButton);
 					threadSleep(TEN_SECONDS);
-					wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+					assertEquals(emailCancel.getAttribute("prefilledemail"),testDataMap.get("Email").toString());
+					//					wait.until(ExpectedConditions.visibilityOf(cancelTermscheckbox));
+					threadSleep(TEN_SECONDS);
 					clickOn(cancelTermscheckbox);
-					wait.until(ExpectedConditions.visibilityOf(confirmCancelReservationButton));
+					threadSleep(TEN_SECONDS);
 					clickOn(confirmCancelReservationButton);
+					cancelledReservationConfirm.isDisplayed();
 				}
 			}
 			if(Configuration.DOMAIN.equalsIgnoreCase("AU")) {
@@ -798,6 +1019,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(cancelReservationButton);
 				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
+				cancelledReservationConfirm.isDisplayed();
 			}
 			if(Configuration.DOMAIN.equalsIgnoreCase("NZ")) {
 				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
@@ -806,6 +1028,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(cancelTermscheckbox);
 				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
+				cancelledReservationConfirm.isDisplayed();
 			}
 			if(Configuration.DOMAIN.equalsIgnoreCase("CA")) {
 				wait.until(ExpectedConditions.visibilityOf(cancelReservationButton));
@@ -814,6 +1037,7 @@ public class BudgetReviewReservePage extends AbstractBasePage{
 				clickOn(cancelTermscheckbox);
 				wait.until(ExpectedConditions.visibilityOf(cancelReservation));
 				clickOn(cancelReservation);
+				cancelledReservationConfirm.isDisplayed();
 			}
 
 		}
