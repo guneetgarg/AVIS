@@ -51,6 +51,7 @@ Avis_Reservation_EMEA330Days_ErrorMessage_US,CPT,14
 Avis_Reservation_SMSOptInProfile_Verification_US,B0506T,Testing100@,EWR,8622196015
 Avis_Reservation_CCOLocation_PayLater_US,PIR,hrishi,K,ABGCCO,8788989786,343710684134463
 Avis_Profile_Enrollment_Activation_US,Abhishek,Jain,abhi527@yopmail.com,919654354519,ajain527,Password@789,900 Oxford Exchange Blvd
+Avis_Reservation_OneWay_PayLater_CoperateDiscount_US,SFO,12,noon,BUR,15,2:00 PM,2,Rohit,Kumar,test,12139156465,B771000,abg@microsoft.com
 ##############################_LOCATION_#################################
 Avis_Location_Search_MnemonicCodeRes_US,DFW,Hrishi,K,ABG_Location,9897867898
 Avis_Location_Search_Suggestion_US,EWR

@@ -9,9 +9,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.avis.qa.utilities.CommonUtils.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static com.avis.qa.constants.AvisConstants.*;
 
 
 /**
@@ -97,6 +101,25 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//span[text()='Base Rate']")
     private WebElement BaseRate;
 
+    @FindBy(xpath = "(//p[contains(text(),'Third Party Liability')]/ancestor::div[contains(@ng-class,'selected')]//Span[contains(text(),'INCLUDED')])[1]")
+     private WebElement thirdPartyLiabilityIncluded;
+
+    @FindBy(xpath="(//p[contains(text(),'Cover The Car (LDW)')]/ancestor::div[contains(@ng-class,'selected')]//Span[contains(text(),'INCLUDED')])[1]")
+    private WebElement ldWIncluded;
+
+    @FindBy(xpath="(//span[@class='tick-icon']//parent::div//span[contains(text(),'Unlimited')])[1]")
+     private WebElement unlimitedKilometer;
+
+    @FindBy(xpath = "(//span[@class='tick-icon']//parent::div//span[contains(text(),'0 Due Today')])[1]")
+    private WebElement zeroDueToday;
+
+    @FindBy(xpath="(//span[@class='tick-icon']//parent::span//span[text()='Free Cancellation'])[1]")
+     private  WebElement freeCancellation;
+
+    HashMap<String,String> awdMessage=new HashMap<String,String >() ;
+    HashMap<String, String> awdIncluded=new HashMap<String, String>();
+
+
     public Extras(WebDriver driver) {
         super(driver);
     }
@@ -104,6 +127,13 @@ public class Extras extends AbstractBasePage {
         if (Configuration.DOMAIN.equals("CA"))
         LDWCheckbox=PAICheckbox;
     }
+    {
+        awdMessage.put("B771000","Your provided AWD number includes or discounts certain extras, and may include Loss Damage Waiver (LDW) and Liability Coverage. Subject to terms and conditions");
+        additionalCharges.put("EquipmentServiceCharges",0.0);
+        additionalCharges.put("ProtectionCoverageCharges",0.0);
+
+    }
+
 
     public ReviewAndBook Step3Submit() {
         threadSleep(TWO_SECONDS);
@@ -221,5 +251,76 @@ public class Extras extends AbstractBasePage {
     public void isOnPage() {
         log.info("Verify Extras Page");
         waitForVisibilityOfElement(submitStep3);
+    }
+
+    public boolean isAwdMessageMatch(String awdNumber)
+    {
+        if(isAWDIncludedInsuranceCoveragetextDisplayed())
+        {
+            String message=AWDIncludedCoveragesText.getText();
+            System.out.println(message);
+            if(message.contains(awdMessage.get(awdNumber)))
+                return true;
+            else
+                return  false;
+        }
+        else
+            return false;
+
+    }
+
+    public boolean isAWDIncluded(String awd)
+    {
+          boolean isAWDIncluded =false;
+        try {
+            if (awd.equals("B771000")) {
+                waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
+                ProtectionAndCoveragesTab.click();
+                ldWIncluded.isDisplayed();
+                thirdPartyLiabilityIncluded.isDisplayed();
+                isAWDIncluded=true;
+
+            }
+        }
+        catch (Exception e)
+        {
+            isAWDIncluded=false;
+        }
+
+        return isAWDIncluded;
+    }
+    public boolean isUnlimitedKilometerDisplay()
+    {
+        try{
+            return unlimitedKilometer.isDisplayed();
+        }
+        catch(Exception e)
+        {
+            log.info("UnlimitedKilometer is not Displayed");
+            return false;
+        }
+    }
+    public boolean isDueTodayDisplay()
+    {
+
+        try{
+            return zeroDueToday.isDisplayed();
+        }
+        catch(Exception e)
+        {
+            log.info("Free Cancellation is not Displayed");
+            return false;
+        }
+    }
+    public boolean isFreeCancellationDisplay()
+    {
+        try{
+            return freeCancellation.isDisplayed();
+        }
+        catch(Exception e)
+        {
+            log.info("Zero Due is not Displayed");
+            return false;
+        }
     }
 }

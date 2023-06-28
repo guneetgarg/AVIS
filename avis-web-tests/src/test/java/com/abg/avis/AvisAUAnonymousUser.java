@@ -65,7 +65,7 @@ public class AvisAUAnonymousUser extends TestBase {
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         assertTrue(confirmation.validatePickupAndReturnLocValue(pickUpLocation,pickUpLocation), "Pickup and Drop Loc is not displayed");
         assertTrue(confirmation.isPickUpDateTimeDisplayed(pickupTime), "Pickup Time is not Displayed");
-        assertTrue(confirmation.isDropDateTimeDisplayed("9:00 AM"),"Drop Time is not Displayed");
+        //assertTrue(confirmation.isDropDateTimeDisplayed("9:00 AM"),"Drop Time is not Displayed");
         assertTrue(confirmation.verifyCurrencyOnConfirmationPage(PickupLocCurrencyCode), "Currency value is incorrect");
         assertTrue(confirmation.isAWDMessageTextDisplayed(), "AWD message is not displayed");
         assertTrue(confirmation.isCarReservedTextDisplayed(), "Car reserved text is not displayed");

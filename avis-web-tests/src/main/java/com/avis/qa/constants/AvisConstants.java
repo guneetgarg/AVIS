@@ -2,6 +2,8 @@ package com.avis.qa.constants;
 
 import com.avis.qa.core.Configuration;
 
+import java.util.HashMap;
+
 public class AvisConstants {
 
     public static final String REGRESSION = "regression";
@@ -28,8 +30,15 @@ public class AvisConstants {
     public static final String DROP_UP_TIME = "9:00 AM";
 
     public static final String TEST = "Test";
+
+    public static HashMap<String,Double> fareCharges=new HashMap<String,Double>();
+    public static HashMap<String,Double> additionalCharges=new HashMap<String,Double>();
+
+    public static String confirmationNo;
     public static String getAvisUrl(String path) {
         return Configuration.URL.replace("/en/home", path);
     }
+
+
 
 }

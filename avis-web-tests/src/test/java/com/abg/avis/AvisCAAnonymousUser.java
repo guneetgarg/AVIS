@@ -348,7 +348,7 @@ public class AvisCAAnonymousUser extends TestBase {
         Confirmation confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
                 phoneNo);
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        //assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
+        assertTrue(confirmation.isCouponAppliedMessageDisplayed(couponNo), "Coupon Applied Message is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
@@ -467,7 +467,7 @@ public class AvisCAAnonymousUser extends TestBase {
         assertTrue(confirmation.closeGetFreeCouponPopup().isCouponAppliedMessageDisplayed(couponNo),COUPON_NOT_APPLIED_MESSAGE);
         confirmation.closeGetFreeCouponPopup().keyDropMessageValidation();
         confirmation.closeGetFreeCouponPopup().cancelReservation();
-        confirmation.cancelReservation();
+        //confirmation.cancelReservation();
     }
 
     @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
@@ -522,6 +522,7 @@ public class AvisCAAnonymousUser extends TestBase {
         assertTrue(confirmation.verifyGPSCoverageOnConfirmationPage(), "GPS Coverage is not displayed");
         assertTrue(confirmation.verifyRSNCoverageOnConfirmationPage(), "RSN Coverage is not displayed");
         assertTrue(confirmation.isCouponCodeMessageDisplayed(couponText), "Coupon Code is not displayed");
+
         confirmation.cancelReservation();
     }
 
@@ -568,6 +569,53 @@ public class AvisCAAnonymousUser extends TestBase {
         confirmation.GetConfirmationNumber();
         confirmation.isEmailSentTextDisplayed(email);
         confirmation.isModifiedReservationTextDisplayed(firstName);
+    }
+
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 19, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    public void Avis_Reservation_OneWay_PayLater_CoperateDiscount_US(String pickUpLoction,String pickDate,String pickupTime,String dropOffLocation,String dropDate,String dropTime,String month, String fname, String lname,
+                                                    String email, String phoneNo,String awd, String corporateEmailId) {
+        launchUrl();
+        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
+        Confirmation confirmation = reservationHelper.Reservation_OneWay_PayLater_coperatediscount(pickUpLoction,pickDate, pickupTime,dropOffLocation,dropDate, dropTime,month,fname, lname, email, phoneNo,awd,corporateEmailId);
+        confirmation.setBaseRateAndEstimatedTotal();
+        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
+        assertTrue(confirmation.isEmailSentMessageVisible(),"Email Sent message is not Visible");
+        assertTrue(fareCharges.get("Step-4-BaseRate").equals(fareCharges.get("confirmation-BaseRate")));
+        assertTrue(fareCharges.get("Step-4-TotalEstimatedValue").equals(fareCharges.get("confirmation-TotalEstimatedValue")));
+
+        assertTrue(confirmation.isLdwIncluded(),"Lwd Included text Not Visible");
+        assertTrue(confirmation.isthirdPartyIncluded(),"Third party Included text Not Visible");
+        assertTrue(confirmation.isModifyRateOptionVisible(),"Modify text is not visible under Rate Section ");
+        assertTrue(confirmation.isModifyTimeOptionVisible(),"Modify text is not visible under Time And Place Section ");
+        assertTrue(confirmation.isModifyRentalOptionVisible(),"Modify text is not visible under Rental Section ");
+        assertTrue(confirmation.isModifyMVCOptionVisible(),"Modify text is not visible for MVC Section");
+        assertTrue(confirmation.isAWDCodVisibleUnderRateSection(awd),"AWD number not visible under Rate Section");
+        assertTrue(confirmation.isEmailSentMessageVisible(),"Email Sent Message not Visible");
+        assertTrue(confirmation.isProtectionCoverageChargeMatch(),"Protection Charges not match with Extra Page Charges");
+        assertTrue(confirmation.isEquipmentServiceChargeMatch(),"Equipment Service Charges not match with Extra Page Charges");
+    //   assertTrue(confirmation.isSmallBizFlyAWDNumberVisible(),"Small Biz AWD number is not generated");
+        ManageReservationPage manageReservationPage = reservationHelper.Reservation_Modify_View_Cancel(confirmation,lname,"U S A");
+
+        Assert.assertTrue(manageReservationPage.isPrintConfirmationButtonDisplay(),"Print Confirmation Button not Visible");
+        Assert.assertTrue(fareCharges.get("ReviewPreModification-BaseRate").equals(fareCharges.get("confirmation-BaseRate")));
+        Assert.assertTrue(fareCharges.get("ReviewPreModification-TotalEstimatedValue").equals(fareCharges.get("confirmation-TotalEstimatedValue")));
+        Assert.assertTrue(manageReservationPage.ismvcModifyIconVisible(),"Modify Icon is not Visible for MVC");
+        Assert.assertTrue(manageReservationPage.isModifyTimeAndPlaceIconVisible(),"Modify Icon us not visible for Time & Place");
+        Assert.assertTrue(manageReservationPage.isModifyRateIconVisible(),"Modify ICON is not Visible for Rate");
+        Assert.assertTrue(manageReservationPage.isModifyRentalIconVisible(),"Modify Icon is not visible for Rental");
+        Assert.assertTrue(manageReservationPage.isAWDMessageTextDisplayed(),"AWD included message not Visible");
+
+        /*assertTrue(confirmation.isLdwIncluded(),"Lwd Included text Not Visible");
+        assertTrue(confirmation.isthirdPartyIncluded(),"Third party Included text Not Visible");
+        assertTrue(confirmation.isModifyRateOptionVisible(),"Modify text is not visible under Rate Section ");
+        assertTrue(confirmation.isModifyTimeOptionVisible(),"Modify text is not visible under Time And Place Section ");
+        assertTrue(confirmation.isModifyRentalOptionVisible(),"Modify text is not visible under Rental Section ");
+        assertTrue(confirmation.isModifyMVCOptionVisible(),"Modify text is not visible for MVC Section");
+        assertTrue(confirmation.isAWDCodVisibleUnderRateSection(awd),"AWD number not visible under Rate Section");
+        assertTrue(confirmation.isEmailSentMessageVisible(),"Email Sent Message not Visible");
+        assertTrue(confirmation.isProtectionCoverageChargeMatch(),"Protection Charges not match with Extra Page Charges");
+        assertTrue(confirmation.isEquipmentServiceChargeMatch(),"Equipment Service Charges not match with Extra Page Charges");
+        // confirmation.cancelReservation();*/
     }
 
 }
