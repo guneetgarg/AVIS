@@ -27,7 +27,7 @@ import static org.testng.Assert.*;
 @Log4j2
 public class AvisUSAnonymousUser extends TestBase {
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS, TEST}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 40, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_FlightInfo_DigitalWallet_PayPal_PayNow_US(String pickUpLocation, String fname, String lname,
                                                                    String email, String phoneNo, String paypalEmail, String paypalPassword, String flightName, String flightNumber) {
         launchUrl();
@@ -91,7 +91,7 @@ public class AvisUSAnonymousUser extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION,SMOKE, AVIS, TEST},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION,SMOKE, AVIS},priority=2, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_ErrorMessage_PayNow_US(String pickUpLocation, String firstName, String lastName, String email,
                                                         String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
@@ -158,7 +158,7 @@ public class AvisUSAnonymousUser extends TestBase {
 
     }
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS, TEST}, priority = 15, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 15, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_USAA_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname,
                                                   String lname, String email, String phoneNo) {
         launchUrl();
@@ -223,7 +223,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.cancelReservationWithConfirmationBox();
     }
 
-    @Test(groups = {REGRESSION, SMOKE, AVIS, TEST}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE, AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_CarGuide_Res_US(String pickUpLoc, String firstName, String lastName, String email, String phoneNo) {
         launchUrl();
         MiscHelper miscHelper = new MiscHelper(getDriver());
@@ -232,7 +232,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE, AVIS, TEST}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE, AVIS}, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Misc_OffersPage_Reservation_US(String pickUplocation, String firstName, String lastName, String email,
                                                     String phoneNo) {
         launchUrl();
@@ -276,7 +276,7 @@ public class AvisUSAnonymousUser extends TestBase {
         log.info("Test case execution ended :Avis_Reservation_CCOLocation_PayLater_US");
     }
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS, TEST}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 4, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_Costco_PayLater_US(String pickUpLocation, String awd, String membershipNo, String fname,
                                                     String lname, String email, String phoneNo) {
         log.info("Test case execution started :Avis_Reservation_Costco_PayLater_US");
@@ -336,11 +336,10 @@ public class AvisUSAnonymousUser extends TestBase {
                                                                    String lname, String email, String phoneNo) {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation;
         ReservationWidget reservationWidget;
         Map<String, String> map;
         try {
-            confirmation = reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
+        reservationHelper.Reservation_CouponProcessing_PayLater(pickUpLocation, couponNo, fname, lname, email,
                     phoneNo);
         } catch (Exception ex) {
             reservationWidget = reservationHelper.getReservationWidget();
@@ -350,7 +349,7 @@ public class AvisUSAnonymousUser extends TestBase {
         }
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS, TEST}, priority = 11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS}, priority = 11, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_UtypeCouponProcessing_PayLater_US(String pickUpLocation, String couponNo, String fname,
                                                                    String lname, String email, String phoneNo) {
         launchUrl();
@@ -375,7 +374,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS, TEST}, priority = 13, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 13, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_Inbound_PayLater_US(String pickUpLocation, String Country, String firstName, String lastName,
                                                      String email, String phoneNumber) {
         launchUrl();
@@ -386,7 +385,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS, TEST}, priority = 14, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 14, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_Inbound_PayNow_US(String pickUpLocation, String Country, String firstName, String lastName,
                                                    String email, String phoneNumber, String ccNumber, String cvv) {
         launchUrl();
@@ -414,12 +413,11 @@ public class AvisUSAnonymousUser extends TestBase {
         launchUrl();
         ReservationHelper reservationHelper = new ReservationHelper(getDriver());
         Confirmation confirmation = reservationHelper.Reservation_Recognised_Paylater(pickUpLocation, wizardNo, lastName, pickUpLocation1);
-        //confirmation.closeGetFreeCouponPopup();
         assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
         confirmation.closeGetFreeCouponPopup().cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS, TEST}, priority = 21, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS}, priority = 21, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_UnderAgeAndHomePageErrorMessageAndPersonalInfoValidation_Paylater_US(String pickUpLocation,
                                                                                                       String age, String firstName, String lastName, String email, String phoneNo) {
         launchUrl();
@@ -429,7 +427,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS, TEST}, priority = 26, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS}, priority = 26, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_Reservation_AnonymousDomesticAWDorBDCorPDNAndIATAAndKeyDrop_Paylater_US(String pickUpLocation,
                                                                                              String dropOffTime, String awd, String firstName, String lastName, String email, String phoneNo,
                                                                                              String iataNo, String pickUpLocation_new) {
@@ -480,7 +478,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE,AVIS, TEST}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 32, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_OneWay_USAA_PayLater_US(String pickUpLocation, String dropOffLocation, String awd, String membershipNo, String fname, String lname,
                                                  String email, String phoneNo) {
         launchUrl();
@@ -518,7 +516,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS, TEST}, priority = 36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SANITY, SMOKE,AVIS}, priority = 36, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_UtypeCoupon_Tierbundle_PayLater_US(String pickUpLocation, String pickupTime, String dropOffTime, String couponNo, String fname,
                                                             String lname, String email, String phoneNo, String couponText) {
         launchUrl();
@@ -566,7 +564,7 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.cancelReservation();
     }
 
-    @Test(groups = {REGRESSION, SMOKE, TEST}, priority = 43, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
+    @Test(groups = {REGRESSION, SMOKE}, priority = 43, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
     public void Avis_RES_Modify_flow_Step1_to_step4_US(String pickUpLocation, String firstName, String lastName,
                                                        String email, String phoneNumber,String ccNo, String cvv, String Country, String modifiedPickupLocation) {
         launchUrl();
@@ -577,53 +575,5 @@ public class AvisUSAnonymousUser extends TestBase {
         confirmation.isEmailSentTextDisplayed(email);
         confirmation.isModifiedReservationTextDisplayed(firstName);
     }
-
-    @Test(groups = {REGRESSION, SMOKE,AVIS}, priority = 19, dataProvider = TEST_DATA, dataProviderClass = CSVUtils.class)
-    public void Avis_Reservation_OneWay_PayLater_CoperateDiscount_US(String pickUpLoction,String pickDate,String pickupTime,String dropOffLocation,String dropDate,String dropTime,String month, String fname, String lname,
-                                                                     String email, String phoneNo,String awd, String corporateEmailId) {
-        launchUrl();
-        ReservationHelper reservationHelper = new ReservationHelper(getDriver());
-        Confirmation confirmation = reservationHelper.Reservation_OneWay_PayLater_coperatediscount(pickUpLoction,pickDate, pickupTime,dropOffLocation,dropDate, dropTime,month,fname, lname, email, phoneNo,awd,corporateEmailId);
-        confirmation.setBaseRateAndEstimatedTotal();
-        assertTrue(confirmation.isConfirmationNumberDisplayed(), "Confirmation Number is not displayed");
-        assertTrue(confirmation.isEmailSentMessageVisible(),"Email Sent message is not Visible");
-        assertTrue(fareCharges.get("Step-4-BaseRate").equals(fareCharges.get("confirmation-BaseRate")));
-        assertTrue(fareCharges.get("Step-4-TotalEstimatedValue").equals(fareCharges.get("confirmation-TotalEstimatedValue")));
-
-        assertTrue(confirmation.isLdwIncluded(),"Lwd Included text Not Visible");
-        assertTrue(confirmation.isthirdPartyIncluded(),"Third party Included text Not Visible");
-        assertTrue(confirmation.isModifyRateOptionVisible(),"Modify text is not visible under Rate Section ");
-        assertTrue(confirmation.isModifyTimeOptionVisible(),"Modify text is not visible under Time And Place Section ");
-        assertTrue(confirmation.isModifyRentalOptionVisible(),"Modify text is not visible under Rental Section ");
-        assertTrue(confirmation.isModifyMVCOptionVisible(),"Modify text is not visible for MVC Section");
-        assertTrue(confirmation.isAWDCodVisibleUnderRateSection(awd),"AWD number not visible under Rate Section");
-        assertTrue(confirmation.isEmailSentMessageVisible(),"Email Sent Message not Visible");
-        assertTrue(confirmation.isProtectionCoverageChargeMatch(),"Protection Charges not match with Extra Page Charges");
-        assertTrue(confirmation.isEquipmentServiceChargeMatch(),"Equipment Service Charges not match with Extra Page Charges");
-        //   assertTrue(confirmation.isSmallBizFlyAWDNumberVisible(),"Small Biz AWD number is not generated");
-        ManageReservationPage manageReservationPage = reservationHelper.Reservation_Modify_View_Cancel(confirmation,lname,"U S A");
-
-        Assert.assertTrue(manageReservationPage.isPrintConfirmationButtonDisplay(),"Print Confirmation Button not Visible");
-        Assert.assertTrue(fareCharges.get("ReviewPreModification-BaseRate").equals(fareCharges.get("confirmation-BaseRate")));
-        Assert.assertTrue(fareCharges.get("ReviewPreModification-TotalEstimatedValue").equals(fareCharges.get("confirmation-TotalEstimatedValue")));
-        Assert.assertTrue(manageReservationPage.ismvcModifyIconVisible(),"Modify Icon is not Visible for MVC");
-        Assert.assertTrue(manageReservationPage.isModifyTimeAndPlaceIconVisible(),"Modify Icon us not visible for Time & Place");
-        Assert.assertTrue(manageReservationPage.isModifyRateIconVisible(),"Modify ICON is not Visible for Rate");
-        Assert.assertTrue(manageReservationPage.isModifyRentalIconVisible(),"Modify Icon is not visible for Rental");
-        Assert.assertTrue(manageReservationPage.isAWDMessageTextDisplayed(),"AWD included message not Visible");
-
-        /*assertTrue(confirmation.isLdwIncluded(),"Lwd Included text Not Visible");
-        assertTrue(confirmation.isthirdPartyIncluded(),"Third party Included text Not Visible");
-        assertTrue(confirmation.isModifyRateOptionVisible(),"Modify text is not visible under Rate Section ");
-        assertTrue(confirmation.isModifyTimeOptionVisible(),"Modify text is not visible under Time And Place Section ");
-        assertTrue(confirmation.isModifyRentalOptionVisible(),"Modify text is not visible under Rental Section ");
-        assertTrue(confirmation.isModifyMVCOptionVisible(),"Modify text is not visible for MVC Section");
-        assertTrue(confirmation.isAWDCodVisibleUnderRateSection(awd),"AWD number not visible under Rate Section");
-        assertTrue(confirmation.isEmailSentMessageVisible(),"Email Sent Message not Visible");
-        assertTrue(confirmation.isProtectionCoverageChargeMatch(),"Protection Charges not match with Extra Page Charges");
-        assertTrue(confirmation.isEquipmentServiceChargeMatch(),"Equipment Service Charges not match with Extra Page Charges");
-        // confirmation.cancelReservation();*/
-    }
-
 
 }

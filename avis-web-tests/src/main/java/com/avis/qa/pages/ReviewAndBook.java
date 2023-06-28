@@ -254,8 +254,8 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath="//span[contains(.,'Base Rate')]//following-sibling::div[@class='pull-right ']")
     private WebElement baseRateAmount;
 
-
-
+    @FindBy(id = "onetrust-close-btn-container")
+    private WebElement cookiesBannerCloseBtn;
 
     public ReviewAndBook(WebDriver driver)
     {
@@ -264,6 +264,11 @@ public class ReviewAndBook extends AbstractBasePage {
     {
         if(Configuration.DOMAIN.equals("CA"))
        PrimaryCardText= PrincipalCardText;
+        try{
+            clickOn(cookiesBannerCloseBtn);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

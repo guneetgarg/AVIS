@@ -244,7 +244,8 @@ public class Confirmation extends AbstractBasePage {
    @FindBy(xpath="//a[@href='/en/home.html']")
    private WebElement homePageLink;
 
-
+    @FindBy(xpath = "//div[contains(@class,'avisred')]//span[contains(@class,'close-icon-black')]")
+    private WebElement skipCounterCloseBtn;
 
     public Confirmation(WebDriver driver) {
         super(driver);
@@ -419,7 +420,9 @@ public class Confirmation extends AbstractBasePage {
     }
 
     public Confirmation flyOutClose() {
-        helper.clickIfElementIsDisplayed(flyoutClosebtn);
+        if(!Configuration.BRAND.equalsIgnoreCase("AVIS") && !Configuration.DOMAIN.equalsIgnoreCase("US")) {
+            helper.clickIfElementIsDisplayed(flyoutClosebtn);
+        }
         return this;
     }
 
@@ -764,5 +767,11 @@ public class Confirmation extends AbstractBasePage {
         return new Homepage(driver);
     }
 
+    public Confirmation skipCounterClose() {
+        if(Configuration.BRAND.equalsIgnoreCase("AVIS") && Configuration.DOMAIN.equalsIgnoreCase("US")) {
+            helper.clickIfElementIsDisplayed(skipCounterCloseBtn);
+        }
+        return this;
+    }
 
 }

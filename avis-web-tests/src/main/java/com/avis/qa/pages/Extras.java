@@ -56,7 +56,7 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath = "//p[text()='Certain extras are included or discounted due to your provided AWD number.']")
     private WebElement ExtrasIncludedText;
 
-    @FindBy(xpath = "//span[contains(text(),'Your provided AWD number includes or discounts certain extras, and may include')] ")
+    @FindBy(xpath = "//span[contains(text(),'Your provided AWD number includes discounts or certain extras, and may include')] ")
     private WebElement AWDIncludedCoveragesText;
 
     @FindBy(xpath = "//a[@id='Step3-Protections & Coverages']")
@@ -116,6 +116,9 @@ public class Extras extends AbstractBasePage {
     @FindBy(xpath="(//span[@class='tick-icon']//parent::span//span[text()='Free Cancellation'])[1]")
      private  WebElement freeCancellation;
 
+    @FindBy(xpath = "//*[@id='google-close-button']/a")
+    private WebElement googleCloseBtn;
+
     HashMap<String,String> awdMessage=new HashMap<String,String >() ;
     HashMap<String, String> awdIncluded=new HashMap<String, String>();
 
@@ -147,7 +150,7 @@ public class Extras extends AbstractBasePage {
     }
 
     public Extras selectTierBundle() {
-        waitForVisibilityOfElement(Step3DiscountPackages).click();
+        clickOn(Step3DiscountPackages);
         if (helper.isElementDisplayed(ProtectionSafetyTireBundle))
             clickUsingJS(ProtectionSafetyTireBundle);
         CommonUtils.threadSleep(TWO_SECONDS);
@@ -223,7 +226,7 @@ public class Extras extends AbstractBasePage {
             waitForVisibilityOfElement(ProtectionAndCoveragesTab).click();
         }
         CommonUtils.threadSleep(ONE_SECOND);
-        LDWCheckbox.click();
+        clickOn(LDWCheckbox);
         CommonUtils.threadSleep(TWO_SECONDS);
         return this;
     }
@@ -250,6 +253,11 @@ public class Extras extends AbstractBasePage {
     @Override
     public void isOnPage() {
         log.info("Verify Extras Page");
+        try{
+            clickOn(googleCloseBtn);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         waitForVisibilityOfElement(submitStep3);
     }
 
