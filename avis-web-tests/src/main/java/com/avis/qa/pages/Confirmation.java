@@ -107,10 +107,10 @@ public class Confirmation extends AbstractBasePage {
     private WebElement ProtectionAndCoverageLDWAcceptedText;
 
 
-    @FindBy(xpath = "(//strong[contains(text(),'Card Number:')])[1] | span[contains(text(),'************')]")
+    @FindBy(xpath = "//*[@class='sp-payment-method']/descendant::span[text()='Primary Payment Method']/../../child::div//span[contains(@class,'cc-dropdown-selected')]/span[contains(text(),'************')]")
     private WebElement PrimaryCardDetails;
 
-    @FindBy(xpath = "(//strong[contains(text(),'Card Number:')])[2] | span[contains(text(),'************')]")
+    @FindBy(xpath = "//*[@class='sp-payment-method']/descendant::span[text()='Secondary Payment Method']/../../child::div//span[contains(@class,'cc-dropdown-selected')]/span[contains(text(),'************')]")
     private WebElement SecondaryCardDetails;
 
     @FindBy(xpath = "//span[@class='coupon-value']")

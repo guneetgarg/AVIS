@@ -35,7 +35,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(id = "lastname")
     private WebElement lastName;
 
-    @FindBy(id = "email")
+    @FindBy(xpath = "//div[contains(@class,'emailInput')]/div/input[@id='email']")
     private WebElement emailField;
 
     @FindBy(id = "phone")
@@ -68,7 +68,7 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//div[@class='cardNumber icon-padding']//input[@id='cardnumber'] | //div[@class='icon-padding']//input[@id='cardnumber']")
     private WebElement cardNumber;
     
-    @FindBy(xpath = "(//input[@id='cardnumber'])[2]")
+    @FindBy(xpath = "//*[@id='cardnumber']")
     private WebElement splitPageCardNumber;
 
     @FindBy(xpath = "//input[contains(@id,'securitycode')]")
@@ -151,12 +151,12 @@ public class ReviewAndBook extends AbstractBasePage {
     @FindBy(xpath = "//input[@id='secondaryAmount']")
     private WebElement secondaryAmountField;
 
-    @FindBy(xpath = "//strong[text()='Primary']")
+    @FindBy(xpath = "//span[text()='Primary Payment Method']")
     private WebElement PrimaryCardText;
 
     @FindBy(xpath = "//strong[text()='Principal']")
     private WebElement PrincipalCardText;
-    @FindBy(xpath = "//strong[text()='Secondary']")
+    @FindBy(xpath = "//span[text()='Secondary Payment Method']")
     private WebElement SecondaryCardText;
 
     @FindBy(xpath = "//*[@for='creditcard']")

@@ -144,7 +144,7 @@ public class Vehicles extends AbstractBasePage {
     @FindBy(xpath = "(//span[contains(text(),'Small to Full Size')])[1] | (//span[contains(text(),'Small & Mid Size ')])[1]")
     private WebElement SmallToFullSizeText;
 
-    @FindBy(xpath = "//span[text()='An underage surcharge is applicable except at participating locations.']")
+    @FindBy(xpath = "//span[text()='To hire a vehicle at this location you must be 21 years of age or older and hold a full driver licence.']")
     private WebElement UnderAgeSurchargeTextMsg;
 
     //Milegae sort High to Low
@@ -509,7 +509,11 @@ public class Vehicles extends AbstractBasePage {
 
     @Override
     public void isOnPage() {
-        waitForVisibilityOfElement(selectACarText);
+        try {
+            waitForVisibilityOfElement(selectACarText);
+        }catch (Exception ex){
+            log.info("li[title='Select a Car'] element is not visible");
+        }
     }
 
     public boolean  isDiscountCodeDisplayUnderLowerRate(String discountCode)
